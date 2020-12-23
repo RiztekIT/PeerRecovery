@@ -1,0 +1,99 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button>
+                <ion-back-button defaultHref="home" icon="chevron-back-outline"></ion-back-button>
+            </ion-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button>
+                <ion-menu-button></ion-menu-button>
+            </ion-button>
+        </ion-buttons>
+        <ion-title class="ion-text-center">Settings</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+        <ion-list-header class="margin-bottom-20">
+            Settings
+        </ion-list-header>
+
+        <ion-item lines="none">
+            <ion-label>
+                <h2>Health Tips for you</h2>
+                <p>Get information & tips for healthy lifestyle</p>
+            </ion-label>
+            <div slot="end">
+                <label class="switch">
+                <input type="checkbox" checked>
+                <span class="slider round"></span>
+            </label>
+            </div>
+        </ion-item>
+
+        <ion-item lines="none">
+            <ion-label>
+                <h2>Notification</h2>
+            </ion-label>
+            <div slot="end">
+                <label class="switch">
+              <input type="checkbox" checked>
+              <span class="slider round"></span>
+          </label>
+            </div>
+        </ion-item>
+
+    </ion-list>
+
+    <ion-list>
+        <ion-list-header class="margin-bottom-20">
+            Reminder Setting
+        </ion-list-header>
+
+        <ion-item lines="none">
+            <ion-label>
+                <h2>Vibrate</h2>
+            </ion-label>
+            <div slot="end">
+                <label class="switch">
+              <input type="checkbox" checked>
+              <span class="slider round"></span>
+          </label>
+            </div>
+        </ion-item>
+
+        <ion-item lines="none">
+            <ion-label>
+                <h2>Snooze Duration</h2>
+                <p>5 Minutes</p>
+            </ion-label>
+            <div slot="end">
+                <ion-button fill="clear">
+                    <ion-icon name="ellipsis-vertical-sharp"></ion-icon>
+                </ion-button>
+            </div>
+        </ion-item>
+
+    </ion-list>
+
+    <ion-list>
+        <ion-list-header class="margin-bottom-20">
+            Reminder Setting
+        </ion-list-header>
+
+        <ion-item lines="none">
+            <ion-label>
+                <h2>About Medicator</h2>
+            </ion-label>
+        </ion-item>
+
+        <ion-item lines="none">
+            <ion-label>
+                <h2>Privacy Policy</h2>
+            </ion-label>
+        </ion-item>
+
+    </ion-list>
+</ion-content>

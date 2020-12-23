@@ -1,0 +1,262 @@
+ion-content {
+    .heading {
+        font-size: 16px;
+        color: var(--ion-color-primary-dark);
+        font-family: 'sfUi-m';
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .view-btn {
+            height: auto;
+            width: auto;
+            --padding-start: 0;
+            --padding-end: 0;
+            font-size: 11px;
+            font-family: 'sfUi-m';
+            color: var(--ion-color-primary);
+        }
+    }
+    .upcoming-appointment,
+    .fav-doctors {
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 16%);
+        --padding-start: 6px;
+        border-radius: 5px;
+        &.inProgress {
+            h2,
+            h3,
+            h4,
+            p {
+                color: var(--ion-color-white) !important;
+            }
+            --background: var(--ion-color-primary) !important;
+        }
+        ion-thumbnail {
+            height: 78px;
+            width: 78px;
+            margin-right: 10px;
+            position: relative;
+            ion-button {
+                position: absolute;
+                top: 3px;
+                right: 3px;
+                --padding-start: 0;
+                --padding-end: 0;
+                height: auto;
+                width: auto;
+                margin: 0;
+                ion-icon {
+                    font-size: 15px;
+                    color: var(--ion-color-gray);
+                    &.active {
+                        color: var(--ion-color-red);
+                    }
+                }
+            }
+            img {
+                height: 78px;
+                width: 78px;
+                border-radius: 5px;
+            }
+        }
+        ion-label {
+            .dr-name {
+                font-size: 15px;
+                font-family: 'sfUi-m';
+                color: var(--ion-color-primary-dark);
+                .date {
+                    font-size: 11px;
+                    font-family: 'sfUi-m';
+                    color: var(--ion-color-primary-light);
+                }
+            }
+            .specialist {
+                font-size: 13px;
+                font-family: 'sfUi-m';
+                color: var(--ion-color-primary-dark);
+            }
+            .location,
+            .last-line {
+                font-size: 12px;
+                font-family: 'sfUi-m';
+                color: var(--ion-color-primary-light);
+                .time {
+                    font-size: 12px;
+                    font-family: 'sfUi-m';
+                    color: var(--ion-color-primary-dark);
+                }
+            }
+        }
+    }
+    .specialist-container {
+        display: flex;
+        overflow: scroll;
+        padding: 10px 0px;
+        .specialist {
+            text-align: center;
+            width: 140px;
+            min-width: 140px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 16%);
+            img {
+                width: 97px;
+                height: 90px;
+                border-radius: 5px;
+            }
+            h2 {
+                font-size: 12px;
+                font-family: 'sfUi-m';
+                color: var(--ion-color-primary-dark);
+            }
+            h3 {
+                font-size: 11px;
+                font-family: 'sfUi-m';
+                color: var(--ion-color-primary-light);
+            }
+        }
+    }
+    .offer-container {
+        display: flex;
+        overflow: scroll;
+        position: relative;
+        .offer {
+            border-radius: 5px;
+            overflow: hidden;
+            position: relative;
+            min-width: 170px;
+            .black-wrapper {
+                background: linear-gradient(180deg, #0000 25%, #000 138%);
+                height: 100%;
+                width: 100%;
+                position: absolute;
+            }
+            h2 {
+                position: absolute;
+                bottom: 0;
+                font-size: 12px;
+                color: var(--ion-color-white);
+                font-family: 'sfUi-m';
+            }
+        }
+    }
+    .looking-container {
+        display: flex;
+        overflow: scroll;
+        .content {
+            display: flex;
+            background: #FCE5F9;
+            width: 165px;
+            min-width: 165px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 16%);
+            div {
+                width: 42%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                h2 {
+                    font-size: 18px;
+                    font-family: 'sfUi-m';
+                    color: var(--ion-color-secondary);
+                }
+                h3 {
+                    font-size: 14px;
+                    font-family: 'sfUi-r';
+                    color: var(--ion-color-secondary);
+                }
+            }
+        }
+        .content:nth-child(2) {
+            background: #F8E9E6;
+        }
+    }
+    .plan-offer-banner {
+        background: #EEECF9;
+        border-radius: 5px;
+        position: relative;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 16%);
+        img {
+            position: absolute;
+            bottom: 0;
+            right: 7px;
+        }
+        .content {
+            width: 63%;
+            .top-line {
+                display: flex;
+                align-items: center;
+                .app-name {
+                    font-size: 16px;
+                    font-family: 'sfUi-m';
+                    color: var(--ion-color-secondary);
+                }
+                .plus-label {
+                    width: 75px;
+                    height: 30px;
+                    background: var(--ion-color-primary);
+                    font-size: 16px;
+                    font-family: 'sfUi-m';
+                    color: var(--ion-color-white);
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 5px;
+                }
+            }
+            .offer-txt {
+                font-size: 18px;
+                font-family: 'sfUi-m';
+                color: var(--ion-color-secondary);
+            }
+            .price {
+                font-size: 14px;
+                font-family: 'sfUi-m';
+                color: var(--ion-color-secondary);
+            }
+            .plan-btn {
+                --padding-start: 8px;
+                --padding-end: 0;
+                --border-radius: 5px;
+                --box-shadow: none;
+                width: 148px;
+                height: 40px;
+                font-size: 16px;
+                text-transform: capitalize;
+                font-family: 'sfUi-r';
+                position: relative;
+                z-index: 99;
+                ion-icon {
+                    font-size: 15px;
+                }
+            }
+        }
+    }
+    .treatments {
+        display: flex;
+        overflow: scroll;
+        .treatment {
+            .image-container {
+                height: 66px;
+                width: 66px;
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                ion-icon {
+                    font-size: 66px;
+                }
+                img {
+                    position: absolute;
+                    min-height: 30px;
+                    min-width: 30px;
+                    max-height: 30px;
+                    max-width: 30px;
+                    object-fit: contain;
+                }
+            }
+            .name {
+                font-size: 12px;
+                font-family: 'sfUi-sb';
+                color: var(--ion-color-primary-dark);
+                text-align: center;
+            }
+        }
+    }
+}

@@ -1,0 +1,35 @@
+/* -----------------------------------------------------
+	Padding and margin up to 100
+-------------------------------------------------------- */
+
+$sides: (top, right, bottom, left);
+@for $space from 1 through 100 {
+    @each $side in $sides {
+        .margin-#{$side}-#{$space} {
+            margin-#{$side}: #{$space}px !important;
+        }
+        .padding-#{$side}-#{$space} {
+            padding-#{$side}: #{$space}px !important;
+        }
+        .margin-#{$space} {
+            margin: #{$space}px !important;
+        }
+        .padding-#{$space} {
+            padding: #{$space}px !important;
+        }
+    }
+}
+
+
+/* -----------------------------------------------------
+	Height and width up to 100
+-------------------------------------------------------- */
+
+@for $i from 1 through 100 {
+    .height-#{$i} {
+        height: #{$i}px !important;
+    }
+    .width-#{$i} {
+        width: #{$i}px !important;
+    }
+}

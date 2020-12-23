@@ -1,0 +1,68 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar>
+        <ion-buttons class="margin-top-24">
+            <ion-button>
+                <ion-back-button defaultHref="signIn" icon="chevron-back-outline"></ion-back-button>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <h1 class="title ion-text-center margin-top-20">Create an Account</h1>
+    <form [formGroup]="myForm">
+        <ion-input formControlName="username" name="username" type="text" class="margin-top-25" placeholder="User name"></ion-input>
+        <p class="err" *ngIf="myForm.controls.username.hasError('required') && myForm.controls.username.touched">
+            Username is required!
+        </p>
+        <p class="err" *ngIf="myForm.controls.username.hasError('minlength') && myForm.controls.username.touched">
+            Username is greater than 4 characters!
+        </p>
+        <p class="err" *ngIf="myForm.controls.username.hasError('maxLength') && myForm.controls.username.touched">
+            Username does not greater than 10 characters!
+        </p>
+
+        <ion-input formControlName="email" name="email" type="email" class="margin-top-20" placeholder="Email address"></ion-input>
+        <p class="err" *ngIf="myForm.controls.email.hasError('required') && myForm.controls.email.touched">
+            Email is required!
+        </p>
+        <p class="err" *ngIf="myForm.controls.email.hasError('email') && myForm.controls.email.touched && !myForm.controls.email.hasError('required')" color="danger">
+            Email is invalid!
+        </p>
+
+        <ion-input formControlName="phoneNumber" name="phoneNumber" type="tel" class="margin-top-20" placeholder="Phone number"></ion-input>
+        <p class="err" *ngIf="myForm.controls.phoneNumber.hasError('required') && myForm.controls.phoneNumber.touched">
+            Phone Number is required!
+        </p>
+
+        <ion-datetime formControlName="birthDate" name="birthDate" type="text" class="date_picker margin-top-20" placeholder="Date of Birth" displayFormat="DD-MM-YYYY"></ion-datetime>
+        <p class="err" *ngIf="myForm.controls.birthDate.hasError('required') && myForm.controls.birthDate.touched">
+            Date Of Birth is required!
+        </p>
+
+        <ion-item class="margin-top-20">
+            <ion-select [interfaceOptions]="{header: 'Gender'}" formControlName="gender" name="gender" placeholder="Gender">
+                <ion-select-option value="f">Female</ion-select-option>
+                <ion-select-option value="m">Male</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <p class="err" *ngIf="myForm.controls.gender.hasError('required') && myForm.controls.gender.touched">
+            Gender is required!
+        </p>
+
+        <ion-input formControlName="password" name="password" class="margin-top-20" placeholder="Password" type="password"></ion-input>
+        <p class="err" *ngIf="myForm.controls.password.hasError('required') && myForm.controls.password.touched">
+            Password is required!
+        </p>
+        <p class="err" *ngIf="myForm.controls.password.hasError('minlength') && myForm.controls.password.touched">
+            Password is greater than 5 characters!
+        </p>
+
+        <ion-button (click)="goToVerification()" class="btn-SignUp margin-top-39" mode="md" expand="full" shape="round" fill="solid">
+            Sign up
+        </ion-button>
+    </form>
+    <p class="terms-text ion-text-center margin-top-14">By continuing Sign up you agree to the following
+        <br> Terms & Conditions without reservation.
+    </p>
+    <p class="ion-text-center account-text margin-top-17 margin-bottom-20">Already have an account? <a (click)="goToSignIn()"> Sign in</a></p>
+</ion-content>

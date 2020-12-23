@@ -1,0 +1,3 @@
+- npm i @agm/core
+- npm i agm-overlays
+- npm i @ng-select/ng-select

@@ -1,0 +1,111 @@
+ion-header {
+    ion-toolbar {
+        ion-title {
+            font-size: 18px;
+            font-family: 'sfUi-sb';
+            color: var(--ion-color-primary-dark);
+        }
+        ion-buttons {
+            ion-button {
+                --padding-start: 0;
+                --padding-end: 0;
+                ion-back-button,
+                ion-menu-button {
+                    color: var(--ion-color-primary-dark);
+                }
+            }
+        }
+    }
+}
+
+ion-content {
+    .banner {
+        background: var(--ion-color-primary-dull);
+        padding-left: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .content {
+            h2 {
+                font-size: 18px;
+                font-family: 'sfUi-m';
+                color: var(--ion-color-secondary);
+            }
+            .list {
+                display: flex;
+                align-items: center;
+                .circle {
+                    height: 7px;
+                    width: 7px;
+                    border-radius: 50%;
+                    background: var(--ion-color-secondary);
+                }
+                p {
+                    font-size: 14px;
+                    font-family: 'sfUi-m';
+                    color: var(--ion-color-secondary);
+                }
+            }
+        }
+        .banner-img {
+            padding: 7px 0;
+        }
+    }
+    .title {
+        font-size: 16px;
+        font-family: 'sfUi-m';
+        color: var(--ion-color-secondary);
+    }
+    .search-input {
+        width: auto;
+        height: 40px;
+        border-radius: 20px;
+        box-shadow: 0 0 3px rgba(31, 140, 237, 30%);
+        font-size: 14px;
+        font-family: 'sfUi-bi';
+        --padding-end: 44px;
+        --padding-start: 19px;
+        color: var(--ion-color-primary-dark);
+        --placeholder-color: var(--ion-color-primary-dark);
+        ion-icon {
+            position: absolute;
+            right: 21px;
+        }
+    }
+    .flex-layout {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+    ion-card {
+        display: flex;
+        width: 47%;
+        align-items: center;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 16%);
+        img {
+            min-height: 30px;
+            min-width: 30px;
+            object-fit: scale-down;
+        }
+        .content {
+            h2 {
+                font-size: 16px;
+                font-family: 'sfUi-m';
+                color: var(--ion-color-secondary);
+            }
+            p {
+                .actual-price {
+                    font-size: 14px;
+                    font-family: 'sfUi-r';
+                    color: var(--ion-color-secondary);
+                }
+                .sub-price {
+                    font-size: 12px;
+                    font-family: 'sfUi-r';
+                    color: var(--ion-color-light-red);
+                    text-decoration: line-through;
+                }
+            }
+        }
+    }
+}

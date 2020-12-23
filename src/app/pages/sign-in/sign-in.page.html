@@ -1,0 +1,18 @@
+<ion-content>
+    <div class="content-section">
+        <h1 class="ion-text-center title">Welcome</h1>
+        <p class="ion-text-center">Login to your account</p>
+        <form>
+            <ion-input class="margin-top-33" name="email" placeholder="Email" type="email"></ion-input>
+            <ion-input class="margin-top-20" placeholder="Password" name="password" type="password"></ion-input>
+            <ion-button (click)="goToOnBoarding()" class="margin-top-34 btn-login ion-text-capitalize" mode="md" expand="full" shape="round" fill="solid">
+                Login
+            </ion-button>
+        </form>
+        <ion-button (click)="goToForgotPassword()" class="btn-forgot" expand="full" fill="clear">
+            Forgot your password?
+        </ion-button>
+
+        <p class="ion-text-center account-text margin-top-17">Don’t have an account? <a (click)="goToSignUp()"> Sign up</a></p>
+    </div>
+</ion-content>

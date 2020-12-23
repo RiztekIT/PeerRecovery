@@ -1,0 +1,79 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button>
+                <ion-back-button defaultHref="home" icon="chevron-back-outline"></ion-back-button>
+            </ion-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button>
+                <ion-menu-button></ion-menu-button>
+            </ion-button>
+        </ion-buttons>
+        <ion-title class="ion-text-center">Appointment</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+    <h2 class="heading margin-bottom-15">Upcoming Appointment </h2>
+
+    <ion-card (click)="goToAppointmentDetail()" *ngFor="let i of data.upcoming">
+        <ion-item class="doctor-detail" lines="none">
+            <ion-avatar slot="start">
+                <img [src]="i?.img">
+            </ion-avatar>
+            <ion-label>
+                <h2 class="doctor-name margin-bottom-4 margin-top-11">{{i?.doctorName}}</h2>
+                <h3 class="specialist margin-bottom-4">{{i?.specialistIn}}</h3>
+                <p class="location">
+                    {{i?.location}}
+                </p>
+                <ion-button (click)="handleButtonClick($event)" class="more-btn" fill="clear">
+                    <ion-icon name="ellipsis-vertical-sharp"></ion-icon>
+                </ion-button>
+            </ion-label>
+        </ion-item>
+        <div class="other-info margin-top-10 margin-bottom-13">
+            <div>
+                <h2>Date & Time</h2>
+                <h3> {{i?.date}}</h3>
+            </div>
+            <div>
+                <h2>Patient Name</h2>
+                <h3> {{i?.patientName}}</h3>
+            </div>
+        </div>
+    </ion-card>
+
+    <h2 class="heading margin-bottom-15 margin-top-28">Past Appointment </h2>
+
+    <ion-card (click)="goToAppointmentDetail()" *ngFor="let i of data.past">
+        <ion-item class="doctor-detail" lines="none">
+            <ion-avatar slot="start">
+                <img [src]="i?.img">
+            </ion-avatar>
+            <ion-label>
+                <h2 class="doctor-name margin-bottom-4 margin-top-11">{{i?.doctorName}}</h2>
+                <h3 class="specialist margin-bottom-4">{{i?.specialistIn}}</h3>
+                <p class="location">
+                    {{i?.location}}
+                </p>
+                <ion-button (click)="handleButtonClick($event)" class="more-btn" fill="clear">
+                    <ion-icon name="ellipsis-vertical-sharp"></ion-icon>
+                </ion-button>
+            </ion-label>
+        </ion-item>
+        <div class="other-info margin-top-10 margin-bottom-13">
+            <div>
+                <h2>Date & Time</h2>
+                <h3> {{i?.date}}</h3>
+            </div>
+            <div>
+                <h2>Patient Name</h2>
+                <h3> {{i?.patientName}}</h3>
+            </div>
+        </div>
+    </ion-card>
+
+</ion-content>

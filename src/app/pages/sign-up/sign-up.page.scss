@@ -1,0 +1,73 @@
+ion-header {
+    ion-toolbar {
+        --background: transparent;
+        ion-buttons {
+            ion-button {
+                --padding-start: 0;
+                ion-back-button {
+                    --icon-font-size: 27px;
+                }
+            }
+        }
+    }
+}
+
+ion-content {
+    --padding-end: 24px;
+    --padding-start: 24px;
+    .title {
+        font-family: 'sfUi-b';
+        font-size: 30px;
+        color: var(--ion-color-primary-dark);
+    }
+    ion-input,
+    ion-item,
+    ion-select,
+    .date_picker {
+        --highlight-color-invalid: #0000;
+        --background: var(--ion-input-back);
+        height: 44px;
+        border-radius: 5px;
+        --padding-start: 24px;
+        font-family: 'sfUi-m';
+        font-size: 15px;
+        --placeholder-color: var(--ion-color-primary-dark);
+        --placeholder-opacity: 1;
+        ion-label {
+            font-family: 'sfUi-m';
+            font-size: 15px;
+            color: var(--ion-color-primary-dark);
+        }
+    }
+    ion-select {
+        padding: 0;
+    }
+    ion-datetime {
+        background: var(--ion-input-back);
+        --padding-top: 13px;
+        --placeholder-color: var(--ion-color-primary-dark);
+    }
+    .btn-SignUp {
+        --color: var(--ion-color-white);
+        height: 44px;
+        font-size: 16px;
+        --box-shadow: none;
+        font-family: 'sfUi-sb';
+        --border-radius: 5px;
+        text-transform: initial;
+        --background: var(--ion-color-primary);
+    }
+    .terms-text {
+        font-size: 11px;
+        color: var(--ion-color-primary-dark);
+        font-family: 'sfUi-r';
+    }
+    .account-text {
+        font-size: 14px;
+        font-family: 'sfUi-r';
+        a {
+            font-family: 'sfUi-b';
+            color: var(--ion-color-primary);
+        }
+    }
+}

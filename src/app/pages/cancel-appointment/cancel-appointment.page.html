@@ -1,0 +1,75 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar>
+        <ion-buttons slot="end">
+            <ion-button>
+                <ion-back-button defaultHref="signIn" icon="chevron-back-outline"></ion-back-button>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-item class="doctor-info" lines="none">
+        <ion-avatar slot="start">
+            <img src="../../../assets/imgs/data/appointmentDetail/dr_dp.png">
+        </ion-avatar>
+        <ion-label>
+            <h2 class="shop-name margin-bottom-4">Rose Health Care</h2>
+            <h3 class="doctor-name margin-bottom-4">Dr.Rose Ortiz</h3>
+            <p class="location">
+                <ion-icon class="margin-right-10" src="../../../assets/imgs/appicons/location.svg"></ion-icon>
+                <span>
+              Low Mill Farm, Lendales Lane, Pickering, YO18 8EE
+          </span>
+            </p>
+        </ion-label>
+    </ion-item>
+
+    <div class="date-time margin-top-30 margin-bottom-30">
+        <h2>Today, 1 Nov</h2>
+        <p class="margin-top-3">9 Time Available</p>
+    </div>
+
+
+    <ion-list class="cancel-reason">
+        <ion-radio-group value="reason1">
+            <ion-list-header>
+                <ion-label>Why you cancel an Appointment?</ion-label>
+            </ion-list-header>
+
+            <ion-item lines="none">
+                <ion-label>appointment time doctor not available.</ion-label>
+                <ion-radio class="margin-right-12" slot="start" value="reason1"></ion-radio>
+            </ion-item>
+
+            <ion-item lines="none">
+                <ion-label>Now I am perfectly alright.</ion-label>
+                <ion-radio class="margin-right-12" slot="start" value="reason2"></ion-radio>
+            </ion-item>
+
+            <ion-item lines="none">
+                <ion-label>Hospital not find and I missed appointment time.</ion-label>
+                <ion-radio class="margin-right-12" slot="start" value="reason3"></ion-radio>
+            </ion-item>
+
+            <ion-item lines="none">
+                <ion-label>Personal Reasons</ion-label>
+                <ion-radio class="margin-right-12" slot="start" value="reason4"></ion-radio>
+            </ion-item>
+        </ion-radio-group>
+    </ion-list>
+
+    <ion-item class="margin-top-20 margin-bottom-20" lines="none">
+        <ion-label class="margin-bottom-10" position="stacked">Note</ion-label>
+        <ion-textarea rows="6" cols="20"></ion-textarea>
+    </ion-item>
+
+
+</ion-content>
+
+<ion-footer>
+    <ion-button>
+        send
+    </ion-button>
+</ion-footer>

@@ -1,0 +1,32 @@
+// Ionic Variables and Theming. For more info, please see:
+// http://ionicframework.com/docs/theming/
+@import "./fonts.scss";
+
+/** Ionic CSS Variables **/
+
+.sc-ion-popover-md-h,
+.sc-ion-popover-ios-h {
+    --width: 151px !important;
+    border-radius: 4px !important;
+}
+
+.popover-arrow.sc-ion-popover-ios::after {
+    background: #1f8ced !important;
+}
+
+:root {
+    /** custom **/
+    --ion-color-primary: #1F8CED;
+    --ion-color-secondary: #024E91;
+    --ion-color-primary-light: #7F98B2;
+    --ion-color-primary-dark: #003165;
+    --ion-color-primary-dull: #DCEEFE;
+    --ion-color-white: white;
+    --ion-color-black: black;
+    --ion-color-black-light: #444444;
+    --ion-color-gray: #999999;
+    --ion-input-back: #1f8ced1a;
+    --ion-color-red: #FF4747;
+    /** gradients **/
+    --ion-blackWhite-gradients: linear-gradient(180deg, #0000 25%, #000 95%);
+}

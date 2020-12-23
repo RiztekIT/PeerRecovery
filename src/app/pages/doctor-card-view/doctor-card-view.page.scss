@@ -1,0 +1,21 @@
+ion-content {
+    .specialist {
+        text-align: center;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 16%);
+        img {
+            width: 136px;
+            height: 127px;
+            border-radius: 5px;
+        }
+        h2 {
+            font-size: 16px;
+            font-family: 'sfUi-m';
+            color: var(--ion-color-primary-dark);
+        }
+        h3 {
+            font-size: 14px;
+            font-family: 'sfUi-r';
+            color: var(--ion-color-primary-light);
+        }
+    }
+}

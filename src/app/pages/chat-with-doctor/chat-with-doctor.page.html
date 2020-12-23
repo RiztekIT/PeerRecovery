@@ -1,0 +1,57 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button>
+                <ion-back-button defaultHref="home" icon="chevron-back-outline"></ion-back-button>
+            </ion-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button>
+                <ion-menu-button></ion-menu-button>
+            </ion-button>
+        </ion-buttons>
+        <ion-title class="ion-text-center">Chat with Doctor</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+
+    <div class="banner">
+        <div class="content">
+            <h2 class="margin-bottom-5">Start Chat in 3 Steps</h2>
+            <div class="list margin-bottom-4">
+                <div class="circle margin-right-15"></div>
+                <p>Select Specialty</p>
+            </div>
+            <div class="list margin-bottom-4">
+                <div class="circle margin-right-15"></div>
+                <p>Pay Fee</p>
+            </div>
+            <div class="list margin-bottom-4">
+                <div class="circle margin-right-15"></div>
+                <p>Start Chat</p>
+            </div>
+        </div>
+        <img class="banner-img padding-right-15" src="../../../assets/imgs/chatWithDr_banner.svg">
+    </div>
+
+    <div class="ion-padding">
+        <h2 class="title">Search Health Problem / Symptoms</h2>
+
+        <ion-input placeholder="Search  Cough, Fever, Cold" class="search-input margin-top-18 margin-bottom-30">
+            <ion-icon src="../../../assets/imgs/appicons/search.svg"></ion-icon>
+        </ion-input>
+
+        <div class="flex-layout">
+            <ion-card (click)="goToPurchaseChat()" *ngFor="let i of problems" class="margin-bottom-20">
+                <img class="margin-right-13 margin-left-16" [src]="i?.img" alt="">
+                <div class="content margin-right-12">
+                    <h2 class="margin-top-19">{{i?.title}}</h2>
+                    <p class="margin-bottom-19"><span class="actual-price margin-right-9">${{i?.actualPrice}}</span> <span class="sub-price">${{i?.marketPrice}}</span></p>
+                </div>
+            </ion-card>
+        </div>
+
+    </div>
+
+
+</ion-content>

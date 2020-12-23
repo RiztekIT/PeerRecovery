@@ -1,0 +1,135 @@
+<ion-header class="ion-no-border searchable-header">
+    <ion-toolbar>
+        <ion-buttons slot="end">
+            <ion-back-button defaultHref="home" icon="chevron-back-outline"></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-item class="doctor-info" lines="none">
+        <ion-avatar slot="start">
+            <img src="../../../assets/imgs/data/appointmentDetail/dr_dp.png">
+        </ion-avatar>
+        <ion-label>
+            <h2 class="shop-name margin-bottom-4">Rose Health Care</h2>
+            <h3 class="doctor-name margin-bottom-4">Dr.Rose Ortiz</h3>
+            <p class="location">
+                <ion-icon class="margin-right-10" src="../../../assets/imgs/appicons/location.svg"></ion-icon>
+                <span>
+                  Low Mill Farm, Lendales Lane, Pickering, YO18 8EE
+              </span>
+            </p>
+        </ion-label>
+    </ion-item>
+
+    <div class="stepper-container margin-top-10">
+        <div class="step">
+            <div class="step-content">
+                <div class="line-bar">
+                    <div class="line"></div>
+                    <div class="circle">
+                        <ion-icon name="checkmark-sharp"></ion-icon>
+                    </div>
+                    <div class="line"></div>
+                </div>
+                <h2 class="margin-top-10">
+                    Patient Detail
+                </h2>
+            </div>
+            <div class="step-content">
+                <div class="line-bar">
+                    <div class="line"></div>
+                    <div class="circle"></div>
+                    <div class="line in-progress"></div>
+                </div>
+                <h2 class="margin-top-10">
+                    Date & Time
+                </h2>
+            </div>
+            <div class="step-content">
+                <div class="line-bar">
+                    <div class="line in-progress"></div>
+                    <div class="circle in-progress"></div>
+                    <div class="line in-progress"></div>
+                </div>
+                <h2 class="margin-top-10">
+                    Payment
+                </h2>
+            </div>
+            <div class="step-content">
+                <div class="line-bar">
+                    <div class="line in-progress"></div>
+                    <div class="circle in-progress"></div>
+                    <div class="line in-progress"></div>
+                </div>
+                <h2 class="margin-top-10">
+                    Booking Confirm
+                </h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="date-container margin-top-40">
+        <div (click)="onDateSelect(i)" [class.selected]="i?.selected" [class.hvr-radial-time]="i?.selected" *ngFor="let i of date" class="hvr-radial-out slot margin-left-15">
+            <h2>{{i?.date}}</h2>
+            <p class="margin-top-3">{{i?.availableSlot}} Time Available</p>
+        </div>
+    </div>
+
+    <h2 class="heading ion-text-center margin-top-17 margin-bottom-22">Today, 1 Nov</h2>
+
+    <div class="time-container">
+        <h2 class="head margin-left-15 margin-bottom-15">
+            <ion-icon class="margin-right-9" src="../../../assets/imgs/appicons/morning.svg"></ion-icon>
+            Morning
+        </h2>
+        <div class="slots margin-left-15">
+            <div (click)="onSlotSelect(item)" [class.disabled]="!item?.available" [class.selected]="item?.selected" [class.hvr-radial-time]="item?.selected" *ngFor="let item of timeSlots.morning" class="hvr-radial-out slot margin-right-21">
+                <h2 class="time">{{item?.time}}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="time-container margin-top-20">
+        <h2 class="head margin-left-15 margin-bottom-15">
+            <ion-icon class="margin-right-9" src="../../../assets/imgs/appicons/afternoon.svg"></ion-icon>
+            Afternoon
+        </h2>
+        <div class="slots margin-left-15">
+            <div (click)="onSlotSelect(item)" [class.disabled]="!item?.available" [class.selected]="item?.selected" [class.hvr-radial-time]="item?.selected" *ngFor="let item of timeSlots.afternoon" class="hvr-radial-out slot margin-right-21">
+                <h2 class="time">{{item?.time}}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="time-container margin-top-20">
+        <h2 class="head margin-left-15 margin-bottom-15">
+            <ion-icon class="margin-right-9" src="../../../assets/imgs/appicons/morning.svg"></ion-icon>
+            Evening
+        </h2>
+        <div class="slots margin-left-15">
+            <div (click)="onSlotSelect(item)" [class.disabled]="!item?.available" [class.selected]="item?.selected" [class.hvr-radial-time]="item?.selected" *ngFor="let item of timeSlots.evening" class="hvr-radial-out slot margin-right-21">
+                <h2 class="time">{{item?.time}}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="time-container margin-top-20 margin-bottom-12">
+        <h2 class="head margin-left-15 margin-bottom-15">
+            <ion-icon class="margin-right-9 night-icon" src="../../../assets/imgs/appicons/night.svg"></ion-icon>
+            Night
+        </h2>
+        <div class="slots margin-left-15">
+            <div (click)="onSlotSelect(item)" [class.disabled]="!item?.available" [class.selected]="item?.selected" [class.hvr-radial-time]="item?.selected" *ngFor="let item of timeSlots.night" class="hvr-radial-out slot margin-right-21">
+                <h2 class="time">{{item?.time}}</h2>
+            </div>
+        </div>
+    </div>
+
+</ion-content>
+
+<ion-footer>
+    <ion-button (click)="goToPayment()">
+        continue
+    </ion-button>
+</ion-footer>

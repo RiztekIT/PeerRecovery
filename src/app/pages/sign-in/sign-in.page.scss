@@ -1,0 +1,56 @@
+ion-content {
+    --background: none;
+    background-image: url('../../../assets/imgs/back_imgs/signin_back.png');
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: 100% 46vh;
+    .content-section {
+        width: 100%;
+        padding: 4vh 24px 20px 20px;
+        margin-top: 33vh;
+        background-color: var(--ion-color-white);
+        border-radius: 20px 20px 0px 0px;
+        .title {
+            font-family: 'sfUi-b';
+            font-size: 36px;
+            margin-top: 0px;
+        }
+        p {
+            color: var(--ion-color-gray);
+            margin: 0px;
+            font-size: 14px;
+            font-family: 'sfUi-r';
+        }
+        ion-input {
+            --background: var(--ion-input-back);
+            height: 44px;
+            border-radius: 5px;
+            --padding-start: 24px;
+            font-family: 'sfUi-m';
+            font-size: 15px;
+            --placeholder-color: var(--ion-color-primary-dark);
+            --placeholder-opacity: 1;
+        }
+        .btn-login {
+            --color: var(--ion-color-white);
+            height: 44px;
+            font-size: 16px;
+            --box-shadow: none;
+            font-family: 'sfUi-sb';
+            --border-radius: 5px;
+            --background: var(--ion-color-primary);
+            text-transform: initial;
+        }
+        .btn-forgot {
+            --color: var(--ion-color-black-light);
+            text-transform: inherit;
+            font-family: 'sfUi-m';
+        }
+        .account-text {
+            a {
+                font-family: 'sfUi-b';
+                color: var(--ion-color-primary);
+            }
+        }
+    }
+}

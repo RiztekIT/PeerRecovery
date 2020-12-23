@@ -1,0 +1,42 @@
+ion-header {
+    ion-toolbar {
+        --background: transparent;
+        ion-buttons {
+            ion-button {
+                --padding-start: 0;
+                ion-back-button {
+                    --icon-font-size: 27px;
+                }
+            }
+        }
+    }
+}
+
+ion-content {
+    ion-slides {
+        height: 86%;
+        .swiper-slide {
+            display: block;
+            h2 {
+                margin-top: 14vh;
+                font-family: "sfUi-sb";
+                color: var(--ion-color-primary-dark);
+                font-size: 22px;
+            }
+            p {
+                line-height: 1.5;
+                color: var(--ion-color-primary-light);
+                font-size: 14px;
+                font-family: 'sfUi-r';
+            }
+        }
+    }
+    .start-btn {
+        position: absolute;
+        right: 0;
+        margin: 0;
+        --border-radius: 20px 0 0px 20px;
+        width: 105px;
+        height: 40px;
+    }
+}

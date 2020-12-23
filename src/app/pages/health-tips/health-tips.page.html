@@ -1,0 +1,43 @@
+<ion-header class="ion-no-border searchable-header">
+    <ion-toolbar>
+        <div class="location-content">
+            <ion-icon class="loc-icon margin-right-6 margin-left-15" src="../../../assets/imgs/appicons/location-top.svg"></ion-icon>
+            <div class="content">
+                <h2>Patrick Stanley
+                    <ion-icon class="margin-left-14" src="../../../assets/imgs/appicons/down-arrow.svg"></ion-icon>
+                </h2>
+                <p>46 Park Avenue 98 Station Road, Wembley London</p>
+            </div>
+        </div>
+        <ion-buttons slot="end">
+            <ion-back-button defaultHref="home" icon="chevron-back-outline"></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+    <ion-toolbar>
+        <ion-input placeholder="Search Tips..." class="search-input margin-right-15 margin-left-15">
+            <ion-icon src="../../../assets/imgs/appicons/search.svg"></ion-icon>
+        </ion-input>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+    <h2 class="title margin-bottom-17">Today's Health Tips</h2>
+
+    <ion-item button="true" (click)="goToViewTips()" *ngFor="let i of tips" class="margin-bottom-40" lines="none">
+        <ion-thumbnail slot="start">
+            <img [src]="i?.img">
+        </ion-thumbnail>
+        <ion-label class="margin-left-10">
+            <h2 class="margin-bottom-6">
+                {{i?.tipsTitle}}
+            </h2>
+            <h3 class="margin-bottom-5">
+                {{i?.tipsBy}}
+            </h3>
+            <p>{{i?.tipsText}}</p>
+        </ion-label>
+    </ion-item>
+
+
+</ion-content>

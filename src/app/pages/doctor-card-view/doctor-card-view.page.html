@@ -1,0 +1,35 @@
+<ion-header class="ion-no-border searchable-header">
+    <ion-toolbar>
+        <div class="location-content">
+            <ion-icon class="loc-icon margin-right-6 margin-left-15" src="../../../assets/imgs/appicons/location-top.svg"></ion-icon>
+            <div class="content">
+                <h2>Patrick Stanley
+                    <ion-icon class="margin-left-14" src="../../../assets/imgs/appicons/down-arrow.svg"></ion-icon>
+                </h2>
+                <p>46 Park Avenue 98 Station Road, Wembley London</p>
+            </div>
+        </div>
+        <ion-buttons slot="end">
+            <ion-back-button defaultHref="home" icon="chevron-back-outline"></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+    <ion-toolbar>
+        <ion-input placeholder="Search Doctor..." class="search-input margin-right-15 margin-left-15">
+            <ion-icon src="../../../assets/imgs/appicons/search.svg"></ion-icon>
+        </ion-input>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+    <ion-row>
+        <ion-col (click)="goToDoctorDetail()" size="6" *ngFor="let i of specialist" class="margin-bottom-26">
+            <div class="specialist ">
+                <img class="margin-bottom-4" [src]="i?.img">
+                <h2>{{i?.name}}</h2>
+                <h3 class="padding-bottom-10">{{i?.specialist}}</h3>
+            </div>
+        </ion-col>
+    </ion-row>
+
+</ion-content>

@@ -1,0 +1,37 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button>
+                <ion-back-button defaultHref="signIn" icon="chevron-back-outline"></ion-back-button>
+            </ion-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button>
+                <ion-menu-button></ion-menu-button>
+            </ion-button>
+        </ion-buttons>
+        <ion-title class="ion-text-center">Notification</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+    <ion-list *ngFor="let i of notification">
+        <ion-list-header>
+            {{i?.date}}
+        </ion-list-header>
+
+        <ion-item *ngFor="let j of i?.notification" lines="full">
+            <ion-avatar class="margin-bottom-11" slot="start">
+                <img [src]="j?.img">
+            </ion-avatar>
+            <ion-label>
+                <h2 class="title">{{j?.title}}
+                    <p class="time ion-float-end">{{j?.date}}</p>
+                </h2>
+                <p class="text">{{j?.text}}</p>
+            </ion-label>
+        </ion-item>
+    </ion-list>
+
+</ion-content>

@@ -1,0 +1,7 @@
+{
+  "name": "Doctro",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

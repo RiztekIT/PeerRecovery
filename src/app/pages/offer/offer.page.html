@@ -1,0 +1,88 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button>
+                <ion-back-button defaultHref="home" icon="chevron-back-outline"></ion-back-button>
+            </ion-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button>
+                <ion-menu-button></ion-menu-button>
+            </ion-button>
+        </ion-buttons>
+        <ion-title class="ion-text-center">Offer</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="heading-container margin-bottom-15">
+        <h2>Available Offers</h2>
+    </div>
+
+    <div [style.background]="'#EEECF9'" class="offer-container padding-top-12 margin-bottom-25">
+        <div class="padding-left-15 ">
+            <h2 class="margin-bottom-18">100% Cashback on Online Consultations</h2>
+            <div class="list margin-bottom-2">
+                <div class="circle margin-right-16"></div>
+                <h2>Maximum cashback $50</h2>
+            </div>
+            <div class="list margin-bottom-2">
+                <div class="circle margin-right-16"></div>
+                <h2>Health cash added to doctor account within 24hrs of completing the consultation</h2>
+            </div>
+            <div class="list margin-bottom-2">
+                <div class="circle margin-right-16"></div>
+                <h2>Valid for a maximum of 3 consultation</h2>
+            </div>
+            <div class="list margin-bottom-2">
+                <div class="circle margin-right-16"></div>
+                <h2>Offer not applicable for doctor plus user</h2>
+            </div>
+            <div class="list margin-bottom-2">
+                <div class="circle margin-right-16"></div>
+                <h2>Limited period offer</h2>
+            </div>
+        </div>
+        <ion-button (click)="goToHome()" [style.background]="'#8B75FF'" class="margin-top-23">
+            <div>
+                user offer
+            </div>
+        </ion-button>
+    </div>
+
+    <div [style.background]="'#F8E9E6'" class="offer-container padding-top-12 margin-bottom-25">
+        <div class="padding-left-15">
+            <h2 class="margin-bottom-18">Paytm : 25% Cashback on Online Consultations</h2>
+            <div class="list margin-bottom-2">
+                <div class="circle margin-right-16"></div>
+                <h2>25% cashback on online consultations</h2>
+            </div>
+            <div class="list margin-bottom-2">
+                <div class="circle margin-right-16"></div>
+                <h2>Cashback for consultations paid with paytm wallet
+                </h2>
+            </div>
+            <div class="list margin-bottom-2">
+                <div class="circle margin-right-16"></div>
+                <h2>Cashback credited in 48hrs</h2>
+            </div>
+            <div class="list margin-bottom-2">
+                <div class="circle margin-right-16"></div>
+                <h2>Maximum cashback $50</h2>
+            </div>
+            <div class="list margin-bottom-2">
+                <div class="circle margin-right-16"></div>
+                <h2>Valid only for first time user</h2>
+            </div>
+            <div class="list margin-bottom-2">
+                <div class="circle margin-right-16"></div>
+                <h2>Limited period offer</h2>
+            </div>
+        </div>
+        <ion-button (click)="goToHome()" [style.background]="'#F8AC9C'" class="margin-top-23">
+            <div>
+                user offer
+            </div>
+        </ion-button>
+    </div>
+</ion-content>
