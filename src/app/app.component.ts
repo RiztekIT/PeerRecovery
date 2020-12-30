@@ -50,10 +50,6 @@ export class AppComponent implements OnInit {
       url: "/buyMedicine",
     },
     {
-      title: "Offer",
-      url: "/offer",
-    },
-    {
       title: "Setting",
       url: "/setting",
     },

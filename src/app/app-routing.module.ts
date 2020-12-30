@@ -108,12 +108,6 @@ const routes: Routes = [
         (m) => m.BuyMedicinePageModule
       ),
   },
-
-  {
-    path: "offer",
-    loadChildren: () =>
-      import("./pages/offer/offer.module").then((m) => m.OfferPageModule),
-  },
   {
     path: "chatWithDoctor",
     loadChildren: () =>
