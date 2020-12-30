@@ -38,6 +38,10 @@ export class AppComponent implements OnInit {
       url: "/chatWithDoctor",
     },
     {
+      title: "Chat List",
+      url: "/chatList",
+    },
+    {
       title: "Notification",
       url: "/notification",
     },

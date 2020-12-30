@@ -108,6 +108,19 @@ const routes: Routes = [
         (m) => m.BuyMedicinePageModule
       ),
   },
+
+  {
+    path: "chatList",
+    loadChildren: () =>
+      import("./pages/chat-list/chat-list.module").then((m) => m.ChatListPageModule),
+  },
+  {
+    path: "chat",
+    loadChildren: () =>
+      import("./pages/chat/chat.module").then(
+        (m) => m.ChatPageModule
+      ),
+  },
   {
     path: "chatWithDoctor",
     loadChildren: () =>

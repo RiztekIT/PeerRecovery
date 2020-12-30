@@ -24,9 +24,60 @@
     --ion-color-white: white;
     --ion-color-black: black;
     --ion-color-black-light: #444444;
-    --ion-color-gray: #999999;
+    --ion-color-silver: #e5e5e5;
     --ion-input-back: #1f8ced1a;
     --ion-color-red: #FF4747;
     /** gradients **/
     --ion-blackWhite-gradients: linear-gradient(180deg, #0000 25%, #000 95%);
+    //custom color
+    --my_theme: #1f8ced;
+    --white: #ffffff;
+    --yellow: #ffb600;
+    --lht_yellow: #ffe420;
+    --gray: #a4a4a4;
+    --black: #333333;
+    --div_border: #dee8f3;
+    --blue: #003165;
+    --lht_gray: #999999;
+    --input_back: #e8f3fd;
+    --lht_bc: #444444;
+    --div_back: #dceefe;
+    --lht_blue: #7f98b2;
+    --red: #ff4747;
+    --silver: #e5e5e5;
+    --star: #cfcfcf;
+    --green: #10d87b;
+}
+
+
+/*Admin fotns import*/
+
+@font-face {
+    font-family: "sf_ui_b";
+    src: url("../assets/fonts/SFUIText/SFUIText-Bold.ttf");
+}
+
+@font-face {
+    font-family: "sf_ui_md";
+    src: url("../assets/fonts/SFUIText/SF-UI-Text-Medium.ttf");
+}
+
+@font-face {
+    font-family: "sf_ui_r";
+    src: url("../assets/fonts/SFUIText/SFUIText-Regular.ttf");
+}
+
+@font-face {
+    font-family: "sf_ui_sb";
+    src: url("../assets/fonts/SFUIText/SFUIText-Semibold.ttf");
+}
+
+@font-face {
+    font-family: "sf_ui_i";
+    src: url("../assets/fonts/SFUIText/SFUIText-RegularItalic.ttf");
+}
+
+@font-face {
+    font-family: "sf_ui_md_i";
+    src: url("../assets/fonts/SFUIText/SFUIText-MediumItalic.ttf");
 }
