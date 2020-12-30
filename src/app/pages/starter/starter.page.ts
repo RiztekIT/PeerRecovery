@@ -23,4 +23,8 @@ export class StarterPage implements OnInit {
     this.util.navCtrl.navigateForward('signIn');
   }
 
+  signinGoogle(){
+    
+  }
+
 }
