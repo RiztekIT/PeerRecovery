@@ -2,25 +2,34 @@
     <ion-split-pane contentId="main-content">
         <ion-menu contentId="main-content" type="reveal">
             <ion-header class="ion-no-border">
-                <img src="../assets/imgs/user_profile_dp.svg">
+                <img [src]="this.authSVC.usersign.photoURL">
+                <!-- <img src="../assets/imgs/user_profile_dp.svg"> -->
                 <div class="content margin-left-17">
-                    <h2>Patrick Stanley</h2>
-                    <h3>patrickstanley@gmail.com</h3>
-                    <p>+44 903 397 6854</p>
+                    <h2>{{this.authSVC.usersign.displayName}}</h2>
+                    <h3>{{this.authSVC.usersign.email}}</h3>
+                    <!-- <p>+44 903 397 6854</p> -->
                 </div>
             </ion-header>
             <ion-content>
                 <ion-list class="margin-top-21" id="inbox-list">
                     <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-                        <ion-item (click)="selectedIndex = i" routerDirection="forward" [routerLink]="[p.url]"
-                            lines="none" detail="false">
+                        <ion-item (click)="selectedIndex = i" routerDirection="forward" [routerLink]="[p.url]" lines="none" detail="false">
                             <div class="activeBox" [class.selected]="selectedIndex == i">
                                 <h2>
                                     {{ p.title }}
                                 </h2>
                             </div>
                         </ion-item>
+
                     </ion-menu-toggle>
+                    <ion-item>
+                        <div (click)="logout()" class="activeBox" [class.selected]="selectedIndex == i">
+                            <h2>
+                                Logout
+                            </h2>
+                        </div>
+
+                    </ion-item>
                 </ion-list>
             </ion-content>
         </ion-menu>

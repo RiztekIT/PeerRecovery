@@ -12,6 +12,14 @@
         <ion-button (click)="goToForgotPassword()" class="btn-forgot" expand="full" fill="clear">
             Forgot your password?
         </ion-button>
+        <div class="bottom-container padding-left-22 padding-right-22">
+            <div class="social-btns margin-top-19">
+                <ion-button (click)="signinGoogle()">
+                    <ion-icon src="../../../assets/imgs/appicons/google.svg"></ion-icon> Google</ion-button>
+                <ion-button>
+                    <ion-icon src="../../../assets/imgs/appicons/facebook.svg"></ion-icon> Facebook</ion-button>
+            </div>
+        </div>
 
         <p class="ion-text-center account-text margin-top-17">Don’t have an account? <a (click)="goToSignUp()"> Sign up</a></p>
     </div>

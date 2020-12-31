@@ -20,4 +20,8 @@ export class SignInPage implements OnInit {
   goToOnBoarding() {
     this.util.navCtrl.navigateForward("onBoarding");
   }
+
+  signinGoogle(){
+    
+  }
 }
