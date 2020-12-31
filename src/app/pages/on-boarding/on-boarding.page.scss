@@ -16,9 +16,10 @@ ion-content {
     ion-slides {
         height: 86%;
         .swiper-slide {
+            width: 80%;
             display: block;
             h2 {
-                margin-top: 14vh;
+                margin-top: 18vh;
                 font-family: "sfUi-sb";
                 color: var(--ion-color-primary-dark);
                 font-size: 22px;
@@ -39,4 +40,12 @@ ion-content {
         width: 105px;
         height: 40px;
     }
+}
+
+.swiper-slide img {
+    width: auto;
+    max-width: 80%;
+    height: auto;
+    max-height: 100%;
+    margin-top: 40px;
 }
