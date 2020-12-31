@@ -10,17 +10,26 @@
 
 <ion-content class="ion-padding">
     <ion-slides (ionSlideTransitionStart)="onSlideChange()" #slides pager="true">
-        <!--   <ion-slide>
+        <ion-slide>
             <div class="slide">
-                <img src="../../../assets/imgs/slides/slide1.svg" />
-                <h2 class="margin-bottom-23">Find Doctor and Book Appointment </h2>
+                <img src="../../../assets/imgs/slides/slide6.svg" />
+                <h2 class="margin-bottom-23">Chat 24/7 </h2>
                 <p>
-                    Aliquam faucibus, odio nec commodo aliquam, neque felis placerat dui, a porta ante lectus dapibus est. Aliquam a bibendum mi, sed
+                    Be in contact with your mentor all time
                 </p>
             </div>
         </ion-slide>
 
         <ion-slide>
+            <div class="slide">
+                <img src="../../../assets/imgs/slides/slide7.svg" />
+                <h2 class="margin-bottom-23" style="margin-top: 28vh;">Mentoring Program</h2>
+                <p>
+                    Get goals and meet them with your mentor.
+                </p>
+            </div>
+        </ion-slide>
+        <!-- <ion-slide>
             <div class="slide">
                 <img src="../../../assets/imgs/slides/slide2.svg" />
                 <h2 class="margin-bottom-23">Search and Order Medicine</h2>
@@ -33,7 +42,7 @@
         <ion-slide>
             <div class="slide">
                 <img src="../../../assets/imgs/slides/slide3.svg" />
-                <h2 class="margin-bottom-23">Mentoring Program</h2>
+                <h2 class="margin-bottom-23" style="margin-top: 20vh;">Mentoring Program</h2>
                 <p>
                     Welcome!
                 </p>
@@ -42,7 +51,7 @@
 
     </ion-slides>
 
-    <ion-button (click)="goToHome()" class="start-btn">
+    <ion-button (click)="goToHome()" *ngIf="activeIndex == 2" class="start-btn">
         Start
     </ion-button>
 
