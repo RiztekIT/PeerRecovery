@@ -25,4 +25,169 @@ export class AuthService {
   constructor(private router: Router) {
     firebase.initializeApp(this.firebaseConfig)
    }
+
+
+   user;
+usersign: any =[];
+  registroUser(correo,pass){
+
+    return  firebase.auth().createUserWithEmailAndPassword(correo, pass);
+     
+  /*   firebase.auth().createUserWithEmailAndPassword(correo, pass).then(resp=>{
+      console.log(resp);
+      
+    }).catch((error) => {
+      
+      const errorCode = error.code;
+      const errorMessage = error.message;
+
+      if (errorCode == 'auth/weak-password') {
+        alert('The password is too weak.');
+      } else {
+        alert(errorMessage);
+      }
+      console.log(error);
+      
+    }); */
+   }
+
+   login(correo,pass){
+
+    
+
+    return firebase.auth().signInWithEmailAndPassword(correo,pass);
+
+   /*  firebase.auth().signInWithEmailAndPassword(correo, pass).catch((error) => {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+
+      if (errorCode === 'auth/wrong-password') {
+        alert('Wrong password.');
+      } else {
+        alert(errorMessage);
+      }
+      console.log(error);
+      // ...
+    }); */
+   }
+
+   getUser(){
+      
+    firebase.auth().onAuthStateChanged((user)=>{
+      console.log(user);
+      this.user = user;
+      if (user){
+        console.log('Usuario Activo');
+        this.router.navigate(['starter']);
+      }else{
+       console.log('Usuario NO Activo');
+       
+       this.router.navigate(['/']);
+
+      }
+    });
+  }
+
+  cerrarSession(){
+    this.user = []
+    return firebase.auth().signOut();
+    /* firebase.auth().signOut().then(res=>{
+      console.log(res);
+      console.log(this.user)
+      this.getUser();
+    }); */
+  }
+
+  loginGoogle(){
+    let provider = new firebase.auth.GoogleAuthProvider();
+
+    
+    return firebase.auth().signInWithRedirect(provider);
+  /*   return firebase.auth().signInWithRedirect(provider).then(res=>{
+      console.log(res);
+      firebase.auth().getRedirectResult().then(function(result) {
+        console.log(result);
+        if (result.credential) {
+          // This gives you a Google Access Token. You can use it to access the Google API.
+          let token = result.credential;
+          // ...
+          console.log(token);
+        }
+        // The signed-in user info.
+         this.user = result.user;
+         this.router.navigateByUrl('/home-results');
+         
+      })
+    }); */
+   }
+
+   obtenerToken(){
+     return firebase.auth().getRedirectResult().then();
+   }
+
+   loginFacebook(){
+    let provider = new firebase.auth.FacebookAuthProvider();
+    console.log(provider);
+
+    firebase.auth().signInWithRedirect(provider).then(res=>{
+      console.log(res);
+      firebase.auth().getRedirectResult().then((result) => {
+        if (result.credential) {
+          
+          let token = result.credential;
+          console.log(token);
+          
+        }
+        
+        this.user = result.user;
+      }).catch(function(error) {
+        
+        let errorCode = error.code;
+        let errorMessage = error.message;
+        
+        let email = error.email;
+        
+        let credential = error.credential;
+
+        console.log(error);
+      
+        
+      });
+
+    });
+
+
+   
+   }
+
+   obtenerUsuarioFB(){
+    firebase.auth().getRedirectResult().then((result) => {
+      if (result.credential) {
+        
+        let token = result.credential;
+        console.log(token);
+        
+      }
+      
+      this.user = result.user;
+    }).catch(function(error) {
+      
+      let errorCode = error.code;
+      let errorMessage = error.message;
+      
+      let email = error.email;
+      
+      let credential = error.credential;
+
+      console.log(error);
+    
+      
+    }); 
+   }
+
+
+   resetPassword(correo){
+     return firebase.auth().sendPasswordResetEmail(correo)
+   }
 }

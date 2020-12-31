@@ -5,6 +5,7 @@ import { Platform, IonRouterOutlet, ToastController } from "@ionic/angular";
 import { SplashScreen } from "@ionic-native/splash-screen/ngx";
 import { StatusBar } from "@ionic-native/status-bar/ngx";
 import { Router } from "@angular/router";
+import { AuthService } from "./services/auth.service";
 
 @Component({
   selector: "app-root",
@@ -57,10 +58,7 @@ export class AppComponent implements OnInit {
       title: "Setting",
       url: "/setting",
     },
-    {
-      title: "Logout",
-      url: "/starter",
-    },
+
   ];
   widthOfScreen: any = window.innerWidth;
 
@@ -70,7 +68,8 @@ export class AppComponent implements OnInit {
     private statusBar: StatusBar,
     private util: UtilService,
     private router: Router,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    public authSVC: AuthService,
   ) {
     // this.util.navCtrl.navigateForward('home');
     this.initializeApp();
@@ -127,5 +126,16 @@ export class AppComponent implements OnInit {
       cssClass: "leaveToast",
     });
     toast.present();
+  }
+
+  logout() {
+    /* this.navCtrl.navigateRoot('/'); */
+
+    this.authSVC.cerrarSession().then(res=>{
+      console.log(res);
+      console.log(this.authSVC.user)
+      this.authSVC.getUser();
+    });
+
   }
 }

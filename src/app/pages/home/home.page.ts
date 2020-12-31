@@ -1,5 +1,6 @@
 import { UtilService } from "./../../services/util.service";
 import { Component, OnInit } from "@angular/core";
+import { AuthService } from "src/app/services/auth.service";
 
 @Component({
   selector: "app-home",
@@ -46,9 +47,14 @@ export class HomePage implements OnInit {
       color: "#00A8E5",
     },
   ];
-  constructor(private util: UtilService) {}
+  constructor(private util: UtilService, public authSVC: AuthService) {}
 
-  ngOnInit() {}
+  locatio
+
+  ngOnInit(
+  ) {
+    this.locatio = 'Chihuahua, Chihuahua'
+  }
 
   ionViewWillEnter() {
     this.util.menuCtrl.enable(true);
