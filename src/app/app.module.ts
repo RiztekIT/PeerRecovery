@@ -12,6 +12,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { PopOverContentComponent } from './components/pop-over-content/pop-over-content.component';
 import { SuccessModalComponent } from './components/success-modal/success-modal.component';
 import { CallingComponent } from './components/calling/calling.component';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
 
 @NgModule({
   declarations: [AppComponent,PopOverContentComponent,SuccessModalComponent,CallingComponent],
@@ -28,6 +30,8 @@ import { CallingComponent } from './components/calling/calling.component';
   providers: [
     StatusBar,
     SplashScreen,
+    Geolocation,
+    NativeGeocoder,        
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
