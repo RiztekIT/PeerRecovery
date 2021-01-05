@@ -1,5 +1,8 @@
 import { Component, OnInit } from "@angular/core";
-import { AlertController } from "@ionic/angular";
+import { Router } from "@angular/router";
+import { AlertController, ModalController, NavController } from "@ionic/angular";
+import { NavigationExtras } from '@angular/router';
+import { AppointmentPageModule } from "../appointment/appointment.module";
 
 @Component({
   selector: "app-calendar",
@@ -14,7 +17,7 @@ export class CalendarPage implements OnInit {
       time: "10:00 am",
       img: "../../../assets/image/patricia.png ",
       name: "Consulta medica",
-      price: "Mon 30 Jua 2020",
+      price: "Nov 01 2021",
       age: "32",
       add: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     },
@@ -22,7 +25,7 @@ export class CalendarPage implements OnInit {
       time: "10:30 am",
       img: "../../../assets/image/arron.png",
       name: "Consulta medica",
-      price: "Mon 30 Feb 2020",
+      price: "Nov 01 2021",
       age: "32",
       add: "Consulta del mes de Febrero",
     },
@@ -30,7 +33,7 @@ export class CalendarPage implements OnInit {
       time: "11:00 am",
       img: "../../../assets/image/pearson.png",
       name: "Consulta medica",
-      price: "Mon 30 Mar 2020",
+      price: "Nov 01 2021",
       age: "32",
       add: "Consulta del mes de Marzo",
     },
@@ -38,12 +41,37 @@ export class CalendarPage implements OnInit {
       time: "10:30 am",
       img: "../../../assets/image/benjamin.png",
       name: "Consulta medica",
-      price: "Mon 30 Apr 2020",
+      price: "Nov 01 2021",
       age: "32",
       add: "Consulta del mes de Abril",
     },
   ];
-  constructor(private alertController: AlertController) {}
+
+  user = {
+    appointmentID: 10,
+    title: 'Checkout',
+    description: 'First year chekout',
+    date: 'Nov 01 2021',
+    time: '11:00 pm',
+    /*info: {
+      title: 'Go with the doctor',
+      description: 'Go with the doctor to the first year chekout',
+      date: 'Nov 01 2021',
+      time: '11:00 pm',
+    },
+    ticks: [
+      'Ionic', 'Angular',
+    ]*/
+  };
+
+
+
+  totalAppointments = 10;
+  constructor(private alertController: AlertController,
+              private nav: NavController,
+              private router: Router,
+              private modalCtr: ModalController) {}
+
 
   ngOnInit() {}
   async presentAlertRadio() {
@@ -88,4 +116,30 @@ export class CalendarPage implements OnInit {
 
     await alert.present();
   }
+
+
+  openAppointmentPage() {
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        special: JSON.stringify(this.user)
+      }
+    };
+    this.router.navigate(['appointment'], navigationExtras);
+
+  }
+
+
+  /*async openAppointmentPage(){
+    const modal = await this.modalCtr.create({
+      component: AppointmentPageModule,
+      componentProps:{
+        user: this.user
+      }
+    })
+    modal.present();
+  }*/
+
+  
+
+
 }

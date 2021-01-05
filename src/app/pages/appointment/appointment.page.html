@@ -1,0 +1,71 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button>
+                <ion-back-button defaultHref="home" icon="chevron-back-outline"></ion-back-button>
+            </ion-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button>
+                <ion-menu-button></ion-menu-button>
+            </ion-button>
+        </ion-buttons>
+        <ion-title class="ion-text-center">Appointment</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="date_div" style="margin: 10px 15px 15px 15px;background: #ffffff; border-radius: 5px;">
+
+
+
+        <ion-row>
+            <ion-col style="padding-top: 0px;">
+                <ion-item>
+                    <ion-label position="stacked" class="stacked-lbl">Title</ion-label>
+                    <ion-input></ion-input>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col style="padding-top: 0px;">
+                <ion-item>
+                    <ion-label position="stacked" class="stacked-lbl">Description</ion-label>
+                    <ion-textarea></ion-textarea>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+
+
+        <ion-row>
+            <ion-col class="first_Col" style="background-color: white;">
+                <h3 class="date_lbl">Date</h3>
+                <ion-datetime id="dynamicDisabled" displayFormat="MMM DD YYYY" placeholder="Nov 01 2019"></ion-datetime>
+            </ion-col>
+            <ion-col style="background-color: white;">
+                <h3 class="date_lbl">Time</h3>
+                <ion-datetime id="dynamicDisabled" displayFormat="hh:mm a" placeholder="10:00 am"></ion-datetime>
+            </ion-col>
+            <!--<ion-col>
+                <h3 class="date_lbl">End Date</h3>
+                <ion-datetime id="dynamicDisabled" displayFormat="DD MMM YYYY" placeholder="30 Nov 2019"></ion-datetime>
+                <ion-datetime id="dynamicDisabled" displayFormat="hh:mm a" placeholder="10:00am" class="time_l"></ion-datetime>
+            </ion-col>-->
+        </ion-row>
+
+
+        <ion-row>
+            <ion-col>
+            </ion-col>
+            <ion-col>
+                <ion-button expand="block" class="plan-btn margin-top-30">
+                    Save
+                </ion-button>
+            </ion-col>
+            <ion-col>
+            </ion-col>
+        </ion-row>
+
+    </div>
+</ion-content>

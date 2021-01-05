@@ -62,7 +62,7 @@ ion-content {
         height: 40px;
         background-color: var(--div_back);
         padding: 0px 16px;
-        margin-top: 30px;
+        //margin-top: 30px;
         display: flex;
         align-items: center;
         .head_lbl {
@@ -138,4 +138,8 @@ ion-content {
     color: var(--blue);
     font-family: "sf_ui_md";
     margin: 0;
+}
+
+ion-fab-button {
+    color: var(--ion-color-primary-dark)
 }
