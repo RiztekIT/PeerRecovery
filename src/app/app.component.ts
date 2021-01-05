@@ -59,6 +59,10 @@ export class AppComponent implements OnInit {
       url: "/setting",
     },*/
     {
+      title: "Calendar",
+      url: "/calendar",
+    },
+    {
       title: "Chat",
       url: "/chatList",
     },
