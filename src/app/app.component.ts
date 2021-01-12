@@ -106,6 +106,9 @@ export class AppComponent implements OnInit {
   backButtonEvent() {
     this.platform.backButton.subscribe(async () => {
       this.routerOutlets.forEach((outlet: IonRouterOutlet) => {
+
+    console.log("atras");
+    
         if (outlet && outlet.canGoBack()) {
           outlet.pop();
         } else if (

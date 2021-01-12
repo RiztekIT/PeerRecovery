@@ -1,0 +1,29 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar mode="md">
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="home" icon="chevron-back-outline" text="" mode="md"></ion-back-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>chat</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding-bottom">
+    <h3 class="main_lbl ion-padding-start">New chat with:</h3>
+
+    <div class="today_div">
+        <ion-item *ngFor="let item of users" lines="full" (click)="openChat()" mode="md">
+            <ion-avatar slot="start">
+                <img [src]="item?.image">
+
+            </ion-avatar>
+            <ion-label>
+                <h3 class="name">{{item?.name}} {{item?.lastName}}<span class="ion-float-right">{{item?.ID_User}}</span></h3>
+                <p class="detail">{{item?.phone}}</p>
+            </ion-label>
+        </ion-item>
+    </div>
+
+</ion-content>

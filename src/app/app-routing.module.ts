@@ -146,6 +146,10 @@ const routes: Routes = [
     path: 'appointment',
     loadChildren: () => import('./pages/appointment/appointment.module').then( m => m.AppointmentPageModule)
   },
+  {
+    path: 'chat-users-list',
+    loadChildren: () => import('./pages/chat-users-list/chat-users-list.module').then( m => m.ChatUsersListPageModule)
+  },
 ];
 
 @NgModule({

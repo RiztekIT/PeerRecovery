@@ -5,7 +5,14 @@ import "firebase/auth";
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import firebase from 'firebase';
+import 'firebase/firestore';
 
+const user = {
+  Name: 'Pedroo',
+  LastName: 'Floress',
+  Salary: 3000,
+  Active: false
+}
 
 @Injectable({
   providedIn: 'root'
@@ -22,13 +29,23 @@ export class AuthService {
     measurementId: "G-222ERRG0EM"
 };
 
+  firebaseDB:any;
+
   constructor(private router: Router) {
-    firebase.initializeApp(this.firebaseConfig)
+    firebase.initializeApp(this.firebaseConfig);
+    this.firebaseDB =  firebase.firestore();
    }
 
 
-   user;
-usersign: any =[];
+
+
+
+
+
+
+
+  user;
+  usersign: any =[];
   registroUser(correo,pass){
 
     return  firebase.auth().createUserWithEmailAndPassword(correo, pass);

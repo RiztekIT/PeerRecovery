@@ -1,5 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { NavController } from "@ionic/angular";
+import { UserModel } from "src/app/models/users.model";
+import { AuthService } from "src/app/services/auth.service";
+import { ChatService } from "src/app/services/chat.service";
+
 
 @Component({
   selector: "app-chat-list",
@@ -74,10 +78,62 @@ export class ChatListPage implements OnInit {
       ago: "4 Hour ago",
     },
   ];
-  constructor(private nav: NavController) {}
 
-  ngOnInit() {}
-  chat() {
+  user:UserModel;
+  users: any[] = [];
+
+  usersDBRef:any;
+  constructor(private nav: NavController,
+              private chatService: ChatService,
+              private firebaseAuthService: AuthService) {
+
+    this.usersDBRef = this.firebaseAuthService.firebaseDB.collection('users');
+
+}
+
+  ngOnInit() {
+
+
+
+    this.user = new UserModel();
+    this.user.ID_User = 10;
+    this.user.Name = 'Alan Alexis';
+    this.user.LastName = 'Ramírez Lugo';
+    //this.chatService.postUser(this.user);
+
+
+    
+    this.getUsers();
+  }
+  
+  getUsers(){
+      this.usersDBRef.onSnapshot(  snap =>{
+        this.users = [];
+        snap.forEach( snapHijo =>{
+            this.users.push({
+                id: snapHijo.id,
+                ...snapHijo.data()
+            })
+        });
+        console.log(this.users);
+      });
+  }
+
+
+  /*setLastHourForBets(){
+    this.chatService.getUsers();
+
+    this.chatService.getUsers().subscribe(message => {
+      console.log(message);
+    });
+  }*/
+
+
+  openUsersPage() {
+    this.nav.navigateForward("/chat-users-list");
+  }
+
+  openChat(){
     this.nav.navigateForward("/chat");
   }
 }
