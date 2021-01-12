@@ -122,11 +122,29 @@ const routes: Routes = [
       ),
   },
   {
+    path: "calendar",
+    loadChildren: () =>
+      import("./pages/calendar/calendar.module").then(
+        (m) => m.CalendarPageModule
+      ),
+  },
+  {
+    path: "appointment",
+    loadChildren: () =>
+      import("./pages/appointment/appointment.module").then(
+        (m) => m.AppointmentPageModule
+      ),
+  },
+  {
     path: "chatWithDoctor",
     loadChildren: () =>
       import("./pages/chat-with-doctor/chat-with-doctor.module").then(
         (m) => m.ChatWithDoctorPageModule
       ),
+  },
+  {
+    path: 'appointment',
+    loadChildren: () => import('./pages/appointment/appointment.module').then( m => m.AppointmentPageModule)
   },
 ];
 

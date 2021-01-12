@@ -1,0 +1,48 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button>
+                <ion-back-button defaultHref="home" icon="chevron-back-outline"></ion-back-button>
+            </ion-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button>
+                <ion-menu-button></ion-menu-button>
+            </ion-button>
+        </ion-buttons>
+        <ion-title class="ion-text-center">Appointments</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding-bottom">
+
+    <div class="head_div">
+        <h3 class="main_lbl head_lbl">Next appointments <span class="ion-float-right">Total: {{totalAppointments}}</span></h3>
+    </div>
+
+    <div class="data_div" (click)="openAppointmentPage()" *ngFor="let item of cancelAppoint">
+        <p class="time">{{item?.time}}</p>
+        <div class="card_div">
+            <!--<img [src]="item?.img">-->
+            <div class="info_div">
+                <h3 class="name">{{item?.name}} <span>{{item?.price}}</span></h3>
+                <!--<p class="age">Age : {{item?.age}}</p>-->
+                <p class="add">{{item?.add}}</p>
+            </div>
+        </div>
+    </div>
+
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="openAppointmentPage()">
+        <ion-fab-button>
+            <ion-icon name="calendar-outline"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
+
+</ion-content>
+<!--<ion-footer class="ion-no-border">
+    <ion-button class="main_btn" expand="full">
+        cancel appointment
+    </ion-button>
+</ion-footer>-->
