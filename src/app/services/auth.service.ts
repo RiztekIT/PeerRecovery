@@ -34,9 +34,9 @@ export class AuthService {
   constructor(private router: Router) {
     firebase.initializeApp(this.firebaseConfig);
     this.firebaseDB =  firebase.firestore();
+
+
    }
-
-
 
 
 

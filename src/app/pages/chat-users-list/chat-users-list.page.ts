@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { NavController } from "@ionic/angular";
 import { UserModel } from "src/app/models/users.model";
 import { AuthService } from "src/app/services/auth.service";
@@ -14,15 +15,15 @@ export class ChatUsersListPage implements OnInit {
  
   user:UserModel;
   users: any[] = [];
-  data;
+  chats: any[] = [];
 
   usersDBRef:any;
+  chatsDBRef:any;
   constructor(private nav: NavController,
-              private chatService: ChatService,
+              private router: Router,
               private firebaseAuthService: AuthService) {
 
-    this.usersDBRef = this.firebaseAuthService.firebaseDB.collection('users');
-
+    this.usersDBRef = this.firebaseAuthService.firebaseDB.collection('messages');          
 }
 
   ngOnInit() {
@@ -30,10 +31,7 @@ export class ChatUsersListPage implements OnInit {
   }
   
   getUsers(){
-
-    
-
-    this.usersDBRef.orderBy("name", "asc").onSnapshot(  snap =>{
+    this.usersDBRef.onSnapshot(  snap =>{
         this.users = [];
         snap.forEach( snapHijo =>{
             this.users.push({
@@ -41,7 +39,7 @@ export class ChatUsersListPage implements OnInit {
                 ...snapHijo.data()
             })
         });
-        console.log(this.users);
+        console.log('Users: ', this.users);
       });
   }
 
@@ -62,7 +60,39 @@ export class ChatUsersListPage implements OnInit {
   }
 
 
-  openChat(){
+  openChat(item){
+    console.log(item.id);
+
+    
+    /*this.chatsDBRef = this.firebaseAuthService.firebaseDB.collection('chats');    
+
+    //Search for one Chat with the actual user
+
+    
+    this.chatsDBRef
+      .where('users', 'array-contains', [item.id])
+      .onSnapshot(  snap =>{
+      this.chats = [];
+      snap.forEach( snapHijo =>{
+          this.chats.push({
+              id: snapHijo.id,
+              ...snapHijo.data()
+          })
+      });
+      console.log('Chats: ', this.chats);
+    });
+*/
+    
+
+
+    //If exists open the chat
+
+    //if doesn't exist create and open chat.
+
+
+
+
+
     this.nav.navigateForward("/chat");
   }
 
