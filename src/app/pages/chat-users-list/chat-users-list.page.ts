@@ -14,6 +14,7 @@ export class ChatUsersListPage implements OnInit {
  
   user:UserModel;
   users: any[] = [];
+  data;
 
   usersDBRef:any;
   constructor(private nav: NavController,
@@ -29,6 +30,9 @@ export class ChatUsersListPage implements OnInit {
   }
   
   getUsers(){
+
+    
+
     this.usersDBRef.orderBy("name", "asc").onSnapshot(  snap =>{
         this.users = [];
         snap.forEach( snapHijo =>{
@@ -39,6 +43,22 @@ export class ChatUsersListPage implements OnInit {
         });
         console.log(this.users);
       });
+  }
+
+  info(){
+    this.firebaseAuthService.firebaseDB.collection('chats/y51aOtVCd4vdXgpnwsvV/messages').onSnapshot( snap=>{
+      this.data = [];
+      snap.forEach( snapHijo =>{
+        
+        console.log(snapHijo);
+            this.data.push({
+              id: snapHijo.id,
+                ...snapHijo.data()
+            })
+        });
+        console.log(this.data);
+      
+    })
   }
 
 
