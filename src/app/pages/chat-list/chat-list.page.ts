@@ -4,7 +4,7 @@ import { NavController } from "@ionic/angular";
 import { UserModel } from "src/app/models/users.model";
 import { AuthService } from "src/app/services/auth.service";
 import { ChatService } from "src/app/services/chat.service";
-import { NavigationExtras } from '@angular/router';
+//import { NavigationExtras } from '@angular/router';
 
 export const snapshotToArray = (snapshot: any) => {
   const returnArr = [];
@@ -74,12 +74,14 @@ getChats(){
     });
     console.log(this.chats);
   }); */
+  
 
   this.chatService.getUserChats().orderByChild(this.firebaseAuthService.usersign.uid).equalTo('true').on('value', (resp:any) =>{
   let chats = snapshotToArray(resp);
   this.chats = [];
   this.keysUsers = []
   this.chatService.chatsUsers = []
+  
    console.log(this.chats);
 
    chats.forEach(chat=>{
@@ -87,7 +89,37 @@ getChats(){
      Object.keys(chat).forEach(key=>{
        if (key!='key' && key!=this.firebaseAuthService.usersign.uid){
          this.keysUsers.push(key)
+         console.log(this.chatService.getUser(key).toJSON());
+     
+         this.chatService.getUser(key).on('value', (resp)=>{
+           console.log(resp);
+           let u = resp.val()
+           
+          /* let users = snapshotToArray(resp); */
+          /* console.log(users); */
+          console.log(chat);
+          this.chatService.unreadChats(chat.key).on('value', resp=>{
+      
+            let messages = snapshotToArray(resp);
+            console.log(messages);
+            let count = 0;
+            messages.forEach(message=>{
+              if ((message.sender!=this.firebaseAuthService.usersign.uid) && (message.read=='false')){
+                count = count + 1;
+              }
+            })
+      
+            
+            console.log(count);
+            
+            u.unread = count;
+          });
+          this.chatService.chatsUsers.push(u)
+         })
+
        }
+
+     
        
 
 
@@ -96,7 +128,7 @@ getChats(){
 
    })
 
-   console.log(this.keysUsers);
+/*    console.log(this.keysUsers);
 
    this.keysUsers.forEach(keyUser=>{
 
@@ -105,11 +137,10 @@ getChats(){
      this.chatService.getUser(keyUser).on('value', (resp)=>{
        console.log(resp);
        let u = resp.val()
-      /* let users = snapshotToArray(resp); */
-      /* console.log(users); */
+
        this.chatService.chatsUsers.push(u)
      })
-   })
+   }) */
 
    console.log(this.chatService.chatsUsers);
 

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Route, Router } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { IonContent, NavController } from '@ionic/angular';
 import { ActivatedRoute } from "@angular/router";
 import { AuthService } from "src/app/services/auth.service";
 import { ChatService } from 'src/app/services/chat.service';
@@ -13,6 +13,8 @@ import firebase from 'firebase';
   styleUrls: ['./chat.page.scss'],
 })
 export class ChatPage implements OnInit {
+
+  @ViewChild('chatcontent', {static: false}) content: IonContent;
 
   ID_Chat:string = "";
 
@@ -38,6 +40,14 @@ export class ChatPage implements OnInit {
 
   ngOnInit() {
     this.getChat();
+    this.chatService.readChats();
+    
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this.chatService.stopread()
   }
 
 /*   getMessage(){
@@ -71,7 +81,10 @@ console.log(localStorage.getItem('idchat'));
       console.log(messages);
       this.chatMessages = messages;
       console.log(this.chatMessages);
-     
+      
+      setTimeout(() => {
+        this.scrollToBottom();
+    }, 500);
     })
   }
 
@@ -82,10 +95,13 @@ console.log(localStorage.getItem('idchat'));
     let sendmessage = {
       message: this.message,
       sender: this.firebaseAuthService.usersign.uid,
+      read:'false',
       sent: firebase.firestore.Timestamp.fromDate(new Date())
     }
 
     this.chatService.newMessage(sendmessage);
+
+    this.message = '';
 
 
     /*var docData = {
@@ -123,6 +139,12 @@ console.log(localStorage.getItem('idchat'));
 
   goToChatList(){
     this.nav.navigateBack("/chatList")
+  }
+
+
+  scrollToBottom(){
+    this.content.scrollToBottom(300);
+    //document.getElementById('chatcontent').scrollTo();
   }
 
 

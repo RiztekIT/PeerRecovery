@@ -19,9 +19,12 @@
             </ion-avatar>
             <ion-label>
                 <h3 class="name">{{chat?.displayName}} <span class="ion-float-right"></span></h3>
+
+
                 <!-- <h3 class="name">{{chat?.Title}} <span class="ion-float-right">{{chat?.LastMessageSent.seconds * 1000| date: 'yyyy-MM-dd h:mm: a'}}</span></h3> -->
-                <!-- <p class="detail">{{chat?.LastMessage}}</p> -->
+                <!-- <p class="detail"></p> -->
             </ion-label>
+            <ion-badge color="primary">{{chat?.unread}}</ion-badge>
         </ion-item>
     </div>
 

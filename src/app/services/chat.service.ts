@@ -6,11 +6,26 @@ import { AuthService } from './auth.service';
 import { Observable, Subject } from 'rxjs';
 import { of } from 'rxjs';
 import firebase from 'firebase';
-//import { UserModel } from 'app/models/users.model'; 
+//import { UserModel } from 'app/models/users.model';
+
+const snapshotToArray = (snapshot: any) => {
+  const returnArr = [];
+
+  snapshot.forEach((childSnapshot: any) => {
+      const item = childSnapshot.val();
+      item.key = childSnapshot.key;
+      returnArr.push(item);
+  });
+
+  return returnArr;
+};
 
 @Injectable({
   providedIn: 'root'
 })
+
+
+
 export class ChatService {
    
   private subject = new Subject<any>();
@@ -91,7 +106,7 @@ export class ChatService {
 
     let key  = firebase.database().ref(this.firebaseAuthService.usersign.uid+'/chats/').push(chat).key;
     firebase.database().ref(user.uid+'/chats/'+key).push(chat);        
-    //firebase.database().ref('/chats/'+key).set(chat);
+    firebase.database().ref('/chats/'+key).set(chat);
     
 
     firebase.database().ref(this.firebaseAuthService.usersign.uid+'/members/'+key+'/'+user.uid).set('true');
@@ -100,8 +115,8 @@ export class ChatService {
 
     firebase.database().ref(user.uid+'/members/'+key+'/'+user.uid).set('true');
     firebase.database().ref(user.uid+'/members/'+key+'/'+this.firebaseAuthService.usersign.uid).set('true');
-    //firebase.database().ref('/members/'+key+'/'+user.uid).set('true');
-    //firebase.database().ref('/members/'+key+'/'+this.firebaseAuthService.usersign.uid).set('true');
+    firebase.database().ref('/members/'+key+'/'+user.uid).set('true');
+    firebase.database().ref('/members/'+key+'/'+this.firebaseAuthService.usersign.uid).set('true');
 
     return key;
   }
@@ -116,6 +131,59 @@ export class ChatService {
     firebase.database().ref('/messages/'+localStorage.getItem('idchat')).push(message);
 
     
+  }
+
+
+  readChats(){
+
+    let chatid = localStorage.getItem('idchat')
+
+    firebase.database().ref(this.firebaseAuthService.usersign.uid+'/messages/'+chatid).on('value', resp=>{
+      
+      let messages = snapshotToArray(resp);
+      console.log(messages);
+
+      messages.forEach(message=>{
+        if (message.sender!=this.firebaseAuthService.usersign.uid){
+          firebase.database().ref(this.firebaseAuthService.usersign.uid+'/messages/'+chatid+'/'+message.key+'/read').set('true');
+        }
+      })
+
+    });
+
+  }
+
+  stopread(){
+
+    let chatid = localStorage.getItem('idchat')
+
+    firebase.database().ref(this.firebaseAuthService.usersign.uid+'/messages/'+chatid).off();
+
+  }
+
+  unreadChats(chatid){
+
+    let count = 0;
+
+    return firebase.database().ref(this.firebaseAuthService.usersign.uid+'/messages/'+chatid)
+    
+    
+   /*  .on('value', resp=>{
+      
+      let messages = snapshotToArray(resp);
+      console.log(messages);
+
+      messages.forEach(message=>{
+        if ((message.sender!=this.firebaseAuthService.usersign.uid) && (message.read=='false')){
+          count = count + 1;
+        }
+      })
+
+      
+      console.log(count);
+    }); */
+ 
+
   }
 
  /*  newChat2(user,idchat){
