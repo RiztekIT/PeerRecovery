@@ -5,6 +5,18 @@ import { UserModel } from "src/app/models/users.model";
 import { AuthService } from "src/app/services/auth.service";
 import { ChatService } from "src/app/services/chat.service";
 
+export const snapshotToArray = (snapshot: any) => {
+  const returnArr = [];
+
+  snapshot.forEach((childSnapshot: any) => {
+      const item = childSnapshot.val();
+      item.key = childSnapshot.key;
+      returnArr.push(item);
+  });
+
+  return returnArr;
+};
+
 
 @Component({
   selector: "app-chat-list",
@@ -21,7 +33,8 @@ export class ChatUsersListPage implements OnInit {
   chatsDBRef:any;
   constructor(private nav: NavController,
               private router: Router,
-              private firebaseAuthService: AuthService) {
+              private firebaseAuthService: AuthService,
+              private chatService: ChatService) {
 
     this.usersDBRef = this.firebaseAuthService.firebaseDB.collection('messages');          
 }
@@ -31,7 +44,7 @@ export class ChatUsersListPage implements OnInit {
   }
   
   getUsers(){
-    this.usersDBRef.onSnapshot(  snap =>{
+   /*  this.usersDBRef.onSnapshot(  snap =>{
         this.users = [];
         snap.forEach( snapHijo =>{
             this.users.push({
@@ -40,30 +53,45 @@ export class ChatUsersListPage implements OnInit {
             })
         });
         console.log('Users: ', this.users);
-      });
+      }); */
+      this.chatService.getUsers().orderByChild('type').equalTo('User').on('value', (resp:any) =>{
+        //console.log(resp);
+         const users = snapshotToArray(resp);
+        console.log(users);
+        this.users = users;
+        this.users = this.users.filter(x => x.uid != this.firebaseAuthService.usersign.uid);
+
+       })
+
+
+
   }
 
-  info(){
-    this.firebaseAuthService.firebaseDB.collection('chats/y51aOtVCd4vdXgpnwsvV/messages').onSnapshot( snap=>{
-      this.data = [];
-      snap.forEach( snapHijo =>{
-        
-        console.log(snapHijo);
-            this.data.push({
-              id: snapHijo.id,
-                ...snapHijo.data()
-            })
-        });
-        console.log(this.data);
-      
-    })
-  }
+
 
 
   openChat(item){
-    console.log(item.id);
+    console.log(item.uid);
 
     
+
+    this.chatService.getChat().orderByChild(item.uid).equalTo('true').on('value', (resp:any) =>{
+      console.log(resp);
+      const chats = snapshotToArray(resp);
+      console.log(chats);
+      if (chats.length>0){
+        //this.nav.navigateForward("/chat");
+        //this.nav.navigateForward("/chat?id="+chats[0].uid);
+        localStorage.setItem('user2',JSON.stringify(item))
+        localStorage.setItem('idchat', chats[0].key)
+        this.nav.navigateForward("/chat");
+      }else{
+        localStorage.setItem('user2',JSON.stringify(item))
+        let idchat = this.chatService.newChat(item);
+        localStorage.setItem('idchat', idchat)
+        this.nav.navigateForward("/chat");
+      }
+    })
     /*this.chatsDBRef = this.firebaseAuthService.firebaseDB.collection('chats');    
 
     //Search for one Chat with the actual user
@@ -93,7 +121,7 @@ export class ChatUsersListPage implements OnInit {
 
 
 
-    this.nav.navigateForward("/chat");
+    
   }
 
 }

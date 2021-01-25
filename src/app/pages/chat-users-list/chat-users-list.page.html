@@ -16,15 +16,15 @@
     <div class="today_div">
         <ion-item *ngFor="let item of users" lines="full" (click)="openChat(item)" mode="md">
             <ion-avatar slot="start">
-                <img [src]="item?.image">
+                <img [src]="item?.photoUrl">
             </ion-avatar>
             <ion-label>
-                <h3 class="name">{{item?.name}} {{item?.lastName}}<span class="ion-float-right">{{item?.ID_User}}</span></h3>
-                <p class="detail">{{item?.phone}}</p>
+                <h3 class="name">{{item?.displayName}}</h3>
+                <p class="detail">{{item?.email}}</p>
             </ion-label>
         </ion-item>
     </div>
 
-    <ion-button (click)="info()">VER</ion-button>
+    <!-- <ion-button (click)="info()">VER</ion-button> -->
 
 </ion-content>

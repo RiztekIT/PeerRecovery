@@ -3,6 +3,9 @@ import { Route, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { ActivatedRoute } from "@angular/router";
 import { AuthService } from "src/app/services/auth.service";
+import { ChatService } from 'src/app/services/chat.service';
+import { snapshotToArray } from '../chat-users-list/chat-users-list.page';
+import firebase from 'firebase';
 
 @Component({
   selector: 'app-chat',
@@ -20,24 +23,33 @@ export class ChatPage implements OnInit {
   constructor(private nav: NavController, 
               private route: ActivatedRoute, 
               private router: Router,
-              private firebaseAuthService: AuthService) {
-      this.route.queryParams.subscribe(params => {
+              public firebaseAuthService: AuthService,
+              public chatService: ChatService) {
+   /*    this.route.queryParams.subscribe(params => {
         if (params && params.special) {
           this.data = JSON.parse(params.special);
           console.log(this.data.ID_Chat);
           this.ID_Chat = this.data.ID_Chat;
           this.chatDBRef = this.firebaseAuthService.firebaseDB.doc('messages/'+this.data.ID_Chat);
-          this.getChat();
+          
         }
-      });
+      }); */
     }
 
   ngOnInit() {
+    this.getChat();
   }
+
+/*   getMessage(){
+    this.chatService.getMessages
+  } */
+
+  
+
   getChat(){
 
 
-    this.chatMessages = [];
+   /*  this.chatMessages = [];
     this.chatDBRef.onSnapshot(  snap =>{
       this.chatMessages = [];
       const data = snap.data();
@@ -52,13 +64,28 @@ export class ChatPage implements OnInit {
       console.log(this.chatMessages);
       this.chatMessages.sort(function(a, b) { return a.Sent.seconds - b.Sent.seconds; })
       console.log(this.chatMessages);
-    });
+    }); */
+console.log(localStorage.getItem('idchat'));
+    this.chatService.getMessages(localStorage.getItem('idchat')).on('value', resp=>{
+      let messages = snapshotToArray(resp)
+      console.log(messages);
+      this.chatMessages = messages;
+      console.log(this.chatMessages);
+     
+    })
   }
 
   sendMessage(){
 
     console.log(this.message);
 
+    let sendmessage = {
+      message: this.message,
+      sender: this.firebaseAuthService.usersign.uid,
+      sent: firebase.firestore.Timestamp.fromDate(new Date())
+    }
+
+    this.chatService.newMessage(sendmessage);
 
 
     /*var docData = {
@@ -84,13 +111,13 @@ export class ChatPage implements OnInit {
 
   
   //Update the chat info
-  const newChatInfo = {
+ /*  const newChatInfo = {
     LastMessage: this.message,
     LastMessageSent: new Date()
   }
   this.firebaseAuthService.firebaseDB.collection("chats").doc(this.ID_Chat).update( newChatInfo )
 
-  this.message = ""; 
+  this.message = "";  */
   }
 
 

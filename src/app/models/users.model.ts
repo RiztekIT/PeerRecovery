@@ -8,18 +8,13 @@ export interface UserResponse{
 
 
 export class UserModel{
-    ID_User: number;
-    Name: string;
-    LastName: string;
-    FullName: number;
-    Address: string;
-    AddressZipCode: string;
-    AddressState: string;
-    AddressCity: string;
-    Phone: string;
-    Type: string;
-    Email: string;
-    Password: string;
-    Created: string;
-    Updated: string;
+    uid: string;
+    displayName: string;
+    email: string;
+    photoUrl: string;
+    type: string;
+    password: string;
+    created: Date;
+    updated: Date;
+
 }

@@ -13,28 +13,28 @@
     <div *ngFor="let message of chatMessages">
 
 
-        <div *ngIf="message.Sender != 'UelCfFrbm2RirNJwR4ym'" class="chat_div ">
+        <div *ngIf="message.sender != this.firebaseAuthService.usersign.uid" class="chat_div ">
             <!-- Others messages -->
             <!-- Other person message -->
-            <img src="../../../assets/image/patricia.png ">
+            <!-- <img src="../../../assets/image/patricia.png "> -->
             <div class="message_div ">
                 <div class="chat ">
-                    <p class="chat_lbl ">{{message.Message}}</p>
+                    <p class="chat_lbl ">{{message.message}}</p>
                 </div>
-                <p class="time ">{{message.Sent.seconds * 1000| date: 'h:mm a'}}</p>
+                <p class="time ">{{message.sent.seconds * 1000| date: 'h:mm a'}}</p>
             </div>
         </div>
-        <div *ngIf="message.Sender == 'UelCfFrbm2RirNJwR4ym'" class="chat_div replay_div ">
+        <div *ngIf="message.sender == this.firebaseAuthService.usersign.uid" class="chat_div replay_div ">
             <!-- My messages -->
             <!-- Me -->
             <div class="message_div ">
                 <div class="chat ">
-                    <p class="chat_lbl ">{{message.Message}}</p>
+                    <p class="chat_lbl ">{{message.message}}</p>
                 </div>
-                <p class="time ">{{message.Sent.seconds * 1000| date: 'h:mm a'}}</p>
+                <p class="time ">{{message.sent.seconds * 1000| date: 'h:mm a'}}</p>
 
             </div>
-            <img src="../../../assets/image/patricia.png ">
+            <!-- <img src="../../../assets/image/patricia.png "> -->
         </div>
 
     </div>
@@ -45,7 +45,7 @@
 
 </ion-content>
 <ion-footer class="ion-no-border ">
-    <ion-item mode="md " lines="none ">
+    <ion-item mode="md" lines="none ">
         <ion-input [(ngModel)]="message" placeholder="Type your message... ">
         </ion-input>
     </ion-item>

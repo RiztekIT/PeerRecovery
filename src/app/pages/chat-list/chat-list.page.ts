@@ -1,9 +1,21 @@
 import { Component, OnInit } from "@angular/core";
+import { NavigationExtras } from "@angular/router";
 import { NavController } from "@ionic/angular";
 import { UserModel } from "src/app/models/users.model";
 import { AuthService } from "src/app/services/auth.service";
 import { ChatService } from "src/app/services/chat.service";
 
+export const snapshotToArray = (snapshot: any) => {
+  const returnArr = [];
+
+  snapshot.forEach((childSnapshot: any) => {
+      const item = childSnapshot.val();
+      item.key = childSnapshot.key;
+      returnArr.push(item);
+  });
+
+  return returnArr;
+};
 
 @Component({
   selector: "app-chat-list",
@@ -16,13 +28,15 @@ export class ChatListPage implements OnInit {
   user:UserModel;
   users: any[] = [];
   chats: any[] = [];
+  keysUsers: any[] = [];
+  
 
 
 
   usersDBRef:any;
   chatsDBRef:any;
   constructor(private nav: NavController,
-              private chatService: ChatService,
+              public chatService: ChatService,
               private firebaseAuthService: AuthService) {
 
     this.usersDBRef = this.firebaseAuthService.firebaseDB.collection('users');
@@ -34,22 +48,22 @@ export class ChatListPage implements OnInit {
 
 
 
-    this.user = new UserModel();
-    this.user.ID_User = 10;
-    this.user.Name = 'Alan Alexis';
-    this.user.LastName = 'Ramírez Lugo';
+    //this.user = new UserModel();
+    //this.user.ID_User = 10;
+    //this.user.Name = 'Alan Alexis';
+    //this.user.LastName = 'Ramírez Lugo';
     //this.chatService.postUser(this.user);
 
 
     
-    this.getUsers();
+    //this.getUsers();
     this.getChats();
   }
   
 
 
 getChats(){
-  this.chatsDBRef.onSnapshot(  snap =>{
+/*   this.chatsDBRef.onSnapshot(  snap =>{
     this.chats = [];
     snap.forEach( snapHijo =>{
         this.chats.push({
@@ -58,7 +72,51 @@ getChats(){
         })
     });
     console.log(this.chats);
-  });
+  }); */
+
+  this.chatService.getUserChats().orderByChild(this.firebaseAuthService.usersign.uid).equalTo('true').on('value', (resp:any) =>{
+  let chats = snapshotToArray(resp);
+  this.chats = [];
+  this.keysUsers = []
+  this.chatService.chatsUsers = []
+   console.log(this.chats);
+
+   chats.forEach(chat=>{
+     console.log(Object.keys(chat))
+     Object.keys(chat).forEach(key=>{
+       if (key!='key' && key!=this.firebaseAuthService.usersign.uid){
+         this.keysUsers.push(key)
+       }
+       
+
+
+     })
+
+
+   })
+
+   console.log(this.keysUsers);
+
+   this.keysUsers.forEach(keyUser=>{
+
+    console.log(this.chatService.getUser(keyUser).toJSON());
+     
+     this.chatService.getUser(keyUser).on('value', (resp)=>{
+       console.log(resp);
+       let u = resp.val()
+      /* let users = snapshotToArray(resp); */
+      /* console.log(users); */
+       this.chatService.chatsUsers.push(u)
+     })
+   })
+
+   console.log(this.chatService.chatsUsers);
+
+
+  
+  })
+
+
 }
 
 
@@ -67,7 +125,7 @@ getChats(){
 
 
   getUsers(){
-      this.usersDBRef.onSnapshot(  snap =>{
+    /*   this.usersDBRef.onSnapshot(  snap =>{
         this.users = [];
         snap.forEach( snapHijo =>{
             this.users.push({
@@ -76,7 +134,7 @@ getChats(){
             })
         });
         console.log(this.users);
-      });
+      }); */
   }
 
 
@@ -102,7 +160,7 @@ getChats(){
 
   openChat(chat){
     console.log(chat);
-
+/* 
     let navigationExtras: NavigationExtras = {
       queryParams: {
         special: JSON.stringify( {
@@ -110,11 +168,23 @@ getChats(){
                                  } 
         )
       }
-    };
-    
+    }; */
+    this.chatService.getChat().orderByChild(chat.uid).equalTo('true').on('value', (resp:any) =>{
+      console.log(resp);
+      const chats = snapshotToArray(resp);
+      console.log(chats);
+      
+        //this.nav.navigateForward("/chat");
+        //this.nav.navigateForward("/chat?id="+chats[0].uid);
+        localStorage.setItem('user2',JSON.stringify(chat))
+        localStorage.setItem('idchat', chats[0].key)
+        this.nav.navigateForward("/chat");
+     
+    })
 
+   
 
-   this.nav.navigateForward('/chat', navigationExtras);
+   
 
 
 

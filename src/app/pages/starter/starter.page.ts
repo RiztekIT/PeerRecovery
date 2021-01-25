@@ -1,6 +1,7 @@
 import { UtilService } from './../../services/util.service';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { UserModel } from 'src/app/models/users.model';
 
 @Component({
   selector: 'app-starter',
@@ -8,6 +9,8 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./starter.page.scss'],
 })
 export class StarterPage implements OnInit {
+
+  user : UserModel;
 
   constructor(
     private util: UtilService,
@@ -53,9 +56,24 @@ export class StarterPage implements OnInit {
 
         this.authSVC.user = result.user.email;
         this.authSVC.usersign = result.user;
+
+        this.user = {
+          displayName: result.user.displayName,
+          email: result.user.email,
+          photoUrl: result.user.photoURL,
+          type: 'User',
+          password: '',
+          created: new Date(),
+          updated: new Date(),
+          uid: result.user.uid
+        }
+       
+  
+        this.authSVC.addUser(this.user);
       }
 
        if (this.authSVC.user){
+
         this.util.navCtrl.navigateForward("onBoarding");
 
        }

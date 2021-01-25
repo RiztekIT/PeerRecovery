@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
 import firebase from 'firebase';
 import 'firebase/firestore';
 
+//import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+
 const user = {
   Name: 'Pedroo',
   LastName: 'Floress',
@@ -31,7 +33,7 @@ export class AuthService {
 
   firebaseDB:any;
 
-  constructor(private router: Router) {
+  constructor(private router: Router)  {
     firebase.initializeApp(this.firebaseConfig);
     this.firebaseDB =  firebase.firestore();
 
@@ -206,5 +208,14 @@ export class AuthService {
 
    resetPassword(correo){
      return firebase.auth().sendPasswordResetEmail(correo)
+   }
+
+   addUser(user){
+     
+
+    firebase.database().ref('Users/'+user.uid).set(user)
+
+    firebase.database().ref(user.uid+'/data').set(user)
+
    }
 }

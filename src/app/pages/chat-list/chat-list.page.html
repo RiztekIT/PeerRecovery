@@ -13,13 +13,14 @@
 <ion-content class="ion-padding-bottom">
     <h3 class="main_lbl ion-padding-start">Chats</h3>
     <div class="today_div">
-        <ion-item *ngFor="let chat of chats" lines="full" (click)="openChat(chat)" mode="md">
+        <ion-item *ngFor="let chat of this.chatService.chatsUsers" lines="full" (click)="openChat(chat)" mode="md">
             <ion-avatar slot="start">
-                <img [src]="chat?.img">
+                <img [src]="chat?.photoUrl">
             </ion-avatar>
             <ion-label>
-                <h3 class="name">{{chat?.Title}} <span class="ion-float-right">{{chat?.LastMessageSent.seconds * 1000| date: 'yyyy-MM-dd h:mm: a'}}</span></h3>
-                <p class="detail">{{chat?.LastMessage}}</p>
+                <h3 class="name">{{chat?.displayName}} <span class="ion-float-right"></span></h3>
+                <!-- <h3 class="name">{{chat?.Title}} <span class="ion-float-right">{{chat?.LastMessageSent.seconds * 1000| date: 'yyyy-MM-dd h:mm: a'}}</span></h3> -->
+                <!-- <p class="detail">{{chat?.LastMessage}}</p> -->
             </ion-label>
         </ion-item>
     </div>
