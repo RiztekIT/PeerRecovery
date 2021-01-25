@@ -13,13 +13,37 @@
             <ion-menu-button></ion-menu-button>
         </ion-buttons>
     </ion-toolbar>
-    <ion-toolbar>
+    <!--<ion-toolbar>
         <ion-input (ionFocus)="goToSearch()" placeholder="Search Doctor..." class="search-input margin-right-15 margin-left-15">
             <ion-icon src="../../../assets/imgs/appicons/search.svg"></ion-icon>
         </ion-input>
-    </ion-toolbar>
+    </ion-toolbar>-->
 </ion-header>
 
+
+<ion-content class="ion-padding-bottom">
+
+    <div class="head_div">
+        <h3 class="main_lbl head_lbl">Next appointments <span class="ion-float-right">Total: {{totalAppointments}}</span></h3>
+    </div>
+
+    <div class="data_div" (click)="openAppointmentPage()" *ngFor="let item of cancelAppoint">
+        <p class="time">{{item?.time}}</p>
+        <div class="card_div">
+            <!--<img [src]="item?.img">-->
+            <div class="info_div">
+                <h3 class="name">{{item?.name}} <span>{{item?.price}}</span></h3>
+                <!--<p class="age">Age : {{item?.age}}</p>-->
+                <p class="add">{{item?.add}}</p>
+            </div>
+        </div>
+    </div>
+
+</ion-content>
+
+
+
+<!--  
 <ion-content class="ion-padding">
 
     <h2 class="heading margin-bottom-17">Upcoming Appointment</h2>
@@ -191,4 +215,4 @@
         <img src="../../../assets/imgs/plan_offer.png">
     </div>
 
-</ion-content>
+</ion-content>-->

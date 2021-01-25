@@ -4,6 +4,7 @@ import { NavController } from "@ionic/angular";
 import { UserModel } from "src/app/models/users.model";
 import { AuthService } from "src/app/services/auth.service";
 import { ChatService } from "src/app/services/chat.service";
+import { NavigationExtras } from '@angular/router';
 
 export const snapshotToArray = (snapshot: any) => {
   const returnArr = [];

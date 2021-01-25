@@ -66,7 +66,7 @@ export class CalendarPage implements OnInit {
 
 
 
-  totalAppointments = 10;
+  totalAppointments = 4;
   constructor(private alertController: AlertController,
               private nav: NavController,
               private router: Router,
