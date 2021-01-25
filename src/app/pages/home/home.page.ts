@@ -2,8 +2,10 @@ import { UtilService } from "./../../services/util.service";
 import { Component, NgZone, OnInit } from "@angular/core";
 import { AuthService } from "src/app/services/auth.service";
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { NavigationExtras } from '@angular/router';
 import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
-import { Platform } from "@ionic/angular";
+import { AlertController, ModalController, NavController, Platform } from "@ionic/angular";
+import { Router } from "@angular/router";
 declare var google;
 
 @Component({
@@ -12,6 +14,63 @@ declare var google;
   styleUrls: ["./home.page.scss"],
 })
 export class HomePage implements OnInit {
+
+  cancelAppoint = [
+    {
+      time: "10:00 am",
+      img: "../../../assets/image/patricia.png ",
+      name: "Consulta medica",
+      price: "Nov 01 2021",
+      age: "32",
+      add: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    },
+    {
+      time: "10:30 am",
+      img: "../../../assets/image/arron.png",
+      name: "Consulta medica",
+      price: "Nov 01 2021",
+      age: "32",
+      add: "Consulta del mes de Febrero",
+    },
+    {
+      time: "11:00 am",
+      img: "../../../assets/image/pearson.png",
+      name: "Consulta medica",
+      price: "Nov 01 2021",
+      age: "32",
+      add: "Consulta del mes de Marzo",
+    },
+    {
+      time: "10:30 am",
+      img: "../../../assets/image/benjamin.png",
+      name: "Consulta medica",
+      price: "Nov 01 2021",
+      age: "32",
+      add: "Consulta del mes de Abril",
+    },
+  ];
+
+  user = {
+    appointmentID: 10,
+    title: 'Checkout',
+    description: 'First year chekout',
+    date: 'Nov 01 2021',
+    time: '11:00 pm',
+    /*info: {
+      title: 'Go with the doctor',
+      description: 'Go with the doctor to the first year chekout',
+      date: 'Nov 01 2021',
+      time: '11:00 pm',
+    },
+    ticks: [
+      'Ionic', 'Angular',
+    ]*/
+  };
+
+
+
+  totalAppointments = 4;
+
   specialist = [
     {
       name: "Dr.Janice Bailey",
@@ -51,7 +110,19 @@ export class HomePage implements OnInit {
       color: "#00A8E5",
     },
   ];
-  constructor(private util: UtilService, public authSVC: AuthService, private geolocation: Geolocation, private nativeGeocoder: NativeGeocoder, private platform: Platform, public zone: NgZone) {}
+  constructor(private util: UtilService, 
+    public authSVC: AuthService, 
+    private geolocation: Geolocation, 
+    private nativeGeocoder: NativeGeocoder, 
+    private platform: Platform, 
+    public zone: NgZone,
+    private alertController: AlertController,
+    private nav: NavController,
+    private router: Router,
+    private modalCtr: ModalController
+    ) {}
+
+
 
   locatio
 
@@ -75,6 +146,19 @@ export class HomePage implements OnInit {
   ionViewWillEnter() {
     this.util.menuCtrl.enable(true);
   }
+
+
+  openAppointmentPage() {
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        special: JSON.stringify(this.user)
+      }
+    };
+    this.router.navigate(['appointment'], navigationExtras);
+
+  }
+
+
 
   goToSearch() {
     this.util.navCtrl.navigateForward("search");

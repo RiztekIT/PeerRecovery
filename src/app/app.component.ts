@@ -18,10 +18,10 @@ export class AppComponent implements OnInit {
   timePeriodToExit = 2000;
   public selectedIndex = 0;
   public appPages = [
-    /*{
+    {
       title: "Home",
       url: "/home",
-    },
+    },/*
     {
       title: "Find Doctor",
       url: "/search",

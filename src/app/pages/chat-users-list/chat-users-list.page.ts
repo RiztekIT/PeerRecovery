@@ -15,6 +15,7 @@ export class ChatUsersListPage implements OnInit {
  
   user:UserModel;
   users: any[] = [];
+  data: any;
   chats: any[] = [];
 
   usersDBRef:any;
