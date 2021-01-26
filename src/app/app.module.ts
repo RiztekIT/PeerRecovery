@@ -14,11 +14,14 @@ import { SuccessModalComponent } from './components/success-modal/success-modal.
 import { CallingComponent } from './components/calling/calling.component';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
+import { PipesModule } from './pipes/pipes.module';
 
 @NgModule({
   declarations: [AppComponent,PopOverContentComponent,SuccessModalComponent,CallingComponent],
   entryComponents: [PopOverContentComponent,SuccessModalComponent,CallingComponent],
+  exports: [],
   imports: [
+    PipesModule,
     BrowserModule,
     IonicModule.forRoot({
       rippleEffect: false,

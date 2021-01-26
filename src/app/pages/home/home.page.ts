@@ -6,6 +6,7 @@ import { NavigationExtras } from '@angular/router';
 import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
 import { AlertController, ModalController, NavController, Platform } from "@ionic/angular";
 import { Router } from "@angular/router";
+import { AppointmentService } from "src/app/services/appointment.service";
 declare var google;
 
 @Component({
@@ -15,60 +16,11 @@ declare var google;
 })
 export class HomePage implements OnInit {
 
-  cancelAppoint = [
-    {
-      time: "10:00 am",
-      img: "../../../assets/image/patricia.png ",
-      name: "Consulta medica",
-      price: "Nov 01 2021",
-      age: "32",
-      add: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    },
-    {
-      time: "10:30 am",
-      img: "../../../assets/image/arron.png",
-      name: "Consulta medica",
-      price: "Nov 01 2021",
-      age: "32",
-      add: "Consulta del mes de Febrero",
-    },
-    {
-      time: "11:00 am",
-      img: "../../../assets/image/pearson.png",
-      name: "Consulta medica",
-      price: "Nov 01 2021",
-      age: "32",
-      add: "Consulta del mes de Marzo",
-    },
-    {
-      time: "10:30 am",
-      img: "../../../assets/image/benjamin.png",
-      name: "Consulta medica",
-      price: "Nov 01 2021",
-      age: "32",
-      add: "Consulta del mes de Abril",
-    },
-  ];
-
-  user = {
-    appointmentID: 10,
-    title: 'Checkout',
-    description: 'First year chekout',
-    date: 'Nov 01 2021',
-    time: '11:00 pm',
-    /*info: {
-      title: 'Go with the doctor',
-      description: 'Go with the doctor to the first year chekout',
-      date: 'Nov 01 2021',
-      time: '11:00 pm',
-    },
-    ticks: [
-      'Ionic', 'Angular',
-    ]*/
-  };
 
 
 
+  appointmentsDBRef:any;
+  Appointments: any[] = [];
   totalAppointments = 4;
 
   specialist = [
@@ -119,8 +71,15 @@ export class HomePage implements OnInit {
     private alertController: AlertController,
     private nav: NavController,
     private router: Router,
-    private modalCtr: ModalController
-    ) {}
+    private modalCtr: ModalController,
+    private firebaseAuthService: AuthService,
+    public appointmentService: AppointmentService) {
+
+
+      this.appointmentsDBRef = this.firebaseAuthService.firebaseDB.collection('Appointments');
+      this.getAppointments();
+
+    }
 
 
 
@@ -148,15 +107,62 @@ export class HomePage implements OnInit {
   }
 
 
-  openAppointmentPage() {
+
+
+  getAppointments(){
+    this.appointmentService.getAppointments().on('value', resp=>{
+      this.Appointments  = [];
+      resp.forEach((childSnapshot: any) => {
+          const item = childSnapshot.val();
+          item.key = childSnapshot.key;
+          this.Appointments.push(item);
+      });
+      console.log(resp);
+      console.log(this.Appointments);
+    })
+    
+    }
+
+
+
+  openAppointmentPage(item) {
+    let appointment = {
+      appointmentID: item.key,
+    };
     let navigationExtras: NavigationExtras = {
       queryParams: {
-        special: JSON.stringify(this.user)
+        special: JSON.stringify(appointment)
       }
     };
     this.router.navigate(['appointment'], navigationExtras);
 
   }
+
+  newAppointmentPage(){
+    this.router.navigate(['appointment']);
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
