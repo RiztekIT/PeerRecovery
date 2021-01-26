@@ -36,6 +36,7 @@ export class AuthService {
   constructor(private router: Router)  {
     firebase.initializeApp(this.firebaseConfig);
     this.firebaseDB =  firebase.firestore();
+    this.getCurrentUser()
 
 
    }
@@ -91,6 +92,13 @@ export class AuthService {
     }); */
    }
 
+   getCurrentUser(){
+     if (JSON.parse(sessionStorage.getItem('user'))){
+
+       this.usersign = JSON.parse(sessionStorage.getItem('user'));
+     }
+   }
+
    getUser(){
       
     firebase.auth().onAuthStateChanged((user)=>{
@@ -142,8 +150,11 @@ export class AuthService {
    }
 
    obtenerToken(){
+     
      return firebase.auth().getRedirectResult().then();
    }
+
+ 
 
    loginFacebook(){
     let provider = new firebase.auth.FacebookAuthProvider();

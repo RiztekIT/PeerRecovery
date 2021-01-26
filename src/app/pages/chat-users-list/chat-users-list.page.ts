@@ -29,6 +29,8 @@ export class ChatUsersListPage implements OnInit {
   users: any[] = [];
   data: any;
   chats: any[] = [];
+  group = false;
+  groupusers: any[] = [];
 
   usersDBRef:any;
   chatsDBRef:any;
@@ -72,6 +74,10 @@ export class ChatUsersListPage implements OnInit {
 
 
   openChat(item){
+
+    if (!this.group){
+
+
     console.log(item.uid);
 
     
@@ -81,8 +87,7 @@ export class ChatUsersListPage implements OnInit {
       const chats = snapshotToArray(resp);
       console.log(chats);
       if (chats.length>0){
-        //this.nav.navigateForward("/chat");
-        //this.nav.navigateForward("/chat?id="+chats[0].uid);
+      
         localStorage.setItem('user2',JSON.stringify(item))
         localStorage.setItem('idchat', chats[0].key)
         this.nav.navigateForward("/chat");
@@ -93,36 +98,20 @@ export class ChatUsersListPage implements OnInit {
         this.nav.navigateForward("/chat");
       }
     })
-    /*this.chatsDBRef = this.firebaseAuthService.firebaseDB.collection('chats');    
-
-    //Search for one Chat with the actual user
-
-    
-    this.chatsDBRef
-      .where('users', 'array-contains', [item.id])
-      .onSnapshot(  snap =>{
-      this.chats = [];
-      snap.forEach( snapHijo =>{
-          this.chats.push({
-              id: snapHijo.id,
-              ...snapHijo.data()
-          })
-      });
-      console.log('Chats: ', this.chats);
-    });
-*/
-    
-
-
-    //If exists open the chat
-
-    //if doesn't exist create and open chat.
-
-
-
-
-
-    
+  
   }
+  }
+
+  openChatGroup(){
+    console.log(this.users);
+    this.groupusers = this.users.filter(x => x.isChecked != false && x.isChecked);
+    console.log(this.groupusers);
+
+  }
+
+ /*  check(user){
+    console.log(user);
+
+  } */
 
 }

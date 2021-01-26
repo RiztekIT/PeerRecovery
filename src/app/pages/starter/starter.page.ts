@@ -17,7 +17,7 @@ export class StarterPage implements OnInit {
     public authSVC: AuthService,
   ) { }
 
-  ngOnInit() {
+  ngOnInit() {  
     this.obtenerTokenGoogle()
   }
 
@@ -71,10 +71,24 @@ export class StarterPage implements OnInit {
   
         this.authSVC.addUser(this.user);
       }
-
+      console.log(this.authSVC.usersign);
        if (this.authSVC.user){
+         sessionStorage.setItem('user',JSON.stringify(this.authSVC.usersign))
 
         this.util.navCtrl.navigateForward("onBoarding");
+
+       }else{
+
+        this.authSVC.usersign = JSON.parse(sessionStorage.getItem('user'));
+        this.authSVC.user = this.authSVC.usersign.email;
+
+        if (this.authSVC.user){
+  
+         this.util.navCtrl.navigateForward("onBoarding");
+ 
+        }
+
+
 
        }
        

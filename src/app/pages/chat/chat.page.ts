@@ -22,6 +22,7 @@ export class ChatPage implements OnInit {
   chatMessages: any[] = [];
   data: any;
   chatDBRef:any;
+  chatUser;
   constructor(private nav: NavController, 
               private route: ActivatedRoute, 
               private router: Router,
@@ -40,8 +41,16 @@ export class ChatPage implements OnInit {
 
   ngOnInit() {
     this.getChat();
+    this.getUserWith()
     this.chatService.readChats();
+
     
+  }
+
+  getUserWith(){
+this.chatUser = JSON.parse(localStorage.getItem('user2'))
+console.log(this.chatUser)
+
   }
 
   ngOnDestroy(): void {

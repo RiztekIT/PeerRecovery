@@ -9,6 +9,12 @@
         <ion-title>chat</ion-title>
     </ion-toolbar>
 </ion-header>
+<ion-header>
+    <ion-title>{{this.chatUser.displayName}}</ion-title>
+    <ion-avatar slot="start">
+        <img [src]="this.chatUser.photoUrl">
+    </ion-avatar>
+</ion-header>
 <ion-content #chatcontent [scrollEvents]="true" class="ion-padding-horizontal">
     <div *ngFor="let message of chatMessages">
 
