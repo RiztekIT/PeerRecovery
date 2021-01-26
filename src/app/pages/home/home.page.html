@@ -27,14 +27,14 @@
         <h3 class="main_lbl head_lbl">Next appointments <span class="ion-float-right">Total: {{totalAppointments}}</span></h3>
     </div>
 
-    <div class="data_div" (click)="openAppointmentPage()" *ngFor="let item of cancelAppoint">
-        <p class="time">{{item?.time}}</p>
+    <div class="data_div" (click)="openAppointmentPage(item)" *ngFor="let item of Appointments">
+        <p class="time">{{item.time | TimeFormat}}</p>
         <div class="card_div">
             <!--<img [src]="item?.img">-->
             <div class="info_div">
-                <h3 class="name">{{item?.name}} <span>{{item?.price}}</span></h3>
+                <h3 class="name">{{item.title}} <span>{{item.date | date: 'mediumDate' }}</span></h3>
                 <!--<p class="age">Age : {{item?.age}}</p>-->
-                <p class="add">{{item?.add}}</p>
+                <p class="add">{{item.description}}</p>
             </div>
         </div>
     </div>
