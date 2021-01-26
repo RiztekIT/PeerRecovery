@@ -19,6 +19,17 @@ const snapshotToArray = (snapshot: any) => {
 
   return returnArr;
 };
+const snapshotToArray2 = (snapshot: any) => {
+  const returnArr = [];
+
+  snapshot.forEach((childSnapshot: any) => {
+      const item = childSnapshot.val();
+      /* item.key = childSnapshot.key; */
+      returnArr.push(item);
+  });
+
+  return returnArr;
+};
 
 @Injectable({
   providedIn: 'root'
@@ -75,6 +86,14 @@ export class ChatService {
 
   }
 
+  getChatsMembers(idchat){
+    return firebase.database().ref(this.firebaseAuthService.usersign.uid+'/members/'+idchat);
+  }
+
+  getChats(){
+    return firebase.database().ref(this.firebaseAuthService.usersign.uid+'/chats/');
+  }
+
   getUser(uid){
     return firebase.database().ref('Users/'+uid);
   }
@@ -105,7 +124,7 @@ export class ChatService {
     
 
     let key  = firebase.database().ref(this.firebaseAuthService.usersign.uid+'/chats/').push(chat).key;
-    firebase.database().ref(user.uid+'/chats/'+key).push(chat);        
+    firebase.database().ref(user.uid+'/chats/'+key).set(chat);        
     firebase.database().ref('/chats/'+key).set(chat);
     
 
@@ -132,13 +151,42 @@ export class ChatService {
 
     
   }
+  newMessageGroup(message, idchat){
+
+    console.log(message);
+    let user2 = JSON.parse(localStorage.getItem('user2'))
+
+    firebase.database().ref(this.firebaseAuthService.usersign.uid+'/messages/'+localStorage.getItem('idchat')).push(message);
+    firebase.database().ref('/messages/'+localStorage.getItem('idchat')).push(message);
+
+    
+    firebase.database().ref('/members/').orderByKey().equalTo(idchat).on('value',resp=>{
+      let users = snapshotToArray2(resp)
+      console.log(users);
+      users.forEach(user=>{
+        console.log(user);
+
+        let keyusers = Object.keys(user).filter(key=>key != this.firebaseAuthService.usersign.uid && key != 'key')
+        console.log(keyusers);
+        keyusers.forEach(keyuser=>{
+        firebase.database().ref(keyuser+'/messages/'+localStorage.getItem('idchat')).push(message);
+
+        })
+      })
+    })
+
+
+    
+
+    
+  }
 
 
   readChats(){
 
     let chatid = localStorage.getItem('idchat')
 
-    firebase.database().ref(this.firebaseAuthService.usersign.uid+'/messages/'+chatid).on('value', resp=>{
+    firebase.database().ref(this.firebaseAuthService.usersign.uid+'/messages/'+chatid).once('value', resp=>{
       
       let messages = snapshotToArray(resp);
       console.log(messages);
@@ -154,10 +202,11 @@ export class ChatService {
   }
 
   stopread(){
+    console.log('stop read');
 
     let chatid = localStorage.getItem('idchat')
 
-    firebase.database().ref(this.firebaseAuthService.usersign.uid+'/messages/'+chatid).off();
+    firebase.database().ref(this.firebaseAuthService.usersign.uid+'/messages/').off();
 
   }
 
@@ -184,6 +233,48 @@ export class ChatService {
     }); */
  
 
+  }
+
+  newChatGroup(users){
+
+    //let key = this.afDB.list('/cliente/').push(cliente).key;
+
+    let chat = {
+      timestamp: new Date(),
+      type: 'group'
+    }
+
+    console.log(users);
+
+    /* agregar al chat */
+    
+
+   
+
+    
+
+    let key  = firebase.database().ref(this.firebaseAuthService.usersign.uid+'/chats/').push(chat).key;            
+    firebase.database().ref('/chats/'+key).set(chat);
+    
+
+    
+    firebase.database().ref(this.firebaseAuthService.usersign.uid+'/members/'+key+'/'+this.firebaseAuthService.usersign.uid).set('true');
+    firebase.database().ref('/members/'+key+'/'+this.firebaseAuthService.usersign.uid).set('true');
+    
+/* users */
+users.forEach(user=>{
+
+  firebase.database().ref(user.uid+'/members/'+key+'/'+user.uid).set('true');
+  firebase.database().ref(user.uid+'/members/'+key+'/'+this.firebaseAuthService.usersign.uid).set('true');
+  firebase.database().ref('/members/'+key+'/'+user.uid).set('true');
+
+
+  firebase.database().ref(this.firebaseAuthService.usersign.uid+'/members/'+key+'/'+user.uid).set('true');
+
+  firebase.database().ref(user.uid+'/chats/'+key).set(chat);
+})
+
+    return key;
   }
 
  /*  newChat2(user,idchat){

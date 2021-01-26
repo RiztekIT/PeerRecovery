@@ -48,8 +48,14 @@ export class ChatPage implements OnInit {
   }
 
   getUserWith(){
-this.chatUser = JSON.parse(localStorage.getItem('user2'))
-console.log(this.chatUser)
+    if (JSON.parse(localStorage.getItem('user2'))){
+  this.chatUser = JSON.parse(localStorage.getItem('user2'))
+  console.log(this.chatUser)
+
+}else{
+  this.chatUser = JSON.parse(localStorage.getItem('users2'))
+  console.log(this.chatUser)
+}
 
   }
 
@@ -108,9 +114,19 @@ console.log(localStorage.getItem('idchat'));
       sent: firebase.firestore.Timestamp.fromDate(new Date())
     }
 
-    this.chatService.newMessage(sendmessage);
 
-    this.message = '';
+    if (this.chatUser.displayName!='chatGroup'){
+
+      this.chatService.newMessage(sendmessage);
+      
+      this.message = '';
+    }else{
+      this.chatService.newMessageGroup(sendmessage, this.chatUser.uid);
+      this.message = '';
+      
+    }
+    
+
 
 
     /*var docData = {
@@ -148,12 +164,23 @@ console.log(localStorage.getItem('idchat'));
 
   goToChatList(){
     this.nav.navigateBack("/chatList")
+    localStorage.removeItem('user2')
+    localStorage.removeItem('users2')
+    localStorage.removeItem('idchat')
   }
 
 
   scrollToBottom(){
     this.content.scrollToBottom(300);
     //document.getElementById('chatcontent').scrollTo();
+  }
+
+
+  eventoMensaje(tecla){
+    console.log(tecla);
+    if (tecla==13){
+      this.sendMessage();
+    }
   }
 
 

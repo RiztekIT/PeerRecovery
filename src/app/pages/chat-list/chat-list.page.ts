@@ -17,6 +17,17 @@ export const snapshotToArray = (snapshot: any) => {
 
   return returnArr;
 };
+export const snapshotToArray2 = (snapshot: any) => {
+  const returnArr = [];
+
+  snapshot.forEach((childSnapshot: any) => {
+      const item = childSnapshot.val();
+      //item.key = childSnapshot.key;
+      returnArr.push(item);
+  });
+
+  return returnArr;
+};
 
 @Component({
   selector: "app-chat-list",
@@ -58,10 +69,131 @@ export class ChatListPage implements OnInit {
 
     
     //this.getUsers();
-    this.getChats();
+    this.getChats2();
   }
   
+getChats2(){
+  this.chatService.getChats().on('value',resp=>{
+  this.chatService.chatsUsers = [];
+  let chats = snapshotToArray(resp);
+  console.log(chats);
+  chats.forEach(chat=>{
+    if (chat.type=='single'){
+      this.chatService.getChatsMembers(chat.key).on('value', res=>{
+        let users = res.val()
+        console.log(users);
+        
+          console.log(Object.keys(users));
+          let user = Object.keys(users).filter(user => user != this.firebaseAuthService.usersign.uid)
+          let key = user[0]
+          console.log(key);
 
+
+
+          this.chatService.getUser(key).on('value', (resp)=>{
+            console.log(resp);
+            let u = resp.val()
+   
+           console.log(u);
+           this.chatService.unreadChats(chat.key).on('value', resp=>{
+       
+             let messages = snapshotToArray(resp);
+             console.log(messages);
+             let count = 0;
+             messages.forEach(message=>{
+               if ((message.sender!=this.firebaseAuthService.usersign.uid) && (message.read=='false')){
+                 count = count + 1;
+               }
+             })
+       
+             
+             console.log(count);
+             
+             u.unread = count;
+           });
+           this.chatService.chatsUsers.push(u)
+          })                
+      })
+    }else if (chat.type=='group'){
+      let groupinfo={
+        displayName: 'chatGroup',
+        photoUrl: 'https://lh3.googleusercontent.com/-oHdxefwfte4/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuckFwmGRYKK_yKebGqxAIor7JTeCLg/s96-c/photo.jpg',
+        uid:chat.key
+      }
+
+      this.chatService.chatsUsers.push(groupinfo)
+
+    }
+  })
+})
+
+
+
+/* 
+  this.chatService.getChats().on('value', (resp:any)=>{
+    
+    let chats = snapshotToArray(resp);
+    console.log(chats);
+
+    chats.forEach(chat=>{
+      this.chatService.getChatsMembers(chat.key).on('value', (res:any)=>{
+        
+        let usersChat = res.val()
+        console.log(Object.keys(usersChat));
+
+        if (Object.keys(usersChat).length==2){
+
+          Object.keys(usersChat).forEach(key=>{
+            console.log(key);
+            if (key!='key' && key!=this.firebaseAuthService.usersign.uid){
+              this.keysUsers.push(key)
+              console.log(this.chatService.getUser(key).toJSON());
+          
+              this.chatService.getUser(key).on('value', (resp)=>{
+                console.log(resp);
+                let u = resp.val()
+       
+               console.log(u);
+               this.chatService.unreadChats(chat.key).on('value', resp=>{
+           
+                 let messages = snapshotToArray(resp);
+                 console.log(messages);
+                 let count = 0;
+                 messages.forEach(message=>{
+                   if ((message.sender!=this.firebaseAuthService.usersign.uid) && (message.read=='false')){
+                     count = count + 1;
+                   }
+                 })
+           
+                 
+                 console.log(count);
+                 
+                 u.unread = count;
+               });
+               this.chatService.chatsUsers.push(u)
+              })
+     
+            }
+          })
+
+        }else if (Object.keys(usersChat).length>2){
+
+          let groupinfo={
+            displayName: 'chatGroup',
+            photoUrl: 'https://lh3.googleusercontent.com/-oHdxefwfte4/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuckFwmGRYKK_yKebGqxAIor7JTeCLg/s96-c/photo.jpg',
+            uid:chat.key
+          }
+
+          this.chatService.chatsUsers.push(groupinfo)
+
+        }
+        
+   
+      })
+    })
+
+  }) */
+}
 
 getChats(){
 /*   this.chatsDBRef.onSnapshot(  snap =>{
@@ -201,18 +333,34 @@ getChats(){
         )
       }
     }; */
-    this.chatService.getChat().orderByChild(chat.uid).equalTo('true').on('value', (resp:any) =>{
-      console.log(resp);
-      const chats = snapshotToArray(resp);
-      console.log(chats);
-      
-        //this.nav.navigateForward("/chat");
-        //this.nav.navigateForward("/chat?id="+chats[0].uid);
-        localStorage.setItem('user2',JSON.stringify(chat))
-        localStorage.setItem('idchat', chats[0].key)
-        this.nav.navigateForward("/chat");
-     
-    })
+    if (chat.displayName!='chatGroup'){
+
+      this.chatService.getChat().orderByChild(chat.uid).equalTo('true').on('value', (resp:any) =>{
+        console.log(resp);
+        const chats = snapshotToArray(resp);
+        console.log(chats);
+        
+          //this.nav.navigateForward("/chat");
+          //this.nav.navigateForward("/chat?id="+chats[0].uid);
+          localStorage.setItem('user2',JSON.stringify(chat))
+          localStorage.setItem('idchat', chats[0].key)
+          this.nav.navigateForward("/chat");
+       
+      })
+    }else{
+    /*   console.log(this.users);
+      this.groupusers = this.users.filter(x => x.isChecked != false && x.isChecked);
+      console.log(this.groupusers);
+      let group = {
+        displayName: 'chatGroup'
+      } */
+  
+  
+      localStorage.setItem('users2',JSON.stringify(chat))
+      //let idchat = this.chatService.newChatGroup(this.groupusers);
+      localStorage.setItem('idchat', chat.uid)
+      this.nav.navigateForward("/chat");
+    }
 
    
 

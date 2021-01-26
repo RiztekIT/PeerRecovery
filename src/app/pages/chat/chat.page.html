@@ -53,7 +53,7 @@
 </ion-content>
 <ion-footer class="ion-no-border ">
     <ion-item mode="md" lines="none ">
-        <ion-input [(ngModel)]="message" placeholder="Type your message... ">
+        <ion-input [(ngModel)]="message" placeholder="Type your message... " (keypress)="eventoMensaje($event.keyCode)">
         </ion-input>
     </ion-item>
     <ion-button class="send_btn" (click)="sendMessage()">

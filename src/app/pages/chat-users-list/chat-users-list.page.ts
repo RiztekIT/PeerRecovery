@@ -82,15 +82,31 @@ export class ChatUsersListPage implements OnInit {
 
     
 
-    this.chatService.getChat().orderByChild(item.uid).equalTo('true').on('value', (resp:any) =>{
+    this.chatService.getChat().orderByChild(item.uid).equalTo('true').once('value', (resp: any) =>{
       console.log(resp);
       const chats = snapshotToArray(resp);
       console.log(chats);
       if (chats.length>0){
+
+       chats.forEach(chat=>{
+
+         console.log(chat);
+         let users = Object.keys(chat).filter(user => user != this.firebaseAuthService.usersign.uid && user != 'key')
+         console.log(users);
+         if (users.length==1){
+
+           localStorage.setItem('user2',JSON.stringify(item))
+           localStorage.setItem('idchat', chats[0].key)
+           this.nav.navigateForward("/chat");
+         }else{
+          localStorage.setItem('user2',JSON.stringify(item))
+          let idchat = this.chatService.newChat(item);
+          localStorage.setItem('idchat', idchat)
+          this.nav.navigateForward("/chat");
+         }
+       })
+
       
-        localStorage.setItem('user2',JSON.stringify(item))
-        localStorage.setItem('idchat', chats[0].key)
-        this.nav.navigateForward("/chat");
       }else{
         localStorage.setItem('user2',JSON.stringify(item))
         let idchat = this.chatService.newChat(item);
@@ -106,6 +122,15 @@ export class ChatUsersListPage implements OnInit {
     console.log(this.users);
     this.groupusers = this.users.filter(x => x.isChecked != false && x.isChecked);
     console.log(this.groupusers);
+    let group = {
+      displayName: 'chatGroup'
+    }
+
+
+    localStorage.setItem('users2',JSON.stringify(group))
+    let idchat = this.chatService.newChatGroup(this.groupusers);
+    localStorage.setItem('idchat', idchat)
+    this.nav.navigateForward("/chat");
 
   }
 
