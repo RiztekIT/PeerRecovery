@@ -61,14 +61,13 @@ export class AppointmentPage implements OnInit {
       updated: firebase.firestore.Timestamp.fromDate(new Date())
     }
 
-    if(this.appointmentID){
-      let appointmentObj ={
-        appointmentID:  this.appointmentID,
+    if(this.appointmentID){//Update
+      let appointmentObj = {
         ...Obj
       }
-      this.appointmentService.updateAppointment(appointmentObj);
+      this.appointmentService.updateAppointment(this.appointmentID, appointmentObj);
     }else{
-      let appointmentObj ={
+      let appointmentObj = {
         created: firebase.firestore.Timestamp.fromDate(new Date()),
         ...Obj
       }
