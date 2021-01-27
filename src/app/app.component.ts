@@ -65,6 +65,9 @@ export class AppComponent implements OnInit {
     {
       title: "Chat",
       url: "/chatList",
+    }, {
+      title: "Rewards",
+      url: "/rewards",
     },
 
   ];
