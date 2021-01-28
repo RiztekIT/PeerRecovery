@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-rewards',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RewardsPage implements OnInit {
 
-  constructor() { }
+  constructor(private nav: NavController) {
+
+   }
 
   ngOnInit() {
   }
+  
+  openReward(){
+    this.nav.navigateForward("/reward"); 
+  } 
+
+
 
 }
