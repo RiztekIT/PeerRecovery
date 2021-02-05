@@ -158,6 +158,10 @@ const routes: Routes = [
     path: 'reward',
     loadChildren: () => import('./pages/reward/reward.module').then( m => m.RewardPageModule)
   },
+  {
+    path: 'tracking',
+    loadChildren: () => import('./pages/tracking/tracking.module').then( m => m.TrackingPageModule)
+  },
 ];
 
 @NgModule({
