@@ -1,9 +1,75 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>tracking</ion-title>
-  </ion-toolbar>
+<ion-header class="ion-no-border">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button>
+                <ion-back-button defaultHref="home" icon="chevron-back-outline"></ion-back-button>
+            </ion-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button>
+                <ion-menu-button></ion-menu-button>
+            </ion-button>
+        </ion-buttons>
+        <ion-title class="ion-text-center">Tracking</ion-title>
+    </ion-toolbar>
 </ion-header>
 
-<ion-content>
 
+<ion-content>
+    <agm-map [styles]="styles" [disableDefaultUI]="false" [latitude]="lat" [longitude]="lng" [zoom]="zoom" [zoomControl]="false">
+        <agm-overlay *ngFor="let item of markers" [latitude]="item.lat" [longitude]="item.lng">
+            <div *ngIf="item.isOpen == true" (click)="onMarkerSelect(item)" [class.selected]="item.select" class="open avatar avatar_round">
+                <img [src]="item.img" alt="" />
+            </div>
+
+            <div *ngIf="item.isOpen == false" class="avatar avatar_round">
+                <img [src]="item.img" alt="" />
+            </div>
+        </agm-overlay>
+    </agm-map>
+
+    <div class="bottom-content">
+        <ion-item class="doctor-info" lines="full">
+            <ion-avatar slot="start">
+                <img [src]="this.authSVC.usersign.photoURL">
+            </ion-avatar>
+
+            <ion-item lines="none">
+                <ion-label>
+                    Priv. Palmira 1704 int 6 Col. Las granjas, Chihuahua MX
+                </ion-label>
+                <ion-icon class="margin-right-20" src="../../../assets/imgs/appicons/location.svg" slot="start"></ion-icon>
+            </ion-item>
+
+
+            <!--<ion-label>
+                <h2 class="dr-name">{{this.authSVC.usersign.displayName}}</h2>
+                <h3 class="shop-name">Rose Health Care</h3>
+            </ion-label>
+            <div class="km-txt" slot="end">
+                3.5 KM
+            </div>-->
+        </ion-item>
+
+        <!--<ion-list class="other-content">
+            <ion-avatar slot="start">
+                <img [src]="this.authSVC.usersign.photoURL">
+            </ion-avatar>
+            <ion-item lines="none">
+                <ion-label>
+                    Low Mill Farm, Lendales Lane, Pickering, YO18 8EE
+                </ion-label>
+                <ion-icon class="margin-right-20" src="../../../assets/imgs/appicons/location.svg" slot="start"></ion-icon>
+            </ion-item>
+            <ion-item lines="none">
+                <ion-label>
+                    24/7 Service
+                </ion-label>
+                <ion-icon class="margin-right-20" src="../../../assets/imgs/appicons/time.svg" slot="start"></ion-icon>
+            </ion-item>
+        </ion-list>-->
+
+        <ion-button (click)="presentAlert()" expand="full" shape="round ">Share my location</ion-button>
+
+    </div>
 </ion-content>

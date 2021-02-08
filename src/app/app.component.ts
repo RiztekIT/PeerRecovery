@@ -68,6 +68,9 @@ export class AppComponent implements OnInit {
     }, {
       title: "Rewards",
       url: "/rewards",
+    },{
+      title: "Tracking",
+      url: "/tracking",
     },
 
   ];

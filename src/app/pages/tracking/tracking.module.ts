@@ -7,12 +7,18 @@ import { IonicModule } from '@ionic/angular';
 import { TrackingPageRoutingModule } from './tracking-routing.module';
 
 import { TrackingPage } from './tracking.page';
+import { AgmCoreModule } from '@agm/core';
+import { AgmOverlays } from "agm-overlays"
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    AgmOverlays,
+    AgmCoreModule.forRoot({
+      apiKey: ''
+    }),
     TrackingPageRoutingModule
   ],
   declarations: [TrackingPage]
