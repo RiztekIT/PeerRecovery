@@ -1,0 +1,48 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button>
+                <ion-back-button defaultHref="home" icon="chevron-back-outline"></ion-back-button>
+            </ion-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button>
+                <ion-menu-button></ion-menu-button>
+            </ion-button>
+        </ion-buttons>
+        <ion-title class="ion-text-center">Reward</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding-horizontal ion-padding-bottom">
+
+
+    <div class="profile_div">
+        <div class="img_div">
+            <img src="../../../assets/image_icon/certificate.png">
+        </div>
+    </div>
+    <p class="reward-name">Health course</p>
+    <p class="book_id">Deadline: Feb, 25 2021</p>
+    <p>
+        <!--- <ion-progress-bar color="warning" value="0.8"></ion-progress-bar>  -->
+    </p>
+
+
+
+
+
+
+    <div class="card_div" *ngFor="let item of review">
+        <div class="data_div">
+            <h3 class="name">{{item?.name}}
+                <span class="ion-float-right">
+                  <ion-progress-bar [color]="item.color" value="{{item?.average}}"></ion-progress-bar>
+                </span>
+            </h3>
+            <p class="ago">{{item?.ago}}</p>
+            <p class="ago detail">{{item?.detail}}</p>
+        </div>
+    </div>
+
+</ion-content>

@@ -155,6 +155,18 @@ const routes: Routes = [
     path: 'chat-users-list',
     loadChildren: () => import('./pages/chat-users-list/chat-users-list.module').then( m => m.ChatUsersListPageModule)
   },
+  {
+    path: 'rewards',
+    loadChildren: () => import('./pages/rewards/rewards.module').then( m => m.RewardsPageModule)
+  },
+  {
+    path: 'reward',
+    loadChildren: () => import('./pages/reward/reward.module').then( m => m.RewardPageModule)
+  },
+  {
+    path: 'tracking',
+    loadChildren: () => import('./pages/tracking/tracking.module').then( m => m.TrackingPageModule)
+  },
 ];
 
 @NgModule({

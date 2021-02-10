@@ -1,0 +1,29 @@
+ion-header {
+    ion-back-button {
+        color: var(--ion-color-primary-dark);
+    }
+    ion-title {
+        color: var(--ion-color-primary-dark);
+        text-align: center;
+        font-size: 18px;
+        font-family: 'sfUi-m';
+        text-transform: capitalize;
+    }
+}
+
+.main_lbl {
+    font-size: 18px;
+    color: var(--ion-color-primary-dark);
+    font-family: 'sfUi-m';
+}
+
+.submain_lbl {
+    font-size: 12px;
+    color: var(--ion-color-step-600, #666666);
+    font-family: 'sfUi-m';
+}
+
+ion-avatar {
+    width: 55px;
+    height: 55px;
+}
