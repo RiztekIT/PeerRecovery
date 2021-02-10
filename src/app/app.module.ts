@@ -25,7 +25,7 @@ import { PipesModule } from './pipes/pipes.module';
     BrowserModule,
     IonicModule.forRoot({
       rippleEffect: false,
-      mode: 'md'
+      mode: 'ios'
     }),
     AppRoutingModule,
     NgSelectModule

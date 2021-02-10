@@ -145,6 +145,7 @@ export class AppComponent implements OnInit {
     this.authSVC.cerrarSession().then(res=>{
       console.log(res);
       console.log(this.authSVC.user)
+      sessionStorage.removeItem('user')
       this.authSVC.getUser();
     });
 

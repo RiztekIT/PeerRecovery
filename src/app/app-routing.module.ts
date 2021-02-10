@@ -2,10 +2,15 @@ import { NgModule } from "@angular/core";
 import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
 
 const routes: Routes = [
-  {
+ /*  {
     path: "",
     redirectTo: "starter",
     pathMatch: "full",
+  }, */
+  {
+    path: "",
+    loadChildren: () =>
+      import("./pages/starter/starter.module").then((m) => m.StarterPageModule),
   },
   {
     path: "starter",

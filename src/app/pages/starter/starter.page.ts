@@ -2,6 +2,7 @@ import { UtilService } from './../../services/util.service';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserModel } from 'src/app/models/users.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-starter',
@@ -15,6 +16,7 @@ export class StarterPage implements OnInit {
   constructor(
     private util: UtilService,
     public authSVC: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit() {  
@@ -75,7 +77,8 @@ export class StarterPage implements OnInit {
        if (this.authSVC.user){
          sessionStorage.setItem('user',JSON.stringify(this.authSVC.usersign))
 
-        this.util.navCtrl.navigateForward("onBoarding");
+        //this.util.navCtrl.navigateForward("onBoarding");
+        this.router.navigate(['/onBoarding'])
 
        }else{
 
@@ -84,7 +87,8 @@ export class StarterPage implements OnInit {
 
         if (this.authSVC.user){
   
-         this.util.navCtrl.navigateForward("onBoarding");
+         //this.util.navCtrl.navigateForward("onBoarding");
+         this.router.navigate(['/onBoarding'])
  
         }
 
