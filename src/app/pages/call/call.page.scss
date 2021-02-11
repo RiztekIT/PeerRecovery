@@ -1,0 +1,12 @@
+ion-header {
+    ion-back-button {
+        color: var(--ion-color-primary-dark);
+    }
+    ion-title {
+        color: var(--ion-color-primary-dark);
+        text-align: center;
+        font-size: 18px;
+        font-family: 'sfUi-m';
+        text-transform: capitalize;
+    }
+}

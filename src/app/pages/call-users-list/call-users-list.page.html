@@ -1,0 +1,25 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar mode="md">
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="home" icon="chevron-back-outline" text="" mode="md"></ion-back-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Video call</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding-bottom">
+    <div class="today_div">
+        <ion-item *ngFor="let item of users" lines="full" (click)="openChall(item)" mode="md">
+            <ion-avatar slot="start">
+                <img [src]="item?.photoUrl">
+            </ion-avatar>
+            <ion-label>
+                <h3 class="name">{{item?.displayName}}</h3>
+                <p class="detail">{{item?.email}}</p>
+            </ion-label>
+        </ion-item>
+    </div>
+</ion-content>

@@ -167,6 +167,14 @@ const routes: Routes = [
     path: 'tracking',
     loadChildren: () => import('./pages/tracking/tracking.module').then( m => m.TrackingPageModule)
   },
+  {
+    path: 'call-users-list',
+    loadChildren: () => import('./pages/call-users-list/call-users-list.module').then( m => m.CallUsersListPageModule)
+  },
+  {
+    path: 'call',
+    loadChildren: () => import('./pages/call/call.module').then( m => m.CallPageModule)
+  },
 ];
 
 @NgModule({

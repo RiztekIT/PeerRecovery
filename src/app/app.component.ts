@@ -71,6 +71,9 @@ export class AppComponent implements OnInit {
     },{
       title: "Tracking",
       url: "/tracking",
+    },{
+      title: "Video call",
+      url: "/call-users-list",
     },
 
   ];
