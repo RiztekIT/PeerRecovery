@@ -31,6 +31,9 @@
     },
     "cordova-plugin-ionic-keyboard": {
       "PACKAGE_NAME": "app.saasmonks.doctorapp"
+    },
+    "cordova-plugin-camera": {
+      "PACKAGE_NAME": "app.saasmonks.doctorapp"
     }
   },
   "dependent_plugins": {

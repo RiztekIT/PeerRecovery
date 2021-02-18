@@ -1,20 +1,13 @@
 ion-header {
-    ion-toolbar {
-        ion-title {
-            font-size: 18px;
-            font-family: 'sfUi-sb';
-            color: var(--ion-color-primary-dark);
-        }
-        ion-buttons {
-            ion-button {
-                --padding-start: 0;
-                --padding-end: 0;
-                ion-back-button,
-                ion-menu-button {
-                    color: var(--ion-color-primary-dark);
-                }
-            }
-        }
+    ion-back-button {
+        color: var(--blue);
+    }
+    ion-title {
+        color: var(--blue);
+        text-align: center;
+        font-size: 18px;
+        font-family: "sf_ui_sb";
+        text-transform: capitalize;
     }
 }
 

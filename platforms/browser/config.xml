@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="app.saasmonks.doctorapp" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Doctro</name>
-    <description>An awesome Doctor app.</description>
-    <author email="info@saasmonks.in" href="https://www.saasmonks.in/">Saasmonks Team</author>
+    <name>Peerrecovery App</name>
+    <description>Peerrecovery</description>
+    <author email="ivan.talamantes@riztek.com.mx" href="https://www.riztek.com.mx/">Riztek Team</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />

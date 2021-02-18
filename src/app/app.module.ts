@@ -15,6 +15,7 @@ import { CallingComponent } from './components/calling/calling.component';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
 import { PipesModule } from './pipes/pipes.module';
+import { Camera } from '@ionic-native/camera/ngx';
 
 @NgModule({
   declarations: [AppComponent,PopOverContentComponent,SuccessModalComponent,CallingComponent],
@@ -34,7 +35,8 @@ import { PipesModule } from './pipes/pipes.module';
     StatusBar,
     SplashScreen,
     Geolocation,
-    NativeGeocoder,        
+    NativeGeocoder, 
+    Camera,       
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
