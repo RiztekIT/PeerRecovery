@@ -1,37 +1,42 @@
-<ion-header class="ion-no-border">
-    <ion-toolbar mode="md">
-        <ion-buttons slot="start">
-            <ion-back-button defaultHref="home" icon="chevron-back-outline" text="" mode="md"></ion-back-button>
-        </ion-buttons>
-        <ion-buttons slot="end">
-            <ion-menu-button></ion-menu-button>
-        </ion-buttons>
-        <ion-title> Call {{this.callData.displayName}}</ion-title>
-    </ion-toolbar>
-</ion-header>
-
-
 <ion-content>
+    <!--<agm-map [styles]="styles" [disableDefaultUI]="false" [latitude]="lat" [longitude]="lng" [zoom]="zoom" [zoomControl]="false">
+        <agm-overlay *ngFor="let item of markers" [latitude]="item.lat" [longitude]="item.lng">
+            <div *ngIf="item.isOpen == true" (click)="onMarkerSelect(item)" [class.selected]="item.select" class="open avatar avatar_round">
+                <img [src]="item.img" alt="" />
+            </div>
+
+            <div *ngIf="item.isOpen == false" class="avatar avatar_round">
+                <img [src]="item.img" alt="" />
+            </div>
+        </agm-overlay>
+    </agm-map>-->
+
+    <ion-buttons>
+        <ion-back-button defaultHref="home" icon="chevron-back-outline" text="" mode="md"></ion-back-button>
+    </ion-buttons>
 
 
-    <ion-fab vertical="bottom" horizontal="start" slot="fixed" class="ml-65">
-        <ion-fab-button color="success">
-            <ion-icon name="call-outline"></ion-icon>
-        </ion-fab-button>
-    </ion-fab>
-
-    <ion-fab vertical="bottom" horizontal="center" slot="fixed" class="ml-32">
-        <ion-avatar>
-            <img [src]="this.callData.photoUrl">
-        </ion-avatar>
-    </ion-fab>
-
-
-    <ion-fab vertical="bottom" horizontal="end" slot="fixed" class="mr-65">
-        <ion-fab-button color="danger">
-            <ion-icon name="call-outline"></ion-icon>
-        </ion-fab-button>
-    </ion-fab>
+    <div class="bottom-content">
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <ion-fab-button color="success" class="call-green">
+                        <ion-icon name="call-outline"></ion-icon>
+                    </ion-fab-button>
+                </ion-col>
+                <ion-col>
+                    <ion-avatar class="avatar">
+                        <img [src]="this.callData.photoUrl ">
+                    </ion-avatar>
+                </ion-col>
+                <ion-col>
+                    <ion-fab-button color="danger" class="call-red">
+                        <ion-icon name="call-outline"></ion-icon>
+                    </ion-fab-button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
 
 
 
