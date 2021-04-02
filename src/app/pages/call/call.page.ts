@@ -46,7 +46,7 @@ export class CallPage implements OnInit {
       });
 
 
-      this.openCamera();
+      //this.openCamera();
     }
 
   ngOnInit() {}
@@ -58,14 +58,25 @@ export class CallPage implements OnInit {
           encodingType: this.camera.EncodingType.JPEG,
           mediaType: this.camera.MediaType.PICTURE
         }
+
+        console.log(options);
         
         this.camera.getPicture(options).then((imageData) => {
         // imageData is either a base64 encoded string or a file URI
         // If it's base64 (DATA_URL):
+        console.log(imageData);
         let base64Image = 'data:image/jpeg;base64,' + imageData;
+        console.log(base64Image);
         }, (err) => {
         // Handle error
         });
+
+        
+  }
+
+  openCam(){
+    console.log('CAMARA');
+    this.openCamera()
   }
 
   

@@ -36,6 +36,7 @@ export class StarterPage implements OnInit {
       console.log(res);
 
       this.authSVC.user = res;
+      
     
     })
     
@@ -55,6 +56,8 @@ export class StarterPage implements OnInit {
       // The signed-in user info.
 
       if(result.user){
+
+        console.log(result.user);
 
         this.authSVC.user = result.user.email;
         this.authSVC.usersign = result.user;
