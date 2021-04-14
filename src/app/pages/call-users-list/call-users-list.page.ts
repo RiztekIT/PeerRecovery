@@ -5,6 +5,8 @@ import { UserModel } from "src/app/models/users.model";
 import { AuthService } from "src/app/services/auth.service";
 import { ChatService } from "src/app/services/chat.service";
 import { NavigationExtras } from '@angular/router';
+import { CameraPreview, CameraPreviewPictureOptions, CameraPreviewOptions, CameraPreviewDimensions } from '@ionic-native/camera-preview/ngx';
+
 
 export const snapshotToArray = (snapshot: any) => {
   const returnArr = [];
@@ -25,6 +27,8 @@ export const snapshotToArray = (snapshot: any) => {
   styleUrls: ["./call-users-list.page.scss"],
 })
 export class CallUsersListPage implements OnInit {
+
+  
  
   user:UserModel;
   users: any[] = [];
@@ -33,8 +37,11 @@ export class CallUsersListPage implements OnInit {
   constructor(private nav: NavController,
               private router: Router,
               private firebaseAuthService: AuthService,
-              private chatService: ChatService) {         
+              private chatService: ChatService,
+              private cameraPreview: CameraPreview) {   
 }
+
+
 
   ngOnInit() {
     this.getUsers();
@@ -58,6 +65,10 @@ export class CallUsersListPage implements OnInit {
     };
     this.router.navigate(['call'], navigationExtras);
   }
+
+ 
+
+  
 
 
 

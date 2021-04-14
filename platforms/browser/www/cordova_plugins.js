@@ -87,6 +87,46 @@ module.exports = [
         "id": "cordova-plugin-camera.CameraProxy",
         "pluginId": "cordova-plugin-camera",
         "runs": true
+    },
+    {
+        "file": "plugins/cordova-plugin-camera-preview/www/CameraPreview.js",
+        "id": "cordova-plugin-camera-preview.CameraPreview",
+        "pluginId": "cordova-plugin-camera-preview",
+        "clobbers": [
+            "CameraPreview"
+        ]
+    },
+    {
+        "file": "plugins/nl.x-services.plugins.videocaptureplus/www/VideoCapturePlus.js",
+        "id": "nl.x-services.plugins.videocaptureplus.VideoCapturePlus",
+        "pluginId": "nl.x-services.plugins.videocaptureplus",
+        "clobbers": [
+            "window.plugins.videocaptureplus"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-googleplus/www/GooglePlus.js",
+        "id": "cordova-plugin-googleplus.GooglePlus",
+        "pluginId": "cordova-plugin-googleplus",
+        "clobbers": [
+            "window.plugins.googleplus"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-googleplus/src/browser/GooglePlusProxy.js",
+        "id": "cordova-plugin-googleplus.GooglePlusProxy",
+        "pluginId": "cordova-plugin-googleplus",
+        "clobbers": [
+            "GooglePlus"
+        ]
+    },
+    {
+        "file": "plugins/cordova.plugin.zoom/www/Zoom.js",
+        "id": "cordova.plugin.zoom.Zoom",
+        "pluginId": "cordova.plugin.zoom",
+        "clobbers": [
+            "cordova.plugins.Zoom"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -101,7 +141,12 @@ module.exports.metadata =
     "cordova-plugin-splashscreen": "5.0.2",
     "cordova-plugin-ionic-webview": "4.2.0",
     "cordova-plugin-ionic-keyboard": "2.2.0",
-    "cordova-plugin-camera": "5.0.1"
+    "cordova-plugin-camera": "5.0.1",
+    "cordova-plugin-camera-preview": "0.12.1",
+    "cordova-plugin-compat": "1.2.0",
+    "nl.x-services.plugins.videocaptureplus": "1.0.0",
+    "cordova-plugin-googleplus": "8.5.2",
+    "cordova.plugin.zoom": "4.6.21666.0603"
 }
 // BOTTOM OF METADATA
 });

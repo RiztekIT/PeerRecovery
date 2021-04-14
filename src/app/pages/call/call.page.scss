@@ -62,3 +62,19 @@ ion-content {
 .pt-5 {
     padding-top: 10px;
 }
+
+html,
+body,
+ion-app,
+ion-content {
+    background-color: transparent;
+}
+
+.video {
+    background-color: aqua;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    margin: 16px;
+    width: 91%;
+}

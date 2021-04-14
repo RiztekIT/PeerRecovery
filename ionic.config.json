@@ -1,7 +1,7 @@
 {
-  "name": "Doctro",
-  "integrations": {
-    "cordova": {}
-  },
-  "type": "angular"
+    "name": "PeerRecovery",
+    "integrations": {
+        "cordova": {}
+    },
+    "type": "angular"
 }

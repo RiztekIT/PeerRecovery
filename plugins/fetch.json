@@ -82,5 +82,56 @@
     },
     "is_top_level": true,
     "variables": {}
+  },
+  "cordova-plugin-camera-preview": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-camera-preview"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "nl.x-services.plugins.videocaptureplus": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-video-capture-plus"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-compat": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-compat@^1.1.0"
+    },
+    "is_top_level": false,
+    "variables": {}
+  },
+  "cordova-plugin-googleplus": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-googleplus@^8.5.2"
+    },
+    "is_top_level": true,
+    "variables": {
+      "REVERSED_CLIENT_ID": "com.googleusercontent.apps.1014351207922-0muovvg9f1rq8nga7a4kleonar7e4pr9",
+      "WEB_APPLICATION_CLIENT_ID": "1014351207922-0muovvg9f1rq8nga7a4kleonar7e4pr9.apps.googleusercontent.com"
+    }
+  },
+  "cordova.plugin.zoom": {
+    "source": {
+      "type": "registry",
+      "id": "cordova.plugin.zoom"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-fcm-with-dependecy-updated": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-fcm-with-dependecy-updated"
+    },
+    "is_top_level": true,
+    "variables": {}
   }
 }

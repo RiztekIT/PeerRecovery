@@ -8,38 +8,54 @@
   },
   "installed_plugins": {
     "cordova-plugin-camera": {
-      "PACKAGE_NAME": "app.saasmonks.doctorapp"
+      "PACKAGE_NAME": "com.peerrecovery.peer"
+    },
+    "cordova-plugin-camera-preview": {
+      "PACKAGE_NAME": "com.peerrecovery.peer"
     },
     "cordova-plugin-device": {
-      "PACKAGE_NAME": "app.saasmonks.doctorapp"
+      "PACKAGE_NAME": "com.peerrecovery.peer"
     },
     "cordova-plugin-geolocation": {
       "GPS_REQUIRED": "true",
-      "PACKAGE_NAME": "app.saasmonks.doctorapp"
+      "PACKAGE_NAME": "com.peerrecovery.peer"
+    },
+    "cordova-plugin-googleplus": {
+      "REVERSED_CLIENT_ID": "com.googleusercontent.apps.1014351207922-0muovvg9f1rq8nga7a4kleonar7e4pr9",
+      "PACKAGE_NAME": "com.peerrecovery.peer"
     },
     "cordova-plugin-ionic-keyboard": {
-      "PACKAGE_NAME": "app.saasmonks.doctorapp"
+      "PACKAGE_NAME": "com.peerrecovery.peer"
     },
     "cordova-plugin-ionic-webview": {
-      "PACKAGE_NAME": "app.saasmonks.doctorapp"
+      "PACKAGE_NAME": "com.peerrecovery.peer"
     },
     "cordova-plugin-nativegeocoder": {
       "LOCATION_WHEN_IN_USE_DESCRIPTION": "Use geocoder service",
-      "PACKAGE_NAME": "app.saasmonks.doctorapp"
+      "PACKAGE_NAME": "com.peerrecovery.peer"
     },
     "cordova-plugin-splashscreen": {
-      "PACKAGE_NAME": "app.saasmonks.doctorapp"
+      "PACKAGE_NAME": "com.peerrecovery.peer"
     },
     "cordova-plugin-statusbar": {
-      "PACKAGE_NAME": "app.saasmonks.doctorapp"
+      "PACKAGE_NAME": "com.peerrecovery.peer"
     },
     "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "app.saasmonks.doctorapp"
+      "PACKAGE_NAME": "com.peerrecovery.peer"
+    },
+    "nl.x-services.plugins.videocaptureplus": {
+      "PACKAGE_NAME": "com.peerrecovery.peer"
+    },
+    "cordova.plugin.zoom": {
+      "PACKAGE_NAME": "com.peerrecovery.peer"
     }
   },
   "dependent_plugins": {
     "cordova-plugin-add-swift-support": {
-      "PACKAGE_NAME": "app.saasmonks.doctorapp"
+      "PACKAGE_NAME": "com.peerrecovery.peer"
+    },
+    "cordova-plugin-compat": {
+      "PACKAGE_NAME": "com.peerrecovery.peer"
     }
   }
 }

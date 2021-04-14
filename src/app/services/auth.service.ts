@@ -130,6 +130,7 @@ export class AuthService {
     let provider = new firebase.auth.GoogleAuthProvider();
 
     
+    /* return firebase.auth().signInWithPopup(provider); */
     return firebase.auth().signInWithRedirect(provider);
   /*   return firebase.auth().signInWithRedirect(provider).then(res=>{
       console.log(res);
@@ -147,6 +148,10 @@ export class AuthService {
          
       })
     }); */
+   }
+
+   loginwithCredential(credential){
+     return firebase.auth().signInWithCredential(credential)
    }
 
    obtenerToken(){

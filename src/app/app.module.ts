@@ -16,6 +16,11 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
 import { PipesModule } from './pipes/pipes.module';
 import { Camera } from '@ionic-native/camera/ngx';
+import { CameraPreview, CameraPreviewPictureOptions, CameraPreviewOptions, CameraPreviewDimensions } from '@ionic-native/camera-preview/ngx';
+import { VideoCapturePlus, VideoCapturePlusOptions, MediaFile } from '@ionic-native/video-capture-plus/ngx';
+import { GooglePlus } from '@ionic-native/google-plus/ngx';
+import { Zoom } from '@ionic-native/zoom/ngx';
+
 
 @NgModule({
   declarations: [AppComponent,PopOverContentComponent,SuccessModalComponent,CallingComponent],
@@ -37,6 +42,13 @@ import { Camera } from '@ionic-native/camera/ngx';
     Geolocation,
     NativeGeocoder, 
     Camera,       
+    CameraPreview,
+    VideoCapturePlus,
+    GooglePlus,
+    Zoom,
+    
+    
+
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

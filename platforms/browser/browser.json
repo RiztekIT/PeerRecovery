@@ -15,6 +15,14 @@
             {
               "xml": "<feature name=\"Camera\"><param name=\"browser-package\" value=\"Camera\" /></feature>",
               "count": 1
+            },
+            {
+              "xml": "<feature name=\"GooglePlus\"><param name=\"onload\" value=\"true\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<access origin=\"https://accounts.google.com/*\" />",
+              "count": 1
             }
           ]
         }
@@ -64,6 +72,25 @@
     },
     "cordova-plugin-camera": {
       "PACKAGE_NAME": "app.saasmonks.doctorapp"
+    },
+    "cordova-plugin-camera-preview": {
+      "PACKAGE_NAME": "app.saasmonks.doctorapp"
+    },
+    "cordova-plugin-compat": {
+      "PACKAGE_NAME": "app.saasmonks.doctorapp"
+    },
+    "nl.x-services.plugins.videocaptureplus": {
+      "PACKAGE_NAME": "app.saasmonks.doctorapp"
+    },
+    "cordova-plugin-googleplus": {
+      "WEB_APPLICATION_CLIENT_ID": "1014351207922-0muovvg9f1rq8nga7a4kleonar7e4pr9.apps.googleusercontent.com",
+      "PACKAGE_NAME": "app.saasmonks.doctorapp"
+    },
+    "cordova.plugin.zoom": {
+      "PACKAGE_NAME": "app.saasmonks.doctorapp"
+    },
+    "cordova-plugin-fcm-with-dependecy-updated": {
+      "PACKAGE_NAME": "com.peerrecovery.peer"
     }
   },
   "dependent_plugins": {},
@@ -155,6 +182,54 @@
       "id": "cordova-plugin-camera.CameraProxy",
       "pluginId": "cordova-plugin-camera",
       "runs": true
+    },
+    {
+      "file": "plugins/cordova-plugin-camera-preview/www/CameraPreview.js",
+      "id": "cordova-plugin-camera-preview.CameraPreview",
+      "pluginId": "cordova-plugin-camera-preview",
+      "clobbers": [
+        "CameraPreview"
+      ]
+    },
+    {
+      "file": "plugins/nl.x-services.plugins.videocaptureplus/www/VideoCapturePlus.js",
+      "id": "nl.x-services.plugins.videocaptureplus.VideoCapturePlus",
+      "pluginId": "nl.x-services.plugins.videocaptureplus",
+      "clobbers": [
+        "window.plugins.videocaptureplus"
+      ]
+    },
+    {
+      "file": "plugins/cordova-plugin-googleplus/www/GooglePlus.js",
+      "id": "cordova-plugin-googleplus.GooglePlus",
+      "pluginId": "cordova-plugin-googleplus",
+      "clobbers": [
+        "window.plugins.googleplus"
+      ]
+    },
+    {
+      "file": "plugins/cordova-plugin-googleplus/src/browser/GooglePlusProxy.js",
+      "id": "cordova-plugin-googleplus.GooglePlusProxy",
+      "pluginId": "cordova-plugin-googleplus",
+      "clobbers": [
+        "GooglePlus"
+      ]
+    },
+    {
+      "file": "plugins/cordova.plugin.zoom/www/Zoom.js",
+      "id": "cordova.plugin.zoom.Zoom",
+      "pluginId": "cordova.plugin.zoom",
+      "clobbers": [
+        "cordova.plugins.Zoom"
+      ]
+    },
+    {
+      "file": "plugins/cordova-plugin-fcm-with-dependecy-updated/www/FCMPlugin.js",
+      "id": "cordova-plugin-fcm-with-dependecy-updated.FCMPlugin",
+      "pluginId": "cordova-plugin-fcm-with-dependecy-updated",
+      "clobbers": [
+        "FCM"
+      ]
     }
   ],
   "plugin_metadata": {
@@ -167,6 +242,12 @@
     "cordova-plugin-splashscreen": "5.0.2",
     "cordova-plugin-ionic-webview": "4.2.0",
     "cordova-plugin-ionic-keyboard": "2.2.0",
-    "cordova-plugin-camera": "5.0.1"
+    "cordova-plugin-camera": "5.0.1",
+    "cordova-plugin-camera-preview": "0.12.1",
+    "cordova-plugin-compat": "1.2.0",
+    "nl.x-services.plugins.videocaptureplus": "1.0.0",
+    "cordova-plugin-googleplus": "8.5.2",
+    "cordova.plugin.zoom": "4.6.21666.0603",
+    "cordova-plugin-fcm-with-dependecy-updated": "7.8.0"
   }
 }

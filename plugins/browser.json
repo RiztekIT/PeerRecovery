@@ -34,10 +34,29 @@
     },
     "cordova-plugin-camera": {
       "PACKAGE_NAME": "app.saasmonks.doctorapp"
+    },
+    "cordova-plugin-camera-preview": {
+      "PACKAGE_NAME": "app.saasmonks.doctorapp"
+    },
+    "nl.x-services.plugins.videocaptureplus": {
+      "PACKAGE_NAME": "app.saasmonks.doctorapp"
+    },
+    "cordova-plugin-googleplus": {
+      "WEB_APPLICATION_CLIENT_ID": "1014351207922-0muovvg9f1rq8nga7a4kleonar7e4pr9.apps.googleusercontent.com",
+      "PACKAGE_NAME": "app.saasmonks.doctorapp"
+    },
+    "cordova.plugin.zoom": {
+      "PACKAGE_NAME": "app.saasmonks.doctorapp"
+    },
+    "cordova-plugin-fcm-with-dependecy-updated": {
+      "PACKAGE_NAME": "com.peerrecovery.peer"
     }
   },
   "dependent_plugins": {
     "cordova-plugin-add-swift-support": {
+      "PACKAGE_NAME": "app.saasmonks.doctorapp"
+    },
+    "cordova-plugin-compat": {
       "PACKAGE_NAME": "app.saasmonks.doctorapp"
     }
   }
