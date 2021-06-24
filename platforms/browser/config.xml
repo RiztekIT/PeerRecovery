@@ -14,10 +14,11 @@
     <edit-config file="*-Info.plist" mode="merge" target="NSLocationWhenInUseUsageDescription">
         <string>We use your location for full functionality of certain app features.</string>
     </edit-config>
-    <allow-navigation href="http://192.168.1.199:8100" sessionid="632179a4" />
+    <resource-file src="GoogleService-Info.plist" target="resources/GoogleService-Info.plist" />
+    <allow-navigation href="*" />
     <preference name="ScrollEnabled" value="false" />
     <preference name="loadUrlTimeoutValue" value="700000" />
-    <preference name="android-minSdkVersion" value="19" />
+    <preference name="android-minSdkVersion" value="21" />
     <preference name="BackupWebStorage" value="none" />
     <preference name="ShowSplashScreenSpinner" value="false" />
     <preference name="SplashMaintainAspectRatio" value="true" />

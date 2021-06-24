@@ -10,6 +10,7 @@
 		0207DA581B56EA530066E2B4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0207DA571B56EA530066E2B4 /* Images.xcassets */; };
 		0423960C27D948C4B427C8D1 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3614A3EBE9E349AAA82E10ED /* GLKit.framework */; };
 		078758958BB84BDD8F11CBDA /* TemperatureAndTint.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D65BEFFE8D44F3A345D86A /* TemperatureAndTint.m */; };
+		0ADC1DD2267E28C500CCBCB8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0ADC1DD0267E28C500CCBCB8 /* GoogleService-Info.plist */; };
 		1134A7E7D5CF49FDB63EBCA7 /* NativeGeocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057AC432033E4F2A93EB3CCB /* NativeGeocoder.swift */; };
 		14436808972744E18EA8CC22 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE2B68C5BD3C41F583E83A24 /* CoreVideo.framework */; };
 		1A8536268D60473AABDBBCB7 /* CDVCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 0537497D337E4AC8A8CE70CD /* CDVCamera.m */; };
@@ -28,7 +29,6 @@
 		4E32C0C1FAC442F885981158 /* FCMNotificationCenterDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E7798738C88E4693B5DB4B5E /* FCMNotificationCenterDelegate.m */; };
 		500E9034636A420EB19C67C2 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37769ED2D33247168EE22428 /* SystemConfiguration.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		6542371C1ABF4665BE01D38D /* CDVSplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC971AE15254B9A9FB621A8 /* CDVSplashScreen.m */; };
-		655B5B55656448E4A0997E69 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C8340C9FB38948C095572A51 /* GoogleService-Info.plist */; };
 		6AFF5BF91D6E424B00AB3073 /* CDVLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6AFF5BF81D6E424B00AB3073 /* CDVLaunchScreen.storyboard */; };
 		73E3C985E32140D8A4593324 /* IONAssetHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = A379A46FDB434F328C1BABA3 /* IONAssetHandler.m */; };
 		7CA6481B075C46AB91673F0B /* CameraSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BE947C37EC44C44AAD072EC /* CameraSessionManager.m */; };
@@ -108,6 +108,7 @@
 		0537497D337E4AC8A8CE70CD /* CDVCamera.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVCamera.m; path = "cordova-plugin-camera/CDVCamera.m"; sourceTree = "<group>"; };
 		057AC432033E4F2A93EB3CCB /* NativeGeocoder.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = NativeGeocoder.swift; path = "cordova-plugin-nativegeocoder/NativeGeocoder.swift"; sourceTree = "<group>"; };
 		06BD90A7166C4A5DBDA6BCBE /* libz.dylib */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		0ADC1DD0267E28C500CCBCB8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		11241125B2364AC998E987B1 /* TemperatureAndTint.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = TemperatureAndTint.h; path = "cordova-plugin-camera-preview/TemperatureAndTint.h"; sourceTree = "<group>"; };
 		1497597441B74BCF96184BC0 /* CoreImage.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		15706EBB5A38487C888EBC45 /* CDVStatusBar.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVStatusBar.m; path = "cordova-plugin-statusbar/CDVStatusBar.m"; sourceTree = "<group>"; };
@@ -180,7 +181,6 @@
 		C19D32EA1F204720A85A4D63 /* AVFoundation.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		C3185E59F6634D5381685318 /* CDVExif.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVExif.h; path = "cordova-plugin-camera/CDVExif.h"; sourceTree = "<group>"; };
 		C4A0322A1A134C9B914423B7 /* Zoom.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = Zoom.m; path = cordova.plugin.zoom/Zoom.m; sourceTree = "<group>"; };
-		C8340C9FB38948C095572A51 /* GoogleService-Info.plist */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Resources/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CD4828FAB43E4A5594839DF1 /* ImageIO.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		CE427825B086479689C2A4DE /* CDVWKWebViewEngine.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVWKWebViewEngine.h; path = "cordova-plugin-ionic-webview/CDVWKWebViewEngine.h"; sourceTree = "<group>"; };
 		DE2B68C5BD3C41F583E83A24 /* CoreVideo.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
@@ -280,12 +280,12 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0ADC1DD0267E28C500CCBCB8 /* GoogleService-Info.plist */,
 				0207DA571B56EA530066E2B4 /* Images.xcassets */,
 				3047A50E1AB8057F00498E2A /* config */,
 				8D1107310486CEB800E47090 /* Peerrecovery App-Info.plist */,
 				6AFF5BF81D6E424B00AB3073 /* CDVLaunchScreen.storyboard */,
 				345792B2F9C34EAF8D6FFE6E /* MobileRTCResources.bundle */,
-				C8340C9FB38948C095572A51 /* GoogleService-Info.plist */,
 			);
 			name = Resources;
 			path = "Peerrecovery App/Resources";
@@ -502,7 +502,7 @@
 				0207DA581B56EA530066E2B4 /* Images.xcassets in Resources */,
 				6AFF5BF91D6E424B00AB3073 /* CDVLaunchScreen.storyboard in Resources */,
 				B99E067AA5C948A2AA97E12F /* MobileRTCResources.bundle in Resources */,
-				655B5B55656448E4A0997E69 /* GoogleService-Info.plist in Resources */,
+				0ADC1DD2267E28C500CCBCB8 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -638,6 +638,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_HEADERS_RUN_UNIFDEF = NO;
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = 969Y8ABL9W;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -676,7 +677,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_HEADERS_RUN_UNIFDEF = NO;
 				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = 969Y8ABL9W;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"Peerrecovery App/Plugins/cordova.plugin.zoom\"",

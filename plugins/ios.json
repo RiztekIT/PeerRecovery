@@ -48,6 +48,9 @@
     },
     "cordova.plugin.zoom": {
       "PACKAGE_NAME": "com.peerrecovery.peer"
+    },
+    "cordova-plugin-androidx-adapter": {
+      "PACKAGE_NAME": "com.peerrecovery.peer"
     }
   },
   "dependent_plugins": {

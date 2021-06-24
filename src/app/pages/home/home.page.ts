@@ -76,8 +76,8 @@ export class HomePage implements OnInit {
     public appointmentService: AppointmentService) {
 
 
-      this.appointmentsDBRef = this.firebaseAuthService.firebaseDB.collection('Appointments');
-      this.getAppointments();
+      //this.appointmentsDBRef = this.firebaseAuthService.firebaseDB.collection('Appointments');
+      //this.getAppointments();
 
     }
 
@@ -99,7 +99,7 @@ export class HomePage implements OnInit {
     this.locatio = 'Chihuahua, Chihuahua'
  /*    this.getLocation();
     this.getLocation2(); */
-    this.initializeApp()
+    //this.initializeApp()
   }
 
   ionViewWillEnter() {

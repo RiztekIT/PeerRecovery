@@ -72,7 +72,7 @@
     <name>Peerrecovery App</name>
     <description>Peerrecovery</description>
     <author email="ivan.talamantes@riztek.com.mx" href="https://www.riztek.com.mx/">Riztek Team</author>
-    <content original-src="index.html" src="http://192.168.1.199:8100" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -83,7 +83,8 @@
     <edit-config file="*-Info.plist" mode="merge" target="NSLocationWhenInUseUsageDescription">
         <string>We use your location for full functionality of certain app features.</string>
     </edit-config>
-    <allow-navigation href="http://192.168.1.199:8100" sessionid="632179a4" />
+    <resource-file src="GoogleService-Info.plist" target="resources/GoogleService-Info.plist" />
+    <allow-navigation href="*" />
     <allow-intent href="itms:*" />
     <allow-intent href="itms-apps:*" />
     <icon height="57" src="resources/ios/icon/icon.png" width="57" />
@@ -162,7 +163,7 @@
     <preference name="StatusBarStyle" value="lightcontent" />
     <preference name="ScrollEnabled" value="false" />
     <preference name="loadUrlTimeoutValue" value="700000" />
-    <preference name="android-minSdkVersion" value="19" />
+    <preference name="android-minSdkVersion" value="21" />
     <preference name="ShowSplashScreenSpinner" value="false" />
     <preference name="SplashMaintainAspectRatio" value="true" />
     <preference name="SplashReloadOnOrientationChange" value="true" />

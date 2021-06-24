@@ -91,6 +91,9 @@
     },
     "cordova-plugin-fcm-with-dependecy-updated": {
       "PACKAGE_NAME": "com.peerrecovery.peer"
+    },
+    "cordova-plugin-androidx-adapter": {
+      "PACKAGE_NAME": "com.peerrecovery.peer"
     }
   },
   "dependent_plugins": {},
@@ -248,6 +251,7 @@
     "nl.x-services.plugins.videocaptureplus": "1.0.0",
     "cordova-plugin-googleplus": "8.5.2",
     "cordova.plugin.zoom": "4.6.21666.0603",
-    "cordova-plugin-fcm-with-dependecy-updated": "7.8.0"
+    "cordova-plugin-fcm-with-dependecy-updated": "7.8.0",
+    "cordova-plugin-androidx-adapter": "1.1.3"
   }
 }

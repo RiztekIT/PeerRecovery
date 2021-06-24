@@ -18,13 +18,13 @@
           "NSCameraUsageDescription": [
             {
               "xml": "<string>You can take photos</string>",
-              "count": 14
+              "count": 24
             }
           ],
           "NSMicrophoneUsageDescription": [
             {
               "xml": "<string>You can use microphone</string>",
-              "count": 14
+              "count": 24
             }
           ],
           "CFBundleURLTypes": [
@@ -219,6 +219,9 @@
     "cordova-plugin-fcm-with-dependecy-updated": {
       "IOS_FIREBASE_MESSAGING_VERSION": "~> 7.4.0",
       "PACKAGE_NAME": "com.peerrecovery.peer"
+    },
+    "cordova-plugin-androidx-adapter": {
+      "PACKAGE_NAME": "com.peerrecovery.peer"
     }
   },
   "dependent_plugins": {},
@@ -400,6 +403,7 @@
     "cordova-plugin-whitelist": "1.3.3",
     "nl.x-services.plugins.videocaptureplus": "1.0.0",
     "cordova.plugin.zoom": "4.6.21666.0603",
-    "cordova-plugin-fcm-with-dependecy-updated": "7.8.0"
+    "cordova-plugin-fcm-with-dependecy-updated": "7.8.0",
+    "cordova-plugin-androidx-adapter": "1.1.3"
   }
 }

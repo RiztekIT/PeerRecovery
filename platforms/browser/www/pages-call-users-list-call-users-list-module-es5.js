@@ -21,7 +21,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-header class=\"ion-no-border\">\n    <ion-toolbar mode=\"md\">\n        <ion-buttons slot=\"start\">\n            <ion-back-button defaultHref=\"home\" icon=\"chevron-back-outline\" text=\"\" mode=\"md\"></ion-back-button>\n        </ion-buttons>\n        <ion-buttons slot=\"end\">\n            <ion-menu-button></ion-menu-button>\n        </ion-buttons>\n        <ion-title>Video call</ion-title>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content class=\"ion-padding-bottom\">\n    <div class=\"today_div\">\n        <ion-item *ngFor=\"let item of users\" lines=\"full\" (click)=\"openCall(item)\" mode=\"md\">\n            <ion-avatar slot=\"start\">\n                <img [src]=\"item?.photoUrl\">\n            </ion-avatar>\n            <ion-label>\n                <h3 class=\"name\">{{item?.displayName}}</h3>\n                <p class=\"detail\">{{item?.email}}</p>\n            </ion-label>\n        </ion-item>\n    </div>\n</ion-content>";
+    __webpack_exports__["default"] = "<ion-header class=\"ion-no-border\">\n    <ion-toolbar mode=\"md\">\n        <ion-buttons slot=\"start\">\n            <ion-back-button defaultHref=\"home\" icon=\"chevron-back-outline\" text=\"\" mode=\"md\"></ion-back-button>\n        </ion-buttons>\n        <ion-buttons slot=\"end\">\n            <ion-menu-button></ion-menu-button>\n        </ion-buttons>\n        <ion-title>Video call</ion-title>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content class=\"ion-padding-bottom\">\n    <div class=\"today_div\">\n        <!--         <ion-item *ngFor=\"let item of users\" lines=\"full\" (click)=\"startCamera()\" mode=\"md\"> -->\n        <ion-item *ngFor=\"let item of users\" lines=\"full\" (click)=\"openCall(item)\" mode=\"md\">\n            <ion-avatar slot=\"start\">\n                <img [src]=\"item?.photoUrl\">\n            </ion-avatar>\n            <ion-label>\n                <h3 class=\"name\">{{item?.displayName}}</h3>\n                <p class=\"detail\">{{item?.email}}</p>\n            </ion-label>\n        </ion-item>\n    </div>\n</ion-content>";
     /***/
   },
 
@@ -239,6 +239,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var src_app_services_chat_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
     /*! src/app/services/chat.service */
     "./src/app/services/chat.service.ts");
+    /* harmony import */
+
+
+    var _ionic_native_camera_preview_ngx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    /*! @ionic-native/camera-preview/ngx */
+    "./node_modules/@ionic-native/camera-preview/ngx/index.js");
 
     var snapshotToArray = function snapshotToArray(snapshot) {
       var returnArr = [];
@@ -251,13 +257,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     };
 
     var CallUsersListPage = /*#__PURE__*/function () {
-      function CallUsersListPage(nav, router, firebaseAuthService, chatService) {
+      function CallUsersListPage(nav, router, firebaseAuthService, chatService, cameraPreview) {
         _classCallCheck(this, CallUsersListPage);
 
         this.nav = nav;
         this.router = router;
         this.firebaseAuthService = firebaseAuthService;
         this.chatService = chatService;
+        this.cameraPreview = cameraPreview;
         this.users = [];
       }
 
@@ -305,6 +312,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         type: src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"]
       }, {
         type: src_app_services_chat_service__WEBPACK_IMPORTED_MODULE_5__["ChatService"]
+      }, {
+        type: _ionic_native_camera_preview_ngx__WEBPACK_IMPORTED_MODULE_6__["CameraPreview"]
       }];
     };
 
@@ -316,7 +325,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./call-users-list.page.scss */
       "./src/app/pages/call-users-list/call-users-list.page.scss"))["default"]]
-    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavController"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"], src_app_services_chat_service__WEBPACK_IMPORTED_MODULE_5__["ChatService"]])], CallUsersListPage);
+    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavController"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"], src_app_services_chat_service__WEBPACK_IMPORTED_MODULE_5__["ChatService"], _ionic_native_camera_preview_ngx__WEBPACK_IMPORTED_MODULE_6__["CameraPreview"]])], CallUsersListPage);
     /***/
   },
 

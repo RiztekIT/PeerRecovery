@@ -21,7 +21,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-content>\n    <div class=\"main-container\">\n        <div class=\"bottom-container padding-left-22 padding-right-22\">\n            <img class=\"app-logo\" src=\"../../../assets/imgs/app-icon.png\">\n            <h2 class=\"title margin-top-22\">A Digital Solution For Substance Use Disorder</h2>\n            <div class=\"social-btns margin-top-19\">\n                <ion-button (click)=\"signinGoogle()\">\n                    <ion-icon src=\"../../../assets/imgs/appicons/google.svg\"></ion-icon> Google</ion-button>\n                <ion-button>\n                    <ion-icon src=\"../../../assets/imgs/appicons/facebook.svg\"></ion-icon> Facebook</ion-button>\n            </div>\n            <!-- <p class=\"sign-up-line margin-top-30\">Already have an account? <a (click)=\"goToSignIn()\">Sign in</a></p> -->\n        </div>\n    </div>\n</ion-content>";
+    __webpack_exports__["default"] = "<ion-content>\n    <div class=\"main-container\">\n        <div class=\"bottom-container padding-left-22 padding-right-22\">\n            <img class=\"app-logo\" src=\"../../../assets/imgs/app-icon.png\">\n            <h2 class=\"title margin-top-22\">A Digital Solution For Substance Use Disorder</h2>\n            <div class=\"social-btns margin-top-19\">\n                <!-- <ion-button (click)=\"login()\"> -->\n                <ion-button (click)=\"login()\">\n                    <ion-icon src=\"../../../assets/imgs/appicons/google.svg\"></ion-icon> Google</ion-button>\n\n                <ion-button (click)=\"signinGoogle()\">\n                    <ion-icon src=\"../../../assets/imgs/appicons/facebook.svg\"></ion-icon> Facebook</ion-button>\n            </div>\n            <!-- <p class=\"sign-up-line margin-top-30\">Already have an account? <a (click)=\"goToSignIn()\">Sign in</a></p> -->\n        </div>\n    </div>\n</ion-content>\n\n\n\n<!-- \n    ionic cordova plugin add cordova-plugin-googleplus --save --variable REVERSED_CLIENT_ID=com.googleusercontent.apps.1014351207922-0muovvg9f1rq8nga7a4kleonar7e4pr9 --variable WEB_APPLICATION_CLIENT_ID=1014351207922-0muovvg9f1rq8nga7a4kleonar7e4pr9.apps.googleusercontent.com\n -->";
     /***/
   },
 
@@ -227,14 +227,29 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
     /*! @angular/router */
     "./node_modules/@angular/router/fesm2015/router.js");
+    /* harmony import */
+
+
+    var _ionic_native_google_plus_ngx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! @ionic-native/google-plus/ngx */
+    "./node_modules/@ionic-native/google-plus/ngx/index.js");
+    /* harmony import */
+
+
+    var firebase__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    /*! firebase */
+    "./node_modules/firebase/dist/index.esm.js");
+    /* import { AngularFireAuth } from '@angular/fire/auth'; */
+
 
     var StarterPage = /*#__PURE__*/function () {
-      function StarterPage(util, authSVC, router) {
+      function StarterPage(util, authSVC, router, google) {
         _classCallCheck(this, StarterPage);
 
         this.util = util;
         this.authSVC = authSVC;
         this.router = router;
+        this.google = google;
       }
 
       _createClass(StarterPage, [{
@@ -259,13 +274,52 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           this.authSVC.loginGoogle().then(function (res) {
             console.log(res);
+
+            _this.obtenerTokenGoogle();
+
             _this.authSVC.user = res;
+          });
+        }
+      }, {
+        key: "login",
+        value: function login() {
+          var _this2 = this;
+
+          /*  this.authSVC.usersign = JSON.parse('{"uid":"2ZrxjV7h9yNEQNOEv41Pn0Oaedr2","displayName":"Ivan Talamantes","photoURL":"https://lh4.googleusercontent.com/-QC-QP6iHIE8/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuclxXbClVOHAd1Jg5C0wC29ky4HddA/s96-c/photo.jpg","email":"riztekti@gmail.com","emailVerified":true,"phoneNumber":null,"isAnonymous":false,"tenantId":null,"providerData":[{"uid":"102916484924080225541","displayName":"Ivan Talamantes","photoURL":"https://lh4.googleusercontent.com/-QC-QP6iHIE8/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuclxXbClVOHAd1Jg5C0wC29ky4HddA/s96-c/photo.jpg","email":"riztekti@gmail.com","phoneNumber":null,"providerId":"google.com"}],"apiKey":"AIzaSyDpPLmgRkC8ublILfSGj8961ku-hyTpNvs","appName":"[DEFAULT]","authDomain":"peerrecovery-app.firebaseapp.com","stsTokenManager":{"apiKey":"AIzaSyDpPLmgRkC8ublILfSGj8961ku-hyTpNvs","refreshToken":"AOvuKvQR5C8EhjW3WN8gtzBQFd1XQmsU1-dNcsOsHwX_35trAYLG_UWASni_Of73U9RzQ8DPqdNXyRVMBXp6AA-miYHxgLXIBWYwF3P58AfVZB_ZW86I8RllD5Z7p0YEBnp0wzhX_i4WMQA76eAvjrJyob7OdmUo_3HsicPG5YTSaO7atuUDLUcTIfjSMv4bBh3kBfh750ILXhIxPzHO4azE5XarpWZ6xWQVHcSCTODEkUHvNEh6DLr4EZT4UVH2nSwtEdXABJgPyGqCl0D49CkhKlUCF2vaEfXopgfXVgxSKv1xiCUUtlntjtv4VAmbIjRwIbjodEfv3PHSi1sfl91GbkcsvWZxlv31x0jQnsW9JL706Q5c4eH0ZxpxOrHMiRV5LR9UOLLcC-ZMBb143uHz1828GcEfR_XFF4GDxffj4iQyaeG9QhJ06ftyXev_kJgvIsQ4Q4osdaFO9eF6OG8bPHhbqcpHaQ","accessToken":"eyJhbGciOiJSUzI1NiIsImtpZCI6IjhkOGM3OTdlMDQ5YWFkZWViOWM5M2RiZGU3ZDAwMzJmNjk3NjYwYmQiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiSXZhbiBUYWxhbWFudGVzIiwicGljdHVyZSI6Imh0dHBzOi8vbGg0Lmdvb2dsZXVzZXJjb250ZW50LmNvbS8tUUMtUVA2aUhJRTgvQUFBQUFBQUFBQUkvQUFBQUFBQUFBQUEvQU1adXVjbHhYYkNsVk9IQWQxSmc1QzB3QzI5a3k0SGRkQS9zOTYtYy9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcGVlcnJlY292ZXJ5LWFwcCIsImF1ZCI6InBlZXJyZWNvdmVyeS1hcHAiLCJhdXRoX3RpbWUiOjE2MTc0MDA3MDQsInVzZXJfaWQiOiIyWnJ4alY3aDl5TkVRTk9FdjQxUG4wT2FlZHIyIiwic3ViIjoiMlpyeGpWN2g5eU5FUU5PRXY0MVBuME9hZWRyMiIsImlhdCI6MTYxNzQwMDcwNCwiZXhwIjoxNjE3NDA0MzA0LCJlbWFpbCI6InJpenRla3RpQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7Imdvb2dsZS5jb20iOlsiMTAyOTE2NDg0OTI0MDgwMjI1NTQxIl0sImVtYWlsIjpbInJpenRla3RpQGdtYWlsLmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6Imdvb2dsZS5jb20ifX0.ETG1-BqBhePWKSQ89e7zu0YwEMlkIm3FlhJAqdbrXCy2lcA30tqVdq7XyQhHQwfyao8JFV3pyHXSp3fW20PEJfZUe0u2OXRtiCY3quGYE-oQB1qxL-VkvziFyEqzpQ3uGjfrqSc8qHzyVwmUQaEHLorooY5kuel2cPBVuJBz7IsGF7KVoU_GF3p5F9tLaRTGKxpyepzEOftTIXfSaR6u09Reqct15zSI9VNWTKU9NuFO8B00alrK1RhwwFRMFDQ12Ivf070Cpd13-Rcy3kda5wx0J89X7xRfdSAcSTxmg4CEB25dG9gRQUoCYIJ9LNdDBHB197yyyHOYxcBw5agZwA","expirationTime":1617404304214},"redirectEventId":null,"lastLoginAt":"1617400704170","createdAt":"1609375217824","multiFactor":{"enrolledFactors":[]}}')
+           
+           this.router.navigate(['/onBoarding']) */
+          var params = {};
+          this.google.login(params).then(function (response) {
+            var idToken = response.idToken,
+                accessToken = response.accessToken;
+
+            _this2.onLoginSuccess(idToken, accessToken);
+          })["catch"](function (error) {
+            console.log(error);
+            alert('error:' + JSON.stringify(error));
+          });
+        }
+      }, {
+        key: "onLoginSuccess",
+        value: function onLoginSuccess(accessToken, accessSecret) {
+          var _this3 = this;
+
+          var credential = accessSecret ? firebase__WEBPACK_IMPORTED_MODULE_6__["default"].auth.GoogleAuthProvider.credential(accessToken, accessSecret) : firebase__WEBPACK_IMPORTED_MODULE_6__["default"].auth.GoogleAuthProvider.credential(accessToken);
+          this.authSVC.loginwithCredential(credential).then(function (success) {
+            alert('successfully'); //this.isGoogleLogin = true;
+
+            _this3.authSVC.user = success.user.email;
+            _this3.authSVC.usersign = success.user;
+            sessionStorage.setItem('user', JSON.stringify(_this3.authSVC.usersign)); //this.util.navCtrl.navigateForward("onBoarding");
+
+            _this3.router.navigate(['/onBoarding']); //this.loading.dismiss();
+
           });
         }
       }, {
         key: "obtenerTokenGoogle",
         value: function obtenerTokenGoogle() {
-          var _this2 = this;
+          var _this4 = this;
 
           this.authSVC.obtenerToken().then(function (result) {
             console.log(result);
@@ -280,9 +334,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
             if (result.user) {
               console.log(result.user);
-              _this2.authSVC.user = result.user.email;
-              _this2.authSVC.usersign = result.user;
-              _this2.user = {
+              _this4.authSVC.user = result.user.email;
+              _this4.authSVC.usersign = result.user;
+              _this4.user = {
                 displayName: result.user.displayName,
                 email: result.user.email,
                 photoUrl: result.user.photoURL,
@@ -293,22 +347,22 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 uid: result.user.uid
               };
 
-              _this2.authSVC.addUser(_this2.user);
+              _this4.authSVC.addUser(_this4.user);
             }
 
-            console.log(_this2.authSVC.usersign);
+            console.log(_this4.authSVC.usersign);
 
-            if (_this2.authSVC.user) {
-              sessionStorage.setItem('user', JSON.stringify(_this2.authSVC.usersign)); //this.util.navCtrl.navigateForward("onBoarding");
+            if (_this4.authSVC.user) {
+              sessionStorage.setItem('user', JSON.stringify(_this4.authSVC.usersign)); //this.util.navCtrl.navigateForward("onBoarding");
 
-              _this2.router.navigate(['/onBoarding']);
+              _this4.router.navigate(['/onBoarding']);
             } else {
-              _this2.authSVC.usersign = JSON.parse(sessionStorage.getItem('user'));
-              _this2.authSVC.user = _this2.authSVC.usersign.email;
+              _this4.authSVC.usersign = JSON.parse(sessionStorage.getItem('user'));
+              _this4.authSVC.user = _this4.authSVC.usersign.email;
 
-              if (_this2.authSVC.user) {
+              if (_this4.authSVC.user) {
                 //this.util.navCtrl.navigateForward("onBoarding");
-                _this2.router.navigate(['/onBoarding']);
+                _this4.router.navigate(['/onBoarding']);
               }
             }
           });
@@ -325,6 +379,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         type: src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_3__["AuthService"]
       }, {
         type: _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"]
+      }, {
+        type: _ionic_native_google_plus_ngx__WEBPACK_IMPORTED_MODULE_5__["GooglePlus"]
       }];
     };
 
@@ -336,7 +392,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./starter.page.scss */
       "./src/app/pages/starter/starter.page.scss"))["default"]]
-    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_util_service__WEBPACK_IMPORTED_MODULE_1__["UtilService"], src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_3__["AuthService"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"]])], StarterPage);
+    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_util_service__WEBPACK_IMPORTED_MODULE_1__["UtilService"], src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_3__["AuthService"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"], _ionic_native_google_plus_ngx__WEBPACK_IMPORTED_MODULE_5__["GooglePlus"]])], StarterPage);
     /***/
   }
 }]);

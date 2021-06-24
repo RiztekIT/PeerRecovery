@@ -17,7 +17,7 @@ import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@io
 import { PipesModule } from './pipes/pipes.module';
 import { Camera } from '@ionic-native/camera/ngx';
 import { CameraPreview, CameraPreviewPictureOptions, CameraPreviewOptions, CameraPreviewDimensions } from '@ionic-native/camera-preview/ngx';
-import { VideoCapturePlus, VideoCapturePlusOptions, MediaFile } from '@ionic-native/video-capture-plus/ngx';
+//import { VideoCapturePlus, VideoCapturePlusOptions, MediaFile } from '@ionic-native/video-capture-plus/ngx';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { Zoom } from '@ionic-native/zoom/ngx';
 
@@ -43,7 +43,7 @@ import { Zoom } from '@ionic-native/zoom/ngx';
     NativeGeocoder, 
     Camera,       
     CameraPreview,
-    VideoCapturePlus,
+    /* VideoCapturePlus, */
     GooglePlus,
     Zoom,
     

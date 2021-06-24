@@ -1,23 +1,33 @@
 ion-content {
-    --background: url('../../../assets/imgs/back_imgs/starter_back.png') top/cover fixed;
+    --background: url('../../../assets/imgs/back_imgs/starter_back.png') top/contain no-repeat fixed;
     .main-container {
         height: 100%;
         width: 100%;
-        background: var(--ion-blackWhite-gradients);
+        //background: var(--ion-blackWhite-gradients);
         .bottom-container {
             position: absolute;
             left: 0;
             right: 0;
-            top: 68%;
+            top: 55%;
             transform: translateY(-50%);
+            text-align: center;
             .app-logo {
                 width: 99px;
                 height: 108px;
+                text-align: center;
             }
             .title {
                 font-size: 22px;
-                color: var(--ion-color-white);
+                color: #3666b0;
                 font-family: 'sfUi-b';
+                text-align: center;
+            }
+            .title2 {
+                font-size: 36px;
+                color: #3666b0;
+                //3880ff
+                font-family: 'sfUi-b';
+                text-align: center;
             }
             .social-btns {
                 display: flex;
@@ -34,6 +44,7 @@ ion-content {
                         font-size: 16px;
                         margin-right: 16px;
                     }
+                    --background: transparent;
                 }
             }
             .sign-up-line {

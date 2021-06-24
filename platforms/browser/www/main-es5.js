@@ -1579,6 +1579,30 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(
     /*! @ionic-native/camera/ngx */
     "./node_modules/@ionic-native/camera/ngx/index.js");
+    /* harmony import */
+
+
+    var _ionic_native_camera_preview_ngx__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(
+    /*! @ionic-native/camera-preview/ngx */
+    "./node_modules/@ionic-native/camera-preview/ngx/index.js");
+    /* harmony import */
+
+
+    var _ionic_native_video_capture_plus_ngx__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(
+    /*! @ionic-native/video-capture-plus/ngx */
+    "./node_modules/@ionic-native/video-capture-plus/ngx/index.js");
+    /* harmony import */
+
+
+    var _ionic_native_google_plus_ngx__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(
+    /*! @ionic-native/google-plus/ngx */
+    "./node_modules/@ionic-native/google-plus/ngx/index.js");
+    /* harmony import */
+
+
+    var _ionic_native_zoom_ngx__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(
+    /*! @ionic-native/zoom/ngx */
+    "./node_modules/@ionic-native/zoom/ngx/index.js");
 
     var AppModule = function AppModule() {
       _classCallCheck(this, AppModule);
@@ -1592,7 +1616,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         rippleEffect: false,
         mode: 'ios'
       }), _app_routing_module__WEBPACK_IMPORTED_MODULE_8__["AppRoutingModule"], _ng_select_ng_select__WEBPACK_IMPORTED_MODULE_9__["NgSelectModule"]],
-      providers: [_ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"], _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"], _ionic_native_geolocation_ngx__WEBPACK_IMPORTED_MODULE_13__["Geolocation"], _ionic_native_native_geocoder_ngx__WEBPACK_IMPORTED_MODULE_14__["NativeGeocoder"], _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_16__["Camera"], {
+      providers: [_ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"], _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"], _ionic_native_geolocation_ngx__WEBPACK_IMPORTED_MODULE_13__["Geolocation"], _ionic_native_native_geocoder_ngx__WEBPACK_IMPORTED_MODULE_14__["NativeGeocoder"], _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_16__["Camera"], _ionic_native_camera_preview_ngx__WEBPACK_IMPORTED_MODULE_17__["CameraPreview"], _ionic_native_video_capture_plus_ngx__WEBPACK_IMPORTED_MODULE_18__["VideoCapturePlus"], _ionic_native_google_plus_ngx__WEBPACK_IMPORTED_MODULE_19__["GooglePlus"], _ionic_native_zoom_ngx__WEBPACK_IMPORTED_MODULE_20__["Zoom"], {
         provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"],
         useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"]
       }],
@@ -2156,6 +2180,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "loginGoogle",
         value: function loginGoogle() {
           var provider = new firebase__WEBPACK_IMPORTED_MODULE_4__["default"].auth.GoogleAuthProvider();
+          /* return firebase.auth().signInWithPopup(provider); */
+
           return firebase__WEBPACK_IMPORTED_MODULE_4__["default"].auth().signInWithRedirect(provider);
           /*   return firebase.auth().signInWithRedirect(provider).then(res=>{
               console.log(res);
@@ -2173,6 +2199,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                  
               })
             }); */
+        }
+      }, {
+        key: "loginwithCredential",
+        value: function loginwithCredential(credential) {
+          return firebase__WEBPACK_IMPORTED_MODULE_4__["default"].auth().signInWithCredential(credential);
         }
       }, {
         key: "obtenerToken",

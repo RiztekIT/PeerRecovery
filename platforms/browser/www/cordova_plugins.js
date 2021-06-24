@@ -127,6 +127,14 @@ module.exports = [
         "clobbers": [
             "cordova.plugins.Zoom"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-fcm-with-dependecy-updated/www/FCMPlugin.js",
+        "id": "cordova-plugin-fcm-with-dependecy-updated.FCMPlugin",
+        "pluginId": "cordova-plugin-fcm-with-dependecy-updated",
+        "clobbers": [
+            "FCM"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -146,7 +154,9 @@ module.exports.metadata =
     "cordova-plugin-compat": "1.2.0",
     "nl.x-services.plugins.videocaptureplus": "1.0.0",
     "cordova-plugin-googleplus": "8.5.2",
-    "cordova.plugin.zoom": "4.6.21666.0603"
+    "cordova.plugin.zoom": "4.6.21666.0603",
+    "cordova-plugin-fcm-with-dependecy-updated": "7.8.0",
+    "cordova-plugin-androidx-adapter": "1.1.3"
 }
 // BOTTOM OF METADATA
 });

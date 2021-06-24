@@ -114,8 +114,7 @@
     },
     "is_top_level": true,
     "variables": {
-      "REVERSED_CLIENT_ID": "com.googleusercontent.apps.1014351207922-0muovvg9f1rq8nga7a4kleonar7e4pr9",
-      "WEB_APPLICATION_CLIENT_ID": "1014351207922-0muovvg9f1rq8nga7a4kleonar7e4pr9.apps.googleusercontent.com"
+      "REVERSED_CLIENT_ID": "com.googleusercontent.apps.1014351207922-0muovvg9f1rq8nga7a4kleonar7e4pr9"
     }
   },
   "cordova.plugin.zoom": {
@@ -130,6 +129,22 @@
     "source": {
       "type": "registry",
       "id": "cordova-plugin-fcm-with-dependecy-updated"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-androidx-adapter": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-androidx-adapter"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-cleartext": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-cleartext"
     },
     "is_top_level": true,
     "variables": {}

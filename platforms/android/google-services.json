@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1014351207922",
+    "firebase_url": "https://peerrecovery-app-default-rtdb.firebaseio.com",
+    "project_id": "peerrecovery-app",
+    "storage_bucket": "peerrecovery-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1014351207922:android:bf0482d9c6d0ff93505f6b",
+        "android_client_info": {
+          "package_name": "com.peerrecovery.peer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1014351207922-62i4v4bv5da6t08liqss4f8q6rtl8r5a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDL-2mFo6QYsp7qNSQl95AzhVZ6njRsLtE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1014351207922-62i4v4bv5da6t08liqss4f8q6rtl8r5a.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1014351207922-0muovvg9f1rq8nga7a4kleonar7e4pr9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.peerrecovery.peer"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

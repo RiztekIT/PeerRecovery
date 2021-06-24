@@ -6,7 +6,7 @@ import { AuthService } from "src/app/services/auth.service";
 import { AlertController } from "@ionic/angular";
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { CameraPreview, CameraPreviewPictureOptions, CameraPreviewOptions, CameraPreviewDimensions } from '@ionic-native/camera-preview/ngx';
-import { VideoCapturePlus, VideoCapturePlusOptions, MediaFile } from '@ionic-native/video-capture-plus/ngx';
+//import { VideoCapturePlus, VideoCapturePlusOptions, MediaFile } from '@ionic-native/video-capture-plus/ngx';
 import { Zoom } from '@ionic-native/zoom/ngx';
 
 
@@ -46,7 +46,7 @@ export class CallPage implements OnInit {
     private alertController: AlertController,
     public authSVC: AuthService,
     private cameraPreview: CameraPreview,
-    private videoCapturePlus: VideoCapturePlus,
+    /* private videoCapturePlus: VideoCapturePlus, */
     private zoomService: Zoom) {
 
       this.route.queryParams.subscribe(params => {
@@ -190,16 +190,16 @@ this.cameraPreview.startCamera(cameraPreviewOpts).then(
 
 
   recordVideo(){
-    const options: VideoCapturePlusOptions = {
+  /*   const options: VideoCapturePlusOptions = {
       limit: 1,
       highquality: true,
       portraitOverlay: 'assets/img/camera/overlay/portrait.png',
       landscapeOverlay: 'assets/img/camera/overlay/landscape.png'
-   }
+   } */
 
-   this.videoCapturePlus.captureVideo(options).then(mediaFile =>{
+/*    this.videoCapturePlus.captureVideo(options).then(mediaFile =>{
      console.log(mediaFile);
-   })
+   }) */
 
 
    /* this.videoCapturePlus.captureVideo(options).then(mediafile: MediaFile[] => console.log(mediafile), error => console.log('Something went wrong')); */

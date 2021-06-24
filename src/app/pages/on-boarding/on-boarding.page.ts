@@ -1,5 +1,6 @@
 import { UtilService } from './../../services/util.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-on-boarding',
@@ -16,7 +17,8 @@ export class OnBoardingPage implements OnInit {
     },
   };
   constructor(
-    private util: UtilService
+    private util: UtilService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -29,7 +31,9 @@ export class OnBoardingPage implements OnInit {
   }
 
   goToHome() {
-    this.util.navCtrl.navigateRoot('/home');
+    console.log('home');
+    //this.util.navCtrl.navigateRoot('/home');
+    this.router.navigate(['/home'])
   } 
 
 }
