@@ -132,8 +132,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/fesm2015/ionic-angular.js");
 /* harmony import */ var _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic-native/camera/ngx */ "./node_modules/@ionic-native/camera/ngx/index.js");
 /* harmony import */ var _ionic_native_camera_preview_ngx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ionic-native/camera-preview/ngx */ "./node_modules/@ionic-native/camera-preview/ngx/index.js");
-/* harmony import */ var _ionic_native_video_capture_plus_ngx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ionic-native/video-capture-plus/ngx */ "./node_modules/@ionic-native/video-capture-plus/ngx/index.js");
-/* harmony import */ var _ionic_native_zoom_ngx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ionic-native/zoom/ngx */ "./node_modules/@ionic-native/zoom/ngx/index.js");
+/* harmony import */ var _ionic_native_zoom_ngx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ionic-native/zoom/ngx */ "./node_modules/@ionic-native/zoom/ngx/index.js");
 
 
 
@@ -143,10 +142,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
+//import { VideoCapturePlus, VideoCapturePlusOptions, MediaFile } from '@ionic-native/video-capture-plus/ngx';
 
 let CallPage = class CallPage {
-    constructor(route, router, camera, util, alertController, authSVC, cameraPreview, videoCapturePlus, zoomService) {
+    constructor(route, router, camera, util, alertController, authSVC, cameraPreview, 
+    /* private videoCapturePlus: VideoCapturePlus, */
+    zoomService) {
         this.route = route;
         this.router = router;
         this.camera = camera;
@@ -154,7 +155,6 @@ let CallPage = class CallPage {
         this.alertController = alertController;
         this.authSVC = authSVC;
         this.cameraPreview = cameraPreview;
-        this.videoCapturePlus = videoCapturePlus;
         this.zoomService = zoomService;
         this.SDK_KEY = "xqvI8YnZzEcm2wr4U0DYUl7eB90sPD2iiBjQ";
         this.SDK_SECRET = "iQWxlbFuiEzn4zIJjP1xK1rAYS07uMmgTCiN";
@@ -280,15 +280,15 @@ let CallPage = class CallPage {
         });
     }
     recordVideo() {
-        const options = {
+        /*   const options: VideoCapturePlusOptions = {
             limit: 1,
             highquality: true,
             portraitOverlay: 'assets/img/camera/overlay/portrait.png',
             landscapeOverlay: 'assets/img/camera/overlay/landscape.png'
-        };
-        this.videoCapturePlus.captureVideo(options).then(mediaFile => {
-            console.log(mediaFile);
-        });
+         } */
+        /*    this.videoCapturePlus.captureVideo(options).then(mediaFile =>{
+             console.log(mediaFile);
+           }) */
         /* this.videoCapturePlus.captureVideo(options).then(mediafile: MediaFile[] => console.log(mediafile), error => console.log('Something went wrong')); */
     }
     //ZOOM
@@ -383,8 +383,7 @@ CallPage.ctorParameters = () => [
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["AlertController"] },
     { type: src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_5__["AuthService"] },
     { type: _ionic_native_camera_preview_ngx__WEBPACK_IMPORTED_MODULE_8__["CameraPreview"] },
-    { type: _ionic_native_video_capture_plus_ngx__WEBPACK_IMPORTED_MODULE_9__["VideoCapturePlus"] },
-    { type: _ionic_native_zoom_ngx__WEBPACK_IMPORTED_MODULE_10__["Zoom"] }
+    { type: _ionic_native_zoom_ngx__WEBPACK_IMPORTED_MODULE_9__["Zoom"] }
 ];
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["ViewChild"])("search", { static: true }),
@@ -403,8 +402,7 @@ CallPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["AlertController"],
         src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_5__["AuthService"],
         _ionic_native_camera_preview_ngx__WEBPACK_IMPORTED_MODULE_8__["CameraPreview"],
-        _ionic_native_video_capture_plus_ngx__WEBPACK_IMPORTED_MODULE_9__["VideoCapturePlus"],
-        _ionic_native_zoom_ngx__WEBPACK_IMPORTED_MODULE_10__["Zoom"]])
+        _ionic_native_zoom_ngx__WEBPACK_IMPORTED_MODULE_9__["Zoom"]])
 ], CallPage);
 
 

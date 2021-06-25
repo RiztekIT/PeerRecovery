@@ -118,12 +118,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _services_util_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../services/util.service */ "./src/app/services/util.service.ts");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+
 
 
 
 let OnBoardingPage = class OnBoardingPage {
-    constructor(util) {
+    constructor(util, router) {
         this.util = util;
+        this.router = router;
         this.activeIndex = 0;
         this.slideOpts = {
             speed: 400,
@@ -140,11 +143,14 @@ let OnBoardingPage = class OnBoardingPage {
         });
     }
     goToHome() {
-        this.util.navCtrl.navigateRoot('/home');
+        console.log('home');
+        //this.util.navCtrl.navigateRoot('/home');
+        this.router.navigate(['/home']);
     }
 };
 OnBoardingPage.ctorParameters = () => [
-    { type: _services_util_service__WEBPACK_IMPORTED_MODULE_1__["UtilService"] }
+    { type: _services_util_service__WEBPACK_IMPORTED_MODULE_1__["UtilService"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] }
 ];
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["ViewChild"])('slides', { static: true }),
@@ -156,7 +162,8 @@ OnBoardingPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./on-boarding.page.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/on-boarding/on-boarding.page.html")).default,
         styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./on-boarding.page.scss */ "./src/app/pages/on-boarding/on-boarding.page.scss")).default]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_util_service__WEBPACK_IMPORTED_MODULE_1__["UtilService"]])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_util_service__WEBPACK_IMPORTED_MODULE_1__["UtilService"],
+        _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
 ], OnBoardingPage);
 
 

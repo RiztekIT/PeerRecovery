@@ -12,6 +12,7 @@
         <provider android:authorities="${applicationId}.cordova.plugin.camera.provider" android:exported="false" android:grantUriPermissions="true" android:name="org.apache.cordova.camera.FileProvider">
             <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/camera_provider_paths" />
         </provider>
+        <activity android:name="com.cordovaplugincamerapreview.CameraActivity" android:screenOrientation="portrait" android:theme="@style/CameraPreviewTheme" />
         <activity android:launchMode="singleTop" android:name="com.gae.scaffolder.plugin.FCMPluginActivity">
             <intent-filter>
                 <action android:name="FCM_PLUGIN_ACTIVITY" />
@@ -26,8 +27,8 @@
         <meta-data android:name="com.google.firebase.messaging.default_notification_icon" android:resource="@mipmap/ic_launcher" />
     </application>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-feature android:name="android.hardware.camera" />
-    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+    <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />

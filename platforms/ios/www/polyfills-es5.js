@@ -1,6 +1,6 @@
-function _createForOfIteratorHelper(o) { if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (o = _unsupportedIterableToArray(o))) { var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var it, normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
@@ -16056,7 +16056,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     !*** ./node_modules/tslib/tslib.es6.js ***!
     \*****************************************/
 
-  /*! exports provided: __extends, __assign, __rest, __decorate, __param, __metadata, __awaiter, __generator, __exportStar, __values, __read, __spread, __spreadArrays, __await, __asyncGenerator, __asyncDelegator, __asyncValues, __makeTemplateObject, __importStar, __importDefault, __classPrivateFieldGet, __classPrivateFieldSet */
+  /*! exports provided: __extends, __assign, __rest, __decorate, __param, __metadata, __awaiter, __generator, __createBinding, __exportStar, __values, __read, __spread, __spreadArrays, __await, __asyncGenerator, __asyncDelegator, __asyncValues, __makeTemplateObject, __importStar, __importDefault, __classPrivateFieldGet, __classPrivateFieldSet */
 
   /***/
   function node_modulesTslibTslibEs6Js(module, __webpack_exports__, __webpack_require__) {
@@ -16110,6 +16110,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
     __webpack_require__.d(__webpack_exports__, "__generator", function () {
       return __generator;
+    });
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "__createBinding", function () {
+      return __createBinding;
     });
     /* harmony export (binding) */
 
@@ -16196,18 +16202,18 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       return __classPrivateFieldSet;
     });
     /*! *****************************************************************************
-    Copyright (c) Microsoft Corporation. All rights reserved.
-    Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-    this file except in compliance with the License. You may obtain a copy of the
-    License at http://www.apache.org/licenses/LICENSE-2.0
+    Copyright (c) Microsoft Corporation.
     
-    THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-    KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-    WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-    MERCHANTABLITY OR NON-INFRINGEMENT.
+    Permission to use, copy, modify, and/or distribute this software for any
+    purpose with or without fee is hereby granted.
     
-    See the Apache Version 2.0 License for specific language governing permissions
-    and limitations under the License.
+    THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+    REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+    AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+    INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+    LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+    OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+    PERFORMANCE OF THIS SOFTWARE.
     ***************************************************************************** */
 
     /* global Reflect, Promise */
@@ -16429,9 +16435,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }
     }
 
+    function __createBinding(o, m, k, k2) {
+      if (k2 === undefined) k2 = k;
+      o[k2] = m[k];
+    }
+
     function __exportStar(m, exports) {
       for (var p in m) {
-        if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+        if (p !== "default" && !exports.hasOwnProperty(p)) exports[p] = m[p];
       }
     }
 
@@ -16710,6 +16721,16 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         }
 
         _createClass(Zone, [{
+          key: "parent",
+          get: function get() {
+            return this._parent;
+          }
+        }, {
+          key: "name",
+          get: function get() {
+            return this._name;
+          }
+        }, {
           key: "get",
           value: function get(key) {
             var zone = this.getZoneWith(key);
@@ -16942,35 +16963,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               zoneDelegates[i]._updateTaskCount(task.type, count);
             }
           }
-        }, {
-          key: "parent",
-          get: function get() {
-            return this._parent;
-          }
-        }, {
-          key: "name",
-          get: function get() {
-            return this._name;
-          }
         }], [{
           key: "assertZonePatched",
           value: function assertZonePatched() {
             if (global['Promise'] !== patches['ZoneAwarePromise']) {
               throw new Error('Zone.js has detected that ZoneAwarePromise `(window|global).Promise` ' + 'has been overwritten.\n' + 'Most likely cause is that a Promise polyfill has been loaded ' + 'after Zone.js (Polyfilling Promise api is not necessary when zone.js is loaded. ' + 'If you must load one, do so before loading zone.js.)');
-            }
-          }
-        }, {
-          key: "__load_patch",
-          value: function __load_patch(name, fn) {
-            if (patches.hasOwnProperty(name)) {
-              if (checkDuplicate) {
-                throw Error('Already loaded patch: ' + name);
-              }
-            } else if (!global['__Zone_disable_' + name]) {
-              var perfName = 'Zone:' + name;
-              mark(perfName);
-              patches[name] = fn(global, Zone, _api);
-              performanceMeasure(perfName, perfName);
             }
           }
         }, {
@@ -16993,6 +16990,20 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           key: "currentTask",
           get: function get() {
             return _currentTask;
+          }
+        }, {
+          key: "__load_patch",
+          value: function __load_patch(name, fn) {
+            if (patches.hasOwnProperty(name)) {
+              if (checkDuplicate) {
+                throw Error('Already loaded patch: ' + name);
+              }
+            } else if (!global['__Zone_disable_' + name]) {
+              var perfName = 'Zone:' + name;
+              mark(perfName);
+              patches[name] = fn(global, Zone, _api);
+              performanceMeasure(perfName, perfName);
+            }
           }
         }]);
 
@@ -17212,6 +17223,16 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         }
 
         _createClass(ZoneTask, [{
+          key: "zone",
+          get: function get() {
+            return this._zone;
+          }
+        }, {
+          key: "state",
+          get: function get() {
+            return this._state;
+          }
+        }, {
           key: "cancelScheduleRequest",
           value: function cancelScheduleRequest() {
             this._transitionTo(notScheduled, scheduling);
@@ -17250,16 +17271,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               zone: this.zone.name,
               runCount: this.runCount
             };
-          }
-        }, {
-          key: "zone",
-          get: function get() {
-            return this._zone;
-          }
-        }, {
-          key: "state",
-          get: function get() {
-            return this._state;
           }
         }], [{
           key: "invokeTask",
@@ -17772,6 +17783,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         }
 
         _createClass(ZoneAwarePromise, [{
+          key: Symbol.toStringTag,
+          get: function get() {
+            return 'Promise';
+          }
+        }, {
           key: "then",
           value: function then(onFulfilled, onRejected) {
             var chainPromise = new this.constructor(null);
@@ -17804,11 +17820,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             }
 
             return chainPromise;
-          }
-        }, {
-          key: Symbol.toStringTag,
-          get: function get() {
-            return 'Promise';
           }
         }], [{
           key: "toString",

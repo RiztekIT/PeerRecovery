@@ -7,13 +7,22 @@ import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@io
 import { AlertController, ModalController, NavController, Platform } from "@ionic/angular";
 import { Router } from "@angular/router";
 import { AppointmentService } from "src/app/services/appointment.service";
+import { HTTP } from '@ionic-native/http/ngx';
+/* import { HttpClient } from '@angular/common/http'; */
 declare var google;
+
+
+interface point {
+  lat: number;
+  lng: number;
+}
 
 @Component({
   selector: "app-home",
   templateUrl: "./home.page.html",
   styleUrls: ["./home.page.scss"],
 })
+
 export class HomePage implements OnInit {
 
 
@@ -71,9 +80,10 @@ export class HomePage implements OnInit {
     private alertController: AlertController,
     private nav: NavController,
     private router: Router,
-    private modalCtr: ModalController,
-    private firebaseAuthService: AuthService,
-    public appointmentService: AppointmentService) {
+    private modalCtr: ModalController,    
+    public appointmentService: AppointmentService,
+    public http: HTTP
+    ) {
 
 
       //this.appointmentsDBRef = this.firebaseAuthService.firebaseDB.collection('Appointments');
@@ -97,14 +107,50 @@ export class HomePage implements OnInit {
   ngOnInit(
   ) {
     this.locatio = 'Chihuahua, Chihuahua'
+    this.authSVC.usersign = JSON.parse(sessionStorage.getItem('user'));
  /*    this.getLocation();
     this.getLocation2(); */
-    //this.initializeApp()
+    this.initializeApp()
   }
 
   ionViewWillEnter() {
     this.util.menuCtrl.enable(true);
   }
+
+  getGPS(){
+    /* Swal.showLoading(); */
+
+    
+
+    
+    
+    navigator.geolocation.watchPosition(resp=>{
+      console.log(resp);
+      let pos : point = {
+        lat: resp.coords.latitude,
+        lng: resp.coords.longitude
+      }
+  
+
+
+
+
+      this.authSVC.updateLocation(resp.coords.latitude,resp.coords.longitude, this.authSVC.usersign)
+
+      this.getLocation(resp.coords.latitude,resp.coords.longitude );
+    })
+  }
+
+  getLocation(lat,long){
+    
+     const TU_LLAVE = 'AIzaSyDpPLmgRkC8ublILfSGj8961ku-hyTpNvs';
+     this.http.get(
+       `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${long}&key=${TU_LLAVE}`,{},{}
+      ).then(data=>{
+        let l = JSON.parse(data.data)
+        this.locatio = l.results[0].formatted_address
+      })
+   }
 
 
 
@@ -209,7 +255,7 @@ export class HomePage implements OnInit {
 
   goToBuyPlan() {}
 
-  getLocation(){
+  getLocationn(){
     this.geolocation.getCurrentPosition().then((resp) => {
       console.log(resp);
       // resp.coords.latitude
@@ -254,7 +300,8 @@ export class HomePage implements OnInit {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      this.getUserLocation();
+      //this.getUserLocation();
+      this.getGPS()
     });
   }
   getUserLocation() {

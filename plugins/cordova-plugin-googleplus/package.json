@@ -1,37 +1,39 @@
 {
-  "_from": "cordova-plugin-googleplus",
+  "_args": [
+    [
+      "cordova-plugin-googleplus@8.5.2",
+      "/Users/ivantalamantes/Documents/Riztek/Devs Apps/PEERRECOVERY/PeerRecoveryAPP"
+    ]
+  ],
+  "_from": "cordova-plugin-googleplus@8.5.2",
   "_id": "cordova-plugin-googleplus@8.5.2",
   "_inBundle": false,
   "_integrity": "sha512-I4G1zQcQrrtvdNZbwiDFfWZoIAHmwF4y8dZtnssjYkf1L10hoXF8b/ry+qlW1VK5TLhDgRgEnE45MkaaxBWpXg==",
   "_location": "/cordova-plugin-googleplus",
   "_phantomChildren": {},
   "_requested": {
-    "type": "tag",
+    "type": "version",
     "registry": true,
-    "raw": "cordova-plugin-googleplus",
+    "raw": "cordova-plugin-googleplus@8.5.2",
     "name": "cordova-plugin-googleplus",
     "escapedName": "cordova-plugin-googleplus",
-    "rawSpec": "",
+    "rawSpec": "8.5.2",
     "saveSpec": null,
-    "fetchSpec": "latest"
+    "fetchSpec": "8.5.2"
   },
   "_requiredBy": [
-    "#DEV:/",
-    "#USER"
+    "/"
   ],
   "_resolved": "https://registry.npmjs.org/cordova-plugin-googleplus/-/cordova-plugin-googleplus-8.5.2.tgz",
-  "_shasum": "d73bda05e2725d3493049bdbe813d113a6f6e508",
-  "_spec": "cordova-plugin-googleplus",
+  "_spec": "8.5.2",
   "_where": "/Users/ivantalamantes/Documents/Riztek/Devs Apps/PEERRECOVERY/PeerRecoveryAPP",
   "bugs": {
     "url": "https://github.com/EddyVerbruggen/cordova-plugin-googleplus/issues"
   },
-  "bundleDependencies": false,
   "cordova_name": "Google SignIn",
   "dependencies": {
     "q": "*"
   },
-  "deprecated": false,
   "description": "Use your Google account to authenticate with the app.",
   "engines": [
     {

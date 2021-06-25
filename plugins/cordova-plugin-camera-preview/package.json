@@ -1,27 +1,32 @@
 {
-  "_from": "cordova-plugin-camera-preview",
-  "_id": "cordova-plugin-camera-preview@0.12.1",
+  "_args": [
+    [
+      "cordova-plugin-camera-preview@0.12.2",
+      "/Users/ivantalamantes/Documents/Riztek/Devs Apps/PEERRECOVERY/PeerRecoveryAPP"
+    ]
+  ],
+  "_development": true,
+  "_from": "cordova-plugin-camera-preview@0.12.2",
+  "_id": "cordova-plugin-camera-preview@0.12.2",
   "_inBundle": false,
-  "_integrity": "sha512-cBM7Xg4q6ZB/K5NYHty4z7+F0mvSFcFgrrP9yDflHcs60ylVP28OyJUAQpVf7I1x7sHTLL7OnBmFdol3CxmAfQ==",
+  "_integrity": "sha512-zi4vKVcKI94JmdtljK/TFrdr+2m2rxmpKadejbwlg73sDEY4nDrqi+O3qUm3oxZm3OOOQ5jbz/Kux93PmTZhmw==",
   "_location": "/cordova-plugin-camera-preview",
   "_phantomChildren": {},
   "_requested": {
-    "type": "tag",
+    "type": "version",
     "registry": true,
-    "raw": "cordova-plugin-camera-preview",
+    "raw": "cordova-plugin-camera-preview@0.12.2",
     "name": "cordova-plugin-camera-preview",
     "escapedName": "cordova-plugin-camera-preview",
-    "rawSpec": "",
+    "rawSpec": "0.12.2",
     "saveSpec": null,
-    "fetchSpec": "latest"
+    "fetchSpec": "0.12.2"
   },
   "_requiredBy": [
-    "#DEV:/",
-    "#USER"
+    "#DEV:/"
   ],
-  "_resolved": "https://registry.npmjs.org/cordova-plugin-camera-preview/-/cordova-plugin-camera-preview-0.12.1.tgz",
-  "_shasum": "d8f818070d442b39579be1c63e72385eb9eb7b01",
-  "_spec": "cordova-plugin-camera-preview",
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-camera-preview/-/cordova-plugin-camera-preview-0.12.2.tgz",
+  "_spec": "0.12.2",
   "_where": "/Users/ivantalamantes/Documents/Riztek/Devs Apps/PEERRECOVERY/PeerRecoveryAPP",
   "author": {
     "name": "Weston Ganger",
@@ -31,9 +36,7 @@
   "bugs": {
     "url": "https://github.com/cordova-plugin-camera-preview/cordova-plugin-camera-preview/issues"
   },
-  "bundleDependencies": false,
   "dependencies": {},
-  "deprecated": false,
   "description": "Cordova plugin that allows camera interaction from HTML code for showing camera preview below or on top of the HTML.",
   "devDependencies": {},
   "homepage": "https://github.com/cordova-plugin-camera-preview/cordova-plugin-camera-preview",
@@ -58,5 +61,5 @@
     "url": "git+https://github.com/cordova-plugin-camera-preview/cordova-plugin-camera-preview.git"
   },
   "typings": "typescript/CameraPreview.d.ts",
-  "version": "0.12.1"
+  "version": "0.12.2"
 }

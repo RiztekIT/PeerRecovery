@@ -1,39 +1,42 @@
 {
-  "_from": "cordova.plugin.zoom",
+  "_args": [
+    [
+      "cordova.plugin.zoom@4.6.2166-6.603",
+      "/Users/ivantalamantes/Documents/Riztek/Devs Apps/PEERRECOVERY/PeerRecoveryAPP"
+    ]
+  ],
+  "_development": true,
+  "_from": "cordova.plugin.zoom@4.6.2166-6.603",
   "_id": "cordova.plugin.zoom@4.6.2166-6.603",
   "_inBundle": false,
   "_integrity": "sha512-vfuQYZR9DDacv/MXhaWdnd2GM2hcgd2SsEQJdeHnqlQG9hNzlopfwKRSEhvkKi4+LsbWbLi6ASt3BwzdqTeNOQ==",
   "_location": "/cordova.plugin.zoom",
   "_phantomChildren": {},
   "_requested": {
-    "type": "tag",
+    "type": "version",
     "registry": true,
-    "raw": "cordova.plugin.zoom",
+    "raw": "cordova.plugin.zoom@4.6.2166-6.603",
     "name": "cordova.plugin.zoom",
     "escapedName": "cordova.plugin.zoom",
-    "rawSpec": "",
+    "rawSpec": "4.6.2166-6.603",
     "saveSpec": null,
-    "fetchSpec": "latest"
+    "fetchSpec": "4.6.2166-6.603"
   },
   "_requiredBy": [
-    "#DEV:/",
-    "#USER"
+    "#DEV:/"
   ],
   "_resolved": "https://registry.npmjs.org/cordova.plugin.zoom/-/cordova.plugin.zoom-4.6.2166-6.603.tgz",
-  "_shasum": "4fcad5ecdf18469313888ea185672961474b4514",
-  "_spec": "cordova.plugin.zoom",
+  "_spec": "4.6.2166-6.603",
   "_where": "/Users/ivantalamantes/Documents/Riztek/Devs Apps/PEERRECOVERY/PeerRecoveryAPP",
   "author": {
     "name": "Zoom Video Communication, Inc."
   },
-  "bundleDependencies": false,
   "cordova": {
     "id": "cordova.plugin.zoom",
     "platforms": [
       "android"
     ]
   },
-  "deprecated": false,
   "description": "A Cordova Plugin for Zoom Video Conferencing",
   "keywords": [
     "ecosystem:cordova",

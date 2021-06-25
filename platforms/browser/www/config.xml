@@ -16,6 +16,8 @@
     </edit-config>
     <resource-file src="GoogleService-Info.plist" target="resources/GoogleService-Info.plist" />
     <allow-navigation href="*" />
+    <allow-navigation href="http://192.168.1.199:8100" sessionid="3825bc42" />
+    <allow-navigation href="https://192.168.1.199:8100" sessionid="6f9c1cb1" />
     <preference name="ScrollEnabled" value="false" />
     <preference name="loadUrlTimeoutValue" value="700000" />
     <preference name="android-minSdkVersion" value="21" />
@@ -27,4 +29,5 @@
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="SplashScreen" value="none" />
     <preference name="SplashScreenDelay" value="1000" />
+    <preference name="OverrideUserAgent" value="Mozilla/5.0 Google" />
 </widget>

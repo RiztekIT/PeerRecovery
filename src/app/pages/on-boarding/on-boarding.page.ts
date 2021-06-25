@@ -16,12 +16,14 @@ export class OnBoardingPage implements OnInit {
       delay: 200,
     },
   };
+  usersign
   constructor(
     private util: UtilService,
     private router: Router
   ) { }
 
   ngOnInit() {
+    this.usersign = JSON.parse(sessionStorage.getItem('user'));
   }
 
   onSlideChange() {
@@ -32,8 +34,10 @@ export class OnBoardingPage implements OnInit {
 
   goToHome() {
     console.log('home');
-    //this.util.navCtrl.navigateRoot('/home');
-    this.router.navigate(['/home'])
+    console.log(this.usersign,'home');
+    this.util.navCtrl.navigateRoot('/home');
+    //this.router.navigate(['/home'])
+    //this.router.navigate(['/onBoarding'])
   } 
 
 }

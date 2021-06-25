@@ -479,18 +479,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }
       }, {
         key: "getUsers",
-        value: function getUsers() {}
-        /*   this.usersDBRef.onSnapshot(  snap =>{
-            this.users = [];
-            snap.forEach( snapHijo =>{
-                this.users.push({
-                    id: snapHijo.id,
-                    ...snapHijo.data()
-                })
-            });
-            console.log(this.users);
-          }); */
-
+        value: function getUsers() {
+          /*   this.usersDBRef.onSnapshot(  snap =>{
+              this.users = [];
+              snap.forEach( snapHijo =>{
+                  this.users.push({
+                      id: snapHijo.id,
+                      ...snapHijo.data()
+                  })
+              });
+              console.log(this.users);
+            }); */
+        }
         /*setLastHourForBets(){
           this.chatService.getUsers();
              this.chatService.getUsers().subscribe(message => {

@@ -41,6 +41,18 @@ export class AuthService {
 
    }
 
+   updateLocation(lat,lng, user){
+    let location = {
+      lat : lat,
+      lng: lng,
+      timestamp: firebase.firestore.Timestamp.fromDate(new Date()),
+
+    }
+
+    firebase.database().ref('Tracking/'+user.uid+'/Current').set(location)
+    firebase.database().ref('Tracking/'+user.uid+'/Historic').push(location)
+  }
+
 
 
 
@@ -130,8 +142,8 @@ export class AuthService {
     let provider = new firebase.auth.GoogleAuthProvider();
 
     
-    return firebase.auth().signInWithPopup(provider);
-    /* return firebase.auth().signInWithRedirect(provider); */
+    /* return firebase.auth().signInWithPopup(provider); */
+    return firebase.auth().signInWithRedirect(provider);
   /*   return firebase.auth().signInWithRedirect(provider).then(res=>{
       console.log(res);
       firebase.auth().getRedirectResult().then(function(result) {

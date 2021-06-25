@@ -268,18 +268,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony import */
 
 
-    var _ionic_native_video_capture_plus_ngx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
-    /*! @ionic-native/video-capture-plus/ngx */
-    "./node_modules/@ionic-native/video-capture-plus/ngx/index.js");
-    /* harmony import */
-
-
-    var _ionic_native_zoom_ngx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
+    var _ionic_native_zoom_ngx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
     /*! @ionic-native/zoom/ngx */
-    "./node_modules/@ionic-native/zoom/ngx/index.js");
+    "./node_modules/@ionic-native/zoom/ngx/index.js"); //import { VideoCapturePlus, VideoCapturePlusOptions, MediaFile } from '@ionic-native/video-capture-plus/ngx';
+
 
     var CallPage = /*#__PURE__*/function () {
-      function CallPage(route, router, camera, util, alertController, authSVC, cameraPreview, videoCapturePlus, zoomService) {
+      function CallPage(route, router, camera, util, alertController, authSVC, cameraPreview,
+      /* private videoCapturePlus: VideoCapturePlus, */
+      zoomService) {
         var _this = this;
 
         _classCallCheck(this, CallPage);
@@ -291,7 +288,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.alertController = alertController;
         this.authSVC = authSVC;
         this.cameraPreview = cameraPreview;
-        this.videoCapturePlus = videoCapturePlus;
         this.zoomService = zoomService;
         this.SDK_KEY = "xqvI8YnZzEcm2wr4U0DYUl7eB90sPD2iiBjQ";
         this.SDK_SECRET = "iQWxlbFuiEzn4zIJjP1xK1rAYS07uMmgTCiN";
@@ -468,15 +464,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "recordVideo",
         value: function recordVideo() {
-          var options = {
-            limit: 1,
-            highquality: true,
-            portraitOverlay: 'assets/img/camera/overlay/portrait.png',
-            landscapeOverlay: 'assets/img/camera/overlay/landscape.png'
-          };
-          this.videoCapturePlus.captureVideo(options).then(function (mediaFile) {
-            console.log(mediaFile);
-          });
+          /*   const options: VideoCapturePlusOptions = {
+              limit: 1,
+              highquality: true,
+              portraitOverlay: 'assets/img/camera/overlay/portrait.png',
+              landscapeOverlay: 'assets/img/camera/overlay/landscape.png'
+           } */
+
+          /*    this.videoCapturePlus.captureVideo(options).then(mediaFile =>{
+               console.log(mediaFile);
+             }) */
+
           /* this.videoCapturePlus.captureVideo(options).then(mediafile: MediaFile[] => console.log(mediafile), error => console.log('Something went wrong')); */
         } //ZOOM
         //SDK KEY
@@ -605,9 +603,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         type: _ionic_native_camera_preview_ngx__WEBPACK_IMPORTED_MODULE_8__["CameraPreview"]
       }, {
-        type: _ionic_native_video_capture_plus_ngx__WEBPACK_IMPORTED_MODULE_9__["VideoCapturePlus"]
-      }, {
-        type: _ionic_native_zoom_ngx__WEBPACK_IMPORTED_MODULE_10__["Zoom"]
+        type: _ionic_native_zoom_ngx__WEBPACK_IMPORTED_MODULE_9__["Zoom"]
       }];
     };
 
@@ -622,7 +618,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./call.page.scss */
       "./src/app/pages/call/call.page.scss"))["default"]]
-    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_7__["Camera"], _services_util_service__WEBPACK_IMPORTED_MODULE_1__["UtilService"], _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["AlertController"], src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_5__["AuthService"], _ionic_native_camera_preview_ngx__WEBPACK_IMPORTED_MODULE_8__["CameraPreview"], _ionic_native_video_capture_plus_ngx__WEBPACK_IMPORTED_MODULE_9__["VideoCapturePlus"], _ionic_native_zoom_ngx__WEBPACK_IMPORTED_MODULE_10__["Zoom"]])], CallPage);
+    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_7__["Camera"], _services_util_service__WEBPACK_IMPORTED_MODULE_1__["UtilService"], _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["AlertController"], src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_5__["AuthService"], _ionic_native_camera_preview_ngx__WEBPACK_IMPORTED_MODULE_8__["CameraPreview"], _ionic_native_zoom_ngx__WEBPACK_IMPORTED_MODULE_9__["Zoom"]])], CallPage);
     /***/
   }
 }]);

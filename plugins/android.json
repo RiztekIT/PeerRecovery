@@ -7,6 +7,12 @@
     "files": {}
   },
   "installed_plugins": {
+    "cordova-plugin-advanced-http": {
+      "PACKAGE_NAME": "com.peerrecovery.peer"
+    },
+    "cordova-plugin-androidx-adapter": {
+      "PACKAGE_NAME": "com.peerrecovery.peer"
+    },
     "cordova-plugin-camera": {
       "ANDROID_SUPPORT_V4_VERSION": "27.+",
       "PACKAGE_NAME": "com.peerrecovery.peer"
@@ -54,16 +60,13 @@
     },
     "cordova.plugin.zoom": {
       "PACKAGE_NAME": "com.peerrecovery.peer"
-    },
-    "nl.x-services.plugins.videocaptureplus": {
-      "PACKAGE_NAME": "com.peerrecovery.peer"
-    },
-    "cordova-plugin-androidx-adapter": {
-      "PACKAGE_NAME": "com.peerrecovery.peer"
     }
   },
   "dependent_plugins": {
     "cordova-plugin-add-swift-support": {
+      "PACKAGE_NAME": "com.peerrecovery.peer"
+    },
+    "cordova-plugin-file": {
       "PACKAGE_NAME": "com.peerrecovery.peer"
     }
   }

@@ -215,12 +215,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
     /*! @angular/core */
     "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! @angular/router */
+    "./node_modules/@angular/router/fesm2015/router.js");
 
     var OnBoardingPage = /*#__PURE__*/function () {
-      function OnBoardingPage(util) {
+      function OnBoardingPage(util, router) {
         _classCallCheck(this, OnBoardingPage);
 
         this.util = util;
+        this.router = router;
         this.activeIndex = 0;
         this.slideOpts = {
           speed: 400,
@@ -245,7 +252,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "goToHome",
         value: function goToHome() {
-          this.util.navCtrl.navigateRoot('/home');
+          console.log('home'); //this.util.navCtrl.navigateRoot('/home');
+
+          this.router.navigate(['/home']);
         }
       }]);
 
@@ -255,6 +264,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     OnBoardingPage.ctorParameters = function () {
       return [{
         type: _services_util_service__WEBPACK_IMPORTED_MODULE_1__["UtilService"]
+      }, {
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]
       }];
     };
 
@@ -269,7 +280,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./on-boarding.page.scss */
       "./src/app/pages/on-boarding/on-boarding.page.scss"))["default"]]
-    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_util_service__WEBPACK_IMPORTED_MODULE_1__["UtilService"]])], OnBoardingPage);
+    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_util_service__WEBPACK_IMPORTED_MODULE_1__["UtilService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])], OnBoardingPage);
     /***/
   }
 }]);

@@ -1,5 +1,13 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.peerrecovery.peer" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <feature name="File">
+        <param name="android-package" value="org.apache.cordova.file.FileUtils" />
+        <param name="onload" value="true" />
+    </feature>
+    <allow-navigation href="cdvfile:*" />
+    <feature name="CordovaHttpPlugin">
+        <param name="android-package" value="com.silkimen.cordovahttp.CordovaHttpPlugin" />
+    </feature>
     <feature name="Camera">
         <param name="android-package" value="org.apache.cordova.camera.CameraLauncher" />
     </feature>
@@ -46,6 +54,7 @@
     <feature name="CDVIonicKeyboard">
         <param name="android-package" onload="true" value="io.ionic.keyboard.CDVIonicKeyboard" />
     </feature>
+    <allow-navigation href="http://localhost/*" />
     <allow-navigation href="https://localhost/*" />
     <allow-navigation href="ionic://*" />
     <feature name="IonicWebView">
@@ -54,7 +63,7 @@
     <name>Peerrecovery App</name>
     <description>Peerrecovery</description>
     <author email="ivan.talamantes@riztek.com.mx" href="https://www.riztek.com.mx/">Riztek Team</author>
-    <content original-src="index.html" src="http://192.168.1.199:8100" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />

@@ -20,6 +20,8 @@ import { CameraPreview, CameraPreviewPictureOptions, CameraPreviewOptions, Camer
 //import { VideoCapturePlus, VideoCapturePlusOptions, MediaFile } from '@ionic-native/video-capture-plus/ngx';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { Zoom } from '@ionic-native/zoom/ngx';
+import { HTTP } from '@ionic-native/http/ngx';
+
 
 
 @NgModule({
@@ -46,6 +48,7 @@ import { Zoom } from '@ionic-native/zoom/ngx';
     /* VideoCapturePlus, */
     GooglePlus,
     Zoom,
+    HTTP,
     
     
 
