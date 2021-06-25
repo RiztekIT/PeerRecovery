@@ -359,10 +359,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               console.log(location);
 
               _this.backgroundGeolocation.startTask().then(function (res) {
-                _this.sendGPS(location);
+                /* this.sendGPS(location); */
               });
+              /* this.sendGPS(location); */
 
-              _this.sendGPS(location);
 
               _this.getGPS(); //this.getGPS()
               //this.authSVC.updateLocation(location.latitude,location.longitude, this.authSVC.usersign)
@@ -370,7 +370,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               /* this.getLocation(location.latitude,location.longitude); */
 
 
-              _this.backgroundGeolocation.finish(); // IMPORTANT:  You must execute the finish method here to inform the native plugin that you're finished,
+              _this.backgroundGeolocation.finish().then(function (res) {
+                _this.getGPS();
+              }); // IMPORTANT:  You must execute the finish method here to inform the native plugin that you're finished,
               // and the background-task may be completed.  You must do this regardless if your operations are successful or not.
               // IF YOU DON'T, ios will CRASH YOUR APP for spending too much time in the background.
 
@@ -404,21 +406,39 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "put",
         value: function put(lat, lng) {
           var timestamp = new Date();
+          /*
+              let data = {
+                lat: lat,
+                lng: lng,
+                timestamp: {
+                  "nanoseconds": 870000000,
+                  "seconds": 1624645817
+              }
+              } */
+
           var data = {
-            lat: lat,
-            lng: lng,
-            timestamp: {
+            "lat": 39.7420054,
+            "lng": -106.146794,
+            "timestamp": {
               "nanoseconds": 870000000,
               "seconds": 1624645817
             }
           };
           var headers = {
             'Content-Type': 'application/json',
-            'Content-Length': '<calculated when request is sent>',
-            'Host': '<calculated when request is sent>'
+            'Content-Length': '150',
+            'Host': 'peerrecovery-app-default-rtdb.firebaseio.com'
           };
-          this.http.put('https://peerrecovery-app-default-rtdb.firebaseio.com/Tracking/2ZrxjV7h9yNEQNOEv41Pn0Oaedr2/Current.json', JSON.stringify(data), headers).then(function (res) {
-            console.log(res);
+          console.log(data);
+          console.log(headers);
+          /* let d = '{"lat":39.7420054,"lng":-106.146794,"timestamp":{"nanoseconds":870000000,"seconds":1624645817}}' */
+
+          /* console.log(d); */
+
+          this.http.put('https://peerrecovery-app-default-rtdb.firebaseio.com/Tracking/2ZrxjV7h9yNEQNOEv41Pn0Oaedr2/Current.json', data, headers).then(function (res) {
+            console.log(res, 'RESPUESTA');
+          })["catch"](function (e) {
+            console.log(e, 'ERROR');
           });
           /*
               this.http
@@ -454,10 +474,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             var pos = {
               lat: resp.coords.latitude,
               lng: resp.coords.longitude
-            };
+            }; //this.put(resp.coords.latitude,resp.coords.longitude)
 
-            _this2.put(resp.coords.latitude, resp.coords.longitude); //this.authSVC.updateLocation(resp.coords.latitude,resp.coords.longitude, this.authSVC.usersign)
-
+            _this2.authSVC.updateLocation(resp.coords.latitude, resp.coords.longitude, _this2.authSVC.usersign);
 
             _this2.getLocation(resp.coords.latitude, resp.coords.longitude);
           });
@@ -623,9 +642,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           this.platform.ready().then(function () {
             //this.getUserLocation();
-            _this5.getGPS();
-
-            _this5.startBackgroundGeolocation(); //this.backgroundGeolocation.start();
+            //this.getGPS()
+            _this5.startBackgroundGeolocation(); //this.put(1,1);
+            //this.backgroundGeolocation.start();
 
           });
         }

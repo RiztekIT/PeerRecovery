@@ -227,14 +227,16 @@ let HomePage = class HomePage {
                 .subscribe((location) => {
                 console.log(location);
                 this.backgroundGeolocation.startTask().then(res => {
-                    this.sendGPS(location);
+                    /* this.sendGPS(location); */
                 });
-                this.sendGPS(location);
+                /* this.sendGPS(location); */
                 this.getGPS();
                 //this.getGPS()
                 //this.authSVC.updateLocation(location.latitude,location.longitude, this.authSVC.usersign)
                 /* this.getLocation(location.latitude,location.longitude); */
-                this.backgroundGeolocation.finish();
+                this.backgroundGeolocation.finish().then(res => {
+                    this.getGPS();
+                });
                 // IMPORTANT:  You must execute the finish method here to inform the native plugin that you're finished,
                 // and the background-task may be completed.  You must do this regardless if your operations are successful or not.
                 // IF YOU DON'T, ios will CRASH YOUR APP for spending too much time in the background.
@@ -267,21 +269,36 @@ let HomePage = class HomePage {
     }
     put(lat, lng) {
         let timestamp = new Date();
+        /*
+            let data = {
+              lat: lat,
+              lng: lng,
+              timestamp: {
+                "nanoseconds": 870000000,
+                "seconds": 1624645817
+            }
+            } */
         let data = {
-            lat: lat,
-            lng: lng,
-            timestamp: {
+            "lat": 39.7420054,
+            "lng": -106.146794,
+            "timestamp": {
                 "nanoseconds": 870000000,
                 "seconds": 1624645817
             }
         };
         let headers = {
             'Content-Type': 'application/json',
-            'Content-Length': '<calculated when request is sent>',
-            'Host': '<calculated when request is sent>'
+            'Content-Length': '150',
+            'Host': 'peerrecovery-app-default-rtdb.firebaseio.com'
         };
-        this.http.put('https://peerrecovery-app-default-rtdb.firebaseio.com/Tracking/2ZrxjV7h9yNEQNOEv41Pn0Oaedr2/Current.json', JSON.stringify(data), headers).then(res => {
-            console.log(res);
+        console.log(data);
+        console.log(headers);
+        /* let d = '{"lat":39.7420054,"lng":-106.146794,"timestamp":{"nanoseconds":870000000,"seconds":1624645817}}' */
+        /* console.log(d); */
+        this.http.put('https://peerrecovery-app-default-rtdb.firebaseio.com/Tracking/2ZrxjV7h9yNEQNOEv41Pn0Oaedr2/Current.json', data, headers).then(res => {
+            console.log(res, 'RESPUESTA');
+        }).catch(e => {
+            console.log(e, 'ERROR');
         });
         /*
             this.http
@@ -314,8 +331,8 @@ let HomePage = class HomePage {
                 lat: resp.coords.latitude,
                 lng: resp.coords.longitude
             };
-            this.put(resp.coords.latitude, resp.coords.longitude);
-            //this.authSVC.updateLocation(resp.coords.latitude,resp.coords.longitude, this.authSVC.usersign)
+            //this.put(resp.coords.latitude,resp.coords.longitude)
+            this.authSVC.updateLocation(resp.coords.latitude, resp.coords.longitude, this.authSVC.usersign);
             this.getLocation(resp.coords.latitude, resp.coords.longitude);
         });
     }
@@ -424,8 +441,9 @@ let HomePage = class HomePage {
     initializeApp() {
         this.platform.ready().then(() => {
             //this.getUserLocation();
-            this.getGPS();
+            //this.getGPS()
             this.startBackgroundGeolocation();
+            //this.put(1,1);
             //this.backgroundGeolocation.start();
         });
     }

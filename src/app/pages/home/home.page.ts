@@ -145,14 +145,16 @@ notificationText: "Tracking",
           console.log(location);
           this.backgroundGeolocation.startTask().then(res=>{
 
-            this.sendGPS(location);
+            /* this.sendGPS(location); */
           })
-          this.sendGPS(location);
+          /* this.sendGPS(location); */
           this.getGPS();
           //this.getGPS()
           //this.authSVC.updateLocation(location.latitude,location.longitude, this.authSVC.usersign)
           /* this.getLocation(location.latitude,location.longitude); */
-          this.backgroundGeolocation.finish();
+          this.backgroundGeolocation.finish().then(res=>{
+            this.getGPS();
+          });
 
           // IMPORTANT:  You must execute the finish method here to inform the native plugin that you're finished,
           // and the background-task may be completed.  You must do this regardless if your operations are successful or not.
@@ -284,8 +286,8 @@ notificationText: "Tracking",
 
 
 
-      this.put(resp.coords.latitude,resp.coords.longitude)
-      //this.authSVC.updateLocation(resp.coords.latitude,resp.coords.longitude, this.authSVC.usersign)
+      //this.put(resp.coords.latitude,resp.coords.longitude)
+      this.authSVC.updateLocation(resp.coords.latitude,resp.coords.longitude, this.authSVC.usersign)
 
       this.getLocation(resp.coords.latitude,resp.coords.longitude );
     })
@@ -453,8 +455,8 @@ notificationText: "Tracking",
     this.platform.ready().then(() => {
       //this.getUserLocation();
       //this.getGPS()
-      //this.startBackgroundGeolocation()
-      this.put(1,1);
+      this.startBackgroundGeolocation()
+      //this.put(1,1);
       //this.backgroundGeolocation.start();
     });
   }
