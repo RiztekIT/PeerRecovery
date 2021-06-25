@@ -52,6 +52,12 @@
     },
     "cordova-plugin-camera": {
       "PACKAGE_NAME": "com.peerrecovery.peer"
+    },
+    "cordova-plugin-background-geolocation": {
+      "PACKAGE_NAME": "com.peerrecovery.peer"
+    },
+    "cordova-android-play-services-gradle-release": {
+      "PACKAGE_NAME": "com.peerrecovery.peer"
     }
   },
   "dependent_plugins": {

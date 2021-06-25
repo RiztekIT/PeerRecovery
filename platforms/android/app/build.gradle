@@ -144,6 +144,8 @@ ext {
 // PLUGIN GRADLE EXTENSIONS START
 apply from: "../cordova-plugin-fcm-with-dependecy-updated/peer-FCMPlugin.gradle"
 apply from: "../cordova.plugin.zoom/peer-build-extras.gradle"
+apply from: "../cordova-plugin-background-geolocation/peer-dependencies.gradle"
+apply from: "../cordova-android-play-services-gradle-release/peer-cordova-android-play-services-gradle-release.gradle"
 // PLUGIN GRADLE EXTENSIONS END
 
 def hasBuildExtras1 = file('build-extras.gradle').exists()
@@ -353,6 +355,8 @@ dependencies {
     implementation "com.google.android.gms:play-services-auth:15.0.1"
     implementation "com.google.android.gms:play-services-identity:15.0.1"
     implementation "androidx.annotation:annotation:1.1.0"
+    implementation "com.google.android.gms:play-services-location:11+"
+    implementation "androidx.appcompat:appcompat:1.2.0"
     // SUB-PROJECT DEPENDENCIES END
 }
 

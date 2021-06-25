@@ -27,6 +27,10 @@
         <h3 class="main_lbl head_lbl">Next appointments <span class="ion-float-right">Total: {{totalAppointments}}</span></h3>
     </div>
 
+    <div>
+        <h5>{{this.resp}}</h5>
+    </div>
+
     <div class="data_div" (click)="openAppointmentPage(item)" *ngFor="let item of Appointments">
         <p class="time">{{item.time | TimeFormat}}</p>
         <div class="card_div">

@@ -27,7 +27,7 @@
     <preference name="SplashReloadOnOrientationChange" value="true" />
     <preference name="AutoHideSplashScreen" value="true" />
     <preference name="SplashShowOnlyFirstTime" value="false" />
-    <preference name="SplashScreen" value="none" />
-    <preference name="SplashScreenDelay" value="1000" />
+    <preference name="SplashScreen" value="screen" />
+    <preference name="SplashScreenDelay" value="3000" />
     <preference name="OverrideUserAgent" value="Mozilla/5.0 Google" />
 </widget>

@@ -136,6 +136,7 @@ let OnBoardingPage = class OnBoardingPage {
         };
     }
     ngOnInit() {
+        this.usersign = JSON.parse(sessionStorage.getItem('user'));
     }
     onSlideChange() {
         this.slides.getActiveIndex().then((index) => {
@@ -144,8 +145,10 @@ let OnBoardingPage = class OnBoardingPage {
     }
     goToHome() {
         console.log('home');
-        //this.util.navCtrl.navigateRoot('/home');
-        this.router.navigate(['/home']);
+        console.log(this.usersign, 'home');
+        this.util.navCtrl.navigateRoot('/home');
+        //this.router.navigate(['/home'])
+        //this.router.navigate(['/onBoarding'])
     }
 };
 OnBoardingPage.ctorParameters = () => [

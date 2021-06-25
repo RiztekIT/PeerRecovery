@@ -717,6 +717,65 @@ module.exports = [
         "id": "cordova-plugin-statusbar.StatusBarProxy",
         "pluginId": "cordova-plugin-statusbar",
         "runs": true
+    },
+    {
+        "file": "plugins/cordova.plugin.zoom/www/Zoom.js",
+        "id": "cordova.plugin.zoom.Zoom",
+        "pluginId": "cordova.plugin.zoom",
+        "clobbers": [
+            "cordova.plugins.Zoom"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-nativegeocoder/www/NativeGeocoder.js",
+        "id": "cordova-plugin-nativegeocoder.NativeGeocoder",
+        "pluginId": "cordova-plugin-nativegeocoder",
+        "clobbers": [
+            "nativegeocoder"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-camera/www/CameraConstants.js",
+        "id": "cordova-plugin-camera.Camera",
+        "pluginId": "cordova-plugin-camera",
+        "clobbers": [
+            "Camera"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-camera/www/CameraPopoverOptions.js",
+        "id": "cordova-plugin-camera.CameraPopoverOptions",
+        "pluginId": "cordova-plugin-camera",
+        "clobbers": [
+            "CameraPopoverOptions"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-camera/www/Camera.js",
+        "id": "cordova-plugin-camera.camera",
+        "pluginId": "cordova-plugin-camera",
+        "clobbers": [
+            "navigator.camera"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-camera/src/browser/CameraProxy.js",
+        "id": "cordova-plugin-camera.CameraProxy",
+        "pluginId": "cordova-plugin-camera",
+        "runs": true
+    },
+    {
+        "file": "plugins/cordova-plugin-background-geolocation/www/BackgroundGeolocation.js",
+        "id": "cordova-plugin-background-geolocation.BackgroundGeolocation",
+        "pluginId": "cordova-plugin-background-geolocation",
+        "clobbers": [
+            "BackgroundGeolocation"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-background-geolocation/www/radio.js",
+        "id": "cordova-plugin-background-geolocation.radio",
+        "pluginId": "cordova-plugin-background-geolocation"
     }
 ];
 module.exports.metadata = 
@@ -731,7 +790,7 @@ module.exports.metadata =
     "cordova-plugin-splashscreen": "5.0.4",
     "cordova-plugin-ionic-webview": "4.2.1",
     "cordova-plugin-ionic-keyboard": "2.2.0",
-    "cordova-plugin-camera": "5.0.1",
+    "cordova-plugin-camera": "5.0.2",
     "cordova-plugin-camera-preview": "0.12.2",
     "cordova-plugin-compat": "1.2.0",
     "nl.x-services.plugins.videocaptureplus": "1.0.0",
@@ -740,7 +799,9 @@ module.exports.metadata =
     "cordova-plugin-fcm-with-dependecy-updated": "7.8.0",
     "cordova-plugin-androidx-adapter": "1.1.3",
     "cordova-plugin-file": "6.0.2",
-    "cordova-plugin-advanced-http": "3.1.0"
+    "cordova-plugin-advanced-http": "3.1.0",
+    "cordova-plugin-background-geolocation": "3.1.0",
+    "cordova-android-play-services-gradle-release": "4.0.0"
 }
 // BOTTOM OF METADATA
 });

@@ -21,6 +21,7 @@ import { CameraPreview, CameraPreviewPictureOptions, CameraPreviewOptions, Camer
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { Zoom } from '@ionic-native/zoom/ngx';
 import { HTTP } from '@ionic-native/http/ngx';
+import { BackgroundGeolocation } from "@ionic-native/background-geolocation/ngx";
 
 
 
@@ -49,6 +50,7 @@ import { HTTP } from '@ionic-native/http/ngx';
     GooglePlus,
     Zoom,
     HTTP,
+    BackgroundGeolocation,
     
     
 

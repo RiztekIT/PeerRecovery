@@ -239,7 +239,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
       _createClass(OnBoardingPage, [{
         key: "ngOnInit",
-        value: function ngOnInit() {}
+        value: function ngOnInit() {
+          this.usersign = JSON.parse(sessionStorage.getItem('user'));
+        }
       }, {
         key: "onSlideChange",
         value: function onSlideChange() {
@@ -252,9 +254,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "goToHome",
         value: function goToHome() {
-          console.log('home'); //this.util.navCtrl.navigateRoot('/home');
-
-          this.router.navigate(['/home']);
+          console.log('home');
+          console.log(this.usersign, 'home');
+          this.util.navCtrl.navigateRoot('/home'); //this.router.navigate(['/home'])
+          //this.router.navigate(['/onBoarding'])
         }
       }]);
 

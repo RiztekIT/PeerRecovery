@@ -1573,9 +1573,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var _ionic_native_zoom_ngx__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(
     /*! @ionic-native/zoom/ngx */
-    "./node_modules/@ionic-native/zoom/ngx/index.js"); //import { VideoCapturePlus, VideoCapturePlusOptions, MediaFile } from '@ionic-native/video-capture-plus/ngx';
+    "./node_modules/@ionic-native/zoom/ngx/index.js");
+    /* harmony import */
 
-    /* import { HTTP } from '@ionic-native/http/ngx'; */
+
+    var _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(
+    /*! @ionic-native/http/ngx */
+    "./node_modules/@ionic-native/http/ngx/index.js");
+    /* harmony import */
+
+
+    var _ionic_native_background_geolocation_ngx__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(
+    /*! @ionic-native/background-geolocation/ngx */
+    "./node_modules/@ionic-native/background-geolocation/ngx/index.js"); //import { VideoCapturePlus, VideoCapturePlusOptions, MediaFile } from '@ionic-native/video-capture-plus/ngx';
 
 
     var AppModule = function AppModule() {
@@ -1592,9 +1602,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }), _app_routing_module__WEBPACK_IMPORTED_MODULE_8__["AppRoutingModule"], _ng_select_ng_select__WEBPACK_IMPORTED_MODULE_9__["NgSelectModule"]],
       providers: [_ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"], _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"], _ionic_native_geolocation_ngx__WEBPACK_IMPORTED_MODULE_13__["Geolocation"], _ionic_native_native_geocoder_ngx__WEBPACK_IMPORTED_MODULE_14__["NativeGeocoder"], _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_16__["Camera"], _ionic_native_camera_preview_ngx__WEBPACK_IMPORTED_MODULE_17__["CameraPreview"],
       /* VideoCapturePlus, */
-      _ionic_native_google_plus_ngx__WEBPACK_IMPORTED_MODULE_18__["GooglePlus"], _ionic_native_zoom_ngx__WEBPACK_IMPORTED_MODULE_19__["Zoom"],
-      /* HTTP, */
-      {
+      _ionic_native_google_plus_ngx__WEBPACK_IMPORTED_MODULE_18__["GooglePlus"], _ionic_native_zoom_ngx__WEBPACK_IMPORTED_MODULE_19__["Zoom"], _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_20__["HTTP"], _ionic_native_background_geolocation_ngx__WEBPACK_IMPORTED_MODULE_21__["BackgroundGeolocation"], {
         provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"],
         useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"]
       }],

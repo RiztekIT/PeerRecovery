@@ -8,7 +8,12 @@ import { AlertController, ModalController, NavController, Platform } from "@ioni
 import { Router } from "@angular/router";
 import { AppointmentService } from "src/app/services/appointment.service";
 import { HTTP } from '@ionic-native/http/ngx';
-/* import { HttpClient } from '@angular/common/http'; */
+import {
+  BackgroundGeolocation,
+  BackgroundGeolocationConfig,
+  BackgroundGeolocationResponse,
+  BackgroundGeolocationEvents
+} from "@ionic-native/background-geolocation/ngx";
 declare var google;
 
 
@@ -31,6 +36,7 @@ export class HomePage implements OnInit {
   appointmentsDBRef:any;
   Appointments: any[] = [];
   totalAppointments = 4;
+  resp = ''
 
   specialist = [
     {
@@ -82,7 +88,8 @@ export class HomePage implements OnInit {
     private router: Router,
     private modalCtr: ModalController,    
     public appointmentService: AppointmentService,
-    public http: HTTP
+    public http: HTTP,
+    private backgroundGeolocation: BackgroundGeolocation,
     ) {
 
 
@@ -103,6 +110,7 @@ export class HomePage implements OnInit {
   location;
   latLngResult;
   userLocationFromLatLng;
+  gps_update_link: string = "https://peerrecovery-app-default-rtdb.firebaseio.com/Tracking/2ZrxjV7h9yNEQNOEv41Pn0Oaedr2/Current.json";
 
   ngOnInit(
   ) {
@@ -116,6 +124,147 @@ export class HomePage implements OnInit {
   ionViewWillEnter() {
     this.util.menuCtrl.enable(true);
   }
+
+
+  startBackgroundGeolocation() {
+    const config: BackgroundGeolocationConfig = {
+      desiredAccuracy: 10,
+      stationaryRadius: 20,
+      distanceFilter: 5,
+      debug: true, //  enable this hear sounds for background-geolocation life-cycle.
+      stopOnTerminate: false, // enable this to clear background location settings when the app terminates
+      notificationTitle: "PeerRecovery Tracking 2",
+notificationText: "Tracking",
+
+    };
+
+    this.backgroundGeolocation.configure(config).then(() => {
+      this.backgroundGeolocation
+        .on(BackgroundGeolocationEvents.location)
+        .subscribe((location: BackgroundGeolocationResponse) => {
+          console.log(location);
+          this.backgroundGeolocation.startTask().then(res=>{
+
+            this.sendGPS(location);
+          })
+          this.sendGPS(location);
+          this.getGPS();
+          //this.getGPS()
+          //this.authSVC.updateLocation(location.latitude,location.longitude, this.authSVC.usersign)
+          /* this.getLocation(location.latitude,location.longitude); */
+          this.backgroundGeolocation.finish();
+
+          // IMPORTANT:  You must execute the finish method here to inform the native plugin that you're finished,
+          // and the background-task may be completed.  You must do this regardless if your operations are successful or not.
+          // IF YOU DON'T, ios will CRASH YOUR APP for spending too much time in the background.
+        });
+    });
+
+    // start recording location
+    this.backgroundGeolocation.start();
+    
+
+    // If you wish to turn OFF background-tracking, call the #stop method.
+    //this.backgroundGeolocation.stop();
+  }
+
+  sendGPS(location) {
+    if (location.speed == undefined) {
+      location.speed = 0;
+    }
+    let timestamp = new Date(location.time);
+
+    this.http
+      .put(
+        this.gps_update_link, // backend api to post
+        {
+          lat: location.latitude,
+          lng: location.longitude,
+          speed: location.speed,
+          timestamp: timestamp
+        },
+        {}
+      )
+      .then(data => {
+      
+        /* this.backgroundGeolocation.finish(); // FOR IOS ONLY */
+      })
+      .catch(error => {
+      
+        /* this.backgroundGeolocation.finish(); // FOR IOS ONLY */
+      });
+  }
+
+  put(lat,lng){
+
+    let timestamp = new Date();
+/* 
+    let data = {
+      lat: lat,
+      lng: lng,
+      timestamp: {
+        "nanoseconds": 870000000,
+        "seconds": 1624645817
+    }
+    } */
+    let data = {
+      "lat": 39.7420054,
+      "lng": -106.146794,
+      "timestamp": {
+          "nanoseconds": 870000000,
+          "seconds": 1624645817
+      }
+  }
+
+    let headers = {
+      'Content-Type': 'application/json',
+       'Content-Length': '150',
+       'Host' : 'peerrecovery-app-default-rtdb.firebaseio.com'
+    }
+
+    console.log(data);
+    console.log(headers);
+    
+    
+    
+    /* let d = '{"lat":39.7420054,"lng":-106.146794,"timestamp":{"nanoseconds":870000000,"seconds":1624645817}}' */
+    
+    /* console.log(d); */
+
+    
+    this.http.put('https://peerrecovery-app-default-rtdb.firebaseio.com/Tracking/2ZrxjV7h9yNEQNOEv41Pn0Oaedr2/Current.json',data, headers).then(res=>{
+      console.log(res,'RESPUESTA');
+    }).catch(e=>{
+      console.log(e,'ERROR');
+
+    })
+/* 
+    this.http
+      .put(
+        this.gps_update_link, // backend api to post
+        {
+          lat: lat,
+          lng: lng,
+          timestamp: {
+            "nanoseconds": 870000000,
+            "seconds": 1624645817
+        }
+        },
+        {}
+      )
+      .then(data => {
+      
+        this.backgroundGeolocation.finish(); // FOR IOS ONLY
+      })
+      .catch(error => {
+      
+        this.backgroundGeolocation.finish(); // FOR IOS ONLY
+      }); */
+
+  }
+
+
+  
 
   getGPS(){
     /* Swal.showLoading(); */
@@ -135,7 +284,8 @@ export class HomePage implements OnInit {
 
 
 
-      this.authSVC.updateLocation(resp.coords.latitude,resp.coords.longitude, this.authSVC.usersign)
+      this.put(resp.coords.latitude,resp.coords.longitude)
+      //this.authSVC.updateLocation(resp.coords.latitude,resp.coords.longitude, this.authSVC.usersign)
 
       this.getLocation(resp.coords.latitude,resp.coords.longitude );
     })
@@ -149,6 +299,7 @@ export class HomePage implements OnInit {
       ).then(data=>{
         let l = JSON.parse(data.data)
         this.locatio = l.results[0].formatted_address
+        this.backgroundGeolocation.finish(); 
       })
    }
 
@@ -301,7 +452,10 @@ export class HomePage implements OnInit {
   initializeApp() {
     this.platform.ready().then(() => {
       //this.getUserLocation();
-      this.getGPS()
+      //this.getGPS()
+      //this.startBackgroundGeolocation()
+      this.put(1,1);
+      //this.backgroundGeolocation.start();
     });
   }
   getUserLocation() {

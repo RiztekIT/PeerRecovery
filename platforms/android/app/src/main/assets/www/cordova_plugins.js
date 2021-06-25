@@ -371,6 +371,19 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "clobbers": [
         "cordova.plugins.Zoom"
       ]
+    },
+    {
+      "id": "cordova-plugin-background-geolocation.BackgroundGeolocation",
+      "file": "plugins/cordova-plugin-background-geolocation/www/BackgroundGeolocation.js",
+      "pluginId": "cordova-plugin-background-geolocation",
+      "clobbers": [
+        "BackgroundGeolocation"
+      ]
+    },
+    {
+      "id": "cordova-plugin-background-geolocation.radio",
+      "file": "plugins/cordova-plugin-background-geolocation/www/radio.js",
+      "pluginId": "cordova-plugin-background-geolocation"
     }
   ];
   module.exports.metadata = {
@@ -390,6 +403,8 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-splashscreen": "5.0.4",
     "cordova-plugin-statusbar": "2.4.3",
     "cordova-plugin-whitelist": "1.3.4",
-    "cordova.plugin.zoom": "4.6.21666.0603"
+    "cordova.plugin.zoom": "4.6.21666.0603",
+    "cordova-plugin-background-geolocation": "3.1.0",
+    "cordova-android-play-services-gradle-release": "4.0.0"
   };
 });
