@@ -51,6 +51,12 @@
     <feature name="BackgroundGeolocation">
         <param name="android-package" value="com.tenforwardconsulting.bgloc.cordova.BackgroundGeolocationPlugin" />
     </feature>
+    <feature name="BackgroundMode">
+        <param name="android-package" value="de.appplant.cordova.plugin.background.BackgroundMode" />
+    </feature>
+    <feature name="BackgroundModeExt">
+        <param name="android-package" value="de.appplant.cordova.plugin.background.BackgroundModeExt" />
+    </feature>
     <platform name="android">
         <preference name="AndroidXEnabled" value="true" />
     </platform>
@@ -62,6 +68,9 @@
     <allow-navigation href="ionic://*" />
     <feature name="IonicWebView">
         <param name="android-package" value="com.ionicframework.cordova.webview.IonicWebView" />
+    </feature>
+    <feature name="ForegroundPlugin">
+        <param name="android-package" value="com.davidbriglio.foreground.ForegroundPlugin" />
     </feature>
     <name>Peerrecovery App</name>
     <description>Peerrecovery</description>
@@ -106,6 +115,7 @@
     <splash density="port-xxhdpi" src="resources/android/splash/drawable-port-xxhdpi-screen.png" />
     <splash density="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
     <preference name="loglevel" value="DEBUG" />
+    <preference name="KeepRunning" value="true" />
     <preference name="webView" value="com.ionicframework.cordova.webview.IonicWebViewEngine" />
     <preference name="ScrollEnabled" value="false" />
     <preference name="loadUrlTimeoutValue" value="700000" />

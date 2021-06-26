@@ -22,6 +22,9 @@ import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { Zoom } from '@ionic-native/zoom/ngx';
 import { HTTP } from '@ionic-native/http/ngx';
 import { BackgroundGeolocation } from "@ionic-native/background-geolocation/ngx";
+import { ForegroundService } from '@ionic-native/foreground-service/ngx';
+import { BackgroundMode } from '@ionic-native/background-mode/ngx';
+/* import { BackgroundMode } from '@ionic-native/background-mode/ngx'; */
 
 
 
@@ -51,6 +54,9 @@ import { BackgroundGeolocation } from "@ionic-native/background-geolocation/ngx"
     Zoom,
     HTTP,
     BackgroundGeolocation,
+    /* BackgroundMode, */
+    ForegroundService,
+    BackgroundMode,
     
     
 

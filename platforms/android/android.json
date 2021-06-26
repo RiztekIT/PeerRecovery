@@ -21,7 +21,7 @@
         "parents": {
           "/manifest/application": [
             {
-              "xml": "<application android:networkSecurityConfig=\"@xml/network_security_config\" />",
+              "xml": "<application android:usesCleartextTraffic=\"true\" />",
               "count": 2,
               "mode": "merge",
               "id": "config.xml",
@@ -35,7 +35,7 @@
               }
             },
             {
-              "xml": "<application android:usesCleartextTraffic=\"true\" />",
+              "xml": "<application android:networkSecurityConfig=\"@xml/network_security_config\" />",
               "count": 1,
               "mode": "merge",
               "id": "config.xml",
@@ -117,6 +117,18 @@
             {
               "xml": "<feature name=\"BackgroundGeolocation\"><param name=\"android-package\" value=\"com.tenforwardconsulting.bgloc.cordova.BackgroundGeolocationPlugin\" /></feature>",
               "count": 1
+            },
+            {
+              "xml": "<feature name=\"BackgroundMode\"><param name=\"android-package\" value=\"de.appplant.cordova.plugin.background.BackgroundMode\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"BackgroundModeExt\"><param name=\"android-package\" value=\"de.appplant.cordova.plugin.background.BackgroundModeExt\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<preference name=\"KeepRunning\" value=\"true\" />",
+              "count": 1
             }
           ]
         }
@@ -191,6 +203,10 @@
             {
               "xml": "<uses-permission android:name=\"android.permission.SYSTEM_ALERT_WINDOW\" />",
               "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.FOREGROUND_SERVICE\" />",
+              "count": 6
             }
           ],
           "/manifest": [
@@ -264,7 +280,7 @@
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.WAKE_LOCK\" />",
-              "count": 1
+              "count": 2
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.FOREGROUND_SERVICE\" />",
@@ -321,6 +337,14 @@
             {
               "xml": "<receiver android:enabled=\"true\" android:exported=\"true\" android:name=\"com.marianhello.bgloc.BootCompletedReceiver\"><intent-filter><action android:name=\"android.intent.action.BOOT_COMPLETED\" /></intent-filter></receiver>",
               "count": 1
+            },
+            {
+              "xml": "<service android:name=\"com.davidbriglio.foreground.ForegroundService\" android:stopWithTask=\"true\" />",
+              "count": 1
+            },
+            {
+              "xml": "<service android:name=\"de.appplant.cordova.plugin.background.ForegroundService\" />",
+              "count": 1
             }
           ]
         }
@@ -354,6 +378,10 @@
             },
             {
               "xml": "<feature name=\"IonicWebView\"><param name=\"android-package\" value=\"com.ionicframework.cordova.webview.IonicWebView\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"ForegroundPlugin\"><param name=\"android-package\" value=\"com.davidbriglio.foreground.ForegroundPlugin\" /></feature>",
               "count": 1
             }
           ]
@@ -544,6 +572,12 @@
       "PLAY-SERVICES-VISION-IMAGE-LABEL": "18.0.0",
       "PLAY-SERVICES-WALLET": "17.0.0",
       "PLAY-SERVICES-WEARABLE": "17.0.0",
+      "PACKAGE_NAME": "com.peerrecovery.peer"
+    },
+    "cordova-plugin-foreground-service": {
+      "PACKAGE_NAME": "com.peerrecovery.peer"
+    },
+    "cordova-plugin-background-mode": {
       "PACKAGE_NAME": "com.peerrecovery.peer"
     }
   },
@@ -933,6 +967,23 @@
       "id": "cordova-plugin-background-geolocation.radio",
       "file": "plugins/cordova-plugin-background-geolocation/www/radio.js",
       "pluginId": "cordova-plugin-background-geolocation"
+    },
+    {
+      "id": "cordova-plugin-foreground-service.ForegroundService",
+      "file": "plugins/cordova-plugin-foreground-service/www/foreground.js",
+      "pluginId": "cordova-plugin-foreground-service",
+      "clobbers": [
+        "cordova.plugins.foregroundService"
+      ]
+    },
+    {
+      "id": "cordova-plugin-background-mode.BackgroundMode",
+      "file": "plugins/cordova-plugin-background-mode/www/background-mode.js",
+      "pluginId": "cordova-plugin-background-mode",
+      "clobbers": [
+        "cordova.plugins.backgroundMode",
+        "plugin.backgroundMode"
+      ]
     }
   ],
   "plugin_metadata": {
@@ -954,6 +1005,8 @@
     "cordova-plugin-whitelist": "1.3.4",
     "cordova.plugin.zoom": "4.6.21666.0603",
     "cordova-plugin-background-geolocation": "3.1.0",
-    "cordova-android-play-services-gradle-release": "4.0.0"
+    "cordova-android-play-services-gradle-release": "4.0.0",
+    "cordova-plugin-foreground-service": "1.1.3",
+    "cordova-plugin-background-mode": "0.7.3"
   }
 }

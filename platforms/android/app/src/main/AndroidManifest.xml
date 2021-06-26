@@ -45,6 +45,8 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
+        <service android:name="com.davidbriglio.foreground.ForegroundService" android:stopWithTask="true" />
+        <service android:name="de.appplant.cordova.plugin.background.ForegroundService" />
     </application>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-feature android:name="android.hardware.camera" android:required="false" />

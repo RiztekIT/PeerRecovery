@@ -126,6 +126,12 @@
       "PLAY-SERVICES-WALLET": "17.0.0",
       "PLAY-SERVICES-WEARABLE": "17.0.0",
       "PACKAGE_NAME": "com.peerrecovery.peer"
+    },
+    "cordova-plugin-foreground-service": {
+      "PACKAGE_NAME": "com.peerrecovery.peer"
+    },
+    "cordova-plugin-background-mode": {
+      "PACKAGE_NAME": "com.peerrecovery.peer"
     }
   },
   "dependent_plugins": {

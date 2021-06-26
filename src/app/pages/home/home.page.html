@@ -27,8 +27,23 @@
         <h3 class="main_lbl head_lbl">Next appointments <span class="ion-float-right">Total: {{totalAppointments}}</span></h3>
     </div>
 
+    <ion-button (click)="start()">Start</ion-button>
+    <ion-button (click)="getL()">Obtener</ion-button>
+    <ion-button (click)="stop()">Close</ion-button>
+
     <div>
-        <h5>{{this.resp}}</h5>
+        <ion-list *ngFor="let l of locations">
+            <ion-item>
+                <ion-label>
+                    Latitud: {{l.latitude}}
+                </ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-label>
+                    Long: {{l.longitude}}
+                </ion-label>
+            </ion-item>
+        </ion-list>
     </div>
 
     <div class="data_div" (click)="openAppointmentPage(item)" *ngFor="let item of Appointments">

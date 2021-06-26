@@ -14,7 +14,14 @@ import {
   BackgroundGeolocationResponse,
   BackgroundGeolocationEvents
 } from "@ionic-native/background-geolocation/ngx";
+import { ForegroundService } from '@ionic-native/foreground-service/ngx';
+import { BackgroundMode } from '@ionic-native/background-mode/ngx';
+
+
+
+
 declare var google;
+declare var window;
 
 
 interface point {
@@ -90,6 +97,8 @@ export class HomePage implements OnInit {
     public appointmentService: AppointmentService,
     public http: HTTP,
     private backgroundGeolocation: BackgroundGeolocation,
+    public foregroundService: ForegroundService,
+    public backgroundMode : BackgroundMode
     ) {
 
 
@@ -102,7 +111,8 @@ export class HomePage implements OnInit {
 
   locatio
 
-
+arr:any;
+locations;
   userLocation;
   userCity;
   lat;
@@ -118,7 +128,15 @@ export class HomePage implements OnInit {
     this.authSVC.usersign = JSON.parse(sessionStorage.getItem('user'));
  /*    this.getLocation();
     this.getLocation2(); */
+    this.arr = []
+    this.locations = []
     this.initializeApp()
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this.stop()
   }
 
   ionViewWillEnter() {
@@ -130,32 +148,55 @@ export class HomePage implements OnInit {
     const config: BackgroundGeolocationConfig = {
       desiredAccuracy: 10,
       stationaryRadius: 20,
-      distanceFilter: 5,
+      distanceFilter: 1,
       debug: true, //  enable this hear sounds for background-geolocation life-cycle.
       stopOnTerminate: false, // enable this to clear background location settings when the app terminates
       notificationTitle: "PeerRecovery Tracking 2",
 notificationText: "Tracking",
+interval: 10000,
 
     };
+
+  
 
     this.backgroundGeolocation.configure(config).then(() => {
       this.backgroundGeolocation
         .on(BackgroundGeolocationEvents.location)
         .subscribe((location: BackgroundGeolocationResponse) => {
           console.log(location);
-          this.backgroundGeolocation.startTask().then(res=>{
 
-            /* this.sendGPS(location); */
-          })
+          let locationstr = localStorage.getItem("location")
+
+          if (locationstr !=null){
+            this.arr.push(location)
+          }else{
+            let locationarr = JSON.parse(locationstr)
+            this.arr = locationstr;
+          }
+          localStorage.setItem("location", JSON.stringify(this.arr));
+
+          this.authSVC.updateLocation(location.latitude,location.longitude, this.authSVC.usersign)
+
+       /*    this.backgroundGeolocation.startTask().then(res=>{
+
+            
+            this.getGPS();
+            this.put();
+          }) */
+
+          
           /* this.sendGPS(location); */
-          this.getGPS();
+          /* this.getGPS(); */
+          /* this.foregroundService.start('Tracking', 'Enabled', 'drawable/fsicon') */
+         
+
           //this.getGPS()
           //this.authSVC.updateLocation(location.latitude,location.longitude, this.authSVC.usersign)
           /* this.getLocation(location.latitude,location.longitude); */
-          this.backgroundGeolocation.finish().then(res=>{
+       /*    this.backgroundGeolocation.finish().then(res=>{
             this.getGPS();
           });
-
+ */
           // IMPORTANT:  You must execute the finish method here to inform the native plugin that you're finished,
           // and the background-task may be completed.  You must do this regardless if your operations are successful or not.
           // IF YOU DON'T, ios will CRASH YOUR APP for spending too much time in the background.
@@ -163,11 +204,24 @@ notificationText: "Tracking",
     });
 
     // start recording location
-    this.backgroundGeolocation.start();
     
+    window.app = this;
 
     // If you wish to turn OFF background-tracking, call the #stop method.
     //this.backgroundGeolocation.stop();
+  }
+
+  start(){
+    this.backgroundGeolocation.start();
+  }
+
+  stop(){
+    this.backgroundGeolocation.stop();
+  }
+
+
+  getL(){
+this.locations = JSON.parse(localStorage.getItem("location"))
   }
 
   sendGPS(location) {
@@ -197,7 +251,7 @@ notificationText: "Tracking",
       });
   }
 
-  put(lat,lng){
+  put(lat?,lng?){
 
     let timestamp = new Date();
 /* 
@@ -236,8 +290,10 @@ notificationText: "Tracking",
     
     this.http.put('https://peerrecovery-app-default-rtdb.firebaseio.com/Tracking/2ZrxjV7h9yNEQNOEv41Pn0Oaedr2/Current.json',data, headers).then(res=>{
       console.log(res,'RESPUESTA');
+      this.resp = JSON.stringify(res.data)
     }).catch(e=>{
       console.log(e,'ERROR');
+      this.resp = JSON.stringify(e)
 
     })
 /* 
@@ -290,6 +346,12 @@ notificationText: "Tracking",
       this.authSVC.updateLocation(resp.coords.latitude,resp.coords.longitude, this.authSVC.usersign)
 
       this.getLocation(resp.coords.latitude,resp.coords.longitude );
+
+      
+
+      
+      /* this.foregroundService.start('Tracking2', 'Enabled2', 'drawable/fsicon') */
+      
     })
   }
 
@@ -454,8 +516,17 @@ notificationText: "Tracking",
   initializeApp() {
     this.platform.ready().then(() => {
       //this.getUserLocation();
-      //this.getGPS()
+      /* this.backgroundMode.enable(); */
+      
+     /*  this.backgroundMode.on('activate').subscribe(res=>{
+        this.getGPS();
+        this.presentAlert()
+       
+      }) */
       this.startBackgroundGeolocation()
+      this.getGPS()
+      //this.startBackgroundGeolocation()
+      
       //this.put(1,1);
       //this.backgroundGeolocation.start();
     });

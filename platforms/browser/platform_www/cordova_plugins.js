@@ -776,6 +776,29 @@ module.exports = [
         "file": "plugins/cordova-plugin-background-geolocation/www/radio.js",
         "id": "cordova-plugin-background-geolocation.radio",
         "pluginId": "cordova-plugin-background-geolocation"
+    },
+    {
+        "file": "plugins/cordova-plugin-foreground-service/www/foreground.js",
+        "id": "cordova-plugin-foreground-service.ForegroundService",
+        "pluginId": "cordova-plugin-foreground-service",
+        "clobbers": [
+            "cordova.plugins.foregroundService"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-background-mode/www/background-mode.js",
+        "id": "cordova-plugin-background-mode.BackgroundMode",
+        "pluginId": "cordova-plugin-background-mode",
+        "clobbers": [
+            "cordova.plugins.backgroundMode",
+            "plugin.backgroundMode"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-background-mode/src/browser/BackgroundModeProxy.js",
+        "id": "cordova-plugin-background-mode.BackgroundMode.Proxy",
+        "pluginId": "cordova-plugin-background-mode",
+        "runs": true
     }
 ];
 module.exports.metadata = 
@@ -801,7 +824,9 @@ module.exports.metadata =
     "cordova-plugin-file": "6.0.2",
     "cordova-plugin-advanced-http": "3.1.0",
     "cordova-plugin-background-geolocation": "3.1.0",
-    "cordova-android-play-services-gradle-release": "4.0.0"
+    "cordova-android-play-services-gradle-release": "4.0.0",
+    "cordova-plugin-foreground-service": "1.1.3",
+    "cordova-plugin-background-mode": "0.7.3"
 }
 // BOTTOM OF METADATA
 });

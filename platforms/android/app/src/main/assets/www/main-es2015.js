@@ -916,6 +916,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_zoom_ngx__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @ionic-native/zoom/ngx */ "./node_modules/@ionic-native/zoom/ngx/index.js");
 /* harmony import */ var _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @ionic-native/http/ngx */ "./node_modules/@ionic-native/http/ngx/index.js");
 /* harmony import */ var _ionic_native_background_geolocation_ngx__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @ionic-native/background-geolocation/ngx */ "./node_modules/@ionic-native/background-geolocation/ngx/index.js");
+/* harmony import */ var _ionic_native_foreground_service_ngx__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @ionic-native/foreground-service/ngx */ "./node_modules/@ionic-native/foreground-service/ngx/index.js");
+/* harmony import */ var _ionic_native_background_mode_ngx__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @ionic-native/background-mode/ngx */ "./node_modules/@ionic-native/background-mode/ngx/index.js");
 
 
 
@@ -939,6 +941,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+/* import { BackgroundMode } from '@ionic-native/background-mode/ngx'; */
 let AppModule = class AppModule {
 };
 AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -968,6 +973,9 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _ionic_native_zoom_ngx__WEBPACK_IMPORTED_MODULE_19__["Zoom"],
             _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_20__["HTTP"],
             _ionic_native_background_geolocation_ngx__WEBPACK_IMPORTED_MODULE_21__["BackgroundGeolocation"],
+            /* BackgroundMode, */
+            _ionic_native_foreground_service_ngx__WEBPACK_IMPORTED_MODULE_22__["ForegroundService"],
+            _ionic_native_background_mode_ngx__WEBPACK_IMPORTED_MODULE_23__["BackgroundMode"],
             { provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"], useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"] }
         ],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
