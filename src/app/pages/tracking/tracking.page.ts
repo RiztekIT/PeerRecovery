@@ -3,6 +3,8 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import { mapStyle } from "src/environments/environment";
 import { AuthService } from "src/app/services/auth.service";
 import { AlertController } from "@ionic/angular";
+import { TrackingService } from '../../services/tracking.service';
+import { HTTP } from '@ionic-native/http/ngx';
 
 @Component({
   selector: "app-tracking",
@@ -28,18 +30,29 @@ export class TrackingPage implements OnInit {
   ];
   constructor(private util: UtilService,
     private alertController: AlertController,
-    public authSVC: AuthService) {}
+    public authSVC: AuthService,    
+    public trackingSVC: TrackingService,
+    public http: HTTP
+    ) {}
 
-  ngOnInit() {}
 
-  async onMarkerSelect(marker: any) {
+    locatio
+    user;
+
+
+  ngOnInit() {
+    this.user = JSON.parse(sessionStorage.getItem('user'));
+    this.getLocationUser(this.user)
+  }
+
+ /*  async onMarkerSelect(marker: any) {
     if (marker.isOpen) {
       await this.markers.forEach((element) => {
         element.select = false;
       });
       marker.select = await true;
     }
-  }
+  } */
 
 
   
@@ -66,6 +79,71 @@ export class TrackingPage implements OnInit {
 
     await alert.present();
   }
+
+  getLocationUser(user){
+ /*    this.gps = false;
+    this.disabled = false; */
+    this.trackingSVC.getLocation(user).once('value').then(resp=>{
+      console.log(resp.val());
+      let lat = resp.val().lat;
+      let long = resp.val().lng;
+
+      this.lat = lat;
+      this.lng = long
+      this.getLocation(lat,long);
+    /*   let pos : point = {
+        lat: lat,
+        lng: long
+      }
+
+
+      this.points.push(pos); */
+   /*    this.userlat = lat;
+      this.userlng = long;
+
+      this.currentPos.lat = lat;
+      this.currentPos.lng = long */
+
+
+    /*   if (this.points.length>1){
+        this.points[1] = pos;
+
+      }else if (this.points.length==1){
+        this.points.push(pos);
+
+      }else{
+        
+        this.points.push(pos);
+      } */
+  
+    /*   const TU_LLAVE = 'AIzaSyDpPLmgRkC8ublILfSGj8961ku-hyTpNvs';
+    this.http.get(
+      `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${long}&key=${TU_LLAVE}`       
+     ).subscribe((e:any) => {
+       
+         console.log(e);
+         //Swal.close();
+         
+       
+     }); */
+    })
+
+  }
+
+
+  getLocation(lat,long){
+    /*  const lat = 45.45121212;
+     const long = 45.451564; */
+     const TU_LLAVE = 'AIzaSyDpPLmgRkC8ublILfSGj8961ku-hyTpNvs';
+     this.http.get(
+       `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${long}&key=${TU_LLAVE}`,{},{}
+      ).then(data=>{
+        let l = JSON.parse(data.data)
+        this.locatio = l.results[0].formatted_address
+        /* this.backgroundGeolocation.finish();  */
+      })
+   }
+   
   
 }
 

@@ -17,7 +17,7 @@ import { AgmOverlays } from "agm-overlays"
     IonicModule,
     AgmOverlays,
     AgmCoreModule.forRoot({
-      apiKey: ''
+      apiKey: 'AIzaSyDL-2mFo6QYsp7qNSQl95AzhVZ6njRsLtE'
     }),
     TrackingPageRoutingModule
   ],

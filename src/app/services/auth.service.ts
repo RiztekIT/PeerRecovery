@@ -54,6 +54,13 @@ export class AuthService {
     firebase.database().ref('Tracking/'+user.uid+'/Historic').push(location)
   }
 
+  sendLocaltion(current){
+
+    firebase.database().ref('Tracking/Panic/'+current.user.uid).push(current);
+
+
+  }
+
 
 
 

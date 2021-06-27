@@ -24,6 +24,7 @@ import { HTTP } from '@ionic-native/http/ngx';
 import { BackgroundGeolocation } from "@ionic-native/background-geolocation/ngx";
 import { ForegroundService } from '@ionic-native/foreground-service/ngx';
 import { BackgroundMode } from '@ionic-native/background-mode/ngx';
+import { AgmCoreModule } from '@agm/core';
 /* import { BackgroundMode } from '@ionic-native/background-mode/ngx'; */
 
 
@@ -40,7 +41,10 @@ import { BackgroundMode } from '@ionic-native/background-mode/ngx';
       mode: 'ios'
     }),
     AppRoutingModule,
-    NgSelectModule
+    NgSelectModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDL-2mFo6QYsp7qNSQl95AzhVZ6njRsLtE'
+    }),
   ],
   providers: [
     StatusBar,

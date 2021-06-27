@@ -122,6 +122,10 @@ locations;
   userLocationFromLatLng;
   gps_update_link: string = "https://peerrecovery-app-default-rtdb.firebaseio.com/Tracking/2ZrxjV7h9yNEQNOEv41Pn0Oaedr2/Current.json";
 
+  currentPos;
+
+  apps: any[] = [];
+
   ngOnInit(
   ) {
     this.locatio = 'Chihuahua, Chihuahua'
@@ -345,6 +349,14 @@ this.locations = JSON.parse(localStorage.getItem("location"))
       //this.put(resp.coords.latitude,resp.coords.longitude)
       this.authSVC.updateLocation(resp.coords.latitude,resp.coords.longitude, this.authSVC.usersign)
 
+      this.currentPos = {
+        lat: resp.coords.latitude,
+        lng: resp.coords.longitude,
+        active: true,
+        user: this.authSVC.usersign
+      };
+      
+
       this.getLocation(resp.coords.latitude,resp.coords.longitude );
 
       
@@ -371,7 +383,7 @@ this.locations = JSON.parse(localStorage.getItem("location"))
 
 
   getAppointments(){
-    this.appointmentService.getAppointments().on('value', resp=>{
+  /*   this.appointmentService.getAppointments().on('value', resp=>{
       this.Appointments  = [];
       resp.forEach((childSnapshot: any) => {
           const item = childSnapshot.val();
@@ -380,6 +392,32 @@ this.locations = JSON.parse(localStorage.getItem("location"))
       });
       console.log(resp);
       console.log(this.Appointments);
+    }) */
+
+    this.appointmentService.getApps(this.user.uid).on('value', resp=>{
+      this.apps = []
+      
+      console.log(resp.val());
+
+      resp.forEach((childSnapshot: any) =>{
+        let item = childSnapshot.val()
+        item.appkey = childSnapshot.key;
+        
+
+        
+              this.apps.push(item) 
+    
+       
+
+
+          
+          
+        
+              
+      })
+
+      this.totalAppointments = this.apps.length;
+
     })
     
     }
@@ -387,15 +425,13 @@ this.locations = JSON.parse(localStorage.getItem("location"))
 
 
   openAppointmentPage(item) {
-    let appointment = {
-      appointmentID: item.key,
-    };
     let navigationExtras: NavigationExtras = {
       queryParams: {
-        special: JSON.stringify(appointment)
+        special: JSON.stringify(item)
       }
     };
     this.router.navigate(['appointment'], navigationExtras);
+    
 
   }
 
@@ -419,11 +455,15 @@ this.locations = JSON.parse(localStorage.getItem("location"))
             cssClass: 'secondary',
             handler: (blah) => {
               console.log('Confirm Cancel: blah');
+              
             }
           }, {
             text: 'Confirm!',
             handler: () => {
               console.log('Confirm Okay');
+              console.log(this.currentPos);
+              this.authSVC.sendLocaltion(this.currentPos)
+              
             }
           }
         ]
@@ -526,6 +566,7 @@ this.locations = JSON.parse(localStorage.getItem("location"))
       this.startBackgroundGeolocation()
       this.getGPS()
       this.getMenu()
+      this.getAppointments(); 
       //this.startBackgroundGeolocation()
       
       //this.put(1,1);
@@ -657,7 +698,7 @@ this.locations = JSON.parse(localStorage.getItem("location"))
       resp.forEach((childSnapshot: any) => {
         const item = childSnapshot.val();
         item.key = childSnapshot.key;
-        if (item.titulo!='Settings'){
+        if ((item.titulo!='Settings') && (item.titulo!='Tracking')){
 
           menu.push(item);
         }
@@ -666,6 +707,60 @@ this.locations = JSON.parse(localStorage.getItem("location"))
       this.authSVC.menu = menu;
 
     })
+  }
+
+
+  getStyle(item){
+    let color;
+
+    let hoy = new Date();
+
+    let fecha = new Date()
+
+    fecha.setTime(item.appointmentdate.seconds*1000)
+
+    let h = +fecha - +hoy
+
+    h = h / 86400000
+
+    if (h<0){
+
+      color = {
+        'background-color' : '#ff3333'
+      }
+      return color
+      
+    }else if (h<1){
+
+      color = {
+        'background-color' : '#ffb3b3'
+      }
+      return color
+      
+    }else if(h<3){
+      color = {
+        'background-color' : '#ffff99'
+      }
+      return color
+
+    }else{
+
+      color = {
+        'background-color' : '#66ff66'
+      }
+      return color
+
+    }
+
+
+
+
+
+
+
+
+  
+
   }
 
 }

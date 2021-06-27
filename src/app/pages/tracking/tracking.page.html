@@ -13,15 +13,17 @@
 
 <ion-content>
     <agm-map [styles]="styles" [disableDefaultUI]="false" [latitude]="lat" [longitude]="lng" [zoom]="zoom" [zoomControl]="false">
-        <agm-overlay *ngFor="let item of markers" [latitude]="item.lat" [longitude]="item.lng">
-            <div *ngIf="item.isOpen == true" (click)="onMarkerSelect(item)" [class.selected]="item.select" class="open avatar avatar_round">
+        <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+        <!--  <agm-overlay *ngFor="let item of markers" [latitude]="item.lat" [longitude]="item.lng"> -->
+
+        <!--    <div *ngIf="item.isOpen == true" (click)="onMarkerSelect(item)" [class.selected]="item.select" class="open avatar avatar_round">
                 <img [src]="item.img" alt="" />
             </div>
 
             <div *ngIf="item.isOpen == false" class="avatar avatar_round">
                 <img [src]="item.img" alt="" />
-            </div>
-        </agm-overlay>
+            </div> -->
+        <!-- </agm-overlay> -->
     </agm-map>
 
     <div class="bottom-content">
@@ -32,7 +34,7 @@
 
             <ion-item lines="none">
                 <ion-label>
-                    Priv. Palmira 1704 int 6 Col. Las granjas, Chihuahua MX
+                    {{this.locatio}}
                 </ion-label>
                 <ion-icon class="margin-right-20" src="../../../assets/imgs/appicons/location.svg" slot="start"></ion-icon>
             </ion-item>
@@ -67,26 +69,6 @@
 
         <ion-button (click)="presentAlert()" expand="full" shape="round ">Share my location</ion-button>
 
-    </div>
-
-
-    <div class="banner">
-        <div class="content">
-            <h2 class="margin-bottom-5">Start Chat in 3 Steps</h2>
-            <div class="list margin-bottom-4">
-                <div class="circle margin-right-15"></div>
-                <p>Select Specialty</p>
-            </div>
-            <div class="list margin-bottom-4">
-                <div class="circle margin-right-15"></div>
-                <p>Pay Fee</p>
-            </div>
-            <div class="list margin-bottom-4">
-                <div class="circle margin-right-15"></div>
-                <p>Start Chat</p>
-            </div>
-        </div>
-        <img class="banner-img padding-right-15" src="../../../assets/imgs/chatWithDr_banner.svg">
     </div>
 
 

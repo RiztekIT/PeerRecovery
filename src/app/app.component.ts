@@ -127,7 +127,7 @@ export class AppComponent implements OnInit {
       resp.forEach((childSnapshot: any) => {
         const item = childSnapshot.val();
         item.key = childSnapshot.key;
-        if (item.titulo!='Settings'){
+        if ((item.titulo!='Settings') && (item.titulo!='Tracking')){
 
           menu.push(item);
         }
