@@ -13,22 +13,35 @@
 <ion-content class="ion-padding-horizontal ion-padding-bottom">
 
 
-    <div class="profile_div">
+    <!--    <div class="profile_div">
         <div class="img_div">
             <img src="../../../assets/image_icon/certificate.png">
         </div>
-    </div>
-    <p class="reward-name">Health course</p>
-    <p class="book_id">Deadline: Feb, 25 2021</p>
+    </div> -->
+    <p class="reward-name">{{this.rewardsSVC.rewardSelected.title}}</p>
+    <p class="book_id">Deadline: {{this.rewardsSVC.rewardSelected.dateline.seconds*1000 | date}}</p>
     <p>
         <!--- <ion-progress-bar color="warning" value="0.8"></ion-progress-bar>  -->
     </p>
 
 
+    <div class="card_div" *ngFor="let task of this.rewardsSVC.rewardSelected.task">
+        <div class="data_div" style="width: 100%;">
+            <h3 class="name">{{task?.title}}
+                <span class="ion-float-right">
+                <ion-icon *ngIf="task.done" name="checkmark-done-outline" style="zoom:2.0; color: green;"> </ion-icon>
+                </span>
+
+            </h3>
+            <p class="ago">{{task?.dateline.seconds*1000 | date}}</p>
+            <p class="ago detail">{{task?.description}}</p>
+        </div>
+    </div>
 
 
 
 
+    <!-- 
     <div class="card_div" *ngFor="let item of review">
         <div class="data_div">
             <h3 class="name">{{item?.name}}
@@ -39,6 +52,6 @@
             <p class="ago">{{item?.ago}}</p>
             <p class="ago detail">{{item?.detail}}</p>
         </div>
-    </div>
+    </div> -->
 
 </ion-content>

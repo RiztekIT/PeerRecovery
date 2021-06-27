@@ -1,4 +1,4 @@
-ion-header {
+/* ion-header {
     ion-back-button {
         color: var(--blue);
     }
@@ -26,4 +26,65 @@ ion-header {
 ion-avatar {
     width: 55px;
     height: 55px;
+} */
+
+ion-header {
+    ion-back-button {
+        color: var(--blue);
+    }
+    ion-title {
+        color: var(--blue);
+        text-align: center;
+        font-size: 18px;
+        font-family: "sf_ui_sb";
+        text-transform: capitalize;
+    }
+}
+
+ion-content {
+    .main_lbl {
+        font-size: 16px;
+        color: var(--blue);
+        font-family: "sf_ui_md";
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .date_div {
+        background-color: var(--div_back);
+        margin-top: 10px;
+        ion-col {
+            text-align: center;
+            padding: 11px 0px 0px 0px;
+            .date_lbl {
+                font-size: 14px;
+                color: var(--blue);
+                font-family: "sf_ui_md";
+                margin: 0;
+            }
+            ion-datetime {
+                color: var(--my_theme);
+                font-family: "sf_ui_md";
+                font-size: 14px;
+                padding-left: 0;
+                padding-top: 5px;
+                padding-bottom: 0;
+            }
+            .time_l {
+                color: var(--blue);
+                margin-bottom: 10px;
+            }
+        }
+    }
+}
+
+.stacked-lbl {
+    font-size: 19px;
+    color: var(--blue);
+    font-family: "sf_ui_md";
+    margin: 0;
+}
+
+ion-button {
+    font-family: "sf_ui_md";
 }

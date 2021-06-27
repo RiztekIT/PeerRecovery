@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ModalController, NavController, PopoverController } from '@ionic/angular';
+import { RewardService } from 'src/app/services/reward.service';
 import { CalendarPageModule } from '../calendar/calendar.module';
 
 @Component({
@@ -75,28 +76,20 @@ export class RewardPage implements OnInit {
     private popoverController: PopoverController,
     private modalController: ModalController,
     private nav: NavController,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public rewardsSVC: RewardService
   ) {}
 
   ngOnInit() {
-    this.route.params.subscribe((params) => {
+    console.log(this.rewardsSVC.rewardSelected);
+  /*   this.route.params.subscribe((params) => {
       this.activeTab = params["id"];
-    });
-  }
-  chageTab(name) {
-    this.activeTab = name;
+    }); */
   }
 
-  async presentModal() {
-    /*const modal = await this.modalController.create({
-      component: CallModalPa,
-      cssClass: "callModal",
-    });
-    return await modal.present();*/
-  }
-  chat() {
-    this.nav.navigateForward("/chat");
-  }
+
+ 
+
 }
 
 
