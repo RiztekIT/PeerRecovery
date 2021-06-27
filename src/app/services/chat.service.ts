@@ -242,6 +242,14 @@ user2
     firebase.database().ref('Chats/Messages/'+this.keymessage).push(sendmessage)
     firebase.database().ref('Chats/Unread/'+userrec.uid+'/'+this.keymessage).push(sendmessage)
   }
+
+
+
+  getTokenID(userid){
+    return firebase.database().ref('Token/'+userid+'/id');
+
+  }
+
   newMessageGroup(message, idchat){
 
     console.log(message);

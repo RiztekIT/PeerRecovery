@@ -270,7 +270,7 @@ module.exports = webpackAsyncContext;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-app>\n    <ion-split-pane contentId=\"main-content\">\n        <ion-menu contentId=\"main-content\" type=\"reveal\">\n            <ion-header class=\"ion-no-border\">\n                <img [src]=\"this.authSVC.usersign.photoURL\">\n                <!-- <img src=\"../assets/imgs/user_profile_dp.svg\"> -->\n                <div class=\"content margin-left-17\">\n                    <h2>{{this.authSVC.usersign.displayName}}</h2>\n                    <h3>{{this.authSVC.usersign.email}}</h3>\n                    <!-- <p>+44 903 397 6854</p> -->\n                </div>\n            </ion-header>\n            <ion-content>\n                <ion-list class=\"margin-top-21\" id=\"inbox-list\">\n                    <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let p of appPages; let i = index\">\n                        <ion-item (click)=\"selectedIndex = i\" routerDirection=\"forward\" [routerLink]=\"[p.url]\" lines=\"none\" detail=\"false\">\n                            <div class=\"activeBox\" [class.selected]=\"selectedIndex == i\">\n                                <h2>\n                                    {{ p.title }}\n                                </h2>\n                            </div>\n                        </ion-item>\n\n                    </ion-menu-toggle>\n                    <ion-item>\n                        <div (click)=\"logout()\" class=\"activeBox\">\n                            <h2>\n                                Logout\n                            </h2>\n                        </div>\n\n                    </ion-item>\n                </ion-list>\n            </ion-content>\n        </ion-menu>\n        <ion-router-outlet id=\"main-content\" animated=\"true\">\n            <ion-button (click)=\"goToProfile()\" class=\"edit-profile-btn\">\n                <ion-icon src=\"../assets/imgs/appicons/edit-icon.svg\"></ion-icon>\n            </ion-button>\n        </ion-router-outlet>\n    </ion-split-pane>\n</ion-app>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-app>\n    <ion-split-pane contentId=\"main-content\">\n        <ion-menu contentId=\"main-content\" type=\"reveal\">\n            <ion-header class=\"ion-no-border\">\n                <img [src]=\"this.authSVC.usersign.photoURL\">\n                <!-- <img src=\"../assets/imgs/user_profile_dp.svg\"> -->\n                <div class=\"content margin-left-17\">\n                    <h2>{{this.authSVC.usersign.displayName}}</h2>\n                    <h3>{{this.authSVC.usersign.email}}</h3>\n                    <!-- <p>+44 903 397 6854</p> -->\n                </div>\n            </ion-header>\n            <ion-content>\n                <ion-list class=\"margin-top-21\" id=\"inbox-list\">\n                    <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let m of this.authSVC.menu; let i = index\">\n                        <!-- <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let p of appPages; let i = index\"> -->\n                        <ion-item (click)=\"selectedIndex = i\" routerDirection=\"forward\" [routerLink]=\"[m.url]\" lines=\"none\" detail=\"false\">\n                            <div class=\"activeBox\" [class.selected]=\"selectedIndex == i\">\n                                <h2>\n                                    {{ m.titulo }}\n                                </h2>\n                            </div>\n                        </ion-item>\n\n                    </ion-menu-toggle>\n                    <ion-item>\n                        <div (click)=\"logout()\" class=\"activeBox\">\n                            <h2>\n                                Logout\n                            </h2>\n                        </div>\n\n                    </ion-item>\n                </ion-list>\n            </ion-content>\n        </ion-menu>\n        <ion-router-outlet id=\"main-content\" animated=\"false\">\n            <!--     <ion-button (click)=\"goToProfile()\" class=\"edit-profile-btn\">\n                <ion-icon src=\"../assets/imgs/appicons/edit-icon.svg\"></ion-icon>\n            </ion-button> -->\n        </ion-router-outlet>\n    </ion-split-pane>\n</ion-app>");
 
 /***/ }),
 
@@ -614,8 +614,12 @@ const routes = [
         loadChildren: () => Promise.all(/*! import() | pages-home-home-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-home-home-module")]).then(__webpack_require__.bind(null, /*! ./pages/home/home.module */ "./src/app/pages/home/home.module.ts")).then((m) => m.HomePageModule),
     },
     {
+        path: "dashboard",
+        loadChildren: () => Promise.all(/*! import() | pages-home-home-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-home-home-module")]).then(__webpack_require__.bind(null, /*! ./pages/home/home.module */ "./src/app/pages/home/home.module.ts")).then((m) => m.HomePageModule),
+    },
+    {
         path: "search",
-        loadChildren: () => Promise.all(/*! import() | pages-search-search-module */[__webpack_require__.e("default~pages-call-call-module~pages-search-search-module~pages-tracking-tracking-module"), __webpack_require__.e("pages-search-search-module")]).then(__webpack_require__.bind(null, /*! ./pages/search/search.module */ "./src/app/pages/search/search.module.ts")).then((m) => m.SearchPageModule),
+        loadChildren: () => Promise.all(/*! import() | pages-search-search-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-search-search-module")]).then(__webpack_require__.bind(null, /*! ./pages/search/search.module */ "./src/app/pages/search/search.module.ts")).then((m) => m.SearchPageModule),
     },
     {
         path: "doctorCardView",
@@ -654,15 +658,15 @@ const routes = [
         loadChildren: () => __webpack_require__.e(/*! import() | pages-buy-medicine-buy-medicine-module */ "pages-buy-medicine-buy-medicine-module").then(__webpack_require__.bind(null, /*! ./pages/buy-medicine/buy-medicine.module */ "./src/app/pages/buy-medicine/buy-medicine.module.ts")).then((m) => m.BuyMedicinePageModule),
     },
     {
-        path: "chatList",
-        loadChildren: () => __webpack_require__.e(/*! import() | pages-chat-list-chat-list-module */ "pages-chat-list-chat-list-module").then(__webpack_require__.bind(null, /*! ./pages/chat-list/chat-list.module */ "./src/app/pages/chat-list/chat-list.module.ts")).then((m) => m.ChatListPageModule),
-    },
-    {
         path: "chat",
-        loadChildren: () => Promise.all(/*! import() | pages-chat-chat-module */[__webpack_require__.e("default~pages-chat-chat-module~pages-chat-users-list-chat-users-list-module"), __webpack_require__.e("pages-chat-chat-module")]).then(__webpack_require__.bind(null, /*! ./pages/chat/chat.module */ "./src/app/pages/chat/chat.module.ts")).then((m) => m.ChatPageModule),
+        loadChildren: () => Promise.all(/*! import() | pages-chat-list-chat-list-module */[__webpack_require__.e("default~pages-call-users-list-call-users-list-module~pages-chat-chat-module~pages-chat-list-chat-lis~2ba80dbb"), __webpack_require__.e("pages-chat-list-chat-list-module")]).then(__webpack_require__.bind(null, /*! ./pages/chat-list/chat-list.module */ "./src/app/pages/chat-list/chat-list.module.ts")).then((m) => m.ChatListPageModule),
     },
     {
-        path: "calendar",
+        path: "chat2",
+        loadChildren: () => Promise.all(/*! import() | pages-chat-chat-module */[__webpack_require__.e("default~pages-call-users-list-call-users-list-module~pages-chat-chat-module~pages-chat-list-chat-lis~2ba80dbb"), __webpack_require__.e("pages-chat-chat-module")]).then(__webpack_require__.bind(null, /*! ./pages/chat/chat.module */ "./src/app/pages/chat/chat.module.ts")).then((m) => m.ChatPageModule),
+    },
+    {
+        path: "appoinments",
         loadChildren: () => Promise.all(/*! import() | pages-calendar-calendar-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-calendar-calendar-module")]).then(__webpack_require__.bind(null, /*! ./pages/calendar/calendar.module */ "./src/app/pages/calendar/calendar.module.ts")).then((m) => m.CalendarPageModule),
     },
     {
@@ -679,27 +683,27 @@ const routes = [
     },
     {
         path: 'chat-users-list',
-        loadChildren: () => Promise.all(/*! import() | pages-chat-users-list-chat-users-list-module */[__webpack_require__.e("default~pages-chat-chat-module~pages-chat-users-list-chat-users-list-module"), __webpack_require__.e("pages-chat-users-list-chat-users-list-module")]).then(__webpack_require__.bind(null, /*! ./pages/chat-users-list/chat-users-list.module */ "./src/app/pages/chat-users-list/chat-users-list.module.ts")).then(m => m.ChatUsersListPageModule)
+        loadChildren: () => Promise.all(/*! import() | pages-chat-users-list-chat-users-list-module */[__webpack_require__.e("default~pages-call-users-list-call-users-list-module~pages-chat-chat-module~pages-chat-list-chat-lis~2ba80dbb"), __webpack_require__.e("pages-chat-users-list-chat-users-list-module")]).then(__webpack_require__.bind(null, /*! ./pages/chat-users-list/chat-users-list.module */ "./src/app/pages/chat-users-list/chat-users-list.module.ts")).then(m => m.ChatUsersListPageModule)
     },
     {
         path: 'rewards',
-        loadChildren: () => __webpack_require__.e(/*! import() | pages-rewards-rewards-module */ "pages-rewards-rewards-module").then(__webpack_require__.bind(null, /*! ./pages/rewards/rewards.module */ "./src/app/pages/rewards/rewards.module.ts")).then(m => m.RewardsPageModule)
+        loadChildren: () => Promise.all(/*! import() | pages-rewards-rewards-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-rewards-rewards-module")]).then(__webpack_require__.bind(null, /*! ./pages/rewards/rewards.module */ "./src/app/pages/rewards/rewards.module.ts")).then(m => m.RewardsPageModule)
     },
     {
         path: 'reward',
-        loadChildren: () => __webpack_require__.e(/*! import() | pages-reward-reward-module */ "pages-reward-reward-module").then(__webpack_require__.bind(null, /*! ./pages/reward/reward.module */ "./src/app/pages/reward/reward.module.ts")).then(m => m.RewardPageModule)
+        loadChildren: () => Promise.all(/*! import() | pages-reward-reward-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-reward-reward-module")]).then(__webpack_require__.bind(null, /*! ./pages/reward/reward.module */ "./src/app/pages/reward/reward.module.ts")).then(m => m.RewardPageModule)
     },
     {
         path: 'tracking',
-        loadChildren: () => Promise.all(/*! import() | pages-tracking-tracking-module */[__webpack_require__.e("default~pages-call-call-module~pages-search-search-module~pages-tracking-tracking-module"), __webpack_require__.e("pages-tracking-tracking-module")]).then(__webpack_require__.bind(null, /*! ./pages/tracking/tracking.module */ "./src/app/pages/tracking/tracking.module.ts")).then(m => m.TrackingPageModule)
+        loadChildren: () => Promise.all(/*! import() | pages-tracking-tracking-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-tracking-tracking-module")]).then(__webpack_require__.bind(null, /*! ./pages/tracking/tracking.module */ "./src/app/pages/tracking/tracking.module.ts")).then(m => m.TrackingPageModule)
     },
     {
-        path: 'call-users-list',
-        loadChildren: () => __webpack_require__.e(/*! import() | pages-call-users-list-call-users-list-module */ "pages-call-users-list-call-users-list-module").then(__webpack_require__.bind(null, /*! ./pages/call-users-list/call-users-list.module */ "./src/app/pages/call-users-list/call-users-list.module.ts")).then(m => m.CallUsersListPageModule)
+        path: 'video',
+        loadChildren: () => Promise.all(/*! import() | pages-call-users-list-call-users-list-module */[__webpack_require__.e("default~pages-call-users-list-call-users-list-module~pages-chat-chat-module~pages-chat-list-chat-lis~2ba80dbb"), __webpack_require__.e("pages-call-users-list-call-users-list-module")]).then(__webpack_require__.bind(null, /*! ./pages/call-users-list/call-users-list.module */ "./src/app/pages/call-users-list/call-users-list.module.ts")).then(m => m.CallUsersListPageModule)
     },
     {
         path: 'call',
-        loadChildren: () => Promise.all(/*! import() | pages-call-call-module */[__webpack_require__.e("default~pages-call-call-module~pages-search-search-module~pages-tracking-tracking-module"), __webpack_require__.e("pages-call-call-module")]).then(__webpack_require__.bind(null, /*! ./pages/call/call.module */ "./src/app/pages/call/call.module.ts")).then(m => m.CallPageModule)
+        loadChildren: () => Promise.all(/*! import() | pages-call-call-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-call-call-module")]).then(__webpack_require__.bind(null, /*! ./pages/call/call.module */ "./src/app/pages/call/call.module.ts")).then(m => m.CallPageModule)
     },
 ];
 let AppRoutingModule = class AppRoutingModule {
@@ -800,14 +804,36 @@ let AppComponent = class AppComponent {
         this.platform.ready().then(() => {
             setTimeout(() => {
                 this.splashScreen.hide();
+                //this.getMenu();
             }, 2000);
         });
     }
     ngOnInit() {
-        const path = window.location.pathname.split("folder/")[1];
-        if (path !== undefined) {
-            this.selectedIndex = this.appPages.findIndex((page) => page.title.toLowerCase() === path.toLowerCase());
-        }
+        /*    const path = window.location.pathname.split("folder/")[1];
+           if (path !== undefined) {
+             this.selectedIndex = this.appPages.findIndex(
+               (page) => page.title.toLowerCase() === path.toLowerCase()
+             );
+           } */
+    }
+    getMenu() {
+        let menu;
+        this.user = JSON.parse(sessionStorage.getItem('user'));
+        console.log(this.user);
+        this.authSVC.getMenu(this.user).orderByChild('order').on('value', (resp) => {
+            console.log(resp);
+            //const menu = snapshotToArray(resp);
+            menu = [];
+            resp.forEach((childSnapshot) => {
+                const item = childSnapshot.val();
+                item.key = childSnapshot.key;
+                if ((item.titulo != 'Settings') && (item.titulo != 'Tracking')) {
+                    menu.push(item);
+                }
+            });
+            console.log(menu, 'menu');
+            this.authSVC.menu = menu;
+        });
     }
     goToProfile() { }
     backButtonEvent() {
@@ -918,6 +944,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_background_geolocation_ngx__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @ionic-native/background-geolocation/ngx */ "./node_modules/@ionic-native/background-geolocation/ngx/index.js");
 /* harmony import */ var _ionic_native_foreground_service_ngx__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @ionic-native/foreground-service/ngx */ "./node_modules/@ionic-native/foreground-service/ngx/index.js");
 /* harmony import */ var _ionic_native_background_mode_ngx__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @ionic-native/background-mode/ngx */ "./node_modules/@ionic-native/background-mode/ngx/index.js");
+/* harmony import */ var _agm_core__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! @agm/core */ "./node_modules/@agm/core/fesm2015/agm-core.js");
+/* harmony import */ var _ionic_native_fcm_ngx__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! @ionic-native/fcm/ngx */ "./node_modules/@ionic-native/fcm/ngx/index.js");
 
 
 
@@ -943,6 +971,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
 /* import { BackgroundMode } from '@ionic-native/background-mode/ngx'; */
 let AppModule = class AppModule {
 };
@@ -959,7 +989,10 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
                 mode: 'ios'
             }),
             _app_routing_module__WEBPACK_IMPORTED_MODULE_8__["AppRoutingModule"],
-            _ng_select_ng_select__WEBPACK_IMPORTED_MODULE_9__["NgSelectModule"]
+            _ng_select_ng_select__WEBPACK_IMPORTED_MODULE_9__["NgSelectModule"],
+            _agm_core__WEBPACK_IMPORTED_MODULE_24__["AgmCoreModule"].forRoot({
+                apiKey: 'AIzaSyDL-2mFo6QYsp7qNSQl95AzhVZ6njRsLtE'
+            }),
         ],
         providers: [
             _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"],
@@ -976,6 +1009,7 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             /* BackgroundMode, */
             _ionic_native_foreground_service_ngx__WEBPACK_IMPORTED_MODULE_22__["ForegroundService"],
             _ionic_native_background_mode_ngx__WEBPACK_IMPORTED_MODULE_23__["BackgroundMode"],
+            _ionic_native_fcm_ngx__WEBPACK_IMPORTED_MODULE_25__["FCM"],
             { provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"], useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"] }
         ],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
@@ -1275,6 +1309,12 @@ let AuthService = class AuthService {
         firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref('Tracking/' + user.uid + '/Current').set(location);
         firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref('Tracking/' + user.uid + '/Historic').push(location);
     }
+    sendLocaltion(current) {
+        firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref('Tracking/Panic/' + current.user.uid).push(current);
+    }
+    sendToken(user, token) {
+        firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref('Token/' + user.uid + '/ID').push(token);
+    }
     registroUser(correo, pass) {
         return firebase__WEBPACK_IMPORTED_MODULE_4__["default"].auth().createUserWithEmailAndPassword(correo, pass);
         /*   firebase.auth().createUserWithEmailAndPassword(correo, pass).then(resp=>{
@@ -1406,6 +1446,10 @@ let AuthService = class AuthService {
     addUser(user) {
         firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref('Users/' + user.uid).set(user);
         firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(user.uid + '/data').set(user);
+    }
+    getMenu(user) {
+        //firebase.database().
+        return firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(user.uid + '/menu');
     }
 };
 AuthService.ctorParameters = () => [

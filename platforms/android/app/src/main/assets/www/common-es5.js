@@ -665,6 +665,345 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
 
   /***/
+  "./node_modules/agm-overlays/fesm2015/agm-overlays.js":
+  /*!************************************************************!*\
+    !*** ./node_modules/agm-overlays/fesm2015/agm-overlays.js ***!
+    \************************************************************/
+
+  /*! exports provided: AgmOverlay, AgmOverlays */
+
+  /***/
+  function node_modulesAgmOverlaysFesm2015AgmOverlaysJs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "AgmOverlay", function () {
+      return AgmOverlay;
+    });
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "AgmOverlays", function () {
+      return AgmOverlays;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _agm_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! @agm/core */
+    "./node_modules/@agm/core/fesm2015/agm-core.js");
+    /* harmony import */
+
+
+    var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! @angular/common */
+    "./node_modules/@angular/common/fesm2015/common.js");
+
+    var AgmOverlay = /*#__PURE__*/function () {
+      function AgmOverlay(_mapsWrapper, _markerManager //rename to fight the private declaration of parent
+      ) {
+        _classCallCheck(this, AgmOverlay);
+
+        this._mapsWrapper = _mapsWrapper;
+        this._markerManager = _markerManager;
+        this.visible = true; //possibly doesn't work and just left over from agm-core marker replication
+
+        this.zIndex = 1; //TIP: Do NOT use this... Just put (click) on your html overlay element
+
+        this.markerClick = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+        this.openInfoWindow = true;
+        this.infoWindow = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["QueryList"](); //TODO, implement this
+
+        this.draggable = false; //elmGuts:any
+
+        this._observableSubscriptions = [];
+      }
+
+      _createClass(AgmOverlay, [{
+        key: "ngAfterViewInit",
+        value: function ngAfterViewInit() {
+          var _this = this;
+
+          //remove reference of info windows
+          var iWins = this.template.nativeElement.getElementsByTagName('agm-info-window');
+
+          for (var x = iWins.length - 1; x >= 0; --x) {
+            iWins[x].parentNode.removeChild(iWins[x]);
+          }
+
+          this.load().then(function () {
+            _this.onChanges = _this.onChangesOverride;
+          });
+        }
+      }, {
+        key: "ngAfterContentInit",
+        value: function ngAfterContentInit() {
+          var _this2 = this;
+
+          this.infoWindow.changes.subscribe(function () {
+            return _this2.handleInfoWindowUpdate();
+          });
+        }
+      }, {
+        key: "ngOnChanges",
+        value: function ngOnChanges(changes) {
+          this.onChanges(changes);
+        }
+      }, {
+        key: "onChanges",
+        value: function onChanges(changes) {}
+      }, {
+        key: "onChangesOverride",
+        value: function onChangesOverride(changes) {
+          var _this3 = this;
+
+          if (changes.latitude || changes.longitude || changes.zIndex) {
+            this.overlayView.latitude = this.latitude;
+            this.overlayView.longitude = this.longitude;
+            this.overlayView.zIndex = this.zIndex;
+            this.destroy().then(function () {
+              return _this3.load();
+            });
+          }
+        }
+      }, {
+        key: "ngOnDestroy",
+        value: function ngOnDestroy() {
+          this.destroy();
+        }
+      }, {
+        key: "destroy",
+        value: function destroy() {
+          this.destroyed = true;
+
+          var promise = this._markerManager.deleteMarker(this.overlayView);
+
+          if (this.overlayView) {
+            if (this.overlayView.div) {
+              this.overlayView.remove();
+            }
+
+            this.overlayView.setMap(null);
+          }
+
+          this._observableSubscriptions.forEach(function (s) {
+            return s.unsubscribe();
+          });
+
+          delete this.overlayView; //delete this.elmGuts
+
+          return promise;
+        }
+      }, {
+        key: "handleInfoWindowUpdate",
+        value: function handleInfoWindowUpdate() {
+          var _this4 = this;
+
+          if (this.infoWindow.length > 1) {
+            throw new Error('Expected no more than one info window.');
+          }
+
+          this.infoWindow.forEach(function (iWin) {
+            iWin.hostMarker = _this4.overlayView;
+          });
+        }
+      }, {
+        key: "load",
+        value: function load() {
+          var _this5 = this;
+
+          return this._mapsWrapper.getNativeMap().then(function (map) {
+            var overlay = _this5.getOverlay(map);
+
+            _this5._markerManager.addMarker(overlay);
+
+            _this5._addEventListeners();
+
+            return _this5._markerManager.getNativeMarker(overlay);
+          }).then(function (nativeMarker) {
+            var setMap = nativeMarker.setMap;
+
+            if (nativeMarker['map']) {
+              _this5.overlayView.setMap(nativeMarker['map']);
+            }
+
+            nativeMarker.setMap = function (map) {
+              setMap.call(nativeMarker, map);
+
+              if (_this5.overlayView) {
+                _this5.overlayView.setMap(map);
+              }
+            };
+          });
+        }
+      }, {
+        key: "getOverlay",
+        value: function getOverlay(map) {
+          var _this6 = this;
+
+          this.overlayView = this.overlayView || new google.maps.OverlayView();
+          /* make into foo marker that AGM likes */
+
+          this.overlayView.iconUrl = " ";
+          this.overlayView.latitude = this.latitude;
+          this.overlayView.longitude = this.longitude;
+          this.overlayView.visible = false; //hide 40x40 transparent placeholder that prevents hover events
+
+          /* end */
+
+          if (this.bounds) {
+            this.overlayView.bounds_ = new google.maps.LatLngBounds(new google.maps.LatLng(this.latitude + this.bounds.x.latitude, this.longitude + this.bounds.x.longitude), new google.maps.LatLng(this.latitude + this.bounds.y.latitude, this.longitude + this.bounds.y.longitude));
+          } // js-marker-clusterer does not support updating positions. We are forced to delete/add and compensate for .removeChild calls
+
+
+          var elm = this.template.nativeElement.children[0]; //const elm =  this.elmGuts || this.template.nativeElement.children[0]
+          //we must always be sure to steal our stolen element back incase we are just in middle of changes and will redraw
+
+          var restore = function restore(div) {
+            _this6.template.nativeElement.appendChild(div);
+          };
+
+          this.overlayView.remove = function () {
+            if (!this.div) return;
+            this.div.parentNode.removeChild(this.div);
+            restore(this.div);
+            delete this.div;
+          };
+
+          this.overlayView.getDiv = function () {
+            return this.div;
+          };
+
+          this.overlayView.draw = function () {
+            if (!this.div) {
+              this.div = elm;
+              var panes = this.getPanes(); // if no panes then assumed not on map
+
+              if (!panes || !panes.overlayImage) return;
+              panes.overlayImage.appendChild(elm);
+            }
+
+            var latlng = new google.maps.LatLng(this.latitude, this.longitude);
+            var proj = this.getProjection();
+            if (!proj) return;
+            var point = proj.fromLatLngToDivPixel(latlng);
+
+            if (point) {
+              elm.style.left = point.x - 10 + 'px';
+              elm.style.top = point.y - 20 + 'px';
+            }
+
+            if (this.bounds_) {
+              // stretch content between two points leftbottom and righttop and resize
+              var _proj = this.getProjection();
+
+              var sw = _proj.fromLatLngToDivPixel(this.bounds_.getSouthWest());
+
+              var ne = _proj.fromLatLngToDivPixel(this.bounds_.getNorthEast());
+
+              this.div.style.left = sw.x + 'px';
+              this.div.style.top = ne.y + 'px';
+              this.div.children[0].style.width = ne.x - sw.x + 'px';
+              this.div.children[0].style.height = sw.y - ne.y + 'px';
+            }
+          };
+
+          elm.addEventListener("click", function (event) {
+            _this6.handleTap();
+
+            event.stopPropagation();
+          });
+          this.handleInfoWindowUpdate();
+          return this.overlayView;
+        }
+      }, {
+        key: "handleTap",
+        value: function handleTap() {
+          if (this.openInfoWindow) {
+            this.infoWindow.forEach(function (infoWindow) {
+              infoWindow.open();
+            });
+          }
+
+          this.markerClick.emit(null);
+        }
+      }, {
+        key: "_addEventListeners",
+        value: function _addEventListeners() {
+          var _this7 = this;
+
+          var eo = this._markerManager.createEventObservable('click', this.overlayView);
+
+          var cs = eo.subscribe(function () {
+            return _this7.handleTap();
+          });
+
+          this._observableSubscriptions.push(cs);
+        }
+      }]);
+
+      return AgmOverlay;
+    }();
+
+    AgmOverlay.ctorParameters = function () {
+      return [{
+        type: _agm_core__WEBPACK_IMPORTED_MODULE_2__["GoogleMapsAPIWrapper"]
+      }, {
+        type: _agm_core__WEBPACK_IMPORTED_MODULE_2__["MarkerManager"] //rename to fight the private declaration of parent
+
+      }];
+    };
+
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()], AgmOverlay.prototype, "latitude", void 0);
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()], AgmOverlay.prototype, "longitude", void 0);
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()], AgmOverlay.prototype, "visible", void 0);
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()], AgmOverlay.prototype, "zIndex", void 0);
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()], AgmOverlay.prototype, "bounds", void 0);
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])()], AgmOverlay.prototype, "markerClick", void 0);
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()], AgmOverlay.prototype, "openInfoWindow", void 0);
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ContentChildren"])(_agm_core__WEBPACK_IMPORTED_MODULE_2__["AgmInfoWindow"])], AgmOverlay.prototype, "infoWindow", void 0);
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])('markerDraggable')], AgmOverlay.prototype, "draggable", void 0);
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('content', {
+      read: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]
+    })], AgmOverlay.prototype, "template", void 0);
+    AgmOverlay = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: "agm-overlay",
+      template: '<div #content><div style="position:absolute"><ng-content></ng-content></div></div>'
+    })], AgmOverlay);
+
+    var AgmOverlays = function AgmOverlays() {
+      _classCallCheck(this, AgmOverlays);
+    };
+
+    AgmOverlays = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
+      imports: [_angular_common__WEBPACK_IMPORTED_MODULE_3__["CommonModule"]],
+      declarations: [AgmOverlay],
+      exports: [AgmOverlay]
+    })], AgmOverlays);
+    /**
+     * Generated bundle index. Do not edit.
+     */
+    //# sourceMappingURL=agm-overlays.js.map
+
+    /***/
+  },
+
+  /***/
   "./src/app/services/appointment.service.ts":
   /*!*************************************************!*\
     !*** ./src/app/services/appointment.service.ts ***!
@@ -736,6 +1075,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           var key = this.firebaseAuthService.usersign.uid + "_" + Date.now();
           firebase__WEBPACK_IMPORTED_MODULE_3__["default"].database().ref('/Appointments/' + key).set(appointmentObj);
         }
+      }, {
+        key: "getApps",
+        value: function getApps(user) {
+          return firebase__WEBPACK_IMPORTED_MODULE_3__["default"].database().ref('Appointment/Users/' + user);
+        }
+      }, {
+        key: "addApp",
+        value: function addApp(app) {
+          console.log(app);
+          var key = firebase__WEBPACK_IMPORTED_MODULE_3__["default"].database().ref('Appointment/Apps').push(app).key;
+          firebase__WEBPACK_IMPORTED_MODULE_3__["default"].database().ref('Appointment/Users/' + app.user + '/' + key).set(app);
+        }
+      }, {
+        key: "editapp",
+        value: function editapp(app) {
+          //console.log(app);
+          firebase__WEBPACK_IMPORTED_MODULE_3__["default"].database().ref('Appointment/Apps/' + app.appkey + '/').set(app);
+          firebase__WEBPACK_IMPORTED_MODULE_3__["default"].database().ref('Appointment/Users/' + app.user + '/' + app.appkey).set(app);
+        }
       }]);
 
       return AppointmentService;
@@ -750,6 +1108,98 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     AppointmentService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
       providedIn: 'root'
     }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"]])], AppointmentService);
+    /***/
+  },
+
+  /***/
+  "./src/app/services/reward.service.ts":
+  /*!********************************************!*\
+    !*** ./src/app/services/reward.service.ts ***!
+    \********************************************/
+
+  /*! exports provided: RewardService */
+
+  /***/
+  function srcAppServicesRewardServiceTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "RewardService", function () {
+      return RewardService;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var firebase__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! firebase */
+    "./node_modules/firebase/dist/index.esm.js");
+
+    var RewardService = /*#__PURE__*/function () {
+      function RewardService() {
+        _classCallCheck(this, RewardService);
+      }
+
+      _createClass(RewardService, [{
+        key: "addReward",
+        value: function addReward(reward) {
+          console.log(reward);
+          var key = firebase__WEBPACK_IMPORTED_MODULE_2__["default"].database().ref('Rewards/Rewards').push(reward).key;
+          firebase__WEBPACK_IMPORTED_MODULE_2__["default"].database().ref('Rewards/Tasks/' + key).set(reward.task);
+          firebase__WEBPACK_IMPORTED_MODULE_2__["default"].database().ref('Rewards/Users/' + reward.user + '/' + key).set(reward);
+        }
+      }, {
+        key: "getRewards",
+        value: function getRewards(user) {
+          return firebase__WEBPACK_IMPORTED_MODULE_2__["default"].database().ref('Rewards/Users/' + user);
+        }
+      }, {
+        key: "editReward",
+        value: function editReward(reward) {
+          console.log(reward);
+          firebase__WEBPACK_IMPORTED_MODULE_2__["default"].database().ref('Rewards/Rewards/' + reward.rewardkey).set(reward);
+          firebase__WEBPACK_IMPORTED_MODULE_2__["default"].database().ref('Rewards/Tasks/' + reward.rewardkey).set(reward.task);
+          firebase__WEBPACK_IMPORTED_MODULE_2__["default"].database().ref('Rewards/Users/' + reward.user + '/' + reward.rewardkey).set(reward);
+        }
+      }, {
+        key: "addTask",
+        value: function addTask() {}
+      }, {
+        key: "removeTask",
+        value: function removeTask(reward) {
+          firebase__WEBPACK_IMPORTED_MODULE_2__["default"].database().ref('Rewards/Rewards/' + reward.rewardkey + '/task').set(reward.task);
+          firebase__WEBPACK_IMPORTED_MODULE_2__["default"].database().ref('Rewards/Tasks/' + reward.rewardkey).set(reward.task);
+          firebase__WEBPACK_IMPORTED_MODULE_2__["default"].database().ref('Rewards/Users/' + reward.user + '/' + reward.rewardkey).set(reward);
+        }
+      }, {
+        key: "edittask",
+        value: function edittask(reward, task, i) {
+          firebase__WEBPACK_IMPORTED_MODULE_2__["default"].database().ref('Rewards/Rewards/' + reward.rewardkey + '/task/' + i).set(task);
+          firebase__WEBPACK_IMPORTED_MODULE_2__["default"].database().ref('Rewards/Tasks/' + reward.rewardkey + '/' + i).set(task);
+          firebase__WEBPACK_IMPORTED_MODULE_2__["default"].database().ref('Rewards/Users/' + reward.user + '/' + reward.rewardkey + '/task/' + i).set(task);
+        }
+      }]);
+
+      return RewardService;
+    }();
+
+    RewardService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+      providedIn: 'root'
+    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])], RewardService);
     /***/
   }
 }]);

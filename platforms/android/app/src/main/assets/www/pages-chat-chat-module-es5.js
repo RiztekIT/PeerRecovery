@@ -21,7 +21,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-header class=\"ion-no-border\">\n    <ion-toolbar mode=\"md\">\n        <ion-buttons slot=\"start\">\n            <ion-back-button defaultHref=\"chatList\" icon=\"chevron-back-outline\" text=\"\" mode=\"md\" (click)=\"goToChatList()\"></ion-back-button>\n        </ion-buttons>\n        <ion-buttons slot=\"end\">\n            <ion-menu-button></ion-menu-button>\n        </ion-buttons>\n        <ion-title>chat</ion-title>\n    </ion-toolbar>\n</ion-header>\n<ion-header>\n    <ion-title>{{this.chatUser.displayName}}</ion-title>\n    <ion-avatar slot=\"start\">\n        <img [src]=\"this.chatUser.photoUrl\">\n    </ion-avatar>\n</ion-header>\n<ion-content #chatcontent [scrollEvents]=\"true\" class=\"ion-padding-horizontal\">\n    <div *ngFor=\"let message of chatMessages\">\n\n\n        <div *ngIf=\"message.sender != this.firebaseAuthService.usersign.uid\" class=\"chat_div \">\n            <!-- Others messages -->\n            <!-- Other person message -->\n            <!-- <img src=\"../../../assets/image/patricia.png \"> -->\n            <div class=\"message_div \">\n                <div class=\"chat \">\n                    <p class=\"chat_lbl \">{{message.message}}</p>\n                </div>\n                <p class=\"time \">{{message.sent.seconds * 1000| date: 'h:mm a'}}</p>\n            </div>\n        </div>\n        <div *ngIf=\"message.sender == this.firebaseAuthService.usersign.uid\" class=\"chat_div replay_div \">\n            <!-- My messages -->\n            <!-- Me -->\n            <div class=\"message_div \">\n                <div class=\"chat \">\n                    <p class=\"chat_lbl \">{{message.message}}</p>\n                </div>\n                <p class=\"time \">{{message.sent.seconds * 1000| date: 'h:mm a'}}</p>\n\n            </div>\n            <!-- <img src=\"../../../assets/image/patricia.png \"> -->\n        </div>\n\n    </div>\n\n\n\n\n\n\n</ion-content>\n<ion-footer class=\"ion-no-border \">\n    <ion-item mode=\"md\" lines=\"none \">\n        <ion-input [(ngModel)]=\"message\" placeholder=\"Type your message... \" (keypress)=\"eventoMensaje($event.keyCode)\">\n        </ion-input>\n    </ion-item>\n    <ion-button class=\"send_btn\" (click)=\"sendMessage()\">\n        <ion-icon src=\"../../../assets/image_icon/send.svg \"></ion-icon>\n    </ion-button>\n\n</ion-footer>";
+    __webpack_exports__["default"] = "<ion-header class=\"ion-no-border\">\n    <ion-toolbar mode=\"md\">\n        <ion-buttons slot=\"start\">\n            <ion-back-button defaultHref=\"chatList\" icon=\"chevron-back-outline\" text=\"\" mode=\"md\" (click)=\"goToChatList()\"></ion-back-button>\n        </ion-buttons>\n        <ion-buttons slot=\"end\">\n            <ion-menu-button></ion-menu-button>\n        </ion-buttons>\n        <ion-title>chat</ion-title>\n    </ion-toolbar>\n</ion-header>\n<ion-header>\n    <ion-title>{{this.chatUser.displayName}}</ion-title>\n    <!--   <ion-avatar style=\"display: block !important; padding-left: 10px;\" slot=\"end\">\n        <img [src]=\"this.chatUser.photoUrl\">\n\n    </ion-avatar> -->\n</ion-header>\n<hr>\n<ion-content #chatcontent [scrollEvents]=\"true\" class=\"ion-padding-horizontal\">\n    <div *ngFor=\"let message of chatMessages\">\n\n\n        <div *ngIf=\"message.sender != this.firebaseAuthService.usersign.uid\" class=\"chat_div \">\n            <!-- Others messages -->\n            <!-- Other person message -->\n            <!-- <img src=\"../../../assets/image/patricia.png \"> -->\n            <div class=\"message_div \">\n                <div class=\"chat \">\n                    <p class=\"chat_lbl \">{{message.message}}</p>\n                </div>\n                <p class=\"time \">{{message.timestamp.seconds * 1000| date: 'dd/MM/yy h:mm a'}}</p>\n            </div>\n        </div>\n        <div *ngIf=\"message.sender == this.firebaseAuthService.usersign.uid\" class=\"chat_div replay_div \">\n            <!-- My messages -->\n            <!-- Me -->\n            <div class=\"message_div \">\n                <div class=\"chat \">\n                    <p class=\"chat_lbl \">{{message.message}}</p>\n                </div>\n                <p class=\"time \">{{message.timestamp.seconds * 1000| date: 'dd/MM/yy h:mm a'}}</p>\n\n            </div>\n            <!-- <img src=\"../../../assets/image/patricia.png \"> -->\n        </div>\n\n    </div>\n\n\n\n\n\n\n\n</ion-content>\n<ion-footer class=\"ion-no-border \">\n    <ion-item mode=\"md\" lines=\"none \">\n        <ion-input style=\"font-size: 20px !important;\" [(ngModel)]=\"message\" placeholder=\"Type your message... \" (keypress)=\"eventoMensaje($event.keyCode)\">\n        </ion-input>\n    </ion-item>\n    <ion-button class=\"send_btn\" (click)=\"sendMessage()\">\n        <ion-icon src=\"../../../assets/image_icon/send.svg \"></ion-icon>\n    </ion-button>\n\n</ion-footer>";
     /***/
   },
 
@@ -233,18 +233,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var src_app_services_chat_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
     /*! src/app/services/chat.service */
     "./src/app/services/chat.service.ts");
-    /* harmony import */
-
-
-    var _chat_users_list_chat_users_list_page__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
-    /*! ../chat-users-list/chat-users-list.page */
-    "./src/app/pages/chat-users-list/chat-users-list.page.ts");
-    /* harmony import */
-
-
-    var firebase__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
-    /*! firebase */
-    "./node_modules/firebase/dist/index.esm.js");
 
     var ChatPage = /*#__PURE__*/function () {
       function ChatPage(nav, route, router, firebaseAuthService, chatService) {
@@ -258,6 +246,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.ID_Chat = "";
         this.message = "";
         this.chatMessages = [];
+        /*  */
+
+        this.messages = [];
         /*    this.route.queryParams.subscribe(params => {
              if (params && params.special) {
                this.data = JSON.parse(params.special);
@@ -272,9 +263,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(ChatPage, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          this.getChat();
-          this.getUserWith();
-          this.chatService.readChats();
+          /*    this.getChat();
+             this.getUserWith()
+             this.chatService.readChats(); */
+          this.chatUser = this.chatService.user2;
+          console.log(this.chatUser, 'USER');
+          this.getMessages();
         }
       }, {
         key: "getUserWith",
@@ -301,81 +295,50 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getChat",
         value: function getChat() {
-          var _this = this;
-
-          /*  this.chatMessages = [];
-           this.chatDBRef.onSnapshot(  snap =>{
-             this.chatMessages = [];
-             const data = snap.data();
-             for (const key in data) {
-                 const value = data[key];
-                 this.chatMessages.push({
-                   ...value
-                 });
-                   }
-                   console.log(this.chatMessages);
-             this.chatMessages.sort(function(a, b) { return a.Sent.seconds - b.Sent.seconds; })
-             console.log(this.chatMessages);
-           }); */
-          console.log(localStorage.getItem('idchat'));
-          this.chatService.getMessages(localStorage.getItem('idchat')).on('value', function (resp) {
-            var messages = Object(_chat_users_list_chat_users_list_page__WEBPACK_IMPORTED_MODULE_6__["snapshotToArray"])(resp);
-            console.log(messages);
-            _this.chatMessages = messages;
-            console.log(_this.chatMessages);
-            setTimeout(function () {
-              _this.scrollToBottom();
-            }, 500);
-          });
+          /* console.log(localStorage.getItem('idchat'));
+              this.chatService.getMessages(localStorage.getItem('idchat')).on('value', resp=>{
+                let messages = snapshotToArray(resp)
+                console.log(messages);
+                this.chatMessages = messages;
+                console.log(this.chatMessages);
+                
+                setTimeout(() => {
+                  this.scrollToBottom();
+              }, 500);
+              }) */
         }
       }, {
         key: "sendMessage",
         value: function sendMessage() {
           console.log(this.message);
-          var sendmessage = {
-            message: this.message,
-            sender: this.firebaseAuthService.usersign.uid,
-            read: 'false',
-            sent: firebase__WEBPACK_IMPORTED_MODULE_7__["default"].firestore.Timestamp.fromDate(new Date())
-          };
+          /*
+              let sendmessage = {
+                message: this.message,
+                sender: this.firebaseAuthService.usersign.uid,
+                read:'false',
+                sent: firebase.firestore.Timestamp.fromDate(new Date())
+              }
+          
+          
+              if (this.chatUser.displayName!='chatGroup'){
+          
+                this.chatService.newMessage(sendmessage);
+                
+                this.message = '';
+              }else{
+                this.chatService.newMessageGroup(sendmessage, this.chatUser.uid);
+                this.message = '';
+                
+              } */
 
-          if (this.chatUser.displayName != 'chatGroup') {
-            this.chatService.newMessage(sendmessage);
-            this.message = '';
-          } else {
-            this.chatService.newMessageGroup(sendmessage, this.chatUser.uid);
-            this.message = '';
-          }
-          /*var docData = {
-            stringExample: "Hello world!",
-            booleanExample: true,
-            numberExample: 3.14159265,
-            arrayExample: [5, true, "hello"],
-            nullExample: null,
-            objectExample: {
-                a: 5,
-                b: {
-                    nested: "foo"
-                }
-            }
-          };
-          this.firebaseAuthService.firebaseDB.collection("messages").doc(this.ID_Chat).add(docData).then(function() {
-            console.log("Document successfully written!");
-          });*/
-          //Update the chat info
-
-          /*  const newChatInfo = {
-             LastMessage: this.message,
-             LastMessageSent: new Date()
-           }
-           this.firebaseAuthService.firebaseDB.collection("chats").doc(this.ID_Chat).update( newChatInfo )
-                   this.message = "";  */
-
+          console.log(this.message);
+          this.chatService.sendMessage(this.message, this.firebaseAuthService.usersign, this.chatUser);
+          this.message = '';
         }
       }, {
         key: "goToChatList",
         value: function goToChatList() {
-          this.nav.navigateBack("/chatList");
+          this.nav.navigateBack("/chat");
           localStorage.removeItem('user2');
           localStorage.removeItem('users2');
           localStorage.removeItem('idchat');
@@ -393,6 +356,35 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           if (tecla == 13) {
             this.sendMessage();
           }
+        }
+        /*  */
+
+      }, {
+        key: "getMessages",
+        value: function getMessages() {
+          var _this = this;
+
+          this.chatService.getMessages().orderByChild('timestamp').on('value', function (resp) {
+            _this.messages = [];
+            resp.forEach(function (childSnapshot) {
+              var m = childSnapshot.val();
+              console.log(childSnapshot.val());
+
+              _this.chatService.getUser(m.sender).on('value', function (resp) {
+                /* console.log(resp.val()); */
+                m.senderuser = resp.val();
+
+                _this.messages.push(m);
+
+                _this.chatMessages = _this.messages;
+              });
+
+              setTimeout(function () {
+                _this.scrollToBottom();
+              }, 500);
+            });
+            console.log(_this.messages);
+          });
         }
       }]);
 

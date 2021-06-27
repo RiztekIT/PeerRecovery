@@ -16,6 +16,8 @@ import {
 } from "@ionic-native/background-geolocation/ngx";
 import { ForegroundService } from '@ionic-native/foreground-service/ngx';
 import { BackgroundMode } from '@ionic-native/background-mode/ngx';
+//import { FCM } from '@ionic-native/fcm/ngx';
+import { FCM } from 'cordova-plugin-fcm-with-dependecy-updated/ionic';
 
 
 
@@ -98,7 +100,8 @@ user;
     public http: HTTP,
     private backgroundGeolocation: BackgroundGeolocation,
     public foregroundService: ForegroundService,
-    public backgroundMode : BackgroundMode
+    public backgroundMode : BackgroundMode,
+    
     ) {
 
 
@@ -463,6 +466,23 @@ this.locations = JSON.parse(localStorage.getItem("location"))
               console.log('Confirm Okay');
               console.log(this.currentPos);
               this.authSVC.sendLocaltion(this.currentPos)
+              this.authSVC.getRel(this.authSVC.usersign).once('value', rel=>{
+                let users = Object.keys(rel.val())
+                console.log(users,'U');
+
+                users.forEach(u=>{
+                  this.authSVC.getTokenID(u).once('value', token=>{
+
+                    console.log(token.val(), 'USERS');
+
+                    this.sendLocation(this.currentPos,token.val())
+
+                  })
+                })
+
+
+
+              })
               
             }
           }
@@ -567,6 +587,17 @@ this.locations = JSON.parse(localStorage.getItem("location"))
       this.getGPS()
       this.getMenu()
       this.getAppointments(); 
+      //FCM.getToken()
+     FCM.getToken().then(token => {
+        console.log(token,'token');
+        this.authSVC.sendToken(this.authSVC.usersign,token)
+      }).catch(res=>{
+        console.log(res,'token');
+        
+
+      });
+
+      this.getNoti()
       //this.startBackgroundGeolocation()
       
       //this.put(1,1);
@@ -761,6 +792,59 @@ this.locations = JSON.parse(localStorage.getItem("location"))
 
   
 
+  }
+
+  getNoti(){
+    FCM.onNotification().subscribe(data => {
+      console.log(data.data);
+       let navigationExtras: NavigationExtras = {
+        queryParams: {
+          data: JSON.stringify(data.data)
+        }
+  
+    };
+      if (data.wasTapped) {
+        console.log('Received in background');
+        this.router.navigate([data.landing_page], navigationExtras);
+      } else {
+        console.log('Received in foreground');
+        this.router.navigate([data.landing_page], navigationExtras);
+      }
+    });
+  }
+
+
+  sendLocation(currentPos?, user?){
+
+
+    let body = {
+      "notification":{
+        "title":"PeerRecovery",
+        "body":"PANIC BUTTON",
+        "sound":"default",
+        "click_action":"FCM_PLUGIN_ACTIVITY",
+        "icon":"fcm_push_icon"
+      },
+      "data":{
+        "landing_page":"tracking",
+        "data":currentPos
+      },
+        "to":user,
+        "priority":"high",
+        "restricted_package_name":""
+    }
+
+    let headers = {
+      'Authorization': 'key=AAAA7CwLHfI:APA91bGdbyFJFwO4xWEBilRVInU37vOoQ5jURZv0PHbD8zXc4pT58GEy1ETkskaOfIJEhHtR4YYMr4SbDRiuEI7BJG0JfoXDbguV691brsZri_bLqMQLc-FWffr1EakQsurEnb0ZrN2_',
+      'Content-Type': 'application/json'
+    }
+
+    this.http.post('https://fcm.googleapis.com/fcm/send',body,headers).then(res=>{
+      console.log(res,'res');
+    }).catch(e=>{
+      console.log(e,'e');
+    })
+  
   }
 
 }

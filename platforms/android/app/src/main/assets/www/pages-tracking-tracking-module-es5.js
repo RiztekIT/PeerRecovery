@@ -21,7 +21,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-header class=\"ion-no-border\">\n    <ion-toolbar mode=\"md\">\n        <ion-buttons slot=\"start\">\n            <ion-back-button defaultHref=\"home\" icon=\"chevron-back-outline\" text=\"\" mode=\"md\"></ion-back-button>\n        </ion-buttons>\n        <ion-buttons slot=\"end\">\n            <ion-menu-button></ion-menu-button>\n        </ion-buttons>\n        <ion-title>Tracking</ion-title>\n    </ion-toolbar>\n</ion-header>\n\n\n<ion-content>\n    <agm-map [styles]=\"styles\" [disableDefaultUI]=\"false\" [latitude]=\"lat\" [longitude]=\"lng\" [zoom]=\"zoom\" [zoomControl]=\"false\">\n        <agm-overlay *ngFor=\"let item of markers\" [latitude]=\"item.lat\" [longitude]=\"item.lng\">\n            <div *ngIf=\"item.isOpen == true\" (click)=\"onMarkerSelect(item)\" [class.selected]=\"item.select\" class=\"open avatar avatar_round\">\n                <img [src]=\"item.img\" alt=\"\" />\n            </div>\n\n            <div *ngIf=\"item.isOpen == false\" class=\"avatar avatar_round\">\n                <img [src]=\"item.img\" alt=\"\" />\n            </div>\n        </agm-overlay>\n    </agm-map>\n\n    <div class=\"bottom-content\">\n        <ion-item class=\"doctor-info\" lines=\"full\">\n            <ion-avatar slot=\"start\">\n                <img [src]=\"this.authSVC.usersign.photoURL\">\n            </ion-avatar>\n\n            <ion-item lines=\"none\">\n                <ion-label>\n                    Priv. Palmira 1704 int 6 Col. Las granjas, Chihuahua MX\n                </ion-label>\n                <ion-icon class=\"margin-right-20\" src=\"../../../assets/imgs/appicons/location.svg\" slot=\"start\"></ion-icon>\n            </ion-item>\n\n\n            <!--<ion-label>\n                <h2 class=\"dr-name\">{{this.authSVC.usersign.displayName}}</h2>\n                <h3 class=\"shop-name\">Rose Health Care</h3>\n            </ion-label>\n            <div class=\"km-txt\" slot=\"end\">\n                3.5 KM\n            </div>-->\n        </ion-item>\n\n        <!--<ion-list class=\"other-content\">\n            <ion-avatar slot=\"start\">\n                <img [src]=\"this.authSVC.usersign.photoURL\">\n            </ion-avatar>\n            <ion-item lines=\"none\">\n                <ion-label>\n                    Low Mill Farm, Lendales Lane, Pickering, YO18 8EE\n                </ion-label>\n                <ion-icon class=\"margin-right-20\" src=\"../../../assets/imgs/appicons/location.svg\" slot=\"start\"></ion-icon>\n            </ion-item>\n            <ion-item lines=\"none\">\n                <ion-label>\n                    24/7 Service\n                </ion-label>\n                <ion-icon class=\"margin-right-20\" src=\"../../../assets/imgs/appicons/time.svg\" slot=\"start\"></ion-icon>\n            </ion-item>\n        </ion-list>-->\n\n        <ion-button (click)=\"presentAlert()\" expand=\"full\" shape=\"round \">Share my location</ion-button>\n\n    </div>\n\n\n    <div class=\"banner\">\n        <div class=\"content\">\n            <h2 class=\"margin-bottom-5\">Start Chat in 3 Steps</h2>\n            <div class=\"list margin-bottom-4\">\n                <div class=\"circle margin-right-15\"></div>\n                <p>Select Specialty</p>\n            </div>\n            <div class=\"list margin-bottom-4\">\n                <div class=\"circle margin-right-15\"></div>\n                <p>Pay Fee</p>\n            </div>\n            <div class=\"list margin-bottom-4\">\n                <div class=\"circle margin-right-15\"></div>\n                <p>Start Chat</p>\n            </div>\n        </div>\n        <img class=\"banner-img padding-right-15\" src=\"../../../assets/imgs/chatWithDr_banner.svg\">\n    </div>\n\n\n\n</ion-content>";
+    __webpack_exports__["default"] = "<ion-header class=\"ion-no-border\">\n    <ion-toolbar mode=\"md\">\n        <ion-buttons slot=\"start\">\n            <ion-back-button defaultHref=\"home\" icon=\"chevron-back-outline\" text=\"\" mode=\"md\"></ion-back-button>\n        </ion-buttons>\n        <ion-buttons slot=\"end\">\n            <ion-menu-button></ion-menu-button>\n        </ion-buttons>\n        <ion-title>Tracking</ion-title>\n    </ion-toolbar>\n</ion-header>\n\n\n<ion-content>\n    <agm-map [styles]=\"styles\" [disableDefaultUI]=\"false\" [latitude]=\"lat\" [longitude]=\"lng\" [zoom]=\"zoom\" [zoomControl]=\"false\">\n        <agm-marker [latitude]=\"lat\" [longitude]=\"lng\"></agm-marker>\n        <!--  <agm-overlay *ngFor=\"let item of markers\" [latitude]=\"item.lat\" [longitude]=\"item.lng\"> -->\n\n        <!--    <div *ngIf=\"item.isOpen == true\" (click)=\"onMarkerSelect(item)\" [class.selected]=\"item.select\" class=\"open avatar avatar_round\">\n                <img [src]=\"item.img\" alt=\"\" />\n            </div>\n\n            <div *ngIf=\"item.isOpen == false\" class=\"avatar avatar_round\">\n                <img [src]=\"item.img\" alt=\"\" />\n            </div> -->\n        <!-- </agm-overlay> -->\n    </agm-map>\n\n    <div class=\"bottom-content\">\n        <ion-item class=\"doctor-info\" lines=\"full\">\n            <ion-avatar slot=\"start\">\n                <img [src]=\"this.authSVC.usersign.photoURL\">\n            </ion-avatar>\n\n            <ion-item lines=\"none\">\n                <ion-label>\n                    {{this.locatio}}\n                </ion-label>\n                <ion-icon class=\"margin-right-20\" src=\"../../../assets/imgs/appicons/location.svg\" slot=\"start\"></ion-icon>\n            </ion-item>\n\n\n            <!--<ion-label>\n                <h2 class=\"dr-name\">{{this.authSVC.usersign.displayName}}</h2>\n                <h3 class=\"shop-name\">Rose Health Care</h3>\n            </ion-label>\n            <div class=\"km-txt\" slot=\"end\">\n                3.5 KM\n            </div>-->\n        </ion-item>\n\n        <!--<ion-list class=\"other-content\">\n            <ion-avatar slot=\"start\">\n                <img [src]=\"this.authSVC.usersign.photoURL\">\n            </ion-avatar>\n            <ion-item lines=\"none\">\n                <ion-label>\n                    Low Mill Farm, Lendales Lane, Pickering, YO18 8EE\n                </ion-label>\n                <ion-icon class=\"margin-right-20\" src=\"../../../assets/imgs/appicons/location.svg\" slot=\"start\"></ion-icon>\n            </ion-item>\n            <ion-item lines=\"none\">\n                <ion-label>\n                    24/7 Service\n                </ion-label>\n                <ion-icon class=\"margin-right-20\" src=\"../../../assets/imgs/appicons/time.svg\" slot=\"start\"></ion-icon>\n            </ion-item>\n        </ion-list>-->\n\n        <ion-button (click)=\"presentAlert()\" expand=\"full\" shape=\"round \">Share my location</ion-button>\n\n    </div>\n\n\n\n</ion-content>";
     /***/
   },
 
@@ -165,7 +165,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     TrackingPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], agm_overlays__WEBPACK_IMPORTED_MODULE_8__["AgmOverlays"], _agm_core__WEBPACK_IMPORTED_MODULE_7__["AgmCoreModule"].forRoot({
-        apiKey: ''
+        apiKey: 'AIzaSyDL-2mFo6QYsp7qNSQl95AzhVZ6njRsLtE'
       }), _tracking_routing_module__WEBPACK_IMPORTED_MODULE_5__["TrackingPageRoutingModule"]],
       declarations: [_tracking_page__WEBPACK_IMPORTED_MODULE_6__["TrackingPage"]]
     })], TrackingPageModule);
@@ -247,14 +247,28 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
     /*! @ionic/angular */
     "./node_modules/@ionic/angular/fesm2015/ionic-angular.js");
+    /* harmony import */
+
+
+    var _services_tracking_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    /*! ../../services/tracking.service */
+    "./src/app/services/tracking.service.ts");
+    /* harmony import */
+
+
+    var _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    /*! @ionic-native/http/ngx */
+    "./node_modules/@ionic-native/http/ngx/index.js");
 
     var TrackingPage = /*#__PURE__*/function () {
-      function TrackingPage(util, alertController, authSVC) {
+      function TrackingPage(util, alertController, authSVC, trackingSVC, http) {
         _classCallCheck(this, TrackingPage);
 
         this.util = util;
         this.alertController = alertController;
         this.authSVC = authSVC;
+        this.trackingSVC = trackingSVC;
+        this.http = http;
         this.zoom = 12;
         this.lat = 28.6532358;
         this.lng = -106.0991318;
@@ -270,50 +284,29 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
       _createClass(TrackingPage, [{
         key: "ngOnInit",
-        value: function ngOnInit() {}
+        value: function ngOnInit() {
+          this.user = JSON.parse(sessionStorage.getItem('user'));
+          this.getLocationUser(this.user);
+        }
+        /*  async onMarkerSelect(marker: any) {
+           if (marker.isOpen) {
+             await this.markers.forEach((element) => {
+               element.select = false;
+             });
+             marker.select = await true;
+           }
+         } */
+
       }, {
-        key: "onMarkerSelect",
-        value: function onMarkerSelect(marker) {
+        key: "presentAlert",
+        value: function presentAlert() {
           return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+            var alert;
             return regeneratorRuntime.wrap(function _callee$(_context) {
               while (1) {
                 switch (_context.prev = _context.next) {
                   case 0:
-                    if (!marker.isOpen) {
-                      _context.next = 6;
-                      break;
-                    }
-
-                    _context.next = 3;
-                    return this.markers.forEach(function (element) {
-                      element.select = false;
-                    });
-
-                  case 3:
-                    _context.next = 5;
-                    return true;
-
-                  case 5:
-                    marker.select = _context.sent;
-
-                  case 6:
-                  case "end":
-                    return _context.stop();
-                }
-              }
-            }, _callee, this);
-          }));
-        }
-      }, {
-        key: "presentAlert",
-        value: function presentAlert() {
-          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
-            var alert;
-            return regeneratorRuntime.wrap(function _callee2$(_context2) {
-              while (1) {
-                switch (_context2.prev = _context2.next) {
-                  case 0:
-                    _context2.next = 2;
+                    _context.next = 2;
                     return this.alertController.create({
                       cssClass: 'my-custom-class',
                       message: 'Do you want to share your courrent location?',
@@ -333,17 +326,80 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     });
 
                   case 2:
-                    alert = _context2.sent;
-                    _context2.next = 5;
+                    alert = _context.sent;
+                    _context.next = 5;
                     return alert.present();
 
                   case 5:
                   case "end":
-                    return _context2.stop();
+                    return _context.stop();
                 }
               }
-            }, _callee2, this);
+            }, _callee, this);
           }));
+        }
+      }, {
+        key: "getLocationUser",
+        value: function getLocationUser(user) {
+          var _this = this;
+
+          /*    this.gps = false;
+             this.disabled = false; */
+          this.trackingSVC.getLocation(user).once('value').then(function (resp) {
+            console.log(resp.val());
+            var lat = resp.val().lat;
+            var _long = resp.val().lng;
+            _this.lat = lat;
+            _this.lng = _long;
+
+            _this.getLocation(lat, _long);
+            /*   let pos : point = {
+                lat: lat,
+                lng: long
+              }
+                 
+              this.points.push(pos); */
+
+            /*    this.userlat = lat;
+               this.userlng = long;
+                         this.currentPos.lat = lat;
+               this.currentPos.lng = long */
+
+            /*   if (this.points.length>1){
+                this.points[1] = pos;
+                       }else if (this.points.length==1){
+                this.points.push(pos);
+                       }else{
+                
+                this.points.push(pos);
+              } */
+
+            /*   const TU_LLAVE = 'AIzaSyDpPLmgRkC8ublILfSGj8961ku-hyTpNvs';
+            this.http.get(
+              `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${long}&key=${TU_LLAVE}`
+             ).subscribe((e:any) => {
+               
+                 console.log(e);
+                 //Swal.close();
+                 
+               
+             }); */
+
+          });
+        }
+      }, {
+        key: "getLocation",
+        value: function getLocation(lat, _long2) {
+          var _this2 = this;
+
+          /*  const lat = 45.45121212;
+           const long = 45.451564; */
+          var TU_LLAVE = 'AIzaSyDpPLmgRkC8ublILfSGj8961ku-hyTpNvs';
+          this.http.get("https://maps.googleapis.com/maps/api/geocode/json?latlng=".concat(lat, ",").concat(_long2, "&key=").concat(TU_LLAVE), {}, {}).then(function (data) {
+            var l = JSON.parse(data.data);
+            _this2.locatio = l.results[0].formatted_address;
+            /* this.backgroundGeolocation.finish();  */
+          });
         }
       }]);
 
@@ -357,6 +413,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["AlertController"]
       }, {
         type: src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"]
+      }, {
+        type: _services_tracking_service__WEBPACK_IMPORTED_MODULE_6__["TrackingService"]
+      }, {
+        type: _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_7__["HTTP"]
       }];
     };
 
@@ -371,7 +431,82 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./tracking.page.scss */
       "./src/app/pages/tracking/tracking.page.scss"))["default"]]
-    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_util_service__WEBPACK_IMPORTED_MODULE_1__["UtilService"], _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["AlertController"], src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"]])], TrackingPage);
+    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_util_service__WEBPACK_IMPORTED_MODULE_1__["UtilService"], _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["AlertController"], src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"], _services_tracking_service__WEBPACK_IMPORTED_MODULE_6__["TrackingService"], _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_7__["HTTP"]])], TrackingPage);
+    /***/
+  },
+
+  /***/
+  "./src/app/services/tracking.service.ts":
+  /*!**********************************************!*\
+    !*** ./src/app/services/tracking.service.ts ***!
+    \**********************************************/
+
+  /*! exports provided: TrackingService */
+
+  /***/
+  function srcAppServicesTrackingServiceTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "TrackingService", function () {
+      return TrackingService;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var firebase__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! firebase */
+    "./node_modules/firebase/dist/index.esm.js");
+
+    var TrackingService = /*#__PURE__*/function () {
+      function TrackingService() {
+        _classCallCheck(this, TrackingService);
+      }
+
+      _createClass(TrackingService, [{
+        key: "updateLocation",
+        value: function updateLocation(lat, lng, user) {
+          var location = {
+            lat: lat,
+            lng: lng,
+            timestamp: firebase__WEBPACK_IMPORTED_MODULE_2__["default"].firestore.Timestamp.fromDate(new Date())
+          };
+          firebase__WEBPACK_IMPORTED_MODULE_2__["default"].database().ref('Tracking/' + user.uid + '/Current').set(location);
+          firebase__WEBPACK_IMPORTED_MODULE_2__["default"].database().ref('Tracking/' + user.uid + '/Historic').push(location);
+        }
+      }, {
+        key: "getLocation",
+        value: function getLocation(user) {
+          return firebase__WEBPACK_IMPORTED_MODULE_2__["default"].database().ref('Tracking/' + user.uid + '/Current');
+        }
+      }, {
+        key: "getHistoric",
+        value: function getHistoric(user) {
+          return firebase__WEBPACK_IMPORTED_MODULE_2__["default"].database().ref('Tracking/' + user.uid + '/Historic');
+        }
+      }]);
+
+      return TrackingService;
+    }();
+
+    TrackingService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+      providedIn: 'root'
+    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])], TrackingService);
     /***/
   }
 }]);

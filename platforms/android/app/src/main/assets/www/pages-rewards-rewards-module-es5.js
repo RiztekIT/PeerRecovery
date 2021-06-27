@@ -21,7 +21,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-header class=\"ion-no-border\">\n    <ion-toolbar mode=\"md\">\n        <ion-buttons slot=\"start\">\n            <ion-back-button defaultHref=\"home\" icon=\"chevron-back-outline\" text=\"\" mode=\"md\"></ion-back-button>\n        </ion-buttons>\n        <ion-buttons slot=\"end\">\n            <ion-menu-button></ion-menu-button>\n        </ion-buttons>\n        <ion-title>Rewards</ion-title>\n    </ion-toolbar>\n</ion-header>\n<ion-content class=\"ion-padding-bottom\">\n    <h3 class=\"main_lbl ion-padding-start\">Rewards</h3>\n    <h5 class=\"submain_lbl ion-padding-start\">Meet your goals and get rewards!</h5>\n    <ion-list>\n        <ion-item (click)=\"openReward()\">\n            <ion-avatar slot=\"start\">\n                <img src=\"../../../assets/image_icon/chat.png\">\n            </ion-avatar>\n            <ion-label>\n                <h2>Chat in the year</h2>\n                <p>Dec, 31 2021</p>\n                <p>\n                    <ion-progress-bar color=\"danger\" value=\".1\"></ion-progress-bar>\n                </p>\n            </ion-label>\n        </ion-item>\n        <ion-item (click)=\"openReward()\">\n            <ion-avatar slot=\"start\">\n                <img src=\"../../../assets/image_icon/highway.png\">\n            </ion-avatar>\n            <ion-label>\n                <h2>Clean the city</h2>\n                <p>Jan, 01 2021</p>\n                <p>\n                    <ion-progress-bar color=\"success\" value=\"1\"></ion-progress-bar>\n                </p>\n            </ion-label>\n        </ion-item>\n        <ion-item (click)=\"openReward()\">\n            <ion-avatar slot=\"start\">\n                <img src=\"../../../assets/image_icon/certificate.png\">\n            </ion-avatar>\n            <ion-label>\n                <h2>Health course</h2>\n                <p>Feb, 25 2021</p>\n                <p>\n                    <ion-progress-bar color=\"warning\" value=\"0.8\"></ion-progress-bar>\n                </p>\n            </ion-label>\n        </ion-item>\n        <ion-item (click)=\"openReward()\">\n            <ion-avatar slot=\"start\">\n                <img src=\"../../../assets/image_icon/dumbbells.png\">\n            </ion-avatar>\n            <ion-label>\n                <h2>Go to gym</h2>\n                <p>Feb, 01 2021</p>\n                <p>\n                    <ion-progress-bar color=\"danger\" value=\"0.10\"></ion-progress-bar>\n                </p>\n            </ion-label>\n        </ion-item>\n        <ion-item (click)=\"openReward()\">\n            <ion-avatar slot=\"start\">\n                <img src=\"../../../assets/image_icon/stethoscope.png\">\n            </ion-avatar>\n            <ion-label>\n                <h2>Medical Checkout</h2>\n                <p>Mar, 01 2021</p>\n                <p>\n                    <ion-progress-bar color=\"success\" value=\"1\"></ion-progress-bar>\n                </p>\n            </ion-label>\n        </ion-item>\n        <ion-item (click)=\"openReward()\">\n            <ion-avatar slot=\"start\">\n                <img src=\"../../../assets/image_icon/salad.png\">\n            </ion-avatar>\n            <ion-label>\n                <h2>Eat fruit and vegetables</h2>\n                <p>Dec, 01 2021</p>\n                <p>\n                    <ion-progress-bar color=\"warning\" value=\"0.5\"></ion-progress-bar>\n                </p>\n            </ion-label>\n        </ion-item>\n        <ion-item (click)=\"openReward()\">\n            <ion-avatar slot=\"start\">\n                <img src=\"../../../assets/image_icon/no-smoking.png\">\n            </ion-avatar>\n            <ion-label>\n                <h2>No somking</h2>\n                <p>Dec, 01 2021</p>\n                <p>\n                    <ion-progress-bar color=\"warning\" value=\"0.5\"></ion-progress-bar>\n                </p>\n            </ion-label>\n        </ion-item>\n        <ion-item (click)=\"openReward()\">\n            <ion-avatar slot=\"start\">\n                <img src=\"../../../assets/image_icon/date.png\">\n            </ion-avatar>\n            <ion-label>\n                <h2>Monthly date (February)</h2>\n                <p>Jan, 01 2021</p>\n                <p>\n                    <ion-progress-bar color=\"success\" value=\"1\"></ion-progress-bar>\n                </p>\n            </ion-label>\n        </ion-item>\n        <ion-item (click)=\"openReward()\">\n            <ion-avatar slot=\"start\">\n                <img src=\"../../../assets/image_icon/video-call.png\">\n            </ion-avatar>\n            <ion-label>\n                <h2>Monthly call (February)</h2>\n                <p>Jan, 02 2021</p>\n                <p>\n                    <ion-progress-bar color=\"success\" value=\"1\"></ion-progress-bar>\n                </p>\n            </ion-label>\n        </ion-item>\n\n    </ion-list>\n</ion-content>";
+    __webpack_exports__["default"] = "<ion-header class=\"ion-no-border\">\n    <ion-toolbar mode=\"md\">\n        <ion-buttons slot=\"start\">\n            <ion-back-button defaultHref=\"home\" icon=\"chevron-back-outline\" text=\"\" mode=\"md\"></ion-back-button>\n        </ion-buttons>\n        <ion-buttons slot=\"end\">\n            <ion-menu-button></ion-menu-button>\n        </ion-buttons>\n        <ion-title>Rewards</ion-title>\n    </ion-toolbar>\n</ion-header>\n<ion-content class=\"ion-padding-bottom\">\n    <div class=\"head_div\">\n        <h3 class=\"main_lbl ion-padding-start head_lbl\">Rewards<span class=\"ion-float-right\"> </span>\n            <ion-toggle [(ngModel)]=\"this.all\" slot=\"end\" color=\"primary\" (ngModelChange)=\"allChange()\"></ion-toggle>\n        </h3>\n        <h5 class=\"submain_lbl ion-padding-start\">Meet your goals and get rewards!</h5>\n    </div>\n\n    <ion-list>\n\n        <ion-item *ngFor=\"let reward of this.rewards\" (click)=\"openReward(reward)\">\n            <ion-label>\n                <h2>{{reward.title}}</h2>\n                <p>{{reward.dateline.seconds*1000 | date}}</p>\n                <p>\n                    <ion-progress-bar [color]=\"getColor(reward)\" [value]=\"reward.advance\"></ion-progress-bar>\n                </p>\n            </ion-label>\n\n        </ion-item>\n\n\n\n    </ion-list>\n</ion-content>";
     /***/
   },
 
@@ -174,7 +174,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "ion-header ion-back-button {\n  color: var(--blue);\n}\nion-header ion-title {\n  color: var(--blue);\n  text-align: center;\n  font-size: 18px;\n  font-family: \"sf_ui_sb\";\n  text-transform: capitalize;\n}\n.main_lbl {\n  font-size: 18px;\n  color: var(--ion-color-primary-dark);\n  font-family: \"sfUi-m\";\n}\n.submain_lbl {\n  font-size: 12px;\n  color: var(--ion-color-step-600, #666666);\n  font-family: \"sfUi-m\";\n}\nion-avatar {\n  width: 55px;\n  height: 55px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9pdmFudGFsYW1hbnRlcy9Eb2N1bWVudHMvUml6dGVrL0RldnMgQXBwcy9QRUVSUkVDT1ZFUlkvUGVlclJlY292ZXJ5QVBQL3NyYy9hcHAvcGFnZXMvcmV3YXJkcy9yZXdhcmRzLnBhZ2Uuc2NzcyIsInNyYy9hcHAvcGFnZXMvcmV3YXJkcy9yZXdhcmRzLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFDSTtFQUNJLGtCQUFBO0FDQVI7QURFSTtFQUNJLGtCQUFBO0VBQ0Esa0JBQUE7RUFDQSxlQUFBO0VBQ0EsdUJBQUE7RUFDQSwwQkFBQTtBQ0FSO0FESUE7RUFDSSxlQUFBO0VBQ0Esb0NBQUE7RUFDQSxxQkFBQTtBQ0RKO0FESUE7RUFDSSxlQUFBO0VBQ0EseUNBQUE7RUFDQSxxQkFBQTtBQ0RKO0FESUE7RUFDSSxXQUFBO0VBQ0EsWUFBQTtBQ0RKIiwiZmlsZSI6InNyYy9hcHAvcGFnZXMvcmV3YXJkcy9yZXdhcmRzLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImlvbi1oZWFkZXIge1xuICAgIGlvbi1iYWNrLWJ1dHRvbiB7XG4gICAgICAgIGNvbG9yOiB2YXIoLS1ibHVlKTtcbiAgICB9XG4gICAgaW9uLXRpdGxlIHtcbiAgICAgICAgY29sb3I6IHZhcigtLWJsdWUpO1xuICAgICAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gICAgICAgIGZvbnQtc2l6ZTogMThweDtcbiAgICAgICAgZm9udC1mYW1pbHk6IFwic2ZfdWlfc2JcIjtcbiAgICAgICAgdGV4dC10cmFuc2Zvcm06IGNhcGl0YWxpemU7XG4gICAgfVxufVxuXG4ubWFpbl9sYmwge1xuICAgIGZvbnQtc2l6ZTogMThweDtcbiAgICBjb2xvcjogdmFyKC0taW9uLWNvbG9yLXByaW1hcnktZGFyayk7XG4gICAgZm9udC1mYW1pbHk6ICdzZlVpLW0nO1xufVxuXG4uc3VibWFpbl9sYmwge1xuICAgIGZvbnQtc2l6ZTogMTJweDtcbiAgICBjb2xvcjogdmFyKC0taW9uLWNvbG9yLXN0ZXAtNjAwLCAjNjY2NjY2KTtcbiAgICBmb250LWZhbWlseTogJ3NmVWktbSc7XG59XG5cbmlvbi1hdmF0YXIge1xuICAgIHdpZHRoOiA1NXB4O1xuICAgIGhlaWdodDogNTVweDtcbn0iLCJpb24taGVhZGVyIGlvbi1iYWNrLWJ1dHRvbiB7XG4gIGNvbG9yOiB2YXIoLS1ibHVlKTtcbn1cbmlvbi1oZWFkZXIgaW9uLXRpdGxlIHtcbiAgY29sb3I6IHZhcigtLWJsdWUpO1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gIGZvbnQtc2l6ZTogMThweDtcbiAgZm9udC1mYW1pbHk6IFwic2ZfdWlfc2JcIjtcbiAgdGV4dC10cmFuc2Zvcm06IGNhcGl0YWxpemU7XG59XG5cbi5tYWluX2xibCB7XG4gIGZvbnQtc2l6ZTogMThweDtcbiAgY29sb3I6IHZhcigtLWlvbi1jb2xvci1wcmltYXJ5LWRhcmspO1xuICBmb250LWZhbWlseTogXCJzZlVpLW1cIjtcbn1cblxuLnN1Ym1haW5fbGJsIHtcbiAgZm9udC1zaXplOiAxMnB4O1xuICBjb2xvcjogdmFyKC0taW9uLWNvbG9yLXN0ZXAtNjAwLCAjNjY2NjY2KTtcbiAgZm9udC1mYW1pbHk6IFwic2ZVaS1tXCI7XG59XG5cbmlvbi1hdmF0YXIge1xuICB3aWR0aDogNTVweDtcbiAgaGVpZ2h0OiA1NXB4O1xufSJdfQ== */";
+    __webpack_exports__["default"] = "/* ion-header {\n    ion-back-button {\n        color: var(--blue);\n    }\n    ion-title {\n        color: var(--blue);\n        text-align: center;\n        font-size: 18px;\n        font-family: \"sf_ui_sb\";\n        text-transform: capitalize;\n    }\n}\n\n.main_lbl {\n    font-size: 18px;\n    color: var(--ion-color-primary-dark);\n    font-family: 'sfUi-m';\n}\n\n.submain_lbl {\n    font-size: 12px;\n    color: var(--ion-color-step-600, #666666);\n    font-family: 'sfUi-m';\n}\n\nion-avatar {\n    width: 55px;\n    height: 55px;\n} */\nion-header ion-back-button {\n  color: var(--blue);\n}\nion-header ion-title {\n  color: var(--blue);\n  text-align: center;\n  font-size: 18px;\n  font-family: \"sf_ui_sb\";\n  text-transform: capitalize;\n}\nion-content .main_lbl {\n  font-size: 16px;\n  color: var(--blue);\n  font-family: \"sf_ui_md\";\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n}\nion-content .date_div {\n  background-color: var(--div_back);\n  margin-top: 10px;\n}\nion-content .date_div ion-col {\n  text-align: center;\n  padding: 11px 0px 0px 0px;\n}\nion-content .date_div ion-col .date_lbl {\n  font-size: 14px;\n  color: var(--blue);\n  font-family: \"sf_ui_md\";\n  margin: 0;\n}\nion-content .date_div ion-col ion-datetime {\n  color: var(--my_theme);\n  font-family: \"sf_ui_md\";\n  font-size: 14px;\n  padding-left: 0;\n  padding-top: 5px;\n  padding-bottom: 0;\n}\nion-content .date_div ion-col .time_l {\n  color: var(--blue);\n  margin-bottom: 10px;\n}\n.stacked-lbl {\n  font-size: 19px;\n  color: var(--blue);\n  font-family: \"sf_ui_md\";\n  margin: 0;\n}\nion-button {\n  font-family: \"sf_ui_md\";\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9pdmFudGFsYW1hbnRlcy9Eb2N1bWVudHMvUml6dGVrL0RldnMgQXBwcy9QRUVSUkVDT1ZFUlkvUGVlclJlY292ZXJ5QVBQL3NyYy9hcHAvcGFnZXMvcmV3YXJkcy9yZXdhcmRzLnBhZ2Uuc2NzcyIsInNyYy9hcHAvcGFnZXMvcmV3YXJkcy9yZXdhcmRzLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztHQUFBO0FBK0JJO0VBQ0ksa0JBQUE7QUNEUjtBREdJO0VBQ0ksa0JBQUE7RUFDQSxrQkFBQTtFQUNBLGVBQUE7RUFDQSx1QkFBQTtFQUNBLDBCQUFBO0FDRFI7QURNSTtFQUNJLGVBQUE7RUFDQSxrQkFBQTtFQUNBLHVCQUFBO0VBQ0EsYUFBQTtFQUNBLG1CQUFBO0VBQ0EsOEJBQUE7QUNIUjtBREtJO0VBQ0ksaUNBQUE7RUFDQSxnQkFBQTtBQ0hSO0FESVE7RUFDSSxrQkFBQTtFQUNBLHlCQUFBO0FDRlo7QURHWTtFQUNJLGVBQUE7RUFDQSxrQkFBQTtFQUNBLHVCQUFBO0VBQ0EsU0FBQTtBQ0RoQjtBREdZO0VBQ0ksc0JBQUE7RUFDQSx1QkFBQTtFQUNBLGVBQUE7RUFDQSxlQUFBO0VBQ0EsZ0JBQUE7RUFDQSxpQkFBQTtBQ0RoQjtBREdZO0VBQ0ksa0JBQUE7RUFDQSxtQkFBQTtBQ0RoQjtBRE9BO0VBQ0ksZUFBQTtFQUNBLGtCQUFBO0VBQ0EsdUJBQUE7RUFDQSxTQUFBO0FDSko7QURPQTtFQUNJLHVCQUFBO0FDSkoiLCJmaWxlIjoic3JjL2FwcC9wYWdlcy9yZXdhcmRzL3Jld2FyZHMucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLyogaW9uLWhlYWRlciB7XG4gICAgaW9uLWJhY2stYnV0dG9uIHtcbiAgICAgICAgY29sb3I6IHZhcigtLWJsdWUpO1xuICAgIH1cbiAgICBpb24tdGl0bGUge1xuICAgICAgICBjb2xvcjogdmFyKC0tYmx1ZSk7XG4gICAgICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICAgICAgZm9udC1zaXplOiAxOHB4O1xuICAgICAgICBmb250LWZhbWlseTogXCJzZl91aV9zYlwiO1xuICAgICAgICB0ZXh0LXRyYW5zZm9ybTogY2FwaXRhbGl6ZTtcbiAgICB9XG59XG5cbi5tYWluX2xibCB7XG4gICAgZm9udC1zaXplOiAxOHB4O1xuICAgIGNvbG9yOiB2YXIoLS1pb24tY29sb3ItcHJpbWFyeS1kYXJrKTtcbiAgICBmb250LWZhbWlseTogJ3NmVWktbSc7XG59XG5cbi5zdWJtYWluX2xibCB7XG4gICAgZm9udC1zaXplOiAxMnB4O1xuICAgIGNvbG9yOiB2YXIoLS1pb24tY29sb3Itc3RlcC02MDAsICM2NjY2NjYpO1xuICAgIGZvbnQtZmFtaWx5OiAnc2ZVaS1tJztcbn1cblxuaW9uLWF2YXRhciB7XG4gICAgd2lkdGg6IDU1cHg7XG4gICAgaGVpZ2h0OiA1NXB4O1xufSAqL1xuXG5pb24taGVhZGVyIHtcbiAgICBpb24tYmFjay1idXR0b24ge1xuICAgICAgICBjb2xvcjogdmFyKC0tYmx1ZSk7XG4gICAgfVxuICAgIGlvbi10aXRsZSB7XG4gICAgICAgIGNvbG9yOiB2YXIoLS1ibHVlKTtcbiAgICAgICAgdGV4dC1hbGlnbjogY2VudGVyO1xuICAgICAgICBmb250LXNpemU6IDE4cHg7XG4gICAgICAgIGZvbnQtZmFtaWx5OiBcInNmX3VpX3NiXCI7XG4gICAgICAgIHRleHQtdHJhbnNmb3JtOiBjYXBpdGFsaXplO1xuICAgIH1cbn1cblxuaW9uLWNvbnRlbnQge1xuICAgIC5tYWluX2xibCB7XG4gICAgICAgIGZvbnQtc2l6ZTogMTZweDtcbiAgICAgICAgY29sb3I6IHZhcigtLWJsdWUpO1xuICAgICAgICBmb250LWZhbWlseTogXCJzZl91aV9tZFwiO1xuICAgICAgICBkaXNwbGF5OiBmbGV4O1xuICAgICAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuICAgICAgICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWJldHdlZW47XG4gICAgfVxuICAgIC5kYXRlX2RpdiB7XG4gICAgICAgIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWRpdl9iYWNrKTtcbiAgICAgICAgbWFyZ2luLXRvcDogMTBweDtcbiAgICAgICAgaW9uLWNvbCB7XG4gICAgICAgICAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gICAgICAgICAgICBwYWRkaW5nOiAxMXB4IDBweCAwcHggMHB4O1xuICAgICAgICAgICAgLmRhdGVfbGJsIHtcbiAgICAgICAgICAgICAgICBmb250LXNpemU6IDE0cHg7XG4gICAgICAgICAgICAgICAgY29sb3I6IHZhcigtLWJsdWUpO1xuICAgICAgICAgICAgICAgIGZvbnQtZmFtaWx5OiBcInNmX3VpX21kXCI7XG4gICAgICAgICAgICAgICAgbWFyZ2luOiAwO1xuICAgICAgICAgICAgfVxuICAgICAgICAgICAgaW9uLWRhdGV0aW1lIHtcbiAgICAgICAgICAgICAgICBjb2xvcjogdmFyKC0tbXlfdGhlbWUpO1xuICAgICAgICAgICAgICAgIGZvbnQtZmFtaWx5OiBcInNmX3VpX21kXCI7XG4gICAgICAgICAgICAgICAgZm9udC1zaXplOiAxNHB4O1xuICAgICAgICAgICAgICAgIHBhZGRpbmctbGVmdDogMDtcbiAgICAgICAgICAgICAgICBwYWRkaW5nLXRvcDogNXB4O1xuICAgICAgICAgICAgICAgIHBhZGRpbmctYm90dG9tOiAwO1xuICAgICAgICAgICAgfVxuICAgICAgICAgICAgLnRpbWVfbCB7XG4gICAgICAgICAgICAgICAgY29sb3I6IHZhcigtLWJsdWUpO1xuICAgICAgICAgICAgICAgIG1hcmdpbi1ib3R0b206IDEwcHg7XG4gICAgICAgICAgICB9XG4gICAgICAgIH1cbiAgICB9XG59XG5cbi5zdGFja2VkLWxibCB7XG4gICAgZm9udC1zaXplOiAxOXB4O1xuICAgIGNvbG9yOiB2YXIoLS1ibHVlKTtcbiAgICBmb250LWZhbWlseTogXCJzZl91aV9tZFwiO1xuICAgIG1hcmdpbjogMDtcbn1cblxuaW9uLWJ1dHRvbiB7XG4gICAgZm9udC1mYW1pbHk6IFwic2ZfdWlfbWRcIjtcbn0iLCIvKiBpb24taGVhZGVyIHtcbiAgICBpb24tYmFjay1idXR0b24ge1xuICAgICAgICBjb2xvcjogdmFyKC0tYmx1ZSk7XG4gICAgfVxuICAgIGlvbi10aXRsZSB7XG4gICAgICAgIGNvbG9yOiB2YXIoLS1ibHVlKTtcbiAgICAgICAgdGV4dC1hbGlnbjogY2VudGVyO1xuICAgICAgICBmb250LXNpemU6IDE4cHg7XG4gICAgICAgIGZvbnQtZmFtaWx5OiBcInNmX3VpX3NiXCI7XG4gICAgICAgIHRleHQtdHJhbnNmb3JtOiBjYXBpdGFsaXplO1xuICAgIH1cbn1cblxuLm1haW5fbGJsIHtcbiAgICBmb250LXNpemU6IDE4cHg7XG4gICAgY29sb3I6IHZhcigtLWlvbi1jb2xvci1wcmltYXJ5LWRhcmspO1xuICAgIGZvbnQtZmFtaWx5OiAnc2ZVaS1tJztcbn1cblxuLnN1Ym1haW5fbGJsIHtcbiAgICBmb250LXNpemU6IDEycHg7XG4gICAgY29sb3I6IHZhcigtLWlvbi1jb2xvci1zdGVwLTYwMCwgIzY2NjY2Nik7XG4gICAgZm9udC1mYW1pbHk6ICdzZlVpLW0nO1xufVxuXG5pb24tYXZhdGFyIHtcbiAgICB3aWR0aDogNTVweDtcbiAgICBoZWlnaHQ6IDU1cHg7XG59ICovXG5pb24taGVhZGVyIGlvbi1iYWNrLWJ1dHRvbiB7XG4gIGNvbG9yOiB2YXIoLS1ibHVlKTtcbn1cbmlvbi1oZWFkZXIgaW9uLXRpdGxlIHtcbiAgY29sb3I6IHZhcigtLWJsdWUpO1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gIGZvbnQtc2l6ZTogMThweDtcbiAgZm9udC1mYW1pbHk6IFwic2ZfdWlfc2JcIjtcbiAgdGV4dC10cmFuc2Zvcm06IGNhcGl0YWxpemU7XG59XG5cbmlvbi1jb250ZW50IC5tYWluX2xibCB7XG4gIGZvbnQtc2l6ZTogMTZweDtcbiAgY29sb3I6IHZhcigtLWJsdWUpO1xuICBmb250LWZhbWlseTogXCJzZl91aV9tZFwiO1xuICBkaXNwbGF5OiBmbGV4O1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWJldHdlZW47XG59XG5pb24tY29udGVudCAuZGF0ZV9kaXYge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiB2YXIoLS1kaXZfYmFjayk7XG4gIG1hcmdpbi10b3A6IDEwcHg7XG59XG5pb24tY29udGVudCAuZGF0ZV9kaXYgaW9uLWNvbCB7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgcGFkZGluZzogMTFweCAwcHggMHB4IDBweDtcbn1cbmlvbi1jb250ZW50IC5kYXRlX2RpdiBpb24tY29sIC5kYXRlX2xibCB7XG4gIGZvbnQtc2l6ZTogMTRweDtcbiAgY29sb3I6IHZhcigtLWJsdWUpO1xuICBmb250LWZhbWlseTogXCJzZl91aV9tZFwiO1xuICBtYXJnaW46IDA7XG59XG5pb24tY29udGVudCAuZGF0ZV9kaXYgaW9uLWNvbCBpb24tZGF0ZXRpbWUge1xuICBjb2xvcjogdmFyKC0tbXlfdGhlbWUpO1xuICBmb250LWZhbWlseTogXCJzZl91aV9tZFwiO1xuICBmb250LXNpemU6IDE0cHg7XG4gIHBhZGRpbmctbGVmdDogMDtcbiAgcGFkZGluZy10b3A6IDVweDtcbiAgcGFkZGluZy1ib3R0b206IDA7XG59XG5pb24tY29udGVudCAuZGF0ZV9kaXYgaW9uLWNvbCAudGltZV9sIHtcbiAgY29sb3I6IHZhcigtLWJsdWUpO1xuICBtYXJnaW4tYm90dG9tOiAxMHB4O1xufVxuXG4uc3RhY2tlZC1sYmwge1xuICBmb250LXNpemU6IDE5cHg7XG4gIGNvbG9yOiB2YXIoLS1ibHVlKTtcbiAgZm9udC1mYW1pbHk6IFwic2ZfdWlfbWRcIjtcbiAgbWFyZ2luOiAwO1xufVxuXG5pb24tYnV0dG9uIHtcbiAgZm9udC1mYW1pbHk6IFwic2ZfdWlfbWRcIjtcbn0iXX0= */";
     /***/
   },
 
@@ -215,21 +215,90 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
     /*! @ionic/angular */
     "./node_modules/@ionic/angular/fesm2015/ionic-angular.js");
+    /* harmony import */
+
+
+    var _services_reward_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! ../../services/reward.service */
+    "./src/app/services/reward.service.ts");
 
     var RewardsPage = /*#__PURE__*/function () {
-      function RewardsPage(nav) {
+      function RewardsPage(nav, rewardsSVC) {
         _classCallCheck(this, RewardsPage);
 
         this.nav = nav;
+        this.rewardsSVC = rewardsSVC;
+        this.rewards = [];
+        this.all = true;
       }
 
       _createClass(RewardsPage, [{
         key: "ngOnInit",
-        value: function ngOnInit() {}
+        value: function ngOnInit() {
+          this.user = JSON.parse(sessionStorage.getItem('user'));
+          this.getRewards(this.user);
+        }
       }, {
         key: "openReward",
-        value: function openReward() {
+        value: function openReward(reward) {
+          //console.log(reward);
+          this.rewardsSVC.rewardSelected = reward;
           this.nav.navigateForward("/reward");
+        }
+      }, {
+        key: "getRewards",
+        value: function getRewards(user) {
+          var _this = this;
+
+          this.rewardsSVC.getRewards(user.uid).on('value', function (resp) {
+            _this.rewards = [];
+            resp.forEach(function (child) {
+              var item = child.val();
+              item.rewardkey = child.key;
+              item.advance = _this.getPorcent(item);
+
+              if (_this.all) {
+                _this.rewards.push(item);
+              } else {
+                if (item.advance < 1) {
+                  _this.rewards.push(item);
+                }
+              }
+            });
+            console.log(_this.rewards);
+          });
+        }
+      }, {
+        key: "getPorcent",
+        value: function getPorcent(reward) {
+          console.log(reward.task);
+          var total = reward.task.length;
+          var done = 0;
+
+          for (var i = 0; i < total; i++) {
+            if (reward.task[i].done) {
+              done = done + 1;
+            }
+          }
+
+          var ad = done / total;
+          return ad;
+        }
+      }, {
+        key: "getColor",
+        value: function getColor(reward) {
+          if (reward.advance < .20) {
+            return 'danger';
+          } else if (reward.advance < .80) {
+            return 'warning';
+          } else {
+            return 'success';
+          }
+        }
+      }, {
+        key: "allChange",
+        value: function allChange() {
+          this.getRewards(this.user);
         }
       }]);
 
@@ -239,6 +308,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     RewardsPage.ctorParameters = function () {
       return [{
         type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavController"]
+      }, {
+        type: _services_reward_service__WEBPACK_IMPORTED_MODULE_3__["RewardService"]
       }];
     };
 
@@ -250,7 +321,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./rewards.page.scss */
       "./src/app/pages/rewards/rewards.page.scss"))["default"]]
-    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavController"]])], RewardsPage);
+    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavController"], _services_reward_service__WEBPACK_IMPORTED_MODULE_3__["RewardService"]])], RewardsPage);
     /***/
   }
 }]);

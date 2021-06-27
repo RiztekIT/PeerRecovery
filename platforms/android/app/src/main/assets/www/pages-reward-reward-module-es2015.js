@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header class=\"ion-no-border\">\n    <ion-toolbar mode=\"md\">\n        <ion-buttons slot=\"start\">\n            <ion-back-button defaultHref=\"home\" icon=\"chevron-back-outline\" text=\"\" mode=\"md\"></ion-back-button>\n        </ion-buttons>\n        <ion-buttons slot=\"end\">\n            <ion-menu-button></ion-menu-button>\n        </ion-buttons>\n        <ion-title>Reward</ion-title>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content class=\"ion-padding-horizontal ion-padding-bottom\">\n\n\n    <div class=\"profile_div\">\n        <div class=\"img_div\">\n            <img src=\"../../../assets/image_icon/certificate.png\">\n        </div>\n    </div>\n    <p class=\"reward-name\">Health course</p>\n    <p class=\"book_id\">Deadline: Feb, 25 2021</p>\n    <p>\n        <!--- <ion-progress-bar color=\"warning\" value=\"0.8\"></ion-progress-bar>  -->\n    </p>\n\n\n\n\n\n\n    <div class=\"card_div\" *ngFor=\"let item of review\">\n        <div class=\"data_div\">\n            <h3 class=\"name\">{{item?.name}}\n                <span class=\"ion-float-right\">\n                  <ion-progress-bar [color]=\"item.color\" value=\"{{item?.average}}\"></ion-progress-bar>\n                </span>\n            </h3>\n            <p class=\"ago\">{{item?.ago}}</p>\n            <p class=\"ago detail\">{{item?.detail}}</p>\n        </div>\n    </div>\n\n</ion-content>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header class=\"ion-no-border\">\n    <ion-toolbar mode=\"md\">\n        <ion-buttons slot=\"start\">\n            <ion-back-button defaultHref=\"home\" icon=\"chevron-back-outline\" text=\"\" mode=\"md\"></ion-back-button>\n        </ion-buttons>\n        <ion-buttons slot=\"end\">\n            <ion-menu-button></ion-menu-button>\n        </ion-buttons>\n        <ion-title>Reward</ion-title>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content class=\"ion-padding-horizontal ion-padding-bottom\">\n\n\n    <!--    <div class=\"profile_div\">\n        <div class=\"img_div\">\n            <img src=\"../../../assets/image_icon/certificate.png\">\n        </div>\n    </div> -->\n    <p class=\"reward-name\">{{this.rewardsSVC.rewardSelected.title}}</p>\n    <p class=\"book_id\">Deadline: {{this.rewardsSVC.rewardSelected.dateline.seconds*1000 | date}}</p>\n    <p>\n        <!--- <ion-progress-bar color=\"warning\" value=\"0.8\"></ion-progress-bar>  -->\n    </p>\n\n\n    <div class=\"card_div\" *ngFor=\"let task of this.rewardsSVC.rewardSelected.task\">\n        <div class=\"data_div\" style=\"width: 100%;\">\n            <h3 class=\"name\">{{task?.title}}\n                <span class=\"ion-float-right\">\n                <ion-icon *ngIf=\"task.done\" name=\"checkmark-done-outline\" style=\"zoom:2.0; color: green;\"> </ion-icon>\n                </span>\n\n            </h3>\n            <p class=\"ago\">{{task?.dateline.seconds*1000 | date}}</p>\n            <p class=\"ago detail\">{{task?.description}}</p>\n        </div>\n    </div>\n\n\n\n\n    <!-- \n    <div class=\"card_div\" *ngFor=\"let item of review\">\n        <div class=\"data_div\">\n            <h3 class=\"name\">{{item?.name}}\n                <span class=\"ion-float-right\">\n                  <ion-progress-bar [color]=\"item.color\" value=\"{{item?.average}}\"></ion-progress-bar>\n                </span>\n            </h3>\n            <p class=\"ago\">{{item?.ago}}</p>\n            <p class=\"ago detail\">{{item?.detail}}</p>\n        </div>\n    </div> -->\n\n</ion-content>");
 
 /***/ }),
 
@@ -119,16 +119,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/fesm2015/ionic-angular.js");
+/* harmony import */ var src_app_services_reward_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/services/reward.service */ "./src/app/services/reward.service.ts");
+
 
 
 
 
 let RewardPage = class RewardPage {
-    constructor(popoverController, modalController, nav, route) {
+    constructor(popoverController, modalController, nav, route, rewardsSVC) {
         this.popoverController = popoverController;
         this.modalController = modalController;
         this.nav = nav;
         this.route = route;
+        this.rewardsSVC = rewardsSVC;
         this.selectedLocation = "Dr.Rose Ortiz";
         this.review = [
             {
@@ -183,31 +186,18 @@ let RewardPage = class RewardPage {
         this.activeTab = "PatientInfo";
     }
     ngOnInit() {
-        this.route.params.subscribe((params) => {
+        console.log(this.rewardsSVC.rewardSelected);
+        /*   this.route.params.subscribe((params) => {
             this.activeTab = params["id"];
-        });
-    }
-    chageTab(name) {
-        this.activeTab = name;
-    }
-    presentModal() {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-            /*const modal = await this.modalController.create({
-              component: CallModalPa,
-              cssClass: "callModal",
-            });
-            return await modal.present();*/
-        });
-    }
-    chat() {
-        this.nav.navigateForward("/chat");
+          }); */
     }
 };
 RewardPage.ctorParameters = () => [
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["PopoverController"] },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ModalController"] },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavController"] },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] }
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] },
+    { type: src_app_services_reward_service__WEBPACK_IMPORTED_MODULE_4__["RewardService"] }
 ];
 RewardPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -218,7 +208,8 @@ RewardPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_3__["PopoverController"],
         _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ModalController"],
         _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavController"],
-        _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]])
+        _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"],
+        src_app_services_reward_service__WEBPACK_IMPORTED_MODULE_4__["RewardService"]])
 ], RewardPage);
 
 

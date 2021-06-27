@@ -32,8 +32,7 @@ export class AppointmentPage implements OnInit {
     this.route.queryParams.subscribe(params => {
       if (params && params.special) {
         this.data = JSON.parse(params.special);
-        this.edit = true;
-        //console.log("appointmentID:", this.data.appointmentID);
+        this.edit = true;        
         this.getAppointment(this.data)
       }else{
         this.date = new Date().toString()

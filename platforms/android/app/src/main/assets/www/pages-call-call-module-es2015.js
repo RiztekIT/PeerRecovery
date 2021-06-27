@@ -88,7 +88,7 @@ CallPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"],
             agm_overlays__WEBPACK_IMPORTED_MODULE_8__["AgmOverlays"],
             _agm_core__WEBPACK_IMPORTED_MODULE_7__["AgmCoreModule"].forRoot({
-                apiKey: ''
+                apiKey: 'AIzaSyDL-2mFo6QYsp7qNSQl95AzhVZ6njRsLtE'
             }),
             _call_routing_module__WEBPACK_IMPORTED_MODULE_5__["CallPageRoutingModule"]
         ],

@@ -21,7 +21,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-header class=\"ion-no-border\">\n    <ion-toolbar mode=\"md\">\n        <ion-buttons slot=\"start\">\n            <ion-back-button defaultHref=\"home\" icon=\"chevron-back-outline\" text=\"\" mode=\"md\"></ion-back-button>\n        </ion-buttons>\n        <ion-buttons slot=\"end\">\n            <ion-menu-button></ion-menu-button>\n        </ion-buttons>\n        <ion-title>Appointments</ion-title>\n    </ion-toolbar>\n</ion-header>\n\n\n<ion-content class=\"ion-padding-bottom\">\n\n    <div class=\"head_div\">\n        <h3 class=\"main_lbl head_lbl\">Next appointments <span class=\"ion-float-right\">Total: {{totalAppointments}}</span></h3>\n    </div>\n\n    <div class=\"data_div\" (click)=\"openAppointmentPage(item)\" *ngFor=\"let item of Appointments\">\n        <p class=\"time\">{{item.time | TimeFormat}}</p>\n        <div class=\"card_div\">\n            <!--<img [src]=\"item?.img\">-->\n            <div class=\"info_div\">\n                <h3 class=\"name\">{{item.title}} <span>{{item.date | date: 'mediumDate' }}</span></h3>\n                <!--<p class=\"age\">Age : {{item?.age}}</p>-->\n                <p class=\"add\">{{item.description}}</p>\n            </div>\n        </div>\n    </div>\n\n\n    <ion-fab vertical=\"bottom\" horizontal=\"end\" slot=\"fixed\" (click)=\"newAppointmentPage()\">\n        <ion-fab-button>\n            <ion-icon name=\"calendar-outline\"></ion-icon>\n        </ion-fab-button>\n    </ion-fab>\n\n\n</ion-content>\n<!--<ion-footer class=\"ion-no-border\">\n    <ion-button class=\"main_btn\" expand=\"full\">\n        cancel appointment\n    </ion-button>\n</ion-footer>-->";
+    __webpack_exports__["default"] = "<ion-header class=\"ion-no-border\">\n    <ion-toolbar mode=\"md\">\n        <ion-buttons slot=\"start\">\n            <ion-back-button defaultHref=\"home\" icon=\"chevron-back-outline\" text=\"\" mode=\"md\"></ion-back-button>\n        </ion-buttons>\n        <ion-buttons slot=\"end\">\n            <ion-menu-button></ion-menu-button>\n        </ion-buttons>\n        <ion-title>Appointments</ion-title>\n    </ion-toolbar>\n</ion-header>\n\n\n<ion-content class=\"ion-padding-bottom\">\n\n    <div class=\"head_div\">\n        <h3 class=\"main_lbl head_lbl\">Appointments <span class=\"ion-float-right\">Total: {{totalAppointments}}</span>\n            <ion-toggle [(ngModel)]=\"this.all\" slot=\"end\" color=\"primary\" (ngModelChange)=\"allChange()\"></ion-toggle>\n        </h3>\n\n    </div>\n\n    <ion-row *ngIf=\"this.dates\">\n        <ion-col class=\"first_Col\" style=\"background-color: white;\">\n            <h3 class=\"date_lbl\">Start</h3>\n            <ion-datetime displayFormat=\"MMM DD YYYY\" [(ngModel)]=\"this.startDate\" (ngModelChange)=\"changeDates()\"></ion-datetime>\n        </ion-col>\n        <ion-col style=\"background-color: white;\">\n            <h3 class=\"date_lbl\">End</h3>\n            <ion-datetime displayFormat=\"MMM DD YYYY\" [(ngModel)]=\"this.endDate\" (ngModelChange)=\"changeDates()\"></ion-datetime>\n        </ion-col>\n    </ion-row>\n\n\n    <!--    <div class=\"data_div\" style=\"text-align: end;\">\n\n\n        <ion-toggle [(ngModel)]=\"this.all\" slot=\"end\" color=\"primary\"></ion-toggle>\n\n\n    </div> -->\n\n\n    <div class=\"data_div\" (click)=\"openAppointmentPage(item)\" *ngFor=\"let item of apps\">\n        <!-- <p class=\"time\">{{item.time | TimeFormat}}</p> -->\n        <ion-icon name=\"briefcase-outline\"> </ion-icon>\n        <div class=\"card_div\" [ngStyle]=\"getStyle(item)\">\n            <!--<img [src]=\"item?.img\">-->\n            <div class=\"info_div\">\n                <h3 class=\"name\">{{item.title}} <span>{{item.appointmentdate.seconds * 1000| date: 'dd/MM/yy h:mm a' }}</span></h3>\n                <!--<p class=\"age\">Age : {{item?.age}}</p>-->\n                <p class=\"add\">{{item.description}}</p>\n            </div>\n        </div>\n    </div>\n\n\n\n    <!--  <ion-fab vertical=\"bottom\" horizontal=\"end\" slot=\"fixed\" (click)=\"newAppointmentPage()\">\n        <ion-fab-button>\n            <ion-icon name=\"calendar-outline\"></ion-icon>\n        </ion-fab-button>\n    </ion-fab> -->\n\n    <ion-fab vertical=\"bottom\" horizontal=\"end\" slot=\"fixed\">\n        <ion-fab-button>\n            <ion-icon name=\"settings\"></ion-icon>\n        </ion-fab-button>\n        <ion-fab-list side=\"top\">\n            <ion-fab-button (click)=\"newAppointmentPage()\">\n                <ion-icon name=\"add-outline\"></ion-icon>\n            </ion-fab-button>\n            <ion-fab-button (click)=\"searchDates()\">\n                <ion-icon name=\"calendar-outline\"></ion-icon>\n            </ion-fab-button>\n        </ion-fab-list>\n    </ion-fab>\n\n\n</ion-content>\n<!--<ion-footer class=\"ion-no-border\">\n    <ion-button class=\"main_btn\" expand=\"full\">\n        cancel appointment\n    </ion-button>\n</ion-footer>-->";
     /***/
   },
 
@@ -244,6 +244,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       function CalendarPage(alertController, nav, router, modalCtr, firebaseAuthService, appointmentService) {
         _classCallCheck(this, CalendarPage);
 
+        /*     this.appointmentsDBRef = this.firebaseAuthService.firebaseDB.collection('Appointments');
+                        this.getAppointments(); */
         this.alertController = alertController;
         this.nav = nav;
         this.router = router;
@@ -251,14 +253,20 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.firebaseAuthService = firebaseAuthService;
         this.appointmentService = appointmentService;
         this.Appointments = [];
-        this.totalAppointments = 4;
-        this.appointmentsDBRef = this.firebaseAuthService.firebaseDB.collection('Appointments');
-        this.getAppointments();
+        this.totalAppointments = 0;
+        this.apps = [];
+        this.all = true;
+        this.dates = false;
       }
 
       _createClass(CalendarPage, [{
         key: "ngOnInit",
-        value: function ngOnInit() {}
+        value: function ngOnInit() {
+          this.user = JSON.parse(sessionStorage.getItem('user'));
+          this.startDate = new Date();
+          this.endDate = new Date();
+          this.getAppointments();
+        }
         /*async presentAlertRadio() {
           const alert = await this.alertController.create({
             header: "Set Doctor",
@@ -302,31 +310,101 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }*/
 
       }, {
+        key: "getStyle",
+        value: function getStyle(item) {
+          var color;
+          var hoy = new Date();
+          var fecha = new Date();
+          fecha.setTime(item.appointmentdate.seconds * 1000);
+          var h = +fecha - +hoy;
+          h = h / 86400000;
+
+          if (h < 0) {
+            color = {
+              'background-color': '#ff3333'
+            };
+            return color;
+          } else if (h < 1) {
+            color = {
+              'background-color': '#ffb3b3'
+            };
+            return color;
+          } else if (h < 3) {
+            color = {
+              'background-color': '#ffff99'
+            };
+            return color;
+          } else {
+            color = {
+              'background-color': '#66ff66'
+            };
+            return color;
+          }
+        }
+      }, {
+        key: "allChange",
+        value: function allChange() {
+          this.getAppointments();
+          /*    if (!this.all){
+               console.log(this.all,'all');
+                       this.apps.filter(app => app.done == 'false')
+             }
+                     console.log(this.apps); */
+        }
+      }, {
         key: "getAppointments",
         value: function getAppointments() {
           var _this = this;
 
-          this.appointmentService.getAppointments().on('value', function (resp) {
-            _this.Appointments = [];
+          /*   this.appointmentService.getAppointments().on('value', resp=>{
+              this.Appointments  = [];
+              resp.forEach((childSnapshot: any) => {
+                  const item = childSnapshot.val();
+                  item.key = childSnapshot.key;
+                  this.Appointments.push(item);
+              });
+              console.log(resp);
+              console.log(this.Appointments);
+            }) */
+          this.appointmentService.getApps(this.user.uid).on('value', function (resp) {
+            _this.apps = [];
+            console.log(resp.val());
             resp.forEach(function (childSnapshot) {
               var item = childSnapshot.val();
-              item.key = childSnapshot.key;
+              item.appkey = childSnapshot.key;
 
-              _this.Appointments.push(item);
+              if (_this.all) {
+                if (_this.dates) {
+                  if (item.appointmentdate.seconds * 1000 >= _this.startDateS.getTime() && item.appointmentdate.seconds * 1000 <= _this.endDateS.getTime()) {
+                    _this.apps.push(item);
+                  }
+                } else {
+                  _this.apps.push(item);
+                }
+              } else {
+                if (!item.done) {
+                  if (_this.dates) {
+                    if (item.appointmentdate.seconds * 1000 >= _this.startDateS.getTime() && item.appointmentdate.seconds * 1000 <= _this.endDateS.getTime()) {
+                      _this.apps.push(item);
+                    }
+                  } else {
+                    _this.apps.push(item);
+                  }
+                }
+              }
             });
-            console.log(resp);
-            console.log(_this.Appointments);
+            _this.totalAppointments = _this.apps.length;
           });
         }
       }, {
         key: "openAppointmentPage",
         value: function openAppointmentPage(item) {
-          var appointment = {
-            appointmentID: item.key
-          };
+          /*  let appointment = {
+             appointmentID: item.key,
+           }; */
           var navigationExtras = {
             queryParams: {
-              special: JSON.stringify(appointment)
+              special: JSON.stringify(item)
             }
           };
           this.router.navigate(['appointment'], navigationExtras);
@@ -335,6 +413,29 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "newAppointmentPage",
         value: function newAppointmentPage() {
           this.router.navigate(['appointment']);
+        }
+      }, {
+        key: "searchDates",
+        value: function searchDates() {
+          this.dates = !this.dates;
+          this.startDate = new Date();
+          this.endDate = new Date();
+          console.log(this.dates);
+        }
+      }, {
+        key: "changeDates",
+        value: function changeDates() {
+          console.log(this.startDate);
+          console.log(this.endDate);
+          this.startDateS = new Date(this.startDate);
+          this.endDateS = new Date(this.endDate);
+          console.log(this.startDateS);
+          console.log(this.endDateS);
+
+          if (this.startDateS < this.endDateS) {
+            this.getAppointments();
+          } //this.getAppointments();
+
         }
       }]);
 

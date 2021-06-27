@@ -6,6 +6,7 @@ import { AuthService } from "src/app/services/auth.service";
 import { ChatService } from 'src/app/services/chat.service';
 import { snapshotToArray } from '../chat-users-list/chat-users-list.page';
 import firebase from 'firebase';
+import { HTTP } from '@ionic-native/http/ngx';
 
 @Component({
   selector: 'app-chat',
@@ -27,7 +28,9 @@ export class ChatPage implements OnInit {
               private route: ActivatedRoute, 
               private router: Router,
               public firebaseAuthService: AuthService,
-              public chatService: ChatService) {
+              public chatService: ChatService,
+              public http: HTTP,
+              ) {
    /*    this.route.queryParams.subscribe(params => {
         if (params && params.special) {
           this.data = JSON.parse(params.special);
@@ -37,17 +40,34 @@ export class ChatPage implements OnInit {
           
         }
       }); */
+      this.route.queryParams.subscribe(params => {
+        if (params && params.data) {
+          let data = JSON.parse(params.data);
+          data = JSON.parse(data)
+          this.parametros = true;
+          this.chatService.keymessage = data.key;
+          this.chatUser = data.chatuser
+          
+
+     
+        }
+          
+      });
     }
 
     /*  */
     messages: any[] = [];
+    parametros;
 
   ngOnInit() {
  /*    this.getChat();
     this.getUserWith()
     this.chatService.readChats(); */
-    this.chatUser = this.chatService.user2
-    console.log(this.chatUser,'USER');
+    if (!this.parametros){
+
+      this.chatUser = this.chatService.user2
+      console.log(this.chatUser,'USER');
+    }
     this.getMessages()
 
     
@@ -120,7 +140,58 @@ export class ChatPage implements OnInit {
     console.log(this.message);
     this.chatService.sendMessage(this.message, this.firebaseAuthService.usersign, this.chatUser )
     this.message = '';
+
+    this.chatService.getTokenID(this.chatUser.uid).once('value', token=>{
+
+      console.log(token.val(), 'USERS');
+
+      /* this.sendLocation(this.currentPos,token.val()) */
+      this.sendMessageNoti(this.message, this.chatService.keymessage,token.val() ,this.chatUser)
+
+    })
     
+    
+  }
+
+  sendMessageNoti(message, keymessage, user, chatuser){
+
+    let data={
+      key: keymessage,
+      m: message,
+      user: chatuser
+
+    }
+
+    console.log(data,'data');
+
+    let body = {
+      "notification":{
+        "title":"PeerRecovery",
+        "body":"New Message",
+        "sound":"default",
+        "click_action":"FCM_PLUGIN_ACTIVITY",
+        "icon":"fcm_push_icon"
+      },
+      "data":{
+        "landing_page":"chat2",
+        "data":data
+      },
+        "to":user,
+        "priority":"high",
+        "restricted_package_name":""
+    }
+
+    let headers = {
+      'Authorization': 'key=AAAA7CwLHfI:APA91bGdbyFJFwO4xWEBilRVInU37vOoQ5jURZv0PHbD8zXc4pT58GEy1ETkskaOfIJEhHtR4YYMr4SbDRiuEI7BJG0JfoXDbguV691brsZri_bLqMQLc-FWffr1EakQsurEnb0ZrN2_',
+      'Content-Type': 'application/json'
+    }
+
+    this.http.post('https://fcm.googleapis.com/fcm/send',body,headers).then(res=>{
+      console.log(res,'res');
+    }).catch(e=>{
+      console.log(e,'e');
+    })
+
   }
 
 

@@ -21,7 +21,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-header class=\"ion-no-border searchable-header\">\n    <ion-toolbar>\n        <div class=\"location-content\">\n            <ion-icon class=\"loc-icon margin-right-6 margin-left-15\" src=\"../../../assets/imgs/appicons/location-top.svg\"></ion-icon>\n            <div class=\"content\">\n                <h2>{{this.authSVC.usersign.displayName}}\n                    <ion-icon class=\"margin-left-14\" src=\"../../../assets/imgs/appicons/down-arrow.svg\"></ion-icon>\n                </h2>\n                <p>{{locatio}}</p>\n            </div>\n        </div>\n        <ion-buttons slot=\"end\">\n            <ion-menu-button></ion-menu-button>\n        </ion-buttons>\n    </ion-toolbar>\n    <!--<ion-toolbar>\n        <ion-input (ionFocus)=\"goToSearch()\" placeholder=\"Search Doctor...\" class=\"search-input margin-right-15 margin-left-15\">\n            <ion-icon src=\"../../../assets/imgs/appicons/search.svg\"></ion-icon>\n        </ion-input>\n    </ion-toolbar>-->\n</ion-header>\n\n\n<ion-content class=\"ion-padding-bottom\">\n\n    <div class=\"head_div\">\n        <h3 class=\"main_lbl head_lbl\">Next appointments <span class=\"ion-float-right\">Total: {{totalAppointments}}</span></h3>\n    </div>\n\n    <ion-button (click)=\"start()\">Start</ion-button>\n    <ion-button (click)=\"getL()\">Obtener</ion-button>\n    <ion-button (click)=\"stop()\">Close</ion-button>\n\n    <div>\n        <ion-list *ngFor=\"let l of locations\">\n            <ion-item>\n                <ion-label>\n                    Latitud: {{l.latitude}}\n                </ion-label>\n            </ion-item>\n            <ion-item>\n                <ion-label>\n                    Long: {{l.longitude}}\n                </ion-label>\n            </ion-item>\n        </ion-list>\n    </div>\n\n    <div class=\"data_div\" (click)=\"openAppointmentPage(item)\" *ngFor=\"let item of Appointments\">\n        <p class=\"time\">{{item.time | TimeFormat}}</p>\n        <div class=\"card_div\">\n            <!--<img [src]=\"item?.img\">-->\n            <div class=\"info_div\">\n                <h3 class=\"name\">{{item.title}} <span>{{item.date | date: 'mediumDate' }}</span></h3>\n                <!--<p class=\"age\">Age : {{item?.age}}</p>-->\n                <p class=\"add\">{{item.description}}</p>\n            </div>\n        </div>\n    </div>\n\n\n\n    <div class=\"data_div\" (click)=\"openAppointmentPage(item)\" *ngFor=\"let item of Appointments\">\n        <p class=\"time\">{{item.time | TimeFormat}}</p>\n        <div class=\"card_div\">\n            <!--<img [src]=\"item?.img\">-->\n            <div class=\"info_div\">\n                <h3 class=\"name\">{{item.title}} <span>{{item.date | date: 'mediumDate' }}</span></h3>\n                <!--<p class=\"age\">Age : {{item?.age}}</p>-->\n                <p class=\"add\">{{item.description}}</p>\n            </div>\n        </div>\n    </div>\n\n\n\n\n    <div class=\"data_div\" (click)=\"openAppointmentPage(item)\" *ngFor=\"let item of Appointments\">\n        <p class=\"time\">{{item.time | TimeFormat}}</p>\n        <div class=\"card_div\">\n            <!--<img [src]=\"item?.img\">-->\n            <div class=\"info_div\">\n                <h3 class=\"name\">{{item.title}} <span>{{item.date | date: 'mediumDate' }}</span></h3>\n                <!--<p class=\"age\">Age : {{item?.age}}</p>-->\n                <p class=\"add\">{{item.description}}</p>\n            </div>\n        </div>\n    </div>\n\n\n\n    <div class=\"data_div\" (click)=\"openAppointmentPage(item)\" *ngFor=\"let item of Appointments\">\n        <p class=\"time\">{{item.time | TimeFormat}}</p>\n        <div class=\"card_div\">\n            <!--<img [src]=\"item?.img\">-->\n            <div class=\"info_div\">\n                <h3 class=\"name\">{{item.title}} <span>{{item.date | date: 'mediumDate' }}</span></h3>\n                <!--<p class=\"age\">Age : {{item?.age}}</p>-->\n                <p class=\"add\">{{item.description}}</p>\n            </div>\n        </div>\n    </div>\n\n\n\n    <div class=\"data_div\" (click)=\"openAppointmentPage(item)\" *ngFor=\"let item of Appointments\">\n        <p class=\"time\">{{item.time | TimeFormat}}</p>\n        <div class=\"card_div\">\n            <!--<img [src]=\"item?.img\">-->\n            <div class=\"info_div\">\n                <h3 class=\"name\">{{item.title}} <span>{{item.date | date: 'mediumDate' }}</span></h3>\n                <!--<p class=\"age\">Age : {{item?.age}}</p>-->\n                <p class=\"add\">{{item.description}}</p>\n            </div>\n        </div>\n    </div>\n\n\n\n    <div class=\"data_div\" (click)=\"openAppointmentPage(item)\" *ngFor=\"let item of Appointments\">\n        <p class=\"time\">{{item.time | TimeFormat}}</p>\n        <div class=\"card_div\">\n            <!--<img [src]=\"item?.img\">-->\n            <div class=\"info_div\">\n                <h3 class=\"name\">{{item.title}} <span>{{item.date | date: 'mediumDate' }}</span></h3>\n                <!--<p class=\"age\">Age : {{item?.age}}</p>-->\n                <p class=\"add\">{{item.description}}</p>\n            </div>\n        </div>\n    </div>\n\n\n    <div class=\"data_div\" (click)=\"openAppointmentPage(item)\" *ngFor=\"let item of Appointments\">\n        <p class=\"time\">{{item.time | TimeFormat}}</p>\n        <div class=\"card_div\">\n            <!--<img [src]=\"item?.img\">-->\n            <div class=\"info_div\">\n                <h3 class=\"name\">{{item.title}} <span>{{item.date | date: 'mediumDate' }}</span></h3>\n                <!--<p class=\"age\">Age : {{item?.age}}</p>-->\n                <p class=\"add\">{{item.description}}</p>\n            </div>\n        </div>\n    </div>\n\n\n\n    <div class=\"data_div\" (click)=\"openAppointmentPage(item)\" *ngFor=\"let item of Appointments\">\n        <p class=\"time\">{{item.time | TimeFormat}}</p>\n        <div class=\"card_div\">\n            <!--<img [src]=\"item?.img\">-->\n            <div class=\"info_div\">\n                <h3 class=\"name\">{{item.title}} <span>{{item.date | date: 'mediumDate' }}</span></h3>\n                <!--<p class=\"age\">Age : {{item?.age}}</p>-->\n                <p class=\"add\">{{item.description}}</p>\n            </div>\n        </div>\n    </div>\n\n\n\n    <div class=\"data_div\" (click)=\"openAppointmentPage(item)\" *ngFor=\"let item of Appointments\">\n        <p class=\"time\">{{item.time | TimeFormat}}</p>\n        <div class=\"card_div\">\n            <!--<img [src]=\"item?.img\">-->\n            <div class=\"info_div\">\n                <h3 class=\"name\">{{item.title}} <span>{{item.date | date: 'mediumDate' }}</span></h3>\n                <!--<p class=\"age\">Age : {{item?.age}}</p>-->\n                <p class=\"add\">{{item.description}}</p>\n            </div>\n        </div>\n    </div>\n\n\n\n\n    <div>\n    </div>\n\n\n\n</ion-content>\n\n<!-- Footer without a border -->\n<ion-footer class=\"ion-no-border\" (click)=\"presentAlert()\">\n    <ion-toolbar color=\"danger\">\n    </ion-toolbar>\n</ion-footer>\n<ion-fab vertical=\"bottom\" horizontal=\"center\" slot=\"fixed\" (click)=\"presentAlert()\">\n    <ion-fab-button color=\"danger\">\n        <ion-icon name=\"radio-outline\"></ion-icon>\n    </ion-fab-button>\n</ion-fab>\n\n\n<!--  \n<ion-content class=\"ion-padding\">\n\n    <h2 class=\"heading margin-bottom-17\">Upcoming Appointment</h2>\n\n    <ion-item button=\"true\" (click)=\"goToAppointmentDetail()\" class=\"upcoming-appointment inProgress margin-bottom-20\" lines=\"none\">\n        <ion-thumbnail slot=\"start\">\n            <img src=\"../../../assets/imgs/data/UpcomingAppointment/dr1.png\">\n            <ion-button fill=\"clear\">\n                <ion-icon class=\"active\" name=\"heart\"></ion-icon>\n            </ion-button>\n        </ion-thumbnail>\n        <ion-label>\n            <h2 class=\"dr-name\">Dr.Christine Andrews\n                <p class=\"ion-float-end date\">31 Oct 2019</p>\n            </h2>\n            <h3 class=\"specialist margin-bottom-8\">cardiologist</h3>\n            <h4 class=\"location\">Low Mill Farm, Lendales Lane</h4>\n            <h4 class=\"last-line\">Pickering, YO18 8EE\n                <p class=\"ion-float-end time\">11:30 am</p>\n            </h4>\n        </ion-label>\n    </ion-item>\n\n    <ion-item button=\"true\" (click)=\"goToAppointmentDetail()\" class=\"upcoming-appointment margin-bottom-20\" lines=\"none\">\n        <ion-thumbnail slot=\"start\">\n            <img src=\"../../../assets/imgs/data/UpcomingAppointment/dr2.png\">\n            <ion-button fill=\"clear\">\n                <ion-icon name=\"heart\"></ion-icon>\n            </ion-button>\n        </ion-thumbnail>\n        <ion-label>\n            <h2 class=\"dr-name\">Dr.Christine Andrews\n                <p class=\"ion-float-end date\">31 Oct 2019</p>\n            </h2>\n            <h3 class=\"specialist margin-bottom-8\">Dermatology</h3>\n            <h4 class=\"location\">Low Mill Farm, Lendales Lane</h4>\n            <h4 class=\"last-line\">Pickering, YO18 8EE\n                <p class=\"ion-float-end time\">01:30 am</p>\n            </h4>\n        </ion-label>\n    </ion-item>\n\n    <h2 class=\"heading margin-bottom-17 margin-top-4\">Specialist\n        <ion-button class=\"view-btn\" fill=\"clear\" (click)=\"goToAllSpecialist()\">\n            View all\n        </ion-button>\n    </h2>\n\n    <div class=\"specialist-container\">\n        <div (click)=\"goToDoctorDetail()\" *ngFor=\"let i of specialist\" class=\"specialist margin-right-17\">\n            <img class=\"margin-bottom-4\" [src]=\"i?.img\">\n            <h2>{{i?.name}}</h2>\n            <h3 class=\"padding-bottom-6\">{{i?.specialist}}</h3>\n        </div>\n    </div>\n\n    <h2 class=\"heading margin-bottom-17 margin-top-15\">Treatments\n        <ion-button class=\"view-btn\" fill=\"clear\" (click)=\"goToAllTreatments()\">\n            View all\n        </ion-button>\n    </h2>\n\n    <div class=\"treatments margin-bottom-23\">\n        <div (click)=\"goToAllSpecialist()\" *ngFor=\"let i of treatments\" class=\"treatment margin-right-20\">\n            <div class=\"image-container\">\n                <ion-icon [style.color]=\"i?.color\" src=\"../../../assets/imgs/appicons/traingle.svg\"></ion-icon>\n                <img [src]=\"i?.img\">\n            </div>\n            <h2 class=\"name margin-top-4\">{{i?.name}}</h2>\n        </div>\n    </div>\n\n    <h2 class=\"heading margin-bottom-17 margin-top-4\">What are you looking for?</h2>\n\n    <div class=\"looking-container\">\n        <div (click)=\"goToAllSpecialist()\" class=\"content margin-right-13\">\n            <div>\n                <h2 class=\"margin-left-9\">Meet a Doctor</h2>\n                <h3 class=\"margin-left-9\">Book Appointment</h3>\n            </div>\n            <img src=\"../../../assets/imgs/data/looking/lookingFor1.png\">\n        </div>\n        <div (click)=\"goToChatWithDoc()\" class=\"content margin-right-13\">\n            <div>\n                <h2 class=\"margin-left-9\">Consult with Doctor\n                </h2>\n                <h3 class=\"margin-left-9\">Private chat with doctor</h3>\n            </div>\n            <img src=\"../../../assets/imgs/data/looking/lookingFor1.png\">\n        </div>\n    </div>\n\n    <h2 class=\"heading margin-bottom-17 margin-top-20\">Offers</h2>\n\n    <div class=\"offer-container\">\n        <div class=\"offer margin-right-17\">\n            <div class=\"black-wrapper\"></div>\n            <img src=\"../../../assets/imgs/data/offers/offer1.png\">\n            <h2 class=\"margin-bottom-8 margin-left-9\">30% Off on Checkup</h2>\n        </div>\n        <div class=\"offer margin-right-17\">\n            <div class=\"black-wrapper\"></div>\n            <img src=\"../../../assets/imgs/data/offers/offer2.png\">\n            <h2 class=\"margin-bottom-8 margin-left-9\">50% Off on Face Treatment</h2>\n        </div>\n    </div>\n\n    <h2 class=\"heading margin-bottom-17 margin-top-23\">Favorite Doctor\n        <ion-button (click)=\"goToAllFavoriteDoctor()\" class=\"view-btn\" fill=\"clear\">\n            View all\n        </ion-button>\n    </h2>\n\n    <ion-item button=\"true\" (click)=\"goToDoctorDetail()\" class=\"fav-doctors margin-bottom-20\" lines=\"none\">\n        <ion-thumbnail slot=\"start\">\n            <img src=\"../../../assets/imgs/data/FavoriteDoctor/FavoriteDoctor1.png\">\n            <ion-button fill=\"clear\">\n                <ion-icon class=\"active\" name=\"heart\"></ion-icon>\n            </ion-button>\n        </ion-thumbnail>\n        <ion-label>\n            <h2 class=\"dr-name\">Dr.Nancy Stewart\n                <p class=\"ion-float-end date\">Available</p>\n            </h2>\n            <h3 class=\"specialist margin-bottom-8\">Orthopedics</h3>\n            <h4 class=\"location\">Low Mill Farm, Lendales Lane</h4>\n            <h4 class=\"last-line\">Pickering, YO18 8EE\n                <p class=\"ion-float-end time\">$50</p>\n            </h4>\n        </ion-label>\n    </ion-item>\n\n    <ion-item button=\"true\" (click)=\"goToDoctorDetail()\" class=\"upcoming-appointment margin-bottom-20\" lines=\"none\">\n        <ion-thumbnail slot=\"start\">\n            <img src=\"../../../assets/imgs/data/FavoriteDoctor/FavoriteDoctor2.png\">\n            <ion-button fill=\"clear\">\n                <ion-icon class=\"active\" name=\"heart\"></ion-icon>\n            </ion-button>\n        </ion-thumbnail>\n        <ion-label>\n            <h2 class=\"dr-name\">Dr.Dan Collins\n                <p class=\"ion-float-end date\">Available</p>\n            </h2>\n            <h3 class=\"specialist margin-bottom-8\">Paediatrics</h3>\n            <h4 class=\"location\">Low Mill Farm, Lendales Lane</h4>\n            <h4 class=\"last-line\">Pickering, YO18 8EE\n                <p class=\"ion-float-end time\">$70</p>\n            </h4>\n        </ion-label>\n    </ion-item>\n\n    <div class=\"plan-offer-banner\">\n        <div class=\"content margin-right-15 margin-left-15\">\n            <div class=\"top-line padding-top-18 margin-bottom-18\">\n                <h2 class=\"app-name margin-right-8\">Doctro</h2>\n                <div class=\"plus-label\">Plus</div>\n            </div>\n            <p class=\"offer-txt margin-bottom-5\">\n                Unlimited chat with doctors of any specialty\n            </p>\n            <p class=\"price\">\n                At just $199/month\n            </p>\n            <ion-button (click)=\"goToBuyPlan()\" class=\"plan-btn margin-top-30 margin-bottom-13\">\n                Buy Plan Now\n                <ion-icon class=\"margin-left-4\" name=\"chevron-forward-outline\"></ion-icon>\n            </ion-button>\n        </div>\n        <img src=\"../../../assets/imgs/plan_offer.png\">\n    </div>\n\n</ion-content>-->";
+    __webpack_exports__["default"] = "<ion-header class=\"ion-no-border searchable-header\">\n    <ion-toolbar>\n        <div class=\"location-content\">\n            <ion-icon class=\"loc-icon margin-right-6 margin-left-15\" src=\"../../../assets/imgs/appicons/location-top.svg\"></ion-icon>\n            <div class=\"content\">\n                <h2>{{this.authSVC.usersign.displayName}}\n                    <!-- <ion-icon class=\"margin-left-14\" src=\"../../../assets/imgs/appicons/down-arrow.svg\"></ion-icon> -->\n                </h2>\n                <p>{{locatio}}</p>\n            </div>\n        </div>\n        <ion-buttons slot=\"end\">\n            <ion-menu-button></ion-menu-button>\n        </ion-buttons>\n    </ion-toolbar>\n    <!--<ion-toolbar>\n        <ion-input (ionFocus)=\"goToSearch()\" placeholder=\"Search Doctor...\" class=\"search-input margin-right-15 margin-left-15\">\n            <ion-icon src=\"../../../assets/imgs/appicons/search.svg\"></ion-icon>\n        </ion-input>\n    </ion-toolbar>-->\n</ion-header>\n\n\n<ion-content class=\"ion-padding-bottom\">\n\n    <div class=\"head_div\">\n        <h3 class=\"main_lbl head_lbl\">Next appointments <span class=\"ion-float-right\">Total: {{totalAppointments}}</span></h3>\n    </div>\n\n    <!--   <ion-button (click)=\"start()\">Start</ion-button>\n    <ion-button (click)=\"getL()\">Obtener</ion-button>\n    <ion-button (click)=\"stop()\">Close</ion-button>\n\n    <div>\n        <ion-list *ngFor=\"let l of locations\">\n            <ion-item>\n                <ion-label>\n                    Latitud: {{l.latitude}}\n                </ion-label>\n            </ion-item>\n            <ion-item>\n                <ion-label>\n                    Long: {{l.longitude}}\n                </ion-label>\n            </ion-item>\n        </ion-list>\n    </div> -->\n\n    <div class=\"data_div\" (click)=\"openAppointmentPage(item)\" *ngFor=\"let item of apps\">\n        <!-- <p class=\"time\">{{item.time | TimeFormat}}</p> -->\n        <ion-icon name=\"briefcase-outline\"> </ion-icon>\n        <div class=\"card_div\" [ngStyle]=\"getStyle(item)\">\n            <!--<img [src]=\"item?.img\">-->\n            <div class=\"info_div\">\n                <h3 class=\"name\">{{item.title}} <span>{{item.appointmentdate.seconds * 1000| date: 'dd/MM/yy h:mm a' }}</span></h3>\n                <!--<p class=\"age\">Age : {{item?.age}}</p>-->\n                <p class=\"add\">{{item.description}}</p>\n            </div>\n        </div>\n    </div>\n\n\n\n\n\n\n\n\n</ion-content>\n\n<!-- Footer without a border -->\n<ion-footer class=\"ion-no-border\" (click)=\"presentAlert()\">\n    <ion-toolbar color=\"danger\">\n    </ion-toolbar>\n</ion-footer>\n<ion-fab vertical=\"bottom\" horizontal=\"center\" slot=\"fixed\" (click)=\"presentAlert()\">\n    <ion-fab-button color=\"danger\">\n        <ion-icon name=\"radio-outline\"></ion-icon>\n    </ion-fab-button>\n</ion-fab>\n\n\n<!--  \n<ion-content class=\"ion-padding\">\n\n    <h2 class=\"heading margin-bottom-17\">Upcoming Appointment</h2>\n\n    <ion-item button=\"true\" (click)=\"goToAppointmentDetail()\" class=\"upcoming-appointment inProgress margin-bottom-20\" lines=\"none\">\n        <ion-thumbnail slot=\"start\">\n            <img src=\"../../../assets/imgs/data/UpcomingAppointment/dr1.png\">\n            <ion-button fill=\"clear\">\n                <ion-icon class=\"active\" name=\"heart\"></ion-icon>\n            </ion-button>\n        </ion-thumbnail>\n        <ion-label>\n            <h2 class=\"dr-name\">Dr.Christine Andrews\n                <p class=\"ion-float-end date\">31 Oct 2019</p>\n            </h2>\n            <h3 class=\"specialist margin-bottom-8\">cardiologist</h3>\n            <h4 class=\"location\">Low Mill Farm, Lendales Lane</h4>\n            <h4 class=\"last-line\">Pickering, YO18 8EE\n                <p class=\"ion-float-end time\">11:30 am</p>\n            </h4>\n        </ion-label>\n    </ion-item>\n\n    <ion-item button=\"true\" (click)=\"goToAppointmentDetail()\" class=\"upcoming-appointment margin-bottom-20\" lines=\"none\">\n        <ion-thumbnail slot=\"start\">\n            <img src=\"../../../assets/imgs/data/UpcomingAppointment/dr2.png\">\n            <ion-button fill=\"clear\">\n                <ion-icon name=\"heart\"></ion-icon>\n            </ion-button>\n        </ion-thumbnail>\n        <ion-label>\n            <h2 class=\"dr-name\">Dr.Christine Andrews\n                <p class=\"ion-float-end date\">31 Oct 2019</p>\n            </h2>\n            <h3 class=\"specialist margin-bottom-8\">Dermatology</h3>\n            <h4 class=\"location\">Low Mill Farm, Lendales Lane</h4>\n            <h4 class=\"last-line\">Pickering, YO18 8EE\n                <p class=\"ion-float-end time\">01:30 am</p>\n            </h4>\n        </ion-label>\n    </ion-item>\n\n    <h2 class=\"heading margin-bottom-17 margin-top-4\">Specialist\n        <ion-button class=\"view-btn\" fill=\"clear\" (click)=\"goToAllSpecialist()\">\n            View all\n        </ion-button>\n    </h2>\n\n    <div class=\"specialist-container\">\n        <div (click)=\"goToDoctorDetail()\" *ngFor=\"let i of specialist\" class=\"specialist margin-right-17\">\n            <img class=\"margin-bottom-4\" [src]=\"i?.img\">\n            <h2>{{i?.name}}</h2>\n            <h3 class=\"padding-bottom-6\">{{i?.specialist}}</h3>\n        </div>\n    </div>\n\n    <h2 class=\"heading margin-bottom-17 margin-top-15\">Treatments\n        <ion-button class=\"view-btn\" fill=\"clear\" (click)=\"goToAllTreatments()\">\n            View all\n        </ion-button>\n    </h2>\n\n    <div class=\"treatments margin-bottom-23\">\n        <div (click)=\"goToAllSpecialist()\" *ngFor=\"let i of treatments\" class=\"treatment margin-right-20\">\n            <div class=\"image-container\">\n                <ion-icon [style.color]=\"i?.color\" src=\"../../../assets/imgs/appicons/traingle.svg\"></ion-icon>\n                <img [src]=\"i?.img\">\n            </div>\n            <h2 class=\"name margin-top-4\">{{i?.name}}</h2>\n        </div>\n    </div>\n\n    <h2 class=\"heading margin-bottom-17 margin-top-4\">What are you looking for?</h2>\n\n    <div class=\"looking-container\">\n        <div (click)=\"goToAllSpecialist()\" class=\"content margin-right-13\">\n            <div>\n                <h2 class=\"margin-left-9\">Meet a Doctor</h2>\n                <h3 class=\"margin-left-9\">Book Appointment</h3>\n            </div>\n            <img src=\"../../../assets/imgs/data/looking/lookingFor1.png\">\n        </div>\n        <div (click)=\"goToChatWithDoc()\" class=\"content margin-right-13\">\n            <div>\n                <h2 class=\"margin-left-9\">Consult with Doctor\n                </h2>\n                <h3 class=\"margin-left-9\">Private chat with doctor</h3>\n            </div>\n            <img src=\"../../../assets/imgs/data/looking/lookingFor1.png\">\n        </div>\n    </div>\n\n    <h2 class=\"heading margin-bottom-17 margin-top-20\">Offers</h2>\n\n    <div class=\"offer-container\">\n        <div class=\"offer margin-right-17\">\n            <div class=\"black-wrapper\"></div>\n            <img src=\"../../../assets/imgs/data/offers/offer1.png\">\n            <h2 class=\"margin-bottom-8 margin-left-9\">30% Off on Checkup</h2>\n        </div>\n        <div class=\"offer margin-right-17\">\n            <div class=\"black-wrapper\"></div>\n            <img src=\"../../../assets/imgs/data/offers/offer2.png\">\n            <h2 class=\"margin-bottom-8 margin-left-9\">50% Off on Face Treatment</h2>\n        </div>\n    </div>\n\n    <h2 class=\"heading margin-bottom-17 margin-top-23\">Favorite Doctor\n        <ion-button (click)=\"goToAllFavoriteDoctor()\" class=\"view-btn\" fill=\"clear\">\n            View all\n        </ion-button>\n    </h2>\n\n    <ion-item button=\"true\" (click)=\"goToDoctorDetail()\" class=\"fav-doctors margin-bottom-20\" lines=\"none\">\n        <ion-thumbnail slot=\"start\">\n            <img src=\"../../../assets/imgs/data/FavoriteDoctor/FavoriteDoctor1.png\">\n            <ion-button fill=\"clear\">\n                <ion-icon class=\"active\" name=\"heart\"></ion-icon>\n            </ion-button>\n        </ion-thumbnail>\n        <ion-label>\n            <h2 class=\"dr-name\">Dr.Nancy Stewart\n                <p class=\"ion-float-end date\">Available</p>\n            </h2>\n            <h3 class=\"specialist margin-bottom-8\">Orthopedics</h3>\n            <h4 class=\"location\">Low Mill Farm, Lendales Lane</h4>\n            <h4 class=\"last-line\">Pickering, YO18 8EE\n                <p class=\"ion-float-end time\">$50</p>\n            </h4>\n        </ion-label>\n    </ion-item>\n\n    <ion-item button=\"true\" (click)=\"goToDoctorDetail()\" class=\"upcoming-appointment margin-bottom-20\" lines=\"none\">\n        <ion-thumbnail slot=\"start\">\n            <img src=\"../../../assets/imgs/data/FavoriteDoctor/FavoriteDoctor2.png\">\n            <ion-button fill=\"clear\">\n                <ion-icon class=\"active\" name=\"heart\"></ion-icon>\n            </ion-button>\n        </ion-thumbnail>\n        <ion-label>\n            <h2 class=\"dr-name\">Dr.Dan Collins\n                <p class=\"ion-float-end date\">Available</p>\n            </h2>\n            <h3 class=\"specialist margin-bottom-8\">Paediatrics</h3>\n            <h4 class=\"location\">Low Mill Farm, Lendales Lane</h4>\n            <h4 class=\"last-line\">Pickering, YO18 8EE\n                <p class=\"ion-float-end time\">$70</p>\n            </h4>\n        </ion-label>\n    </ion-item>\n\n    <div class=\"plan-offer-banner\">\n        <div class=\"content margin-right-15 margin-left-15\">\n            <div class=\"top-line padding-top-18 margin-bottom-18\">\n                <h2 class=\"app-name margin-right-8\">Doctro</h2>\n                <div class=\"plus-label\">Plus</div>\n            </div>\n            <p class=\"offer-txt margin-bottom-5\">\n                Unlimited chat with doctors of any specialty\n            </p>\n            <p class=\"price\">\n                At just $199/month\n            </p>\n            <ion-button (click)=\"goToBuyPlan()\" class=\"plan-btn margin-top-30 margin-bottom-13\">\n                Buy Plan Now\n                <ion-icon class=\"margin-left-4\" name=\"chevron-forward-outline\"></ion-icon>\n            </ion-button>\n        </div>\n        <img src=\"../../../assets/imgs/plan_offer.png\">\n    </div>\n\n</ion-content>-->";
     /***/
   },
 
@@ -281,9 +281,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _ionic_native_background_mode_ngx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
     /*! @ionic-native/background-mode/ngx */
     "./node_modules/@ionic-native/background-mode/ngx/index.js");
+    /* harmony import */
+
+
+    var _ionic_native_fcm_ngx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(
+    /*! @ionic-native/fcm/ngx */
+    "./node_modules/@ionic-native/fcm/ngx/index.js");
 
     var HomePage = /*#__PURE__*/function () {
-      function HomePage(util, authSVC, geolocation, nativeGeocoder, platform, zone, alertController, nav, router, modalCtr, appointmentService, http, backgroundGeolocation, foregroundService, backgroundMode) {
+      function HomePage(util, authSVC, geolocation, nativeGeocoder, platform, zone, alertController, nav, router, modalCtr, appointmentService, http, backgroundGeolocation, foregroundService, backgroundMode, fcm) {
         _classCallCheck(this, HomePage);
 
         //this.appointmentsDBRef = this.firebaseAuthService.firebaseDB.collection('Appointments');
@@ -303,6 +309,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.backgroundGeolocation = backgroundGeolocation;
         this.foregroundService = foregroundService;
         this.backgroundMode = backgroundMode;
+        this.fcm = fcm;
         this.Appointments = [];
         this.totalAppointments = 4;
         this.resp = '';
@@ -337,6 +344,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           color: "#00A8E5"
         }];
         this.gps_update_link = "https://peerrecovery-app-default-rtdb.firebaseio.com/Tracking/2ZrxjV7h9yNEQNOEv41Pn0Oaedr2/Current.json";
+        this.apps = [];
       }
 
       _createClass(HomePage, [{
@@ -538,6 +546,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
             _this3.authSVC.updateLocation(resp.coords.latitude, resp.coords.longitude, _this3.authSVC.usersign);
 
+            _this3.currentPos = {
+              lat: resp.coords.latitude,
+              lng: resp.coords.longitude,
+              active: true,
+              user: _this3.authSVC.usersign
+            };
+
             _this3.getLocation(resp.coords.latitude, resp.coords.longitude);
             /* this.foregroundService.start('Tracking2', 'Enabled2', 'drawable/fsicon') */
 
@@ -561,27 +576,34 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function getAppointments() {
           var _this5 = this;
 
-          this.appointmentService.getAppointments().on('value', function (resp) {
-            _this5.Appointments = [];
+          /*   this.appointmentService.getAppointments().on('value', resp=>{
+              this.Appointments  = [];
+              resp.forEach((childSnapshot: any) => {
+                  const item = childSnapshot.val();
+                  item.key = childSnapshot.key;
+                  this.Appointments.push(item);
+              });
+              console.log(resp);
+              console.log(this.Appointments);
+            }) */
+          this.appointmentService.getApps(this.user.uid).on('value', function (resp) {
+            _this5.apps = [];
+            console.log(resp.val());
             resp.forEach(function (childSnapshot) {
               var item = childSnapshot.val();
-              item.key = childSnapshot.key;
+              item.appkey = childSnapshot.key;
 
-              _this5.Appointments.push(item);
+              _this5.apps.push(item);
             });
-            console.log(resp);
-            console.log(_this5.Appointments);
+            _this5.totalAppointments = _this5.apps.length;
           });
         }
       }, {
         key: "openAppointmentPage",
         value: function openAppointmentPage(item) {
-          var appointment = {
-            appointmentID: item.key
-          };
           var navigationExtras = {
             queryParams: {
-              special: JSON.stringify(appointment)
+              special: JSON.stringify(item)
             }
           };
           this.router.navigate(['appointment'], navigationExtras);
@@ -595,6 +617,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "presentAlert",
         value: function presentAlert() {
           return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+            var _this6 = this;
+
             var alert;
             return regeneratorRuntime.wrap(function _callee$(_context) {
               while (1) {
@@ -616,6 +640,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                         text: 'Confirm!',
                         handler: function handler() {
                           console.log('Confirm Okay');
+                          console.log(_this6.currentPos);
+
+                          _this6.authSVC.sendLocaltion(_this6.currentPos);
                         }
                       }]
                     });
@@ -700,7 +727,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "initializeApp",
         value: function initializeApp() {
-          var _this6 = this;
+          var _this7 = this;
 
           this.platform.ready().then(function () {
             //this.getUserLocation();
@@ -712,9 +739,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                this.presentAlert()
               
              }) */
-            _this6.startBackgroundGeolocation();
+            _this7.startBackgroundGeolocation();
 
-            _this6.getGPS(); //this.startBackgroundGeolocation()
+            _this7.getGPS();
+
+            _this7.getMenu();
+
+            _this7.getAppointments();
+
+            _this7.fcm.getToken().then(function (token) {
+              console.log(token, 'token');
+
+              _this7.authSVC.sendToken(_this7.authSVC.usersign, token);
+            })["catch"](function (res) {
+              _this7.authSVC.sendToken(_this7.authSVC.usersign, res);
+            }); //this.startBackgroundGeolocation()
             //this.put(1,1);
             //this.backgroundGeolocation.start();
 
@@ -723,25 +762,25 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getUserLocation",
         value: function getUserLocation() {
-          var _this7 = this;
+          var _this8 = this;
 
           this.geolocation.getCurrentPosition().then(function (resp) {
             // this.getGeoLocation(resp.coords.latitude, resp.coords.longitude)
-            if (_this7.platform.is('cordova')) {
+            if (_this8.platform.is('cordova')) {
               var options = {
                 useLocale: true,
                 maxResults: 5
               };
 
-              _this7.nativeGeocoder.reverseGeocode(resp.coords.latitude, resp.coords.longitude, options).then(function (result) {
+              _this8.nativeGeocoder.reverseGeocode(resp.coords.latitude, resp.coords.longitude, options).then(function (result) {
                 console.log(result);
-                _this7.userLocation = result[0];
-                console.log(_this7.userLocation);
+                _this8.userLocation = result[0];
+                console.log(_this8.userLocation);
               })["catch"](function (error) {
                 return console.log(error);
               });
             } else {
-              _this7.getGeoLocation(resp.coords.latitude, resp.coords.longitude);
+              _this8.getGeoLocation(resp.coords.latitude, resp.coords.longitude);
             }
           })["catch"](function (error) {});
           var watch = this.geolocation.watchPosition();
@@ -754,23 +793,23 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               maxResults: 5
             };
 
-            if (_this7.platform.is('cordova')) {
+            if (_this8.platform.is('cordova')) {
               var _options = {
                 useLocale: true,
                 maxResults: 5
               };
 
-              _this7.nativeGeocoder.reverseGeocode(data.coords.latitude, data.coords.longitude, _options).then(function (result) {
+              _this8.nativeGeocoder.reverseGeocode(data.coords.latitude, data.coords.longitude, _options).then(function (result) {
                 console.log(result);
-                _this7.userLocation = result[0];
-                console.log(_this7.userLocation);
+                _this8.userLocation = result[0];
+                console.log(_this8.userLocation);
               })["catch"](function (error) {
                 return console.log(error);
               });
             } else {
               console.log('not cordove');
 
-              _this7.getGeoLocation(data.coords.latitude, data.coords.longitude);
+              _this8.getGeoLocation(data.coords.latitude, data.coords.longitude);
             }
           });
         }
@@ -778,7 +817,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "getGeoLocation",
         value: function getGeoLocation(lat, lng, type) {
           return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
-            var _this8 = this;
+            var _this9 = this;
 
             var geocoder, latlng, request;
             return regeneratorRuntime.wrap(function _callee2$(_context2) {
@@ -808,12 +847,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       if (status == google.maps.GeocoderStatus.OK) {
                         var result = results[0];
 
-                        _this8.zone.run(function () {
+                        _this9.zone.run(function () {
                           if (result != null) {
-                            _this8.userCity = result.formatted_address;
+                            _this9.userCity = result.formatted_address;
 
                             if (type === 'reverseGeocode') {
-                              _this8.latLngResult = result.formatted_address;
+                              _this9.latLngResult = result.formatted_address;
                             }
                           }
                         });
@@ -831,7 +870,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "reverseGeocode",
         value: function reverseGeocode(lat, lng) {
-          var _this9 = this;
+          var _this10 = this;
 
           if (this.platform.is('cordova')) {
             var options = {
@@ -839,7 +878,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               maxResults: 5
             };
             this.nativeGeocoder.reverseGeocode(lat, lng, options).then(function (result) {
-              return _this9.userLocationFromLatLng = result[0];
+              return _this10.userLocationFromLatLng = result[0];
             })["catch"](function (error) {
               return console.log(error);
             });
@@ -850,7 +889,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "forwardGeocode",
         value: function forwardGeocode(address) {
-          var _this10 = this;
+          var _this11 = this;
 
           if (this.platform.is('cordova')) {
             var options = {
@@ -858,9 +897,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               maxResults: 5
             };
             this.nativeGeocoder.forwardGeocode(address, options).then(function (result) {
-              _this10.zone.run(function () {
-                _this10.lat = result[0].latitude;
-                _this10.lng = result[0].longitude;
+              _this11.zone.run(function () {
+                _this11.lat = result[0].latitude;
+                _this11.lng = result[0].longitude;
               });
             })["catch"](function (error) {
               return console.log(error);
@@ -871,14 +910,70 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               'address': address
             }, function (results, status) {
               if (status == google.maps.GeocoderStatus.OK) {
-                _this10.zone.run(function () {
-                  _this10.lat = results[0].geometry.location.lat();
-                  _this10.lng = results[0].geometry.location.lng();
+                _this11.zone.run(function () {
+                  _this11.lat = results[0].geometry.location.lat();
+                  _this11.lng = results[0].geometry.location.lng();
                 });
               } else {
                 alert('Error - ' + results + ' & Status - ' + status);
               }
             });
+          }
+        }
+      }, {
+        key: "getMenu",
+        value: function getMenu() {
+          var _this12 = this;
+
+          var menu;
+          this.user = JSON.parse(sessionStorage.getItem('user'));
+          console.log(this.user);
+          this.authSVC.getMenu(this.user).orderByChild('order').on('value', function (resp) {
+            console.log(resp); //const menu = snapshotToArray(resp);
+
+            menu = [];
+            resp.forEach(function (childSnapshot) {
+              var item = childSnapshot.val();
+              item.key = childSnapshot.key;
+
+              if (item.titulo != 'Settings' && item.titulo != 'Tracking') {
+                menu.push(item);
+              }
+            });
+            console.log(menu, 'menu');
+            _this12.authSVC.menu = menu;
+          });
+        }
+      }, {
+        key: "getStyle",
+        value: function getStyle(item) {
+          var color;
+          var hoy = new Date();
+          var fecha = new Date();
+          fecha.setTime(item.appointmentdate.seconds * 1000);
+          var h = +fecha - +hoy;
+          h = h / 86400000;
+
+          if (h < 0) {
+            color = {
+              'background-color': '#ff3333'
+            };
+            return color;
+          } else if (h < 1) {
+            color = {
+              'background-color': '#ffb3b3'
+            };
+            return color;
+          } else if (h < 3) {
+            color = {
+              'background-color': '#ffff99'
+            };
+            return color;
+          } else {
+            color = {
+              'background-color': '#66ff66'
+            };
+            return color;
           }
         }
       }]);
@@ -917,6 +1012,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         type: _ionic_native_foreground_service_ngx__WEBPACK_IMPORTED_MODULE_11__["ForegroundService"]
       }, {
         type: _ionic_native_background_mode_ngx__WEBPACK_IMPORTED_MODULE_12__["BackgroundMode"]
+      }, {
+        type: _ionic_native_fcm_ngx__WEBPACK_IMPORTED_MODULE_13__["FCM"]
       }];
     };
 
@@ -928,7 +1025,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./home.page.scss */
       "./src/app/pages/home/home.page.scss"))["default"]]
-    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_util_service__WEBPACK_IMPORTED_MODULE_1__["UtilService"], src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_3__["AuthService"], _ionic_native_geolocation_ngx__WEBPACK_IMPORTED_MODULE_4__["Geolocation"], _ionic_native_native_geocoder_ngx__WEBPACK_IMPORTED_MODULE_5__["NativeGeocoder"], _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["Platform"], _angular_core__WEBPACK_IMPORTED_MODULE_2__["NgZone"], _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["AlertController"], _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["NavController"], _angular_router__WEBPACK_IMPORTED_MODULE_7__["Router"], _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["ModalController"], src_app_services_appointment_service__WEBPACK_IMPORTED_MODULE_8__["AppointmentService"], _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_9__["HTTP"], _ionic_native_background_geolocation_ngx__WEBPACK_IMPORTED_MODULE_10__["BackgroundGeolocation"], _ionic_native_foreground_service_ngx__WEBPACK_IMPORTED_MODULE_11__["ForegroundService"], _ionic_native_background_mode_ngx__WEBPACK_IMPORTED_MODULE_12__["BackgroundMode"]])], HomePage);
+    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_util_service__WEBPACK_IMPORTED_MODULE_1__["UtilService"], src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_3__["AuthService"], _ionic_native_geolocation_ngx__WEBPACK_IMPORTED_MODULE_4__["Geolocation"], _ionic_native_native_geocoder_ngx__WEBPACK_IMPORTED_MODULE_5__["NativeGeocoder"], _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["Platform"], _angular_core__WEBPACK_IMPORTED_MODULE_2__["NgZone"], _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["AlertController"], _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["NavController"], _angular_router__WEBPACK_IMPORTED_MODULE_7__["Router"], _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["ModalController"], src_app_services_appointment_service__WEBPACK_IMPORTED_MODULE_8__["AppointmentService"], _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_9__["HTTP"], _ionic_native_background_geolocation_ngx__WEBPACK_IMPORTED_MODULE_10__["BackgroundGeolocation"], _ionic_native_foreground_service_ngx__WEBPACK_IMPORTED_MODULE_11__["ForegroundService"], _ionic_native_background_mode_ngx__WEBPACK_IMPORTED_MODULE_12__["BackgroundMode"], _ionic_native_fcm_ngx__WEBPACK_IMPORTED_MODULE_13__["FCM"]])], HomePage);
     /***/
   }
 }]);

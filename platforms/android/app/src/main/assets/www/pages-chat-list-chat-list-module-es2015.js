@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header class=\"ion-no-border\">\n    <ion-toolbar mode=\"md\">\n        <ion-buttons slot=\"start\">\n            <ion-back-button defaultHref=\"home\" icon=\"chevron-back-outline\" text=\"\" mode=\"md\"></ion-back-button>\n        </ion-buttons>\n        <ion-buttons slot=\"end\">\n            <ion-menu-button></ion-menu-button>\n        </ion-buttons>\n        <ion-title>chat</ion-title>\n    </ion-toolbar>\n</ion-header>\n\n\n<ion-content class=\"ion-padding-bottom\">\n    <h3 class=\"main_lbl ion-padding-start\">Chats</h3>\n    <div class=\"today_div\">\n        <ion-item *ngFor=\"let chat of this.chatService.chatsUsers\" lines=\"full\" (click)=\"openChat(chat)\" mode=\"md\">\n            <ion-avatar slot=\"start\">\n                <img [src]=\"chat?.photoUrl\">\n            </ion-avatar>\n            <ion-label>\n                <h3 class=\"name\">{{chat?.displayName}} <span class=\"ion-float-right\"></span></h3>\n\n\n                <!-- <h3 class=\"name\">{{chat?.Title}} <span class=\"ion-float-right\">{{chat?.LastMessageSent.seconds * 1000| date: 'yyyy-MM-dd h:mm: a'}}</span></h3> -->\n                <!-- <p class=\"detail\"></p> -->\n            </ion-label>\n            <ion-badge color=\"primary\">{{chat?.unread}}</ion-badge>\n        </ion-item>\n    </div>\n\n\n\n\n    <ion-fab vertical=\"bottom\" horizontal=\"end\" slot=\"fixed\" (click)=\"openUsersPage()\">\n        <ion-fab-button>\n            <ion-icon name=\"chatbubbles-outline\"></ion-icon>\n        </ion-fab-button>\n    </ion-fab>\n\n\n\n</ion-content>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header class=\"ion-no-border\">\n    <ion-toolbar mode=\"md\">\n        <ion-buttons slot=\"start\">\n            <ion-back-button defaultHref=\"home\" icon=\"chevron-back-outline\" text=\"\" mode=\"md\"></ion-back-button>\n        </ion-buttons>\n        <ion-buttons slot=\"end\">\n            <ion-menu-button></ion-menu-button>\n        </ion-buttons>\n        <ion-title>chat</ion-title>\n    </ion-toolbar>\n</ion-header>\n\n\n<ion-content class=\"ion-padding-bottom\">\n    <h3 class=\"main_lbl ion-padding-start\">Chats</h3>\n    <div class=\"today_div\">\n        <ion-item *ngFor=\"let chat of Users\" lines=\"full\" (click)=\"openChat(chat)\" mode=\"md\">\n            <ion-avatar slot=\"start\">\n                <img [src]=\"chat?.photoUrl\">\n            </ion-avatar>\n            <ion-label>\n                <h3 class=\"name\">{{chat?.displayName}} <span class=\"ion-float-right\"></span></h3>\n\n\n                <!-- <h3 class=\"name\">{{chat?.Title}} <span class=\"ion-float-right\">{{chat?.LastMessageSent.seconds * 1000| date: 'yyyy-MM-dd h:mm: a'}}</span></h3> -->\n                <!-- <p class=\"detail\"></p> -->\n            </ion-label>\n            <ion-badge color=\"primary\">{{chat?.unread}}</ion-badge>\n        </ion-item>\n    </div>\n\n\n\n\n    <ion-fab vertical=\"bottom\" horizontal=\"end\" slot=\"fixed\" (click)=\"openUsersPage()\">\n        <ion-fab-button>\n            <ion-icon name=\"chatbubbles-outline\"></ion-icon>\n        </ion-fab-button>\n    </ion-fab>\n\n\n\n</ion-content>");
 
 /***/ }),
 
@@ -148,14 +148,18 @@ const snapshotToArray2 = (snapshot) => {
 };
 let ChatListPage = class ChatListPage {
     constructor(nav, chatService, firebaseAuthService) {
+        //this.usersDBRef = this.firebaseAuthService.firebaseDB.collection('users');
+        //this.chatsDBRef = this.firebaseAuthService.firebaseDB.collection('chats');
         this.nav = nav;
         this.chatService = chatService;
         this.firebaseAuthService = firebaseAuthService;
+        /*  */
+        this.Users = [];
+        this.group = false;
+        this.messages = [];
         this.users = [];
         this.chats = [];
         this.keysUsers = [];
-        this.usersDBRef = this.firebaseAuthService.firebaseDB.collection('users');
-        this.chatsDBRef = this.firebaseAuthService.firebaseDB.collection('chats');
     }
     ngOnInit() {
         //this.user = new UserModel();
@@ -164,7 +168,9 @@ let ChatListPage = class ChatListPage {
         //this.user.LastName = 'Ramírez Lugo';
         //this.chatService.postUser(this.user);
         //this.getUsers();
-        this.getChats2();
+        //this.getChats2();
+        this.user = JSON.parse(sessionStorage.getItem('user'));
+        this.getUsersChat();
     }
     getChats2() {
         this.chatService.getChats().on('value', resp => {
@@ -359,42 +365,113 @@ let ChatListPage = class ChatListPage {
     openUsersPage() {
         this.nav.navigateForward("/chat-users-list");
     }
-    openChat(chat) {
-        console.log(chat);
-        /*
-            let navigationExtras: NavigationExtras = {
-              queryParams: {
-                special: JSON.stringify( {
-                                            ID_Chat: chat.id
-                                         }
-                )
-              }
-            }; */
-        if (chat.displayName != 'chatGroup') {
-            this.chatService.getChat().orderByChild(chat.uid).equalTo('true').on('value', (resp) => {
-                console.log(resp);
-                const chats = snapshotToArray(resp);
-                console.log(chats);
-                //this.nav.navigateForward("/chat");
-                //this.nav.navigateForward("/chat?id="+chats[0].uid);
-                localStorage.setItem('user2', JSON.stringify(chat));
-                localStorage.setItem('idchat', chats[0].key);
-                this.nav.navigateForward("/chat");
-            });
+    openChat(event) {
+        /*  console.log(chat);
+         if (chat.displayName!='chatGroup'){
+     
+           this.chatService.getChat().orderByChild(chat.uid).equalTo('true').on('value', (resp:any) =>{
+             console.log(resp);
+             const chats = snapshotToArray(resp);
+             console.log(chats);
+             
+        
+               localStorage.setItem('user2',JSON.stringify(chat))
+               localStorage.setItem('idchat', chats[0].key)
+               this.nav.navigateForward("/chat");
+            
+           })
+         }else{
+     
+       
+       
+           localStorage.setItem('users2',JSON.stringify(chat))
+           
+           localStorage.setItem('idchat', chat.uid)
+           this.nav.navigateForward("/chat");
+         } */
+        console.log(event, 'chat');
+        if (event.type == 'User') {
+            this.group = false;
         }
         else {
-            /*   console.log(this.users);
-              this.groupusers = this.users.filter(x => x.isChecked != false && x.isChecked);
-              console.log(this.groupusers);
-              let group = {
-                displayName: 'chatGroup'
-              } */
-            localStorage.setItem('users2', JSON.stringify(chat));
-            //let idchat = this.chatService.newChatGroup(this.groupusers);
-            localStorage.setItem('idchat', chat.uid);
-            this.nav.navigateForward("/chat");
+            this.group = true;
         }
-        //this.nav.navigateForward("/chat");
+        this.chatService.getChat(this.user, event.chatuid).once('value', resp => {
+            console.log(resp.val());
+            if (resp.val()) {
+                this.chatService.keymessage = event.chatuid;
+                this.chatService.user2 = event;
+                //this.getMessages()
+                this.nav.navigateForward("/chat2");
+            }
+            else {
+                this.nav.navigateForward("/chat2");
+            }
+            /* else{
+              this.chatSVC.addChat(this.user,event )
+              this.getMessages()
+            } */
+            /* this.scrollToBottom(); */
+        });
+    }
+    /*  */
+    getUsersChat() {
+        console.log('buscando chats');
+        this.Users = [];
+        this.chatService.getUsersChat(this.user).on('value', resp => {
+            if (resp.val()) {
+                this.Users = [];
+                let keys = Object.keys(resp.val());
+                console.log(keys);
+                resp.forEach((childSnapshot) => {
+                    console.log(childSnapshot.val());
+                    console.log(childSnapshot.key);
+                    let keychat = childSnapshot.key;
+                    /* keychat.key = childSnapshot.key */
+                    this.chatService.getChatType(keychat).on('value', res => {
+                        console.log(res.val());
+                        let chat = res.val();
+                        chat.key = childSnapshot.val();
+                        console.log(chat.key);
+                        if (chat.name == 'single') {
+                            this.chatService.getUser(chat.key).on('value', resp => {
+                                let item = resp.val();
+                                item.unread = 0;
+                                item.chatuid = keychat;
+                                this.Users.push(item);
+                            });
+                        }
+                        else {
+                            let item2 = res.val();
+                            let item = res.val();
+                            console.log(item2);
+                            item.displayName = item2.name;
+                            item.photoUrl = 'https://lh3.googleusercontent.com/-oHdxefwfte4/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuckFwmGRYKK_yKebGqxAIor7JTeCLg/s96-c/photo.jpg',
+                                item.unread = 0;
+                            item.chatuid = keychat;
+                            this.Users.push(item);
+                            /* SI ES GRUPO */
+                        }
+                    });
+                });
+            }
+        });
+    }
+    getMessages() {
+        this.chatService.getMessages().on('value', resp => {
+            this.messages = [];
+            resp.forEach((childSnapshot) => {
+                let m = childSnapshot.val();
+                console.log(childSnapshot.val());
+                this.chatService.getUser(m.sender).on('value', resp => {
+                    /* console.log(resp.val()); */
+                    m.senderuser = resp.val();
+                    this.messages.push(m);
+                });
+                //this.scrollToBottom()
+            });
+            console.log(this.messages);
+        });
     }
 };
 ChatListPage.ctorParameters = () => [
@@ -412,208 +489,6 @@ ChatListPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         src_app_services_chat_service__WEBPACK_IMPORTED_MODULE_4__["ChatService"],
         src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_3__["AuthService"]])
 ], ChatListPage);
-
-
-
-/***/ }),
-
-/***/ "./src/app/services/chat.service.ts":
-/*!******************************************!*\
-  !*** ./src/app/services/chat.service.ts ***!
-  \******************************************/
-/*! exports provided: ChatService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChatService", function() { return ChatService; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./auth.service */ "./src/app/services/auth.service.ts");
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
-/* harmony import */ var firebase__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! firebase */ "./node_modules/firebase/dist/index.esm.js");
-
-
-
-
-
-//import { UserModel } from 'app/models/users.model';
-const snapshotToArray = (snapshot) => {
-    const returnArr = [];
-    snapshot.forEach((childSnapshot) => {
-        const item = childSnapshot.val();
-        item.key = childSnapshot.key;
-        returnArr.push(item);
-    });
-    return returnArr;
-};
-const snapshotToArray2 = (snapshot) => {
-    const returnArr = [];
-    snapshot.forEach((childSnapshot) => {
-        const item = childSnapshot.val();
-        /* item.key = childSnapshot.key; */
-        returnArr.push(item);
-    });
-    return returnArr;
-};
-let ChatService = class ChatService {
-    constructor(firebaseAuthService) {
-        //this.usersDBRef = this.firebaseAuthService.firebaseDB.collection('users');
-        this.firebaseAuthService = firebaseAuthService;
-        this.subject = new rxjs__WEBPACK_IMPORTED_MODULE_3__["Subject"]();
-        this.chatsUsers = [];
-        this.users = [];
-        //    this.myObservable$ = this.usersDBRef.onSnapshot();
-        //  console.log(this.myObservable$);
-    }
-    /*   postUser(user:UserModel){
-         
-         this.usersDBRef
-         .add(Object.assign({}, user)).then(docRef=>{
-             console.log(docRef);
-         }).catch(e=> console.log("error: "+ e));
-      } */
-    /*getUsers(){
-     this.usersDBRef.onSnapshot(  snap =>{
-       snap.forEach( snapHijo =>{
-           this.users.push({
-               id: snapHijo.id,
-               ...snapHijo.data()
-           })
-       });
-     });
-    }*/
-    getUserChats() {
-        return firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(this.firebaseAuthService.usersign.uid + '/members/');
-        //return this.afDB.object('cliente/').valueChanges()
-    }
-    getChatsMembers(idchat) {
-        return firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(this.firebaseAuthService.usersign.uid + '/members/' + idchat);
-    }
-    getChats() {
-        return firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(this.firebaseAuthService.usersign.uid + '/chats/');
-    }
-    getUser(uid) {
-        return firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref('Users/' + uid);
-    }
-    getUsers() {
-        return firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref('Users/');
-    }
-    getChat() {
-        return firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(this.firebaseAuthService.usersign.uid + '/members/');
-    }
-    getMessages(chatid) {
-        return firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(this.firebaseAuthService.usersign.uid + '/messages/' + chatid);
-    }
-    newChat(user) {
-        //let key = this.afDB.list('/cliente/').push(cliente).key;
-        let chat = {
-            timestamp: new Date(),
-            type: 'single'
-        };
-        let key = firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(this.firebaseAuthService.usersign.uid + '/chats/').push(chat).key;
-        firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(user.uid + '/chats/' + key).set(chat);
-        firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref('/chats/' + key).set(chat);
-        firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(this.firebaseAuthService.usersign.uid + '/members/' + key + '/' + user.uid).set('true');
-        firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(this.firebaseAuthService.usersign.uid + '/members/' + key + '/' + this.firebaseAuthService.usersign.uid).set('true');
-        firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(user.uid + '/members/' + key + '/' + user.uid).set('true');
-        firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(user.uid + '/members/' + key + '/' + this.firebaseAuthService.usersign.uid).set('true');
-        firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref('/members/' + key + '/' + user.uid).set('true');
-        firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref('/members/' + key + '/' + this.firebaseAuthService.usersign.uid).set('true');
-        return key;
-    }
-    newMessage(message) {
-        console.log(message);
-        let user2 = JSON.parse(localStorage.getItem('user2'));
-        firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(this.firebaseAuthService.usersign.uid + '/messages/' + localStorage.getItem('idchat')).push(message);
-        firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(user2.uid + '/messages/' + localStorage.getItem('idchat')).push(message);
-        firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref('/messages/' + localStorage.getItem('idchat')).push(message);
-    }
-    newMessageGroup(message, idchat) {
-        console.log(message);
-        let user2 = JSON.parse(localStorage.getItem('user2'));
-        firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(this.firebaseAuthService.usersign.uid + '/messages/' + localStorage.getItem('idchat')).push(message);
-        firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref('/messages/' + localStorage.getItem('idchat')).push(message);
-        firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref('/members/').orderByKey().equalTo(idchat).on('value', resp => {
-            let users = snapshotToArray2(resp);
-            console.log(users);
-            users.forEach(user => {
-                console.log(user);
-                let keyusers = Object.keys(user).filter(key => key != this.firebaseAuthService.usersign.uid && key != 'key');
-                console.log(keyusers);
-                keyusers.forEach(keyuser => {
-                    firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(keyuser + '/messages/' + localStorage.getItem('idchat')).push(message);
-                });
-            });
-        });
-    }
-    readChats() {
-        let chatid = localStorage.getItem('idchat');
-        firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(this.firebaseAuthService.usersign.uid + '/messages/' + chatid).once('value', resp => {
-            let messages = snapshotToArray(resp);
-            console.log(messages);
-            messages.forEach(message => {
-                if (message.sender != this.firebaseAuthService.usersign.uid) {
-                    firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(this.firebaseAuthService.usersign.uid + '/messages/' + chatid + '/' + message.key + '/read').set('true');
-                }
-            });
-        });
-    }
-    stopread() {
-        console.log('stop read');
-        let chatid = localStorage.getItem('idchat');
-        firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(this.firebaseAuthService.usersign.uid + '/messages/').off();
-    }
-    unreadChats(chatid) {
-        let count = 0;
-        return firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(this.firebaseAuthService.usersign.uid + '/messages/' + chatid);
-        /*  .on('value', resp=>{
-           
-           let messages = snapshotToArray(resp);
-           console.log(messages);
-     
-           messages.forEach(message=>{
-             if ((message.sender!=this.firebaseAuthService.usersign.uid) && (message.read=='false')){
-               count = count + 1;
-             }
-           })
-     
-           
-           console.log(count);
-         }); */
-    }
-    newChatGroup(users) {
-        //let key = this.afDB.list('/cliente/').push(cliente).key;
-        let chat = {
-            timestamp: new Date(),
-            type: 'group'
-        };
-        console.log(users);
-        /* agregar al chat */
-        let key = firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(this.firebaseAuthService.usersign.uid + '/chats/').push(chat).key;
-        firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref('/chats/' + key).set(chat);
-        firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(this.firebaseAuthService.usersign.uid + '/members/' + key + '/' + this.firebaseAuthService.usersign.uid).set('true');
-        firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref('/members/' + key + '/' + this.firebaseAuthService.usersign.uid).set('true');
-        /* users */
-        users.forEach(user => {
-            firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(user.uid + '/members/' + key + '/' + user.uid).set('true');
-            firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(user.uid + '/members/' + key + '/' + this.firebaseAuthService.usersign.uid).set('true');
-            firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref('/members/' + key + '/' + user.uid).set('true');
-            firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(this.firebaseAuthService.usersign.uid + '/members/' + key + '/' + user.uid).set('true');
-            firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(user.uid + '/chats/' + key).set(chat);
-        });
-        return key;
-    }
-};
-ChatService.ctorParameters = () => [
-    { type: _auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"] }
-];
-ChatService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-        providedIn: 'root'
-    }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"]])
-], ChatService);
 
 
 

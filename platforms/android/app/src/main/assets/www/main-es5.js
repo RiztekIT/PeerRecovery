@@ -132,7 +132,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-app>\n    <ion-split-pane contentId=\"main-content\">\n        <ion-menu contentId=\"main-content\" type=\"reveal\">\n            <ion-header class=\"ion-no-border\">\n                <img [src]=\"this.authSVC.usersign.photoURL\">\n                <!-- <img src=\"../assets/imgs/user_profile_dp.svg\"> -->\n                <div class=\"content margin-left-17\">\n                    <h2>{{this.authSVC.usersign.displayName}}</h2>\n                    <h3>{{this.authSVC.usersign.email}}</h3>\n                    <!-- <p>+44 903 397 6854</p> -->\n                </div>\n            </ion-header>\n            <ion-content>\n                <ion-list class=\"margin-top-21\" id=\"inbox-list\">\n                    <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let p of appPages; let i = index\">\n                        <ion-item (click)=\"selectedIndex = i\" routerDirection=\"forward\" [routerLink]=\"[p.url]\" lines=\"none\" detail=\"false\">\n                            <div class=\"activeBox\" [class.selected]=\"selectedIndex == i\">\n                                <h2>\n                                    {{ p.title }}\n                                </h2>\n                            </div>\n                        </ion-item>\n\n                    </ion-menu-toggle>\n                    <ion-item>\n                        <div (click)=\"logout()\" class=\"activeBox\">\n                            <h2>\n                                Logout\n                            </h2>\n                        </div>\n\n                    </ion-item>\n                </ion-list>\n            </ion-content>\n        </ion-menu>\n        <ion-router-outlet id=\"main-content\" animated=\"true\">\n            <ion-button (click)=\"goToProfile()\" class=\"edit-profile-btn\">\n                <ion-icon src=\"../assets/imgs/appicons/edit-icon.svg\"></ion-icon>\n            </ion-button>\n        </ion-router-outlet>\n    </ion-split-pane>\n</ion-app>";
+    __webpack_exports__["default"] = "<ion-app>\n    <ion-split-pane contentId=\"main-content\">\n        <ion-menu contentId=\"main-content\" type=\"reveal\">\n            <ion-header class=\"ion-no-border\">\n                <img [src]=\"this.authSVC.usersign.photoURL\">\n                <!-- <img src=\"../assets/imgs/user_profile_dp.svg\"> -->\n                <div class=\"content margin-left-17\">\n                    <h2>{{this.authSVC.usersign.displayName}}</h2>\n                    <h3>{{this.authSVC.usersign.email}}</h3>\n                    <!-- <p>+44 903 397 6854</p> -->\n                </div>\n            </ion-header>\n            <ion-content>\n                <ion-list class=\"margin-top-21\" id=\"inbox-list\">\n                    <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let m of this.authSVC.menu; let i = index\">\n                        <!-- <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let p of appPages; let i = index\"> -->\n                        <ion-item (click)=\"selectedIndex = i\" routerDirection=\"forward\" [routerLink]=\"[m.url]\" lines=\"none\" detail=\"false\">\n                            <div class=\"activeBox\" [class.selected]=\"selectedIndex == i\">\n                                <h2>\n                                    {{ m.titulo }}\n                                </h2>\n                            </div>\n                        </ion-item>\n\n                    </ion-menu-toggle>\n                    <ion-item>\n                        <div (click)=\"logout()\" class=\"activeBox\">\n                            <h2>\n                                Logout\n                            </h2>\n                        </div>\n\n                    </ion-item>\n                </ion-list>\n            </ion-content>\n        </ion-menu>\n        <ion-router-outlet id=\"main-content\" animated=\"false\">\n            <!--     <ion-button (click)=\"goToProfile()\" class=\"edit-profile-btn\">\n                <ion-icon src=\"../assets/imgs/appicons/edit-icon.svg\"></ion-icon>\n            </ion-button> -->\n        </ion-router-outlet>\n    </ion-split-pane>\n</ion-app>";
     /***/
   },
 
@@ -911,11 +911,22 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         });
       }
     }, {
+      path: "dashboard",
+      loadChildren: function loadChildren() {
+        return Promise.all(
+        /*! import() | pages-home-home-module */
+        [__webpack_require__.e("common"), __webpack_require__.e("pages-home-home-module")]).then(__webpack_require__.bind(null,
+        /*! ./pages/home/home.module */
+        "./src/app/pages/home/home.module.ts")).then(function (m) {
+          return m.HomePageModule;
+        });
+      }
+    }, {
       path: "search",
       loadChildren: function loadChildren() {
         return Promise.all(
         /*! import() | pages-search-search-module */
-        [__webpack_require__.e("default~pages-call-call-module~pages-search-search-module~pages-tracking-tracking-module"), __webpack_require__.e("pages-search-search-module")]).then(__webpack_require__.bind(null,
+        [__webpack_require__.e("common"), __webpack_require__.e("pages-search-search-module")]).then(__webpack_require__.bind(null,
         /*! ./pages/search/search.module */
         "./src/app/pages/search/search.module.ts")).then(function (m) {
           return m.SearchPageModule;
@@ -1021,29 +1032,29 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         });
       }
     }, {
-      path: "chatList",
+      path: "chat",
       loadChildren: function loadChildren() {
-        return __webpack_require__.e(
+        return Promise.all(
         /*! import() | pages-chat-list-chat-list-module */
-        "pages-chat-list-chat-list-module").then(__webpack_require__.bind(null,
+        [__webpack_require__.e("default~pages-call-users-list-call-users-list-module~pages-chat-chat-module~pages-chat-list-chat-lis~2ba80dbb"), __webpack_require__.e("pages-chat-list-chat-list-module")]).then(__webpack_require__.bind(null,
         /*! ./pages/chat-list/chat-list.module */
         "./src/app/pages/chat-list/chat-list.module.ts")).then(function (m) {
           return m.ChatListPageModule;
         });
       }
     }, {
-      path: "chat",
+      path: "chat2",
       loadChildren: function loadChildren() {
         return Promise.all(
         /*! import() | pages-chat-chat-module */
-        [__webpack_require__.e("default~pages-chat-chat-module~pages-chat-users-list-chat-users-list-module"), __webpack_require__.e("pages-chat-chat-module")]).then(__webpack_require__.bind(null,
+        [__webpack_require__.e("default~pages-call-users-list-call-users-list-module~pages-chat-chat-module~pages-chat-list-chat-lis~2ba80dbb"), __webpack_require__.e("pages-chat-chat-module")]).then(__webpack_require__.bind(null,
         /*! ./pages/chat/chat.module */
         "./src/app/pages/chat/chat.module.ts")).then(function (m) {
           return m.ChatPageModule;
         });
       }
     }, {
-      path: "calendar",
+      path: "appoinments",
       loadChildren: function loadChildren() {
         return Promise.all(
         /*! import() | pages-calendar-calendar-module */
@@ -1091,7 +1102,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       loadChildren: function loadChildren() {
         return Promise.all(
         /*! import() | pages-chat-users-list-chat-users-list-module */
-        [__webpack_require__.e("default~pages-chat-chat-module~pages-chat-users-list-chat-users-list-module"), __webpack_require__.e("pages-chat-users-list-chat-users-list-module")]).then(__webpack_require__.bind(null,
+        [__webpack_require__.e("default~pages-call-users-list-call-users-list-module~pages-chat-chat-module~pages-chat-list-chat-lis~2ba80dbb"), __webpack_require__.e("pages-chat-users-list-chat-users-list-module")]).then(__webpack_require__.bind(null,
         /*! ./pages/chat-users-list/chat-users-list.module */
         "./src/app/pages/chat-users-list/chat-users-list.module.ts")).then(function (m) {
           return m.ChatUsersListPageModule;
@@ -1100,9 +1111,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     }, {
       path: 'rewards',
       loadChildren: function loadChildren() {
-        return __webpack_require__.e(
+        return Promise.all(
         /*! import() | pages-rewards-rewards-module */
-        "pages-rewards-rewards-module").then(__webpack_require__.bind(null,
+        [__webpack_require__.e("common"), __webpack_require__.e("pages-rewards-rewards-module")]).then(__webpack_require__.bind(null,
         /*! ./pages/rewards/rewards.module */
         "./src/app/pages/rewards/rewards.module.ts")).then(function (m) {
           return m.RewardsPageModule;
@@ -1111,9 +1122,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     }, {
       path: 'reward',
       loadChildren: function loadChildren() {
-        return __webpack_require__.e(
+        return Promise.all(
         /*! import() | pages-reward-reward-module */
-        "pages-reward-reward-module").then(__webpack_require__.bind(null,
+        [__webpack_require__.e("common"), __webpack_require__.e("pages-reward-reward-module")]).then(__webpack_require__.bind(null,
         /*! ./pages/reward/reward.module */
         "./src/app/pages/reward/reward.module.ts")).then(function (m) {
           return m.RewardPageModule;
@@ -1124,18 +1135,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       loadChildren: function loadChildren() {
         return Promise.all(
         /*! import() | pages-tracking-tracking-module */
-        [__webpack_require__.e("default~pages-call-call-module~pages-search-search-module~pages-tracking-tracking-module"), __webpack_require__.e("pages-tracking-tracking-module")]).then(__webpack_require__.bind(null,
+        [__webpack_require__.e("common"), __webpack_require__.e("pages-tracking-tracking-module")]).then(__webpack_require__.bind(null,
         /*! ./pages/tracking/tracking.module */
         "./src/app/pages/tracking/tracking.module.ts")).then(function (m) {
           return m.TrackingPageModule;
         });
       }
     }, {
-      path: 'call-users-list',
+      path: 'video',
       loadChildren: function loadChildren() {
-        return __webpack_require__.e(
+        return Promise.all(
         /*! import() | pages-call-users-list-call-users-list-module */
-        "pages-call-users-list-call-users-list-module").then(__webpack_require__.bind(null,
+        [__webpack_require__.e("default~pages-call-users-list-call-users-list-module~pages-chat-chat-module~pages-chat-list-chat-lis~2ba80dbb"), __webpack_require__.e("pages-call-users-list-call-users-list-module")]).then(__webpack_require__.bind(null,
         /*! ./pages/call-users-list/call-users-list.module */
         "./src/app/pages/call-users-list/call-users-list.module.ts")).then(function (m) {
           return m.CallUsersListPageModule;
@@ -1146,7 +1157,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       loadChildren: function loadChildren() {
         return Promise.all(
         /*! import() | pages-call-call-module */
-        [__webpack_require__.e("default~pages-call-call-module~pages-search-search-module~pages-tracking-tracking-module"), __webpack_require__.e("pages-call-call-module")]).then(__webpack_require__.bind(null,
+        [__webpack_require__.e("common"), __webpack_require__.e("pages-call-call-module")]).then(__webpack_require__.bind(null,
         /*! ./pages/call/call.module */
         "./src/app/pages/call/call.module.ts")).then(function (m) {
           return m.CallPageModule;
@@ -1301,20 +1312,44 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           this.platform.ready().then(function () {
             setTimeout(function () {
-              _this.splashScreen.hide();
+              _this.splashScreen.hide(); //this.getMenu();
+
             }, 2000);
           });
         }
       }, {
         key: "ngOnInit",
         value: function ngOnInit() {
-          var path = window.location.pathname.split("folder/")[1];
+          /*    const path = window.location.pathname.split("folder/")[1];
+             if (path !== undefined) {
+               this.selectedIndex = this.appPages.findIndex(
+                 (page) => page.title.toLowerCase() === path.toLowerCase()
+               );
+             } */
+        }
+      }, {
+        key: "getMenu",
+        value: function getMenu() {
+          var _this2 = this;
 
-          if (path !== undefined) {
-            this.selectedIndex = this.appPages.findIndex(function (page) {
-              return page.title.toLowerCase() === path.toLowerCase();
+          var menu;
+          this.user = JSON.parse(sessionStorage.getItem('user'));
+          console.log(this.user);
+          this.authSVC.getMenu(this.user).orderByChild('order').on('value', function (resp) {
+            console.log(resp); //const menu = snapshotToArray(resp);
+
+            menu = [];
+            resp.forEach(function (childSnapshot) {
+              var item = childSnapshot.val();
+              item.key = childSnapshot.key;
+
+              if (item.titulo != 'Settings' && item.titulo != 'Tracking') {
+                menu.push(item);
+              }
             });
-          }
+            console.log(menu, 'menu');
+            _this2.authSVC.menu = menu;
+          });
         }
       }, {
         key: "goToProfile",
@@ -1322,11 +1357,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "backButtonEvent",
         value: function backButtonEvent() {
-          var _this2 = this;
+          var _this3 = this;
 
           this.platform.backButton.subscribe(function () {
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this2, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-              var _this3 = this;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this3, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+              var _this4 = this;
 
               return regeneratorRuntime.wrap(function _callee$(_context) {
                 while (1) {
@@ -1337,13 +1372,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                         if (outlet && outlet.canGoBack()) {
                           outlet.pop();
-                        } else if (_this3.router.url === "/home" || _this3.router.url === "home" || _this3.router.url === "starter") {
-                          if (new Date().getTime() - _this3.lastTimeBackPress < _this3.timePeriodToExit) {
+                        } else if (_this4.router.url === "/home" || _this4.router.url === "home" || _this4.router.url === "starter") {
+                          if (new Date().getTime() - _this4.lastTimeBackPress < _this4.timePeriodToExit) {
                             navigator["app"].exitApp();
                           } else {
-                            _this3.showToast();
+                            _this4.showToast();
 
-                            _this3.lastTimeBackPress = new Date().getTime();
+                            _this4.lastTimeBackPress = new Date().getTime();
                           }
                         }
                       });
@@ -1388,15 +1423,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "logout",
         value: function logout() {
-          var _this4 = this;
+          var _this5 = this;
 
           /* this.navCtrl.navigateRoot('/'); */
           this.authSVC.cerrarSession().then(function (res) {
             console.log(res);
-            console.log(_this4.authSVC.user);
+            console.log(_this5.authSVC.user);
             sessionStorage.removeItem('user');
 
-            _this4.authSVC.getUser();
+            _this5.authSVC.getUser();
           });
         }
       }]);
@@ -1597,7 +1632,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var _ionic_native_background_mode_ngx__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(
     /*! @ionic-native/background-mode/ngx */
-    "./node_modules/@ionic-native/background-mode/ngx/index.js"); //import { VideoCapturePlus, VideoCapturePlusOptions, MediaFile } from '@ionic-native/video-capture-plus/ngx';
+    "./node_modules/@ionic-native/background-mode/ngx/index.js");
+    /* harmony import */
+
+
+    var _agm_core__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(
+    /*! @agm/core */
+    "./node_modules/@agm/core/fesm2015/agm-core.js");
+    /* harmony import */
+
+
+    var _ionic_native_fcm_ngx__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(
+    /*! @ionic-native/fcm/ngx */
+    "./node_modules/@ionic-native/fcm/ngx/index.js"); //import { VideoCapturePlus, VideoCapturePlusOptions, MediaFile } from '@ionic-native/video-capture-plus/ngx';
 
     /* import { BackgroundMode } from '@ionic-native/background-mode/ngx'; */
 
@@ -1613,12 +1660,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       imports: [_pipes_pipes_module__WEBPACK_IMPORTED_MODULE_15__["PipesModule"], _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"].forRoot({
         rippleEffect: false,
         mode: 'ios'
-      }), _app_routing_module__WEBPACK_IMPORTED_MODULE_8__["AppRoutingModule"], _ng_select_ng_select__WEBPACK_IMPORTED_MODULE_9__["NgSelectModule"]],
+      }), _app_routing_module__WEBPACK_IMPORTED_MODULE_8__["AppRoutingModule"], _ng_select_ng_select__WEBPACK_IMPORTED_MODULE_9__["NgSelectModule"], _agm_core__WEBPACK_IMPORTED_MODULE_24__["AgmCoreModule"].forRoot({
+        apiKey: 'AIzaSyDL-2mFo6QYsp7qNSQl95AzhVZ6njRsLtE'
+      })],
       providers: [_ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"], _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"], _ionic_native_geolocation_ngx__WEBPACK_IMPORTED_MODULE_13__["Geolocation"], _ionic_native_native_geocoder_ngx__WEBPACK_IMPORTED_MODULE_14__["NativeGeocoder"], _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_16__["Camera"], _ionic_native_camera_preview_ngx__WEBPACK_IMPORTED_MODULE_17__["CameraPreview"],
       /* VideoCapturePlus, */
       _ionic_native_google_plus_ngx__WEBPACK_IMPORTED_MODULE_18__["GooglePlus"], _ionic_native_zoom_ngx__WEBPACK_IMPORTED_MODULE_19__["Zoom"], _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_20__["HTTP"], _ionic_native_background_geolocation_ngx__WEBPACK_IMPORTED_MODULE_21__["BackgroundGeolocation"],
       /* BackgroundMode, */
-      _ionic_native_foreground_service_ngx__WEBPACK_IMPORTED_MODULE_22__["ForegroundService"], _ionic_native_background_mode_ngx__WEBPACK_IMPORTED_MODULE_23__["BackgroundMode"], {
+      _ionic_native_foreground_service_ngx__WEBPACK_IMPORTED_MODULE_22__["ForegroundService"], _ionic_native_background_mode_ngx__WEBPACK_IMPORTED_MODULE_23__["BackgroundMode"], _ionic_native_fcm_ngx__WEBPACK_IMPORTED_MODULE_25__["FCM"], {
         provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"],
         useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"]
       }],
@@ -2115,6 +2164,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref('Tracking/' + user.uid + '/Historic').push(location);
         }
       }, {
+        key: "sendLocaltion",
+        value: function sendLocaltion(current) {
+          firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref('Tracking/Panic/' + current.user.uid).push(current);
+        }
+      }, {
+        key: "sendToken",
+        value: function sendToken(user, token) {
+          firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref('Token/' + user.uid + '/ID').push(token);
+        }
+      }, {
         key: "registroUser",
         value: function registroUser(correo, pass) {
           return firebase__WEBPACK_IMPORTED_MODULE_4__["default"].auth().createUserWithEmailAndPassword(correo, pass);
@@ -2161,20 +2220,20 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getUser",
         value: function getUser() {
-          var _this5 = this;
+          var _this6 = this;
 
           firebase__WEBPACK_IMPORTED_MODULE_4__["default"].auth().onAuthStateChanged(function (user) {
             console.log(user);
-            _this5.user = user;
+            _this6.user = user;
 
             if (user) {
               console.log('Usuario Activo');
 
-              _this5.router.navigate(['starter']);
+              _this6.router.navigate(['starter']);
             } else {
               console.log('Usuario NO Activo');
 
-              _this5.router.navigate(['/']);
+              _this6.router.navigate(['/']);
             }
           });
         }
@@ -2226,7 +2285,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "loginFacebook",
         value: function loginFacebook() {
-          var _this6 = this;
+          var _this7 = this;
 
           var provider = new firebase__WEBPACK_IMPORTED_MODULE_4__["default"].auth.FacebookAuthProvider();
           console.log(provider);
@@ -2238,7 +2297,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 console.log(token);
               }
 
-              _this6.user = result.user;
+              _this7.user = result.user;
             })["catch"](function (error) {
               var errorCode = error.code;
               var errorMessage = error.message;
@@ -2251,7 +2310,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "obtenerUsuarioFB",
         value: function obtenerUsuarioFB() {
-          var _this7 = this;
+          var _this8 = this;
 
           firebase__WEBPACK_IMPORTED_MODULE_4__["default"].auth().getRedirectResult().then(function (result) {
             if (result.credential) {
@@ -2259,7 +2318,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               console.log(token);
             }
 
-            _this7.user = result.user;
+            _this8.user = result.user;
           })["catch"](function (error) {
             var errorCode = error.code;
             var errorMessage = error.message;
@@ -2278,6 +2337,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function addUser(user) {
           firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref('Users/' + user.uid).set(user);
           firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(user.uid + '/data').set(user);
+        }
+      }, {
+        key: "getMenu",
+        value: function getMenu(user) {
+          //firebase.database().
+          return firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(user.uid + '/menu');
         }
       }]);
 

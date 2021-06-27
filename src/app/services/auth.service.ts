@@ -57,7 +57,26 @@ export class AuthService {
   sendLocaltion(current){
 
     firebase.database().ref('Tracking/Panic/'+current.user.uid).push(current);
+    
+    
+  }
+  
+  getRel(user){
+    return firebase.database().ref('Relations/'+user.uid);
+    
+  }
+  
+  getTokenID(userid){
+    return firebase.database().ref('Token/'+userid+'/id');
 
+  }
+  
+  sendToken(user,token){
+    let t = {
+      id: token
+    }
+    
+    firebase.database().ref('Token/'+user.uid).set(t);
 
   }
 

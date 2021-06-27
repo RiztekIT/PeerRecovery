@@ -21,7 +21,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-header class=\"ion-no-border\">\n    <ion-toolbar mode=\"md\">\n        <ion-buttons slot=\"start\">\n            <ion-back-button defaultHref=\"home\" icon=\"chevron-back-outline\" text=\"\" mode=\"md\"></ion-back-button>\n        </ion-buttons>\n        <ion-buttons slot=\"end\">\n            <ion-menu-button></ion-menu-button>\n        </ion-buttons>\n        <ion-title>Reward</ion-title>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content class=\"ion-padding-horizontal ion-padding-bottom\">\n\n\n    <div class=\"profile_div\">\n        <div class=\"img_div\">\n            <img src=\"../../../assets/image_icon/certificate.png\">\n        </div>\n    </div>\n    <p class=\"reward-name\">Health course</p>\n    <p class=\"book_id\">Deadline: Feb, 25 2021</p>\n    <p>\n        <!--- <ion-progress-bar color=\"warning\" value=\"0.8\"></ion-progress-bar>  -->\n    </p>\n\n\n\n\n\n\n    <div class=\"card_div\" *ngFor=\"let item of review\">\n        <div class=\"data_div\">\n            <h3 class=\"name\">{{item?.name}}\n                <span class=\"ion-float-right\">\n                  <ion-progress-bar [color]=\"item.color\" value=\"{{item?.average}}\"></ion-progress-bar>\n                </span>\n            </h3>\n            <p class=\"ago\">{{item?.ago}}</p>\n            <p class=\"ago detail\">{{item?.detail}}</p>\n        </div>\n    </div>\n\n</ion-content>";
+    __webpack_exports__["default"] = "<ion-header class=\"ion-no-border\">\n    <ion-toolbar mode=\"md\">\n        <ion-buttons slot=\"start\">\n            <ion-back-button defaultHref=\"home\" icon=\"chevron-back-outline\" text=\"\" mode=\"md\"></ion-back-button>\n        </ion-buttons>\n        <ion-buttons slot=\"end\">\n            <ion-menu-button></ion-menu-button>\n        </ion-buttons>\n        <ion-title>Reward</ion-title>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content class=\"ion-padding-horizontal ion-padding-bottom\">\n\n\n    <!--    <div class=\"profile_div\">\n        <div class=\"img_div\">\n            <img src=\"../../../assets/image_icon/certificate.png\">\n        </div>\n    </div> -->\n    <p class=\"reward-name\">{{this.rewardsSVC.rewardSelected.title}}</p>\n    <p class=\"book_id\">Deadline: {{this.rewardsSVC.rewardSelected.dateline.seconds*1000 | date}}</p>\n    <p>\n        <!--- <ion-progress-bar color=\"warning\" value=\"0.8\"></ion-progress-bar>  -->\n    </p>\n\n\n    <div class=\"card_div\" *ngFor=\"let task of this.rewardsSVC.rewardSelected.task\">\n        <div class=\"data_div\" style=\"width: 100%;\">\n            <h3 class=\"name\">{{task?.title}}\n                <span class=\"ion-float-right\">\n                <ion-icon *ngIf=\"task.done\" name=\"checkmark-done-outline\" style=\"zoom:2.0; color: green;\"> </ion-icon>\n                </span>\n\n            </h3>\n            <p class=\"ago\">{{task?.dateline.seconds*1000 | date}}</p>\n            <p class=\"ago detail\">{{task?.description}}</p>\n        </div>\n    </div>\n\n\n\n\n    <!-- \n    <div class=\"card_div\" *ngFor=\"let item of review\">\n        <div class=\"data_div\">\n            <h3 class=\"name\">{{item?.name}}\n                <span class=\"ion-float-right\">\n                  <ion-progress-bar [color]=\"item.color\" value=\"{{item?.average}}\"></ion-progress-bar>\n                </span>\n            </h3>\n            <p class=\"ago\">{{item?.ago}}</p>\n            <p class=\"ago detail\">{{item?.detail}}</p>\n        </div>\n    </div> -->\n\n</ion-content>";
     /***/
   },
 
@@ -221,15 +221,22 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
     /*! @ionic/angular */
     "./node_modules/@ionic/angular/fesm2015/ionic-angular.js");
+    /* harmony import */
+
+
+    var src_app_services_reward_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! src/app/services/reward.service */
+    "./src/app/services/reward.service.ts");
 
     var RewardPage = /*#__PURE__*/function () {
-      function RewardPage(popoverController, modalController, nav, route) {
+      function RewardPage(popoverController, modalController, nav, route, rewardsSVC) {
         _classCallCheck(this, RewardPage);
 
         this.popoverController = popoverController;
         this.modalController = modalController;
         this.nav = nav;
         this.route = route;
+        this.rewardsSVC = rewardsSVC;
         this.selectedLocation = "Dr.Rose Ortiz";
         this.review = [{
           img: "../../../assets/image/arron.png",
@@ -280,36 +287,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(RewardPage, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this = this;
-
-          this.route.params.subscribe(function (params) {
-            _this.activeTab = params["id"];
-          });
-        }
-      }, {
-        key: "chageTab",
-        value: function chageTab(name) {
-          this.activeTab = name;
-        }
-      }, {
-        key: "presentModal",
-        value: function presentModal() {
-          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-            return regeneratorRuntime.wrap(function _callee$(_context) {
-              while (1) {
-                switch (_context.prev = _context.next) {
-                  case 0:
-                  case "end":
-                    return _context.stop();
-                }
-              }
-            }, _callee);
-          }));
-        }
-      }, {
-        key: "chat",
-        value: function chat() {
-          this.nav.navigateForward("/chat");
+          console.log(this.rewardsSVC.rewardSelected);
+          /*   this.route.params.subscribe((params) => {
+              this.activeTab = params["id"];
+            }); */
         }
       }]);
 
@@ -325,6 +306,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavController"]
       }, {
         type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]
+      }, {
+        type: src_app_services_reward_service__WEBPACK_IMPORTED_MODULE_4__["RewardService"]
       }];
     };
 
@@ -336,7 +319,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./reward.page.scss */
       "./src/app/pages/reward/reward.page.scss"))["default"]]
-    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_3__["PopoverController"], _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ModalController"], _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavController"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]])], RewardPage);
+    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_3__["PopoverController"], _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ModalController"], _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavController"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"], src_app_services_reward_service__WEBPACK_IMPORTED_MODULE_4__["RewardService"]])], RewardPage);
     /***/
   }
 }]);

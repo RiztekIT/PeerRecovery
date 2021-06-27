@@ -25,6 +25,7 @@ import { BackgroundGeolocation } from "@ionic-native/background-geolocation/ngx"
 import { ForegroundService } from '@ionic-native/foreground-service/ngx';
 import { BackgroundMode } from '@ionic-native/background-mode/ngx';
 import { AgmCoreModule } from '@agm/core';
+import { FCM } from '@ionic-native/fcm/ngx';
 /* import { BackgroundMode } from '@ionic-native/background-mode/ngx'; */
 
 
@@ -61,6 +62,7 @@ import { AgmCoreModule } from '@agm/core';
     /* BackgroundMode, */
     ForegroundService,
     BackgroundMode,
+    FCM,
     
     
 

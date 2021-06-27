@@ -5,6 +5,8 @@ import { AuthService } from "src/app/services/auth.service";
 import { AlertController } from "@ionic/angular";
 import { TrackingService } from '../../services/tracking.service';
 import { HTTP } from '@ionic-native/http/ngx';
+import { Route, Router } from '@angular/router';
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-tracking",
@@ -32,17 +34,41 @@ export class TrackingPage implements OnInit {
     private alertController: AlertController,
     public authSVC: AuthService,    
     public trackingSVC: TrackingService,
-    public http: HTTP
-    ) {}
+    public http: HTTP,
+    private route: ActivatedRoute, 
+    ) {
+
+
+      this.route.queryParams.subscribe(params => {
+        if (params && params.data) {
+          let data = JSON.parse(params.data);
+          data = JSON.parse(data)
+          this.parametros = true;
+          
+          this.lat = data.lat;
+          this.lng = data.lng;
+          console.log(data,'data');
+          console.log(this.lat,'data');
+          console.log(this.lng,'data');
+        }
+          
+      });
+
+    }
 
 
     locatio
     user;
+    parametros = false;
+    
 
 
   ngOnInit() {
     this.user = JSON.parse(sessionStorage.getItem('user'));
-    this.getLocationUser(this.user)
+    if (!this.parametros){
+
+      this.getLocationUser(this.user)
+    }
   }
 
  /*  async onMarkerSelect(marker: any) {

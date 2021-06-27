@@ -21,7 +21,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-header class=\"ion-no-border\">\n    <ion-toolbar mode=\"md\">\n        <ion-buttons slot=\"start\">\n            <ion-back-button defaultHref=\"home\" icon=\"chevron-back-outline\" text=\"\" mode=\"md\"></ion-back-button>\n        </ion-buttons>\n        <ion-buttons slot=\"end\">\n            <ion-menu-button></ion-menu-button>\n        </ion-buttons>\n        <ion-title>chat</ion-title>\n    </ion-toolbar>\n</ion-header>\n\n\n<ion-content class=\"ion-padding-bottom\">\n    <h3 class=\"main_lbl ion-padding-start\">Chats</h3>\n    <div class=\"today_div\">\n        <ion-item *ngFor=\"let chat of this.chatService.chatsUsers\" lines=\"full\" (click)=\"openChat(chat)\" mode=\"md\">\n            <ion-avatar slot=\"start\">\n                <img [src]=\"chat?.photoUrl\">\n            </ion-avatar>\n            <ion-label>\n                <h3 class=\"name\">{{chat?.displayName}} <span class=\"ion-float-right\"></span></h3>\n\n\n                <!-- <h3 class=\"name\">{{chat?.Title}} <span class=\"ion-float-right\">{{chat?.LastMessageSent.seconds * 1000| date: 'yyyy-MM-dd h:mm: a'}}</span></h3> -->\n                <!-- <p class=\"detail\"></p> -->\n            </ion-label>\n            <ion-badge color=\"primary\">{{chat?.unread}}</ion-badge>\n        </ion-item>\n    </div>\n\n\n\n\n    <ion-fab vertical=\"bottom\" horizontal=\"end\" slot=\"fixed\" (click)=\"openUsersPage()\">\n        <ion-fab-button>\n            <ion-icon name=\"chatbubbles-outline\"></ion-icon>\n        </ion-fab-button>\n    </ion-fab>\n\n\n\n</ion-content>";
+    __webpack_exports__["default"] = "<ion-header class=\"ion-no-border\">\n    <ion-toolbar mode=\"md\">\n        <ion-buttons slot=\"start\">\n            <ion-back-button defaultHref=\"home\" icon=\"chevron-back-outline\" text=\"\" mode=\"md\"></ion-back-button>\n        </ion-buttons>\n        <ion-buttons slot=\"end\">\n            <ion-menu-button></ion-menu-button>\n        </ion-buttons>\n        <ion-title>chat</ion-title>\n    </ion-toolbar>\n</ion-header>\n\n\n<ion-content class=\"ion-padding-bottom\">\n    <h3 class=\"main_lbl ion-padding-start\">Chats</h3>\n    <div class=\"today_div\">\n        <ion-item *ngFor=\"let chat of Users\" lines=\"full\" (click)=\"openChat(chat)\" mode=\"md\">\n            <ion-avatar slot=\"start\">\n                <img [src]=\"chat?.photoUrl\">\n            </ion-avatar>\n            <ion-label>\n                <h3 class=\"name\">{{chat?.displayName}} <span class=\"ion-float-right\"></span></h3>\n\n\n                <!-- <h3 class=\"name\">{{chat?.Title}} <span class=\"ion-float-right\">{{chat?.LastMessageSent.seconds * 1000| date: 'yyyy-MM-dd h:mm: a'}}</span></h3> -->\n                <!-- <p class=\"detail\"></p> -->\n            </ion-label>\n            <ion-badge color=\"primary\">{{chat?.unread}}</ion-badge>\n        </ion-item>\n    </div>\n\n\n\n\n    <ion-fab vertical=\"bottom\" horizontal=\"end\" slot=\"fixed\" (click)=\"openUsersPage()\">\n        <ion-fab-button>\n            <ion-icon name=\"chatbubbles-outline\"></ion-icon>\n        </ion-fab-button>\n    </ion-fab>\n\n\n\n</ion-content>";
     /***/
   },
 
@@ -265,14 +265,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       function ChatListPage(nav, chatService, firebaseAuthService) {
         _classCallCheck(this, ChatListPage);
 
+        //this.usersDBRef = this.firebaseAuthService.firebaseDB.collection('users');
+        //this.chatsDBRef = this.firebaseAuthService.firebaseDB.collection('chats');
         this.nav = nav;
         this.chatService = chatService;
         this.firebaseAuthService = firebaseAuthService;
+        /*  */
+
+        this.Users = [];
+        this.group = false;
+        this.messages = [];
         this.users = [];
         this.chats = [];
         this.keysUsers = [];
-        this.usersDBRef = this.firebaseAuthService.firebaseDB.collection('users');
-        this.chatsDBRef = this.firebaseAuthService.firebaseDB.collection('chats');
       }
 
       _createClass(ChatListPage, [{
@@ -284,7 +289,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           //this.user.LastName = 'Ramírez Lugo';
           //this.chatService.postUser(this.user);
           //this.getUsers();
-          this.getChats2();
+          //this.getChats2();
+          this.user = JSON.parse(sessionStorage.getItem('user'));
+          this.getUsersChat();
         }
       }, {
         key: "getChats2",
@@ -505,45 +512,129 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }
       }, {
         key: "openChat",
-        value: function openChat(chat) {
+        value: function openChat(event) {
           var _this3 = this;
 
-          console.log(chat);
-          /*
-              let navigationExtras: NavigationExtras = {
-                queryParams: {
-                  special: JSON.stringify( {
-                                              ID_Chat: chat.id
-                                           }
-                  )
-                }
-              }; */
+          /*  console.log(chat);
+           if (chat.displayName!='chatGroup'){
+                   this.chatService.getChat().orderByChild(chat.uid).equalTo('true').on('value', (resp:any) =>{
+               console.log(resp);
+               const chats = snapshotToArray(resp);
+               console.log(chats);
+               
+          
+                 localStorage.setItem('user2',JSON.stringify(chat))
+                 localStorage.setItem('idchat', chats[0].key)
+                 this.nav.navigateForward("/chat");
+              
+             })
+           }else{
+               
+                     localStorage.setItem('users2',JSON.stringify(chat))
+             
+             localStorage.setItem('idchat', chat.uid)
+             this.nav.navigateForward("/chat");
+           } */
+          console.log(event, 'chat');
 
-          if (chat.displayName != 'chatGroup') {
-            this.chatService.getChat().orderByChild(chat.uid).equalTo('true').on('value', function (resp) {
-              console.log(resp);
-              var chats = snapshotToArray(resp);
-              console.log(chats); //this.nav.navigateForward("/chat");
-              //this.nav.navigateForward("/chat?id="+chats[0].uid);
-
-              localStorage.setItem('user2', JSON.stringify(chat));
-              localStorage.setItem('idchat', chats[0].key);
-
-              _this3.nav.navigateForward("/chat");
-            });
+          if (event.type == 'User') {
+            this.group = false;
           } else {
-            /*   console.log(this.users);
-              this.groupusers = this.users.filter(x => x.isChecked != false && x.isChecked);
-              console.log(this.groupusers);
-              let group = {
-                displayName: 'chatGroup'
-              } */
-            localStorage.setItem('users2', JSON.stringify(chat)); //let idchat = this.chatService.newChatGroup(this.groupusers);
+            this.group = true;
+          }
 
-            localStorage.setItem('idchat', chat.uid);
-            this.nav.navigateForward("/chat");
-          } //this.nav.navigateForward("/chat");
+          this.chatService.getChat(this.user, event.chatuid).once('value', function (resp) {
+            console.log(resp.val());
 
+            if (resp.val()) {
+              _this3.chatService.keymessage = event.chatuid;
+              _this3.chatService.user2 = event; //this.getMessages()
+
+              _this3.nav.navigateForward("/chat2");
+            } else {
+              _this3.nav.navigateForward("/chat2");
+            }
+            /* else{
+              this.chatSVC.addChat(this.user,event )
+              this.getMessages()
+            } */
+
+            /* this.scrollToBottom(); */
+
+          });
+        }
+        /*  */
+
+      }, {
+        key: "getUsersChat",
+        value: function getUsersChat() {
+          var _this4 = this;
+
+          console.log('buscando chats');
+          this.Users = [];
+          this.chatService.getUsersChat(this.user).on('value', function (resp) {
+            if (resp.val()) {
+              _this4.Users = [];
+              var keys = Object.keys(resp.val());
+              console.log(keys);
+              resp.forEach(function (childSnapshot) {
+                console.log(childSnapshot.val());
+                console.log(childSnapshot.key);
+                var keychat = childSnapshot.key;
+                /* keychat.key = childSnapshot.key */
+
+                _this4.chatService.getChatType(keychat).on('value', function (res) {
+                  console.log(res.val());
+                  var chat = res.val();
+                  chat.key = childSnapshot.val();
+                  console.log(chat.key);
+
+                  if (chat.name == 'single') {
+                    _this4.chatService.getUser(chat.key).on('value', function (resp) {
+                      var item = resp.val();
+                      item.unread = 0;
+                      item.chatuid = keychat;
+
+                      _this4.Users.push(item);
+                    });
+                  } else {
+                    var item2 = res.val();
+                    var item = res.val();
+                    console.log(item2);
+                    item.displayName = item2.name;
+                    item.photoUrl = 'https://lh3.googleusercontent.com/-oHdxefwfte4/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuckFwmGRYKK_yKebGqxAIor7JTeCLg/s96-c/photo.jpg', item.unread = 0;
+                    item.chatuid = keychat;
+
+                    _this4.Users.push(item);
+                    /* SI ES GRUPO */
+
+                  }
+                });
+              });
+            }
+          });
+        }
+      }, {
+        key: "getMessages",
+        value: function getMessages() {
+          var _this5 = this;
+
+          this.chatService.getMessages().on('value', function (resp) {
+            _this5.messages = [];
+            resp.forEach(function (childSnapshot) {
+              var m = childSnapshot.val();
+              console.log(childSnapshot.val());
+
+              _this5.chatService.getUser(m.sender).on('value', function (resp) {
+                /* console.log(resp.val()); */
+                m.senderuser = resp.val();
+
+                _this5.messages.push(m);
+              }); //this.scrollToBottom()
+
+            });
+            console.log(_this5.messages);
+          });
         }
       }]);
 
@@ -569,282 +660,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       /*! ./chat-list.page.scss */
       "./src/app/pages/chat-list/chat-list.page.scss"))["default"]]
     }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavController"], src_app_services_chat_service__WEBPACK_IMPORTED_MODULE_4__["ChatService"], src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_3__["AuthService"]])], ChatListPage);
-    /***/
-  },
-
-  /***/
-  "./src/app/services/chat.service.ts":
-  /*!******************************************!*\
-    !*** ./src/app/services/chat.service.ts ***!
-    \******************************************/
-
-  /*! exports provided: ChatService */
-
-  /***/
-  function srcAppServicesChatServiceTs(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony export (binding) */
-
-
-    __webpack_require__.d(__webpack_exports__, "ChatService", function () {
-      return ChatService;
-    });
-    /* harmony import */
-
-
-    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-    /*! tslib */
-    "./node_modules/tslib/tslib.es6.js");
-    /* harmony import */
-
-
-    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-    /*! @angular/core */
-    "./node_modules/@angular/core/fesm2015/core.js");
-    /* harmony import */
-
-
-    var _auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-    /*! ./auth.service */
-    "./src/app/services/auth.service.ts");
-    /* harmony import */
-
-
-    var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-    /*! rxjs */
-    "./node_modules/rxjs/_esm2015/index.js");
-    /* harmony import */
-
-
-    var firebase__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
-    /*! firebase */
-    "./node_modules/firebase/dist/index.esm.js"); //import { UserModel } from 'app/models/users.model';
-
-
-    var snapshotToArray = function snapshotToArray(snapshot) {
-      var returnArr = [];
-      snapshot.forEach(function (childSnapshot) {
-        var item = childSnapshot.val();
-        item.key = childSnapshot.key;
-        returnArr.push(item);
-      });
-      return returnArr;
-    };
-
-    var snapshotToArray2 = function snapshotToArray2(snapshot) {
-      var returnArr = [];
-      snapshot.forEach(function (childSnapshot) {
-        var item = childSnapshot.val();
-        /* item.key = childSnapshot.key; */
-
-        returnArr.push(item);
-      });
-      return returnArr;
-    };
-
-    var ChatService = /*#__PURE__*/function () {
-      function ChatService(firebaseAuthService) {
-        _classCallCheck(this, ChatService);
-
-        //this.usersDBRef = this.firebaseAuthService.firebaseDB.collection('users');
-        this.firebaseAuthService = firebaseAuthService;
-        this.subject = new rxjs__WEBPACK_IMPORTED_MODULE_3__["Subject"]();
-        this.chatsUsers = [];
-        this.users = []; //    this.myObservable$ = this.usersDBRef.onSnapshot();
-        //  console.log(this.myObservable$);
-      }
-      /*   postUser(user:UserModel){
-           
-           this.usersDBRef
-           .add(Object.assign({}, user)).then(docRef=>{
-               console.log(docRef);
-           }).catch(e=> console.log("error: "+ e));
-        } */
-
-      /*getUsers(){
-       this.usersDBRef.onSnapshot(  snap =>{
-         snap.forEach( snapHijo =>{
-             this.users.push({
-                 id: snapHijo.id,
-                 ...snapHijo.data()
-             })
-         });
-       });
-      }*/
-
-
-      _createClass(ChatService, [{
-        key: "getUserChats",
-        value: function getUserChats() {
-          return firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(this.firebaseAuthService.usersign.uid + '/members/'); //return this.afDB.object('cliente/').valueChanges()
-        }
-      }, {
-        key: "getChatsMembers",
-        value: function getChatsMembers(idchat) {
-          return firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(this.firebaseAuthService.usersign.uid + '/members/' + idchat);
-        }
-      }, {
-        key: "getChats",
-        value: function getChats() {
-          return firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(this.firebaseAuthService.usersign.uid + '/chats/');
-        }
-      }, {
-        key: "getUser",
-        value: function getUser(uid) {
-          return firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref('Users/' + uid);
-        }
-      }, {
-        key: "getUsers",
-        value: function getUsers() {
-          return firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref('Users/');
-        }
-      }, {
-        key: "getChat",
-        value: function getChat() {
-          return firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(this.firebaseAuthService.usersign.uid + '/members/');
-        }
-      }, {
-        key: "getMessages",
-        value: function getMessages(chatid) {
-          return firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(this.firebaseAuthService.usersign.uid + '/messages/' + chatid);
-        }
-      }, {
-        key: "newChat",
-        value: function newChat(user) {
-          //let key = this.afDB.list('/cliente/').push(cliente).key;
-          var chat = {
-            timestamp: new Date(),
-            type: 'single'
-          };
-          var key = firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(this.firebaseAuthService.usersign.uid + '/chats/').push(chat).key;
-          firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(user.uid + '/chats/' + key).set(chat);
-          firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref('/chats/' + key).set(chat);
-          firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(this.firebaseAuthService.usersign.uid + '/members/' + key + '/' + user.uid).set('true');
-          firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(this.firebaseAuthService.usersign.uid + '/members/' + key + '/' + this.firebaseAuthService.usersign.uid).set('true');
-          firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(user.uid + '/members/' + key + '/' + user.uid).set('true');
-          firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(user.uid + '/members/' + key + '/' + this.firebaseAuthService.usersign.uid).set('true');
-          firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref('/members/' + key + '/' + user.uid).set('true');
-          firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref('/members/' + key + '/' + this.firebaseAuthService.usersign.uid).set('true');
-          return key;
-        }
-      }, {
-        key: "newMessage",
-        value: function newMessage(message) {
-          console.log(message);
-          var user2 = JSON.parse(localStorage.getItem('user2'));
-          firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(this.firebaseAuthService.usersign.uid + '/messages/' + localStorage.getItem('idchat')).push(message);
-          firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(user2.uid + '/messages/' + localStorage.getItem('idchat')).push(message);
-          firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref('/messages/' + localStorage.getItem('idchat')).push(message);
-        }
-      }, {
-        key: "newMessageGroup",
-        value: function newMessageGroup(message, idchat) {
-          var _this4 = this;
-
-          console.log(message);
-          var user2 = JSON.parse(localStorage.getItem('user2'));
-          firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(this.firebaseAuthService.usersign.uid + '/messages/' + localStorage.getItem('idchat')).push(message);
-          firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref('/messages/' + localStorage.getItem('idchat')).push(message);
-          firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref('/members/').orderByKey().equalTo(idchat).on('value', function (resp) {
-            var users = snapshotToArray2(resp);
-            console.log(users);
-            users.forEach(function (user) {
-              console.log(user);
-              var keyusers = Object.keys(user).filter(function (key) {
-                return key != _this4.firebaseAuthService.usersign.uid && key != 'key';
-              });
-              console.log(keyusers);
-              keyusers.forEach(function (keyuser) {
-                firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(keyuser + '/messages/' + localStorage.getItem('idchat')).push(message);
-              });
-            });
-          });
-        }
-      }, {
-        key: "readChats",
-        value: function readChats() {
-          var _this5 = this;
-
-          var chatid = localStorage.getItem('idchat');
-          firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(this.firebaseAuthService.usersign.uid + '/messages/' + chatid).once('value', function (resp) {
-            var messages = snapshotToArray(resp);
-            console.log(messages);
-            messages.forEach(function (message) {
-              if (message.sender != _this5.firebaseAuthService.usersign.uid) {
-                firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(_this5.firebaseAuthService.usersign.uid + '/messages/' + chatid + '/' + message.key + '/read').set('true');
-              }
-            });
-          });
-        }
-      }, {
-        key: "stopread",
-        value: function stopread() {
-          console.log('stop read');
-          var chatid = localStorage.getItem('idchat');
-          firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(this.firebaseAuthService.usersign.uid + '/messages/').off();
-        }
-      }, {
-        key: "unreadChats",
-        value: function unreadChats(chatid) {
-          var count = 0;
-          return firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(this.firebaseAuthService.usersign.uid + '/messages/' + chatid);
-          /*  .on('value', resp=>{
-             
-             let messages = snapshotToArray(resp);
-             console.log(messages);
-                   messages.forEach(message=>{
-               if ((message.sender!=this.firebaseAuthService.usersign.uid) && (message.read=='false')){
-                 count = count + 1;
-               }
-             })
-                   
-             console.log(count);
-           }); */
-        }
-      }, {
-        key: "newChatGroup",
-        value: function newChatGroup(users) {
-          var _this6 = this;
-
-          //let key = this.afDB.list('/cliente/').push(cliente).key;
-          var chat = {
-            timestamp: new Date(),
-            type: 'group'
-          };
-          console.log(users);
-          /* agregar al chat */
-
-          var key = firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(this.firebaseAuthService.usersign.uid + '/chats/').push(chat).key;
-          firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref('/chats/' + key).set(chat);
-          firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(this.firebaseAuthService.usersign.uid + '/members/' + key + '/' + this.firebaseAuthService.usersign.uid).set('true');
-          firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref('/members/' + key + '/' + this.firebaseAuthService.usersign.uid).set('true');
-          /* users */
-
-          users.forEach(function (user) {
-            firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(user.uid + '/members/' + key + '/' + user.uid).set('true');
-            firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(user.uid + '/members/' + key + '/' + _this6.firebaseAuthService.usersign.uid).set('true');
-            firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref('/members/' + key + '/' + user.uid).set('true');
-            firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(_this6.firebaseAuthService.usersign.uid + '/members/' + key + '/' + user.uid).set('true');
-            firebase__WEBPACK_IMPORTED_MODULE_4__["default"].database().ref(user.uid + '/chats/' + key).set(chat);
-          });
-          return key;
-        }
-      }]);
-
-      return ChatService;
-    }();
-
-    ChatService.ctorParameters = function () {
-      return [{
-        type: _auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"]
-      }];
-    };
-
-    ChatService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-      providedIn: 'root'
-    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"]])], ChatService);
     /***/
   }
 }]);
