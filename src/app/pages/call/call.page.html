@@ -1,44 +1,53 @@
 <ion-content>
-    <!--<agm-map [styles]="styles" [disableDefaultUI]="false" [latitude]="lat" [longitude]="lng" [zoom]="zoom" [zoomControl]="false">
-        <agm-overlay *ngFor="let item of markers" [latitude]="item.lat" [longitude]="item.lng">
-            <div *ngIf="item.isOpen == true" (click)="onMarkerSelect(item)" [class.selected]="item.select" class="open avatar avatar_round">
-                <img [src]="item.img" alt="" />
-            </div>
-
-            <div *ngIf="item.isOpen == false" class="avatar avatar_round">
-                <img [src]="item.img" alt="" />
-            </div>
-        </agm-overlay>
-    </agm-map>-->
 
     <ion-buttons>
         <ion-back-button defaultHref="home" icon="chevron-back-outline" text="" mode="md"></ion-back-button>
     </ion-buttons>
 
-    <div id='video' class="video">
+    <div>
 
         <h1>
-            hola
+            Video Call
         </h1>
 
     </div>
+
+    <ion-row>
+        <ion-col>
+            <h3>{{user.displayName}}</h3>
+        </ion-col>
+        <ion-col>
+            <h3>
+                {{usercall.displayName}}
+            </h3>
+        </ion-col>
+
+    </ion-row>
+
+    <ion-row>
+        <video style="width: 90%; max-width: 350px;" id="me" controls autoplay #me></video>
+    </ion-row>
+    <ion-row>
+        <video style="width: 90%; max-width: 350px;" id="device" controls autoplay #me></video>
+    </ion-row>
 
 
     <div class="bottom-content">
         <ion-grid>
             <ion-row>
                 <ion-col>
-                    <ion-fab-button (click)="openCam()" d class="call-green">
+                    <ion-fab-button (click)="reconnect()" d class="call-green">
+                        <!-- <ion-fab-button (click)="openCam()" d class="call-green"> -->
                         <ion-icon name="call-outline"></ion-icon>
                     </ion-fab-button>
                 </ion-col>
                 <ion-col>
-                    <ion-avatar class="avatar">
+                    <!--        <ion-avatar class="avatar">
                         <img [src]="this.callData.photoUrl ">
-                    </ion-avatar>
+                    </ion-avatar> -->
                 </ion-col>
                 <ion-col>
-                    <ion-fab-button (click)="initMeeting()" color="danger" class="call-red">
+                    <ion-fab-button (click)="hangup()" color="danger" class="call-red">
                         <ion-icon name="call-outline"></ion-icon>
                     </ion-fab-button>
                 </ion-col>

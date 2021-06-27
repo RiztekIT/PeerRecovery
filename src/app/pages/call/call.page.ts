@@ -8,6 +8,9 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { CameraPreview, CameraPreviewPictureOptions, CameraPreviewOptions, CameraPreviewDimensions } from '@ionic-native/camera-preview/ngx';
 //import { VideoCapturePlus, VideoCapturePlusOptions, MediaFile } from '@ionic-native/video-capture-plus/ngx';
 import { Zoom } from '@ionic-native/zoom/ngx';
+import { VideocallService } from "src/app/services/videocall.service";
+import firebase from 'firebase';
+import { AngularFireList, AngularFireDatabase } from '@angular/fire/database';
 
 
 @Component({
@@ -46,13 +49,17 @@ export class CallPage implements OnInit {
     private alertController: AlertController,
     public authSVC: AuthService,
     private cameraPreview: CameraPreview,
+    public videocallSVC: VideocallService,
+    private afDb: AngularFireDatabase,
     /* private videoCapturePlus: VideoCapturePlus, */
     private zoomService: Zoom) {
 
       this.route.queryParams.subscribe(params => {
         if (params && params.special) {
           this.callData = JSON.parse(params.special);
-          console.log(this.callData);
+          this.user = this.callData.user;
+          this.usercall = this.callData.usercall;
+
         }
       });
 
@@ -61,9 +68,22 @@ export class CallPage implements OnInit {
     }
 
     img;
+    user;
+    usercall;
+    listener;
+    status;
+
+    recordedBlobs: Blob[];
+    callActive: boolean = false;
+pc: any;
+localStream: any;
+channel;
+channelN;
+database;
+senderId: string;
 
   ngOnInit() {
-    this.initZoom();
+    //this.initZoom();
   }
 
   openCamera(){
@@ -298,6 +318,245 @@ this.cameraPreview.startCamera(cameraPreviewOpts).then(
   .then((success: any) => console.log(success))
   .catch((error: any) => console.log(error));
   }
+
+
+
+
+  /*  */
+
+  getCall(){
+    this.listener = this.videocallSVC.getCall(this.videocallSVC.keycall).once('value', call=>{
+      console.log(call.val());
+      /* console.log(call.val().Members.val()); */
+      this.call()
+      let keys = Object.keys(call.val().Members)
+      console.log(keys);
+
+      console.log(call.val().Members[keys[0]]);
+      console.log(call.val().Members[keys[1]]);
+
+      if ((call.val().Members[keys[0]]) && (call.val().Members[keys[1]]) ){
+      /*   if (this.data.type=='caller'){
+
+          this.showRemote();
+        } */
+
+        this.status = 'Ready'
+
+      }
+
+
+
+
+    })
+  }
+
+  call(){
+    console.log('Llamando');
+    this.recordedBlobs = new Array<Blob>()
+    this.setupWebRtc();
+  }
+
+
+
+
+
+  setupWebRtc() {
+    this.senderId = this.guid();
+    console.log(this.senderId);
+    var channelName = "/webrtc/"+this.videocallSVC.keycall;
+    console.log(channelName);
+    //this.database = firebase.database().ref('Video/');
+
+    
+    
+    
+        //this.channel = firebase.database().ref(channelName).on();
+        this.channel = this.afDb.list(channelName);
+
+    this.database = firebase.database().ref(channelName);
+    this.database.on("child_added", this.readMessage.bind(this));
+
+    try {
+      this.pc = new RTCPeerConnection({
+        iceServers: [
+          { urls: "stun:stun.services.mozilla.com" },
+          { urls: "stun:stun.l.google.com:19302" },
+          { urls: "stun:0.0.0.0:6200" },
+        ]
+      }, { optional: [] });
+    } catch (error) {
+      console.log(error);
+      this.pc = new RTCPeerConnection({
+        iceServers: [
+          { urls: "stun:stun.services.mozilla.com" },
+          { urls: "stun:stun.l.google.com:19302" },
+          { urls: "stun:0.0.0.0:6200" },
+        ]
+      }, { optional: [] });
+      
+    }
+
+    console.log(this.pc);
+
+
+
+    this.pc.onicecandidate = event => {
+      console.log(event );
+      event.candidate ? this.sendMessage(this.senderId, JSON.stringify({ ice: event.candidate })) : console.log("Sent All Ice");
+    }
+
+    this.pc.onremovestream = event => {
+      console.log('Stream Ended');
+    }
+
+    this.pc.ontrack = event =>
+      (this.remote.nativeElement.srcObject = event.streams[0]); // use ontrack
+    this.showMe();
+    if (this.data.type=='caller'){
+     
+      this.showRemote(); 
+    }
+  }
+
+  readMessage(data) {
+    console.log(data,'DATA');
+    console.log(data.val(),'DATAs');
+    if (!data) return;
+    try {
+      console.log(data.val().message);
+      var msg = JSON.parse(data.val().message);
+      let personalData = data.val().personalData;
+      var sender = data.val().sender;
+      if (sender != this.senderId) {
+        if (msg.ice != undefined && this.pc != null) {
+          this.pc.addIceCandidate(new RTCIceCandidate(msg.ice));
+        } else if (msg.sdp.type == "offer") {
+          this.callActive = true;
+          this.pc.setRemoteDescription(new RTCSessionDescription(msg.sdp))
+            .then(() => this.pc.createAnswer())
+            .then(answer => this.pc.setLocalDescription(answer))
+            .then(() => this.sendMessage(this.senderId, JSON.stringify({ sdp: this.pc.localDescription })));
+        } else if (msg.sdp.type == "answer") {
+          
+          this.callActive = true;
+          this.pc.setRemoteDescription(new RTCSessionDescription(msg.sdp));
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  sendMessage(senderId, data) {
+    var msg = this.channel.push({ sender: senderId, message: data });
+    
+    msg.remove();
+  }
+
+  public ngOnDestroy() {
+ /*    this.pc.close();
+    let tracks = this.localStream.getTracks();
+    for (let i = 0; i < tracks.length; i++) {
+      tracks[i].stop();
+    }
+    this.callActive = false; */
+
+  }
+
+  guid() {
+    return (this.s4() + this.s4() + "-" + this.s4() + "-" + this.s4() + "-" + this.s4() + "-" + this.s4() + this.s4() + this.s4());
+  }
+  s4() {
+    return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+  }
+
+  handleDataAvailable() {
+    
+    try {
+      this.mediaRecorder.ondataavailable = (event) => {
+        if (event.data && event.data.size > 0) {
+          this.recordedBlobs.push(event.data)
+        }
+      }
+    } catch (error) {
+      console.log(error)
+    }
+}
+
+
+// handleStop(event) {
+//   console.log('Recorder stopped: ', event);
+//   const videoBuffer = new Blob(this.recordedBlobs, {type: 'video/webm'});
+//   this.downloadUrl = window.URL.createObjectURL(videoBuffer); // you can download with <a> tag
+//  /*  const link = document.createElement('a');
+//   link.href = this.downloadUrl;
+//   link.target = '_blank'    
+//   link.click(); */
+// }
+
+onStopRecordingEvent() {
+  try {
+    this.mediaRecorder.onstop = (event: Event) => {
+      const videoBuffer = new Blob(this.recordedBlobs, { type: 'video/webm' })
+      this.downloadUrl = window.URL.createObjectURL(videoBuffer) // you can download with <a> tag
+      Swal.fire({
+        title: 'Saving Video',              
+     
+      })
+      Swal.showLoading()
+
+      
+      
+      this.trackingSVC.tareaCloudStorage(this.videocallSVC.keycall+'/'+this.user.uid,videoBuffer).percentageChanges().subscribe(p=>{
+        let porcentaje = Math.round(p);
+      if (porcentaje == 100) {
+        Swal.close();
+       
+      }
+      
+     
+
+      })
+
+      
+      /* const link = document.createElement('a');
+  link.href = this.downloadUrl;
+  link.target = '_target';
+  link.setAttribute('download', 'video')
+  document.body.appendChild(link)    
+  link.click();  */
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+startRecording(stream) {
+  let options = {mimeType: 'video/webm'};
+  this.recordedBlobs = [];
+  try {
+      this.mediaRecorder = new MediaRecorder(stream, options);
+  } catch (e0) {
+      console.log('Try different mimeType');
+  }
+  console.log('Created MediaRecorder', this.mediaRecorder, 'with options', options);
+  //this.mediaRecorder.onstop = this.handleStop;
+  //this.mediaRecorder.ondataavailable = this.handleDataAvailable;
+  //this.stopRecording()
+  this.handleDataAvailable();
+  this.onStopRecordingEvent();
+
+  this.mediaRecorder.start(100); // collect 100ms of data
+  console.log('MediaRecorder started', this.mediaRecorder);
+}
+
+stopRecording() {
+this.mediaRecorder.stop();
+
+console.log('Recorded Blobs: ', this.recordedBlobs);
+//this.recordVideoElement.controls = true;
+}
   
 }
 
