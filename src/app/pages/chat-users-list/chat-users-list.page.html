@@ -17,9 +17,13 @@
 
         <ion-toggle [(ngModel)]="this.group" slot="end" color="primary"></ion-toggle>
     </ion-item>
+    <ion-item *ngIf="this.group">
+        <ion-input style="font-size: 20px !important;" [(ngModel)]="this.namegroup" placeholder="Group Name">
+        </ion-input>
+    </ion-item>
 
     <div class="today_div">
-        <ion-item *ngFor="let item of users" lines="full" (click)="openChat(item)" mode="md">
+        <ion-item *ngFor="let item of Users" lines="full" (click)="openChat(item)" mode="md">
             <ion-avatar slot="start">
                 <img [src]="item?.photoUrl">
             </ion-avatar>
@@ -35,7 +39,7 @@
     <!-- <ion-button (click)="info()">VER</ion-button> -->
     <ion-fab *ngIf="this.group" vertical="bottom" horizontal="end" slot="fixed" (click)="openChatGroup()">
         <ion-fab-button>
-            <ion-icon name="chatbubbles-outline"></ion-icon>
+            <ion-icon name="add-circle-outline"></ion-icon>
         </ion-fab-button>
     </ion-fab>
 

@@ -32,6 +32,7 @@ export class AuthService {
 };
 
   firebaseDB:any;
+  menu: any;
 
   constructor(private router: Router)  {
     firebase.initializeApp(this.firebaseConfig);
@@ -246,4 +247,10 @@ export class AuthService {
     firebase.database().ref(user.uid+'/data').set(user)
 
    }
+
+
+   getMenu(user){
+    //firebase.database().
+    return firebase.database().ref(user.uid+'/menu')
+  }
 }

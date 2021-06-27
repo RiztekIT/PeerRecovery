@@ -39,10 +39,16 @@ export class ChatPage implements OnInit {
       }); */
     }
 
+    /*  */
+    messages: any[] = [];
+
   ngOnInit() {
-    this.getChat();
+ /*    this.getChat();
     this.getUserWith()
-    this.chatService.readChats();
+    this.chatService.readChats(); */
+    this.chatUser = this.chatService.user2
+    console.log(this.chatUser,'USER');
+    this.getMessages()
 
     
   }
@@ -74,23 +80,7 @@ export class ChatPage implements OnInit {
   getChat(){
 
 
-   /*  this.chatMessages = [];
-    this.chatDBRef.onSnapshot(  snap =>{
-      this.chatMessages = [];
-      const data = snap.data();
-      for (const key in data) {
-          const value = data[key];
-          this.chatMessages.push({
-            ...value
-          });
-
-      }
-
-      console.log(this.chatMessages);
-      this.chatMessages.sort(function(a, b) { return a.Sent.seconds - b.Sent.seconds; })
-      console.log(this.chatMessages);
-    }); */
-console.log(localStorage.getItem('idchat'));
+/* console.log(localStorage.getItem('idchat'));
     this.chatService.getMessages(localStorage.getItem('idchat')).on('value', resp=>{
       let messages = snapshotToArray(resp)
       console.log(messages);
@@ -100,13 +90,13 @@ console.log(localStorage.getItem('idchat'));
       setTimeout(() => {
         this.scrollToBottom();
     }, 500);
-    })
+    }) */
   }
 
   sendMessage(){
 
     console.log(this.message);
-
+/* 
     let sendmessage = {
       message: this.message,
       sender: this.firebaseAuthService.usersign.uid,
@@ -124,46 +114,18 @@ console.log(localStorage.getItem('idchat'));
       this.chatService.newMessageGroup(sendmessage, this.chatUser.uid);
       this.message = '';
       
-    }
+    } */
+
+
+    console.log(this.message);
+    this.chatService.sendMessage(this.message, this.firebaseAuthService.usersign, this.chatUser )
+    this.message = '';
     
-
-
-
-    /*var docData = {
-      stringExample: "Hello world!",
-      booleanExample: true,
-      numberExample: 3.14159265,
-      arrayExample: [5, true, "hello"],
-      nullExample: null,
-      objectExample: {
-          a: 5,
-          b: {
-              nested: "foo"
-          }
-      }
-  };
-  this.firebaseAuthService.firebaseDB.collection("messages").doc(this.ID_Chat).add(docData).then(function() {
-      console.log("Document successfully written!");
-  });*/
-
-
-
-
-
-  
-  //Update the chat info
- /*  const newChatInfo = {
-    LastMessage: this.message,
-    LastMessageSent: new Date()
-  }
-  this.firebaseAuthService.firebaseDB.collection("chats").doc(this.ID_Chat).update( newChatInfo )
-
-  this.message = "";  */
   }
 
 
   goToChatList(){
-    this.nav.navigateBack("/chatList")
+    this.nav.navigateBack("/chat")
     localStorage.removeItem('user2')
     localStorage.removeItem('users2')
     localStorage.removeItem('idchat')
@@ -181,6 +143,46 @@ console.log(localStorage.getItem('idchat'));
     if (tecla==13){
       this.sendMessage();
     }
+  }
+
+
+
+  /*  */
+
+  getMessages(){
+    
+    this.chatService.getMessages().orderByChild('timestamp').on('value', resp=>{
+      this.messages = [];
+      
+      resp.forEach((childSnapshot: any) =>{
+        let m = childSnapshot.val();
+        console.log(childSnapshot.val());
+
+        this.chatService.getUser(m.sender).on('value', resp=>{
+          /* console.log(resp.val()); */
+          m.senderuser = resp.val();
+          
+          
+          
+          
+          this.messages.push(m);
+          this.chatMessages = this.messages;
+         })
+
+
+
+        
+         
+        
+         setTimeout(() => {
+          this.scrollToBottom();
+      }, 500);
+        
+      })
+
+      console.log(this.messages);
+
+    })
   }
 
 

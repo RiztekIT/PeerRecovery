@@ -39,7 +39,7 @@ export class HomePage implements OnInit {
 
 
 
-
+user;
   appointmentsDBRef:any;
   Appointments: any[] = [];
   totalAppointments = 4;
@@ -525,6 +525,7 @@ this.locations = JSON.parse(localStorage.getItem("location"))
       }) */
       this.startBackgroundGeolocation()
       this.getGPS()
+      this.getMenu()
       //this.startBackgroundGeolocation()
       
       //this.put(1,1);
@@ -639,6 +640,32 @@ this.locations = JSON.parse(localStorage.getItem("location"))
         }
       });
     }
+  }
+
+
+  getMenu(){
+    let menu
+   
+    
+    this.user = JSON.parse(sessionStorage.getItem('user'));
+    console.log(this.user);
+    this.authSVC.getMenu(this.user).orderByChild('order').on('value', (resp:any)=>{
+      console.log(resp);
+      //const menu = snapshotToArray(resp);
+      menu = []
+      
+      resp.forEach((childSnapshot: any) => {
+        const item = childSnapshot.val();
+        item.key = childSnapshot.key;
+        if (item.titulo!='Settings'){
+
+          menu.push(item);
+        }
+    });
+      console.log(menu,'menu');
+      this.authSVC.menu = menu;
+
+    })
   }
 
 }

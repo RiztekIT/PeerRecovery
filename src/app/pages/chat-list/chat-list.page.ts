@@ -35,6 +35,12 @@ export const snapshotToArray2 = (snapshot: any) => {
   styleUrls: ["./chat-list.page.scss"],
 })
 export class ChatListPage implements OnInit {
+
+  /*  */
+  Users: any[] = [];
+  group = false;
+  messages: any[] = [];
+  /*  */
   
 
   user:UserModel;
@@ -51,8 +57,8 @@ export class ChatListPage implements OnInit {
               public chatService: ChatService,
               private firebaseAuthService: AuthService) {
 
-    this.usersDBRef = this.firebaseAuthService.firebaseDB.collection('users');
-    this.chatsDBRef = this.firebaseAuthService.firebaseDB.collection('chats');
+    //this.usersDBRef = this.firebaseAuthService.firebaseDB.collection('users');
+    //this.chatsDBRef = this.firebaseAuthService.firebaseDB.collection('chats');
 
 }
 
@@ -69,7 +75,9 @@ export class ChatListPage implements OnInit {
 
     
     //this.getUsers();
-    this.getChats2();
+    //this.getChats2();
+    this.user = JSON.parse(sessionStorage.getItem('user'));
+    this.getUsersChat()
   }
   
 getChats2(){
@@ -322,17 +330,8 @@ getChats(){
     this.nav.navigateForward("/chat-users-list");
   }
 
-  openChat(chat){
-    console.log(chat);
-/* 
-    let navigationExtras: NavigationExtras = {
-      queryParams: {
-        special: JSON.stringify( {
-                                    ID_Chat: chat.id
-                                 } 
-        )
-      }
-    }; */
+  openChat(event){
+   /*  console.log(chat);
     if (chat.displayName!='chatGroup'){
 
       this.chatService.getChat().orderByChild(chat.uid).equalTo('true').on('value', (resp:any) =>{
@@ -340,34 +339,154 @@ getChats(){
         const chats = snapshotToArray(resp);
         console.log(chats);
         
-          //this.nav.navigateForward("/chat");
-          //this.nav.navigateForward("/chat?id="+chats[0].uid);
+   
           localStorage.setItem('user2',JSON.stringify(chat))
           localStorage.setItem('idchat', chats[0].key)
           this.nav.navigateForward("/chat");
        
       })
     }else{
-    /*   console.log(this.users);
-      this.groupusers = this.users.filter(x => x.isChecked != false && x.isChecked);
-      console.log(this.groupusers);
-      let group = {
-        displayName: 'chatGroup'
-      } */
+
   
   
       localStorage.setItem('users2',JSON.stringify(chat))
-      //let idchat = this.chatService.newChatGroup(this.groupusers);
+      
       localStorage.setItem('idchat', chat.uid)
       this.nav.navigateForward("/chat");
+    } */
+
+   console.log(event,'chat');
+
+   if (event.type=='User'){
+    this.group=false;
+    
+  }else{
+    this.group=true;
+    
+    
+    
+    
+  }
+
+  this.chatService.getChat(this.user, event.chatuid).once('value', resp=>{
+    console.log(resp.val());
+
+    if (resp.val()){
+      this.chatService.keymessage = event.chatuid;
+      this.chatService.user2 = event
+      //this.getMessages()
+      this.nav.navigateForward("/chat2");
+      
+
+    }else{
+      this.nav.navigateForward("/chat2");
+    }
+    /* else{
+      this.chatSVC.addChat(this.user,event )
+      this.getMessages()
+    } */
+    /* this.scrollToBottom(); */
+  })
+
+   
+
+
+
+    
+  }
+
+
+
+
+  /*  */
+  getUsersChat(){
+    console.log('buscando chats');
+
+    this.Users = [];
+
+    this.chatService.getUsersChat(this.user).on('value', resp=>{
+    if(resp.val()){
+
+  
+      this.Users = [];
+      let keys = Object.keys(resp.val())
+      console.log(keys);
+
+      resp.forEach((childSnapshot: any) => {
+        console.log(childSnapshot.val());
+        console.log(childSnapshot.key);
+        let keychat = childSnapshot.key
+        /* keychat.key = childSnapshot.key */
+        this.chatService.getChatType(keychat).on('value', res=>{
+          console.log(res.val());
+          let chat = res.val()
+          chat.key = childSnapshot.val()
+          console.log(chat.key);
+          if (chat.name=='single'){
+            this.chatService.getUser(chat.key).on('value', resp=>{          
+              let item = resp.val();
+              item.unread = 0;
+              item.chatuid = keychat
+              this.Users.push(item)
+             })
+
+
+          }else{
+            let item2 = res.val();
+            let item  = res.val();
+            console.log(item2);
+            item.displayName = item2.name;
+            item.photoUrl = 'https://lh3.googleusercontent.com/-oHdxefwfte4/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuckFwmGRYKK_yKebGqxAIor7JTeCLg/s96-c/photo.jpg',
+            item.unread = 0;
+            item.chatuid = keychat
+            this.Users.push(item)
+
+            /* SI ES GRUPO */
+          }
+        })
+      })
+  
+
     }
 
-   
+          
+    })
 
-   
-
-
-
-    //this.nav.navigateForward("/chat");
   }
+
+
+  getMessages(){
+    
+    this.chatService.getMessages().on('value', resp=>{
+      this.messages = [];
+      
+      resp.forEach((childSnapshot: any) =>{
+        let m = childSnapshot.val();
+        console.log(childSnapshot.val());
+
+        this.chatService.getUser(m.sender).on('value', resp=>{
+          /* console.log(resp.val()); */
+          m.senderuser = resp.val();
+          
+          
+          
+          this.messages.push(m);
+         })
+
+
+        
+        
+        
+        //this.scrollToBottom()
+        
+      })
+
+      console.log(this.messages);
+
+    })
+  }
+
+
+
+
 }

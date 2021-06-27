@@ -46,6 +46,10 @@ export class ChatService {
   users: any[] = [];
 
   public myObservable$: Observable<any>;
+/*  */
+keymessage;
+user2
+/*  */
 
   constructor(private firebaseAuthService: AuthService) { 
     //this.usersDBRef = this.firebaseAuthService.firebaseDB.collection('users');
@@ -102,13 +106,89 @@ export class ChatService {
     return firebase.database().ref('Users/');
   }
 
-  getChat(){
-    return firebase.database().ref(this.firebaseAuthService.usersign.uid+'/members/');
-  }
+  getRel(user,key){
+     
+    return firebase.database().ref('Relations/'+user.uid+'/'+key)
+   }
 
-  getMessages(chatid){
+   getChat2(user, userchat){
+
+    return firebase.database().ref('Chats/Chats/'+user.uid).orderByValue().equalTo(userchat)
+
+   }
+
+/*   getChat(){
+    return firebase.database().ref(this.firebaseAuthService.usersign.uid+'/members/');
+  } */
+
+  getChat(user, userchat){
+
+    return firebase.database().ref('Chats/Chats/'+user.uid+'/'+userchat)
+
+   }
+
+ /*  getMessages(chatid){
     return firebase.database().ref(this.firebaseAuthService.usersign.uid+'/messages/'+chatid);
-  }
+  } */
+
+  getMessages(){
+    return firebase.database().ref('Chats/Messages/'+this.keymessage)
+   }
+
+   addChat(user, userchat){
+    //firebase.database().ref(user.uid+'/data/type').set(type);
+    let chat = {
+      name: 'single',
+      timestamp: firebase.firestore.Timestamp.fromDate(new Date()),
+      members: {
+        user1: user.uid,
+        user2: userchat.uid
+      }
+
+    }
+
+    let key = firebase.database().ref('Chats/Chats/').push(chat).key
+    firebase.database().ref('Chats/Chats/'+user.uid+'/'+key).set(userchat.uid)
+    firebase.database().ref('Chats/Chats/'+userchat.uid+'/'+key).set(user.uid)
+    this.keymessage = key;
+
+    
+
+   }
+
+   addGroup(user,namegroup,usergroup){
+
+    let users = [];
+    users.push(user.uid)
+
+    for(let j=0;j<usergroup.length;j++ ){
+      users.push(usergroup[j].uid)
+
+    }
+
+    let chat = {
+      name: namegroup,
+      timestamp: firebase.firestore.Timestamp.fromDate(new Date()),
+      members: {
+        users: users        
+      }
+
+    }
+
+    let key = firebase.database().ref('Chats/Chats/').push(chat).key
+
+    for (let i=0; i<usergroup.length;i++){
+      firebase.database().ref('Chats/Chats/'+user.uid+'/'+key).set(usergroup[i].uid)
+      firebase.database().ref('Chats/Chats/'+usergroup[i].uid+'/'+key).set(user.uid)
+
+    }
+
+
+    this.keymessage = key;
+
+
+
+   }
 
   newChat(user){
 
@@ -150,6 +230,17 @@ export class ChatService {
     firebase.database().ref('/messages/'+localStorage.getItem('idchat')).push(message);
 
     
+  }
+  sendMessage(message, user, userrec){
+    let sendmessage = {
+      message: message,
+      timestamp: firebase.firestore.Timestamp.fromDate(new Date()),
+      sender: user.uid
+
+    }
+
+    firebase.database().ref('Chats/Messages/'+this.keymessage).push(sendmessage)
+    firebase.database().ref('Chats/Unread/'+userrec.uid+'/'+this.keymessage).push(sendmessage)
   }
   newMessageGroup(message, idchat){
 
@@ -302,7 +393,15 @@ users.forEach(user=>{
 
        
 
+/*  */
 
+getUsersChat(user){
+  return firebase.database().ref('Chats/Chats/'+user.uid)
+ }
+
+ getChatType(keychat){
+  return firebase.database().ref('Chats/Chats/'+keychat)
+ }
 
 
 

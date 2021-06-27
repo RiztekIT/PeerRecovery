@@ -93,21 +93,49 @@ export class AppComponent implements OnInit {
     this.backButtonEvent();
   }
 
+  user;
+
   initializeApp() {
     this.platform.ready().then(() => {
       setTimeout(() => {
         this.splashScreen.hide();
+        //this.getMenu();
       }, 2000);
     });
   }
 
   ngOnInit() {
-    const path = window.location.pathname.split("folder/")[1];
+ /*    const path = window.location.pathname.split("folder/")[1];
     if (path !== undefined) {
       this.selectedIndex = this.appPages.findIndex(
         (page) => page.title.toLowerCase() === path.toLowerCase()
       );
-    }
+    } */
+  }
+
+  getMenu(){
+    let menu
+   
+    
+    this.user = JSON.parse(sessionStorage.getItem('user'));
+    console.log(this.user);
+    this.authSVC.getMenu(this.user).orderByChild('order').on('value', (resp:any)=>{
+      console.log(resp);
+      //const menu = snapshotToArray(resp);
+      menu = []
+      
+      resp.forEach((childSnapshot: any) => {
+        const item = childSnapshot.val();
+        item.key = childSnapshot.key;
+        if (item.titulo!='Settings'){
+
+          menu.push(item);
+        }
+    });
+      console.log(menu,'menu');
+      this.authSVC.menu = menu;
+
+    })
   }
 
   goToProfile() {}

@@ -14,7 +14,7 @@
 <ion-content class="ion-padding-bottom">
     <h3 class="main_lbl ion-padding-start">Chats</h3>
     <div class="today_div">
-        <ion-item *ngFor="let chat of this.chatService.chatsUsers" lines="full" (click)="openChat(chat)" mode="md">
+        <ion-item *ngFor="let chat of Users" lines="full" (click)="openChat(chat)" mode="md">
             <ion-avatar slot="start">
                 <img [src]="chat?.photoUrl">
             </ion-avatar>

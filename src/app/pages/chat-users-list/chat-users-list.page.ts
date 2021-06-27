@@ -25,9 +25,9 @@ export const snapshotToArray = (snapshot: any) => {
 })
 export class ChatUsersListPage implements OnInit {
  
-  user:UserModel;
-  users: any[] = [];
-  data: any;
+  user;
+  /* users: any[] = []; */
+  //data: any;
   chats: any[] = [];
   group = false;
   groupusers: any[] = [];
@@ -42,7 +42,12 @@ export class ChatUsersListPage implements OnInit {
     this.usersDBRef = this.firebaseAuthService.firebaseDB.collection('messages');          
 }
 
+Users: any[] = [];
+namegroup
+
+
   ngOnInit() {
+    this.user = JSON.parse(sessionStorage.getItem('user'));
     this.getUsers();
   }
   
@@ -57,13 +62,44 @@ export class ChatUsersListPage implements OnInit {
         });
         console.log('Users: ', this.users);
       }); */
-      this.chatService.getUsers().orderByChild('type').equalTo('User').on('value', (resp:any) =>{
-        //console.log(resp);
+   /*    this.chatService.getUsers().orderByChild('type').equalTo('User').on('value', (resp:any) =>{
+        
          const users = snapshotToArray(resp);
         console.log(users);
         this.users = users;
         this.users = this.users.filter(x => x.uid != this.firebaseAuthService.usersign.uid);
 
+       }) */
+       console.log(this.user);
+       this.chatService.getUsers().on('value', resp=>{
+         this.Users  = [];
+         let c = 0;
+         resp.forEach((childSnapshot: any) => {
+             const item = childSnapshot.val();
+             item.key = childSnapshot.key;
+             /* item.selected = true; */
+             if (item.key!=this.user.uid){
+               console.log(item);
+               console.log(this.user);
+               this.chatService.getRel(this.user,item.key).once('value', (resp: any) =>{
+                 console.log(resp);
+                 console.log(resp.val());
+           
+                 item.selected = resp.val();
+                 if (resp.val()){
+   
+                   this.Users.push(item);
+                 }
+      
+               })
+               
+   
+             }
+         });
+         //this.selected = this.Users
+         console.log(this.Users);
+         
+   
        })
 
 
@@ -80,9 +116,32 @@ export class ChatUsersListPage implements OnInit {
 
     console.log(item.uid);
 
+    this.chatService.getChat2(this.user, item.uid).on('value', resp=>{
+      console.log(resp.val());
+      console.log(resp.key);
+      
+      if (resp.val()){
+        let keys = Object.keys(resp.val())
+        this.chatService.keymessage = keys[0];        
+        this.chatService.user2 = item
+        //this.getMessages()
+        this.nav.navigateForward("/chat2");
+        //this.getMessages()
+        
+
+      }else{
+        this.chatService.addChat(this.user,item )
+        //this.chatService.keymessage = keys[0];        
+        this.chatService.user2 = item
+        this.nav.navigateForward("/chat2");
+      }
+
+      
+    })
+
     
 
-    this.chatService.getChat().orderByChild(item.uid).equalTo('true').once('value', (resp: any) =>{
+   /*  this.chatService.getChat().orderByChild(item.uid).equalTo('true').once('value', (resp: any) =>{
       console.log(resp);
       const chats = snapshotToArray(resp);
       console.log(chats);
@@ -113,14 +172,18 @@ export class ChatUsersListPage implements OnInit {
         localStorage.setItem('idchat', idchat)
         this.nav.navigateForward("/chat");
       }
-    })
+    }) */
   
   }
   }
 
   openChatGroup(){
-    console.log(this.users);
-    this.groupusers = this.users.filter(x => x.isChecked != false && x.isChecked);
+    console.log(this.Users);
+    this.groupusers = this.Users.filter(x => x.isChecked != false && x.isChecked);
+    console.log(this.groupusers);
+    this.chatService.addGroup(this.user,this.namegroup,this.groupusers)
+    this.nav.navigateForward("/chat2");
+  /*   this.groupusers = this.Users.filter(x => x.isChecked != false && x.isChecked);
     console.log(this.groupusers);
     let group = {
       displayName: 'chatGroup'
@@ -130,7 +193,7 @@ export class ChatUsersListPage implements OnInit {
     localStorage.setItem('users2',JSON.stringify(group))
     let idchat = this.chatService.newChatGroup(this.groupusers);
     localStorage.setItem('idchat', idchat)
-    this.nav.navigateForward("/chat");
+    this.nav.navigateForward("/chat"); */
 
   }
 

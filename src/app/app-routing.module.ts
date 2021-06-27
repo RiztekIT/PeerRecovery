@@ -43,6 +43,13 @@ const routes: Routes = [
         ),
   },
   {
+    path: "dashboard",
+    loadChildren: () =>
+      import("./pages/home/home.module").then(
+        (m) => m.HomePageModule
+        ),
+  },
+  {
     path: "search",
     loadChildren: () =>
       import("./pages/search/search.module").then((m) => m.SearchPageModule),
@@ -117,19 +124,19 @@ const routes: Routes = [
   },
 
   {
-    path: "chatList",
+    path: "chat",
     loadChildren: () =>
       import("./pages/chat-list/chat-list.module").then((m) => m.ChatListPageModule),
   },
   {
-    path: "chat",
+    path: "chat2",
     loadChildren: () =>
       import("./pages/chat/chat.module").then(
         (m) => m.ChatPageModule
       ),
   },
   {
-    path: "calendar",
+    path: "appoinments",    
     loadChildren: () =>
       import("./pages/calendar/calendar.module").then(
         (m) => m.CalendarPageModule
@@ -170,7 +177,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/tracking/tracking.module').then( m => m.TrackingPageModule)
   },
   {
-    path: 'call-users-list',
+    path: 'video',
     loadChildren: () => import('./pages/call-users-list/call-users-list.module').then( m => m.CallUsersListPageModule)
   },
   {

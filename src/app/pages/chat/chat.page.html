@@ -11,10 +11,12 @@
 </ion-header>
 <ion-header>
     <ion-title>{{this.chatUser.displayName}}</ion-title>
-    <ion-avatar slot="start">
+    <!--   <ion-avatar style="display: block !important; padding-left: 10px;" slot="end">
         <img [src]="this.chatUser.photoUrl">
-    </ion-avatar>
+
+    </ion-avatar> -->
 </ion-header>
+<hr>
 <ion-content #chatcontent [scrollEvents]="true" class="ion-padding-horizontal">
     <div *ngFor="let message of chatMessages">
 
@@ -27,7 +29,7 @@
                 <div class="chat ">
                     <p class="chat_lbl ">{{message.message}}</p>
                 </div>
-                <p class="time ">{{message.sent.seconds * 1000| date: 'h:mm a'}}</p>
+                <p class="time ">{{message.timestamp.seconds * 1000| date: 'dd/MM/yy h:mm a'}}</p>
             </div>
         </div>
         <div *ngIf="message.sender == this.firebaseAuthService.usersign.uid" class="chat_div replay_div ">
@@ -37,7 +39,7 @@
                 <div class="chat ">
                     <p class="chat_lbl ">{{message.message}}</p>
                 </div>
-                <p class="time ">{{message.sent.seconds * 1000| date: 'h:mm a'}}</p>
+                <p class="time ">{{message.timestamp.seconds * 1000| date: 'dd/MM/yy h:mm a'}}</p>
 
             </div>
             <!-- <img src="../../../assets/image/patricia.png "> -->
@@ -50,10 +52,11 @@
 
 
 
+
 </ion-content>
 <ion-footer class="ion-no-border ">
     <ion-item mode="md" lines="none ">
-        <ion-input [(ngModel)]="message" placeholder="Type your message... " (keypress)="eventoMensaje($event.keyCode)">
+        <ion-input style="font-size: 20px !important;" [(ngModel)]="message" placeholder="Type your message... " (keypress)="eventoMensaje($event.keyCode)">
         </ion-input>
     </ion-item>
     <ion-button class="send_btn" (click)="sendMessage()">
