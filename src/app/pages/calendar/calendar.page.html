@@ -14,15 +14,40 @@
 <ion-content class="ion-padding-bottom">
 
     <div class="head_div">
-        <h3 class="main_lbl head_lbl">Next appointments <span class="ion-float-right">Total: {{totalAppointments}}</span></h3>
+        <h3 class="main_lbl head_lbl">Appointments <span class="ion-float-right">Total: {{totalAppointments}}</span>
+            <ion-toggle [(ngModel)]="this.all" slot="end" color="primary" (ngModelChange)="allChange()"></ion-toggle>
+        </h3>
+
     </div>
 
-    <div class="data_div" (click)="openAppointmentPage(item)" *ngFor="let item of Appointments">
-        <p class="time">{{item.time | TimeFormat}}</p>
-        <div class="card_div">
+    <ion-row *ngIf="this.dates">
+        <ion-col class="first_Col" style="background-color: white;">
+            <h3 class="date_lbl">Start</h3>
+            <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="this.startDate" (ngModelChange)="changeDates()"></ion-datetime>
+        </ion-col>
+        <ion-col style="background-color: white;">
+            <h3 class="date_lbl">End</h3>
+            <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="this.endDate" (ngModelChange)="changeDates()"></ion-datetime>
+        </ion-col>
+    </ion-row>
+
+
+    <!--    <div class="data_div" style="text-align: end;">
+
+
+        <ion-toggle [(ngModel)]="this.all" slot="end" color="primary"></ion-toggle>
+
+
+    </div> -->
+
+
+    <div class="data_div" (click)="openAppointmentPage(item)" *ngFor="let item of apps">
+        <!-- <p class="time">{{item.time | TimeFormat}}</p> -->
+        <ion-icon name="briefcase-outline"> </ion-icon>
+        <div class="card_div" [ngStyle]="getStyle(item)">
             <!--<img [src]="item?.img">-->
             <div class="info_div">
-                <h3 class="name">{{item.title}} <span>{{item.date | date: 'mediumDate' }}</span></h3>
+                <h3 class="name">{{item.title}} <span>{{item.appointmentdate.seconds * 1000| date: 'dd/MM/yy h:mm a' }}</span></h3>
                 <!--<p class="age">Age : {{item?.age}}</p>-->
                 <p class="add">{{item.description}}</p>
             </div>
@@ -30,10 +55,25 @@
     </div>
 
 
-    <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="newAppointmentPage()">
+
+    <!--  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="newAppointmentPage()">
         <ion-fab-button>
             <ion-icon name="calendar-outline"></ion-icon>
         </ion-fab-button>
+    </ion-fab> -->
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button>
+            <ion-icon name="settings"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-list side="top">
+            <ion-fab-button (click)="newAppointmentPage()">
+                <ion-icon name="add-outline"></ion-icon>
+            </ion-fab-button>
+            <ion-fab-button (click)="searchDates()">
+                <ion-icon name="calendar-outline"></ion-icon>
+            </ion-fab-button>
+        </ion-fab-list>
     </ion-fab>
 
 

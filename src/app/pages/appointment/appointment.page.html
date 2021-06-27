@@ -42,7 +42,7 @@
             </ion-col>
             <ion-col style="background-color: white;">
                 <h3 class="date_lbl">Time</h3>
-                <ion-datetime displayFormat="hh:mm a" placeholder="10:00 am" [(ngModel)]="time"></ion-datetime>
+                <ion-datetime displayFormat="hh:mm a" placeholder="10:00 am" [(ngModel)]="date"></ion-datetime>
             </ion-col>
             <!--<ion-col>
                 <h3 class="date_lbl">End Date</h3>
@@ -56,8 +56,11 @@
             <ion-col>
             </ion-col>
             <ion-col>
-                <ion-button expand="block" class="plan-btn margin-top-30" (click)="buttonSaveAppointment()">
+                <ion-button *ngIf="!this.edit" expand="block" class="plan-btn margin-top-30" (click)="addappintment()">
                     Save
+                </ion-button>
+                <ion-button *ngIf="this.edit" expand="block" class="plan-btn margin-top-30" (click)="editappintment()">
+                    Edit
                 </ion-button>
             </ion-col>
             <ion-col>

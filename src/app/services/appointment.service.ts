@@ -38,6 +38,30 @@ export class AppointmentService {
     firebase.database().ref('/Appointments/' + key).set(appointmentObj);
   }
 
+  getApps(user){
+
+    return firebase.database().ref('Appointment/Users/'+user)
+
+  }
+
+  addApp(app){
+
+    console.log(app);
+
+    let key = firebase.database().ref('Appointment/Apps').push(app).key
+    firebase.database().ref('Appointment/Users/'+app.user+'/'+key).set(app)
+
+  }
+
+  editapp(app){
+
+    //console.log(app);
+
+    firebase.database().ref('Appointment/Apps/'+app.appkey+'/').set(app)
+    firebase.database().ref('Appointment/Users/'+app.user+'/'+app.appkey).set(app)
+
+  }
+
 }
 
 

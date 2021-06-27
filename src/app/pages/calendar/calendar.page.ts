@@ -16,7 +16,7 @@ export class CalendarPage implements OnInit {
   
   appointmentsDBRef:any;
   Appointments: any[] = [];
-  totalAppointments = 4;
+  totalAppointments = 0;
   constructor(private alertController: AlertController,
               private nav: NavController,
               private router: Router,
@@ -25,13 +25,29 @@ export class CalendarPage implements OnInit {
               public appointmentService: AppointmentService) {
 
 
-    this.appointmentsDBRef = this.firebaseAuthService.firebaseDB.collection('Appointments');
-                this.getAppointments();
+/*     this.appointmentsDBRef = this.firebaseAuthService.firebaseDB.collection('Appointments');
+                this.getAppointments(); */
 
               }
+              apps: any[] = [];
+              user;
+              color;
 
+              all = true;
+              dates = false;
 
-  ngOnInit() {}
+              startDate : Date;
+  endDate: Date;
+  startDateS;
+  endDateS;
+
+  ngOnInit() {
+    this.user = JSON.parse(sessionStorage.getItem('user'));
+    this.startDate = new Date()
+    this.endDate = new Date()
+
+    this.getAppointments();    
+  }
   /*async presentAlertRadio() {
     const alert = await this.alertController.create({
       header: "Set Doctor",
@@ -75,8 +91,75 @@ export class CalendarPage implements OnInit {
     await alert.present();
   }*/
 
+  getStyle(item){
+    let color;
+
+    let hoy = new Date();
+
+    let fecha = new Date()
+
+    fecha.setTime(item.appointmentdate.seconds*1000)
+
+    let h = +fecha - +hoy
+
+    h = h / 86400000
+
+    if (h<0){
+
+      color = {
+        'background-color' : '#ff3333'
+      }
+      return color
+      
+    }else if (h<1){
+
+      color = {
+        'background-color' : '#ffb3b3'
+      }
+      return color
+      
+    }else if(h<3){
+      color = {
+        'background-color' : '#ffff99'
+      }
+      return color
+
+    }else{
+
+      color = {
+        'background-color' : '#66ff66'
+      }
+      return color
+
+    }
+
+
+
+
+
+
+
+
+  
+
+  }
+
+  allChange(){
+    this.getAppointments();
+ /*    if (!this.all){
+      console.log(this.all,'all');
+
+      this.apps.filter(app => app.done == 'false')
+    }
+
+    console.log(this.apps); */
+
+    
+
+  }
+
   getAppointments(){
-    this.appointmentService.getAppointments().on('value', resp=>{
+  /*   this.appointmentService.getAppointments().on('value', resp=>{
       this.Appointments  = [];
       resp.forEach((childSnapshot: any) => {
           const item = childSnapshot.val();
@@ -85,6 +168,54 @@ export class CalendarPage implements OnInit {
       });
       console.log(resp);
       console.log(this.Appointments);
+    }) */
+
+    
+    this.appointmentService.getApps(this.user.uid).on('value', resp=>{
+      this.apps = []
+      
+      console.log(resp.val());
+
+      resp.forEach((childSnapshot: any) =>{
+        let item = childSnapshot.val()
+        item.appkey = childSnapshot.key;
+        if (this.all){
+
+          if (this.dates){
+            if ((item.appointmentdate.seconds*1000>=this.startDateS.getTime()) && (item.appointmentdate.seconds*1000<=this.endDateS.getTime())) {
+
+              this.apps.push(item) 
+    
+            }
+
+          }else{
+
+            this.apps.push(item)        
+          }
+
+          
+          
+        }else{
+          if (!item.done){
+            if (this.dates){
+              if ((item.appointmentdate.seconds*1000>=this.startDateS.getTime()) && (item.appointmentdate.seconds*1000<=this.endDateS.getTime())) {
+  
+                this.apps.push(item) 
+      
+              }
+  
+            }else{
+  
+              this.apps.push(item)        
+            }      
+            
+          }
+        }
+              
+      })
+
+      this.totalAppointments = this.apps.length;
+
     })
     
     }
@@ -92,20 +223,50 @@ export class CalendarPage implements OnInit {
 
 
   openAppointmentPage(item) {
-    let appointment = {
+   /*  let appointment = {
       appointmentID: item.key,
-    };
+    }; */
     let navigationExtras: NavigationExtras = {
       queryParams: {
-        special: JSON.stringify(appointment)
+        special: JSON.stringify(item)
       }
     };
     this.router.navigate(['appointment'], navigationExtras);
+    
 
   }
 
   newAppointmentPage(){
     this.router.navigate(['appointment']);
+  }
+
+  searchDates(){
+
+
+    this.dates = !this.dates
+    this.startDate = new Date()
+    this.endDate = new Date()
+    console.log(this.dates);
+
+  }
+
+  changeDates(){
+
+    console.log(this.startDate);
+    console.log(this.endDate);
+    
+    
+    this.startDateS = new Date(this.startDate)
+    this.endDateS = new Date(this.endDate)
+    console.log(this.startDateS);
+    console.log(this.endDateS);
+
+    if (this.startDateS<this.endDateS){
+      this.getAppointments();
+}
+
+    //this.getAppointments();
+
   }
 
 
