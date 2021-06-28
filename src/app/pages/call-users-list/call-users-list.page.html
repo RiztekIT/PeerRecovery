@@ -12,8 +12,12 @@
 
 <ion-content class="ion-padding-bottom">
     <div class="today_div">
+        <ion-fab-button *ngIf="llamando" (click)="resVideoCall()" d class="call-green">
+            <!-- <ion-fab-button (click)="openCam()" d class="call-green"> -->
+            <ion-icon name="call-outline"></ion-icon>
+        </ion-fab-button>
         <!--         <ion-item *ngFor="let item of users" lines="full" (click)="startCamera()" mode="md"> -->
-        <ion-item *ngFor="let item of users" lines="full" (click)="openCall(item)" mode="md">
+        <ion-item *ngFor="let item of Users" lines="full" (click)="openCall(item)" mode="md">
             <ion-avatar slot="start">
                 <img [src]="item?.photoUrl">
             </ion-avatar>
@@ -22,5 +26,7 @@
                 <p class="detail">{{item?.email}}</p>
             </ion-label>
         </ion-item>
+
+
     </div>
 </ion-content>

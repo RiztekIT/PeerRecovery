@@ -799,6 +799,14 @@ module.exports = [
         "id": "cordova-plugin-background-mode.BackgroundMode.Proxy",
         "pluginId": "cordova-plugin-background-mode",
         "runs": true
+    },
+    {
+        "file": "plugins/cordova-plugin-android-permissions/www/permissions-dummy.js",
+        "id": "cordova-plugin-android-permissions.Permissions",
+        "pluginId": "cordova-plugin-android-permissions",
+        "clobbers": [
+            "cordova.plugins.permissions"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -826,7 +834,9 @@ module.exports.metadata =
     "cordova-plugin-background-geolocation": "3.1.0",
     "cordova-android-play-services-gradle-release": "4.0.0",
     "cordova-plugin-foreground-service": "1.1.3",
-    "cordova-plugin-background-mode": "0.7.3"
+    "cordova-plugin-background-mode": "0.7.3",
+    "cordova-opentok-android-permissions": "1.0.0",
+    "cordova-plugin-android-permissions": "1.1.2"
 }
 // BOTTOM OF METADATA
 });

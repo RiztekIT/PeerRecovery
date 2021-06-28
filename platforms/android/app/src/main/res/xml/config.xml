@@ -57,6 +57,9 @@
     <feature name="BackgroundModeExt">
         <param name="android-package" value="de.appplant.cordova.plugin.background.BackgroundModeExt" />
     </feature>
+    <feature name="Permissions">
+        <param name="android-package" value="com.android.plugins.Permissions" />
+    </feature>
     <platform name="android">
         <preference name="AndroidXEnabled" value="true" />
     </platform>
@@ -129,4 +132,6 @@
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
     <preference name="OverrideUserAgent" value="Mozilla/5.0 Google" />
+    <preference name="GOOGLE_MAPS_ANDROID_API_KEY" value="AIzaSyDpPLmgRkC8ublILfSGj8961ku-hyTpNvs" />
+    <preference name="GOOGLE_MAPS_IOS_API_KEY" value="AIzaSyDpPLmgRkC8ublILfSGj8961ku-hyTpNvs" />
 </widget>

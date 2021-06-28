@@ -17,10 +17,11 @@ import { AgmOverlays } from "agm-overlays"
     IonicModule,
     AgmOverlays,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyDL-2mFo6QYsp7qNSQl95AzhVZ6njRsLtE'
+      apiKey: 'AIzaSyDpPLmgRkC8ublILfSGj8961ku-hyTpNvs'
     }),
     TrackingPageRoutingModule
   ],
   declarations: [TrackingPage]
 })
 export class TrackingPageModule {}
+

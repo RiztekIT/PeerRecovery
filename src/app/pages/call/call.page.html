@@ -1,6 +1,18 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar mode="md">
+        <!--     <ion-buttons slot="start">
+            <ion-back-button defaultHref="home" icon="chevron-back-outline" text="" mode="md"></ion-back-button>
+        </ion-buttons> -->
+        <ion-buttons slot="end">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Video call</ion-title>
+    </ion-toolbar>
+</ion-header>
+
 <ion-content>
 
-    <ion-buttons>
+    <!--   <ion-buttons>
         <ion-back-button defaultHref="home" icon="chevron-back-outline" text="" mode="md"></ion-back-button>
     </ion-buttons>
 
@@ -10,7 +22,9 @@
             Video Call
         </h1>
 
-    </div>
+    </div> -->
+
+    <!-- <div id="video"></div> -->
 
     <ion-row>
         <ion-col>
@@ -24,12 +38,31 @@
 
     </ion-row>
 
+    <div style="position: relative; width: 100%; height: 100%;">
+
+        <div style="border: solid; width: 100%; height: 100%; position: absolute; left: 0px; top: 0px;">
+            <video style="width: 100%; height: 100%;" id="device" controls autoplay #remote></video>
+
+        </div>
+        <div style="border: solid; width: 30%; position: absolute; left: 65%; top: 10%;">
+            <video style="width: 100%; height: 100%;" id="me" controls autoplay #me></video>
+        </div>
+    </div>
+    <!-- 
+      <ion-row>
+        <video style="width: 100%; max-height: 350px;" id="me" controls autoplay #me></video>
+    </ion-row> -->
+
+
+
+    <hr>
+
     <ion-row>
-        <video style="width: 90%; max-width: 350px;" id="me" controls autoplay #me></video>
+
     </ion-row>
-    <ion-row>
-        <video style="width: 90%; max-width: 350px;" id="device" controls autoplay #me></video>
-    </ion-row>
+    <!--   <ion-row>
+        <video style="width: 100%; max-width: 350px;" id="device" controls autoplay #remote></video>
+    </ion-row> -->
 
 
     <div class="bottom-content">
@@ -40,6 +73,10 @@
                         <!-- <ion-fab-button (click)="openCam()" d class="call-green"> -->
                         <ion-icon name="call-outline"></ion-icon>
                     </ion-fab-button>
+                    <!-- <ion-fab-button (click)="reconnect()" d class="call-green"> -->
+                    <!--    <ion-fab-button (click)="startCamera()" d class="call-green">
+                        <ion-icon name="call-outline"></ion-icon>
+                    </ion-fab-button> -->
                 </ion-col>
                 <ion-col>
                     <!--        <ion-avatar class="avatar">
@@ -56,7 +93,7 @@
     </div>
 
 
-    <img [src]="this.img">
+
 
 
 

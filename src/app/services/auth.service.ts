@@ -21,7 +21,8 @@ const user = {
 })
 export class AuthService {
   firebaseConfig = {
-    apiKey: "AIzaSyDpPLmgRkC8ublILfSGj8961ku-hyTpNvs",
+    apiKey: "AIzaSyDL-2mFo6QYsp7qNSQl95AzhVZ6njRsLtE",
+    //apiKey: "AIzaSyDpPLmgRkC8ublILfSGj8961ku-hyTpNvs",
     authDomain: "peerrecovery-app.firebaseapp.com",
     databaseURL: "https://peerrecovery-app-default-rtdb.firebaseio.com",
     projectId: "peerrecovery-app",

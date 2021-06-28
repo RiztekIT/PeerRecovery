@@ -160,7 +160,8 @@ export class TrackingPage implements OnInit {
   getLocation(lat,long){
     /*  const lat = 45.45121212;
      const long = 45.451564; */
-     const TU_LLAVE = 'AIzaSyDpPLmgRkC8ublILfSGj8961ku-hyTpNvs';
+     const TU_LLAVE = 'AIzaSyDL-2mFo6QYsp7qNSQl95AzhVZ6njRsLtE';
+     //const TU_LLAVE = 'AIzaSyDpPLmgRkC8ublILfSGj8961ku-hyTpNvs';
      this.http.get(
        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${long}&key=${TU_LLAVE}`,{},{}
       ).then(data=>{

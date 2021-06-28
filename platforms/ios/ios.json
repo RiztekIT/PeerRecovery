@@ -18,13 +18,13 @@
           "NSCameraUsageDescription": [
             {
               "xml": "<string>You can take photos</string>",
-              "count": 32
+              "count": 34
             }
           ],
           "NSMicrophoneUsageDescription": [
             {
               "xml": "<string>You can use microphone</string>",
-              "count": 32
+              "count": 34
             }
           ],
           "CFBundleURLTypes": [
@@ -276,6 +276,12 @@
       "PACKAGE_NAME": "com.peerrecovery.peer"
     },
     "cordova-plugin-foreground-service": {
+      "PACKAGE_NAME": "com.peerrecovery.peer"
+    },
+    "cordova-opentok-android-permissions": {
+      "PACKAGE_NAME": "com.peerrecovery.peer"
+    },
+    "cordova-plugin-android-permissions": {
       "PACKAGE_NAME": "com.peerrecovery.peer"
     }
   },
@@ -707,6 +713,14 @@
       "clobbers": [
         "cordova.plugins.foregroundService"
       ]
+    },
+    {
+      "id": "cordova-plugin-android-permissions.Permissions",
+      "file": "plugins/cordova-plugin-android-permissions/www/permissions-dummy.js",
+      "pluginId": "cordova-plugin-android-permissions",
+      "clobbers": [
+        "cordova.plugins.permissions"
+      ]
     }
   ],
   "plugin_metadata": {
@@ -731,6 +745,8 @@
     "cordova-plugin-advanced-http": "3.1.0",
     "cordova-plugin-background-geolocation": "3.1.0",
     "cordova-android-play-services-gradle-release": "4.0.0",
-    "cordova-plugin-foreground-service": "1.1.3"
+    "cordova-plugin-foreground-service": "1.1.3",
+    "cordova-opentok-android-permissions": "1.0.0",
+    "cordova-plugin-android-permissions": "1.1.2"
   }
 }

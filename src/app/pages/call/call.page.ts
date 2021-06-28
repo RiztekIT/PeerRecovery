@@ -11,6 +11,12 @@ import { Zoom } from '@ionic-native/zoom/ngx';
 import { VideocallService } from "src/app/services/videocall.service";
 import firebase from 'firebase';
 import { AngularFireList, AngularFireDatabase } from '@angular/fire/database';
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
+
+
+declare let RTCPeerConnection: any;
+declare var MediaRecorder: any;
+
 
 
 @Component({
@@ -51,17 +57,22 @@ export class CallPage implements OnInit {
     private cameraPreview: CameraPreview,
     public videocallSVC: VideocallService,
     private afDb: AngularFireDatabase,
+    private androidPermissions: AndroidPermissions,
     /* private videoCapturePlus: VideoCapturePlus, */
     private zoomService: Zoom) {
+      console.log('ENTRO');
 
       this.route.queryParams.subscribe(params => {
+        console.log(params,'PARAMS');
         if (params && params.special) {
           this.callData = JSON.parse(params.special);
           this.user = this.callData.user;
           this.usercall = this.callData.usercall;
+          this.data = this.callData;
 
         }
       });
+
 
 
       //this.openCamera();
@@ -72,6 +83,7 @@ export class CallPage implements OnInit {
     usercall;
     listener;
     status;
+    data;
 
     recordedBlobs: Blob[];
     callActive: boolean = false;
@@ -81,9 +93,28 @@ channel;
 channelN;
 database;
 senderId: string;
+mediaRecorder: any;
+downloadUrl: string;
+
+@ViewChild("me", {static: false}) me: any;
+@ViewChild("remote", {static: false}) remote: any;
 
   ngOnInit() {
     //this.initZoom();
+    console.log(this.data);
+    this.user = JSON.parse(sessionStorage.getItem('user'));
+  /*   if (this.data.type=='caller'){
+
+      this.getCall();   
+    }
+    else if (this.data.type=='answer'){
+      this.setupWebRtc();
+      //this.showRemote(); 
+    } */
+
+    this.status = 'Calling'
+
+    this.getCall();
   }
 
   openCamera(){
@@ -107,13 +138,16 @@ senderId: string;
         // Handle error
         });
 
+
+        
+
         
   }
 
   openCam(){
     console.log('CAMARA');
-    //this.openCamera()
-    this.startCamera();
+    this.openCamera()
+    //this.startCamera();
   }
 
   
@@ -158,7 +192,7 @@ senderId: string;
 
   startCamera(){
 
-    let div = document.getElementById('video')
+    let div = document.getElementById('')
     
 
     // camera options (Size and location). In the following example, the preview uses the rear camera and display the preview in the back of the webview
@@ -371,7 +405,7 @@ this.cameraPreview.startCamera(cameraPreviewOpts).then(
     
     
     
-        //this.channel = firebase.database().ref(channelName).on();
+    //this.channel = firebase.database().ref(channelName).on();
         this.channel = this.afDb.list(channelName);
 
     this.database = firebase.database().ref(channelName);
@@ -497,21 +531,22 @@ this.cameraPreview.startCamera(cameraPreviewOpts).then(
 
 onStopRecordingEvent() {
   try {
+    console.log('onstop');
     this.mediaRecorder.onstop = (event: Event) => {
       const videoBuffer = new Blob(this.recordedBlobs, { type: 'video/webm' })
       this.downloadUrl = window.URL.createObjectURL(videoBuffer) // you can download with <a> tag
-      Swal.fire({
+     /*  Swal.fire({
         title: 'Saving Video',              
      
       })
-      Swal.showLoading()
+      Swal.showLoading() */
 
       
       
-      this.trackingSVC.tareaCloudStorage(this.videocallSVC.keycall+'/'+this.user.uid,videoBuffer).percentageChanges().subscribe(p=>{
+      this.videocallSVC.tareaCloudStorage(this.videocallSVC.keycall+'/'+this.user.uid,videoBuffer).percentageChanges().subscribe(p=>{
         let porcentaje = Math.round(p);
       if (porcentaje == 100) {
-        Swal.close();
+        
        
       }
       
@@ -536,11 +571,11 @@ startRecording(stream) {
   let options = {mimeType: 'video/webm'};
   this.recordedBlobs = [];
   try {
-      this.mediaRecorder = new MediaRecorder(stream, options);
+      this.mediaRecorder = new MediaRecorder(stream);
   } catch (e0) {
-      console.log('Try different mimeType');
+      console.log('Try different mimeType',e0);
   }
-  console.log('Created MediaRecorder', this.mediaRecorder, 'with options', options);
+  console.log('Created MediaRecorder', this.mediaRecorder, 'with options');
   //this.mediaRecorder.onstop = this.handleStop;
   //this.mediaRecorder.ondataavailable = this.handleDataAvailable;
   //this.stopRecording()
@@ -552,10 +587,123 @@ startRecording(stream) {
 }
 
 stopRecording() {
+  console.log('stop');
 this.mediaRecorder.stop();
 
 console.log('Recorded Blobs: ', this.recordedBlobs);
 //this.recordVideoElement.controls = true;
+}
+
+showMe() {
+  console.log('showme');
+  
+ //AQUI
+ this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.CAMERA).then(result=>{
+   console.log(result,'RESULT');
+  navigator.mediaDevices.getUserMedia({audio: true, video: true}).then(stream=>{
+  /* navigator.mediaDevices.getUserMedia({audio: true, video: true}).then(stream=>{ */
+    console.log(stream,'STREAM');
+    this.me.nativeElement.srcObject = stream;
+    console.log(stream,'STREAM2');
+   
+    this.pc.addStream(stream);
+    console.log(stream,'STREAM3');
+    this.localStream = stream;
+    console.log(this.localStream);
+    this.startRecording(stream);
+  }).catch(e=>{
+    console.log(JSON.stringify(e),'ERROR1');
+  })
+
+ }).catch(e=>{
+   console.log(e,'ERROR3');
+ })
+/* 
+ this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.CAMERA).then(
+  result => console.log('Has permission?', result.hasPermission),
+  err => this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.CAMERA)
+);
+
+this.androidPermissions.requestPermissions([this.androidPermissions.PERMISSION.CAMERA]); */
+
+
+
+
+
+ /*  navigator.mediaDevices.getUserMedia({ audio: true, video: true })
+    .then(stream => (this.me.nativeElement.srcObject = stream)).catch(e=>{
+      console.log(e,'ERROR1');
+    })
+    .then(stream => {
+      this.pc.addStream(stream);
+      this.localStream = stream;
+      console.log(this.localStream);
+      this.startRecording(stream);
+
+      
+      
+    }).catch(e=>{
+      console.log(e,'ERROR2');
+    }); */
+}
+
+showRemote(){
+  console.log('Contesto');
+  try {
+    //this.setupWebRtc();
+    this.pc.createOffer()
+      .then(offer => this.pc.setLocalDescription(offer))
+      .then(() => {
+        this.sendMessage(this.senderId, JSON.stringify({ sdp: this.pc.localDescription }));
+        this.callActive = true;
+      });
+  } catch (error) {
+    this.setupWebRtc();
+    console.log(error);
+  }
+}
+
+reconnect(){
+  this.videocallSVC.reconnect(this.user,this.videocallSVC.keycall)
+  //this.me.nativeElement.requestPictureInPicture()
+  this.showRemote();
+
+}
+
+hangup(){
+    
+  //this.status = 'Hang Up'
+  this.videocallSVC.hangup(this.user,this.videocallSVC.keycall)
+  //this.videocallSVC.getCall(this.videocallSVC.keycall).off('value',this.listener)
+
+  
+  console.log('Colgaron');
+
+  this.stopRecording()
+
+  this.pc.close();
+let tracks = this.localStream.getTracks();    
+for (let i = 0; i < tracks.length; i++) {
+tracks[i].stop();
+}
+this.callActive = false;
+
+
+this.router.navigate(['video']);
+
+/* this.close(); */
+
+  
+
+
+
+
+ 
+
+  //this.setupWebRtc();
+  
+
+
 }
   
 }

@@ -132,6 +132,12 @@
     },
     "cordova-plugin-background-mode": {
       "PACKAGE_NAME": "com.peerrecovery.peer"
+    },
+    "cordova-opentok-android-permissions": {
+      "PACKAGE_NAME": "com.peerrecovery.peer"
+    },
+    "cordova-plugin-android-permissions": {
+      "PACKAGE_NAME": "com.peerrecovery.peer"
     }
   },
   "dependent_plugins": {

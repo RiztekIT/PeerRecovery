@@ -401,6 +401,14 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
         "cordova.plugins.backgroundMode",
         "plugin.backgroundMode"
       ]
+    },
+    {
+      "id": "cordova-plugin-android-permissions.Permissions",
+      "file": "plugins/cordova-plugin-android-permissions/www/permissions.js",
+      "pluginId": "cordova-plugin-android-permissions",
+      "clobbers": [
+        "cordova.plugins.permissions"
+      ]
     }
   ];
   module.exports.metadata = {
@@ -424,6 +432,8 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-background-geolocation": "3.1.0",
     "cordova-android-play-services-gradle-release": "4.0.0",
     "cordova-plugin-foreground-service": "1.1.3",
-    "cordova-plugin-background-mode": "0.7.3"
+    "cordova-plugin-background-mode": "0.7.3",
+    "cordova-opentok-android-permissions": "1.0.0",
+    "cordova-plugin-android-permissions": "1.1.2"
   };
 });

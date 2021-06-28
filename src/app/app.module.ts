@@ -26,7 +26,26 @@ import { ForegroundService } from '@ionic-native/foreground-service/ngx';
 import { BackgroundMode } from '@ionic-native/background-mode/ngx';
 import { AgmCoreModule } from '@agm/core';
 import { FCM } from '@ionic-native/fcm/ngx';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireList, AngularFireDatabase } from '@angular/fire/database';
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
+
 /* import { BackgroundMode } from '@ionic-native/background-mode/ngx'; */
+
+
+let firebaseConfig = {
+  apiKey: "AIzaSyDL-2mFo6QYsp7qNSQl95AzhVZ6njRsLtE",
+  /* apiKey: "AIzaSyDpPLmgRkC8ublILfSGj8961ku-hyTpNvs", */
+  authDomain: "peerrecovery-app.firebaseapp.com",
+  databaseURL: "https://peerrecovery-app-default-rtdb.firebaseio.com",
+  projectId: "peerrecovery-app",
+  storageBucket: "peerrecovery-app.appspot.com",
+  messagingSenderId: "1014351207922",
+  appId: "1:1014351207922:web:6d002db3f73a4587505f6b",
+  measurementId: "G-222ERRG0EM"
+};
 
 
 
@@ -46,6 +65,10 @@ import { FCM } from '@ionic-native/fcm/ngx';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDL-2mFo6QYsp7qNSQl95AzhVZ6njRsLtE'
     }),
+    AngularFireModule.initializeApp(firebaseConfig),
+    /* AngularFireModule, */
+    AngularFireDatabaseModule,
+    AngularFireStorageModule
   ],
   providers: [
     StatusBar,
@@ -63,6 +86,9 @@ import { FCM } from '@ionic-native/fcm/ngx';
     ForegroundService,
     BackgroundMode,
     FCM,
+    AngularFireDatabase, 
+    AndroidPermissions,   
+    
     
     
 
