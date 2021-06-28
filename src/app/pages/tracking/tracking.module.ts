@@ -9,6 +9,7 @@ import { TrackingPageRoutingModule } from './tracking-routing.module';
 import { TrackingPage } from './tracking.page';
 import { AgmCoreModule } from '@agm/core';
 import { AgmOverlays } from "agm-overlays"
+import { PanicsPageModule } from './panics/panics.module';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { AgmOverlays } from "agm-overlays"
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDpPLmgRkC8ublILfSGj8961ku-hyTpNvs'
     }),
-    TrackingPageRoutingModule
+    TrackingPageRoutingModule,
+    PanicsPageModule
   ],
   declarations: [TrackingPage]
 })

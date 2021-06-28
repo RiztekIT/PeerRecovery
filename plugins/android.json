@@ -138,6 +138,9 @@
     },
     "cordova-plugin-android-permissions": {
       "PACKAGE_NAME": "com.peerrecovery.peer"
+    },
+    "cordova-plugin-googlemaps": {
+      "PACKAGE_NAME": "com.peerrecovery.peer"
     }
   },
   "dependent_plugins": {
@@ -145,6 +148,9 @@
       "PACKAGE_NAME": "com.peerrecovery.peer"
     },
     "cordova-plugin-file": {
+      "PACKAGE_NAME": "com.peerrecovery.peer"
+    },
+    "cordova-androidx-build": {
       "PACKAGE_NAME": "com.peerrecovery.peer"
     }
   }

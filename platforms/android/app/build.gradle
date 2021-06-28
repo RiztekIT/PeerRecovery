@@ -146,6 +146,9 @@ apply from: "../cordova-plugin-fcm-with-dependecy-updated/peer-FCMPlugin.gradle"
 apply from: "../cordova.plugin.zoom/peer-build-extras.gradle"
 apply from: "../cordova-plugin-background-geolocation/peer-dependencies.gradle"
 apply from: "../cordova-android-play-services-gradle-release/peer-cordova-android-play-services-gradle-release.gradle"
+apply from: "../cordova-androidx-build/peer-cordova-androidx-build.gradle"
+apply from: "../cordova-plugin-googlemaps/peer-tbxml-android.gradle"
+apply from: "../cordova-plugin-googlemaps/peer-pgm-custom.gradle"
 // PLUGIN GRADLE EXTENSIONS END
 
 def hasBuildExtras1 = file('build-extras.gradle').exists()

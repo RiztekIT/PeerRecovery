@@ -30,4 +30,6 @@
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
     <preference name="OverrideUserAgent" value="Mozilla/5.0 Google" />
+    <preference name="GOOGLE_MAPS_ANDROID_API_KEY" value="AIzaSyDpPLmgRkC8ublILfSGj8961ku-hyTpNvs" />
+    <preference name="GOOGLE_MAPS_IOS_API_KEY" value="AIzaSyDpPLmgRkC8ublILfSGj8961ku-hyTpNvs" />
 </widget>

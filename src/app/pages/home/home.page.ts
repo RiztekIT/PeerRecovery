@@ -123,7 +123,7 @@ locations;
   location;
   latLngResult;
   userLocationFromLatLng;
-  gps_update_link: string = "https://peerrecovery-app-default-rtdb.firebaseio.com/Tracking/2ZrxjV7h9yNEQNOEv41Pn0Oaedr2/Current.json";
+  //gps_update_link: string = "https://peerrecovery-app-default-rtdb.firebaseio.com/Tracking/2ZrxjV7h9yNEQNOEv41Pn0Oaedr2/Current.json";
 
   currentPos;
 
@@ -230,7 +230,7 @@ interval: 10000,
   getL(){
 this.locations = JSON.parse(localStorage.getItem("location"))
   }
-
+/* 
   sendGPS(location) {
     if (location.speed == undefined) {
       location.speed = 0;
@@ -250,83 +250,54 @@ this.locations = JSON.parse(localStorage.getItem("location"))
       )
       .then(data => {
       
-        /* this.backgroundGeolocation.finish(); // FOR IOS ONLY */
+        
       })
       .catch(error => {
       
-        /* this.backgroundGeolocation.finish(); // FOR IOS ONLY */
+        
       });
-  }
+  } */
 
-  put(lat?,lng?){
+  // put(lat?,lng?){
 
-    let timestamp = new Date();
-/* 
-    let data = {
-      lat: lat,
-      lng: lng,
-      timestamp: {
-        "nanoseconds": 870000000,
-        "seconds": 1624645817
-    }
-    } */
-    let data = {
-      "lat": 39.7420054,
-      "lng": -106.146794,
-      "timestamp": {
-          "nanoseconds": 870000000,
-          "seconds": 1624645817
-      }
-  }
+  //   let timestamp = new Date();
 
-    let headers = {
-      'Content-Type': 'application/json',
-       'Content-Length': '150',
-       'Host' : 'peerrecovery-app-default-rtdb.firebaseio.com'
-    }
+  //   let data = {
+  //     "lat": 39.7420054,
+  //     "lng": -106.146794,
+  //     "timestamp": {
+  //         "nanoseconds": 870000000,
+  //         "seconds": 1624645817
+  //     }
+  // }
 
-    console.log(data);
-    console.log(headers);
+  //   let headers = {
+  //     'Content-Type': 'application/json',
+  //      'Content-Length': '150',
+  //      'Host' : 'peerrecovery-app-default-rtdb.firebaseio.com'
+  //   }
+
+  //   console.log(data);
+  //   console.log(headers);
     
     
     
-    /* let d = '{"lat":39.7420054,"lng":-106.146794,"timestamp":{"nanoseconds":870000000,"seconds":1624645817}}' */
+  //   /* let d = '{"lat":39.7420054,"lng":-106.146794,"timestamp":{"nanoseconds":870000000,"seconds":1624645817}}' */
     
-    /* console.log(d); */
+  //   /* console.log(d); */
 
     
-    this.http.put('https://peerrecovery-app-default-rtdb.firebaseio.com/Tracking/2ZrxjV7h9yNEQNOEv41Pn0Oaedr2/Current.json',data, headers).then(res=>{
-      console.log(res,'RESPUESTA');
-      this.resp = JSON.stringify(res.data)
-    }).catch(e=>{
-      console.log(e,'ERROR');
-      this.resp = JSON.stringify(e)
+  //   this.http.put('https://peerrecovery-app-default-rtdb.firebaseio.com/Tracking/2ZrxjV7h9yNEQNOEv41Pn0Oaedr2/Current.json',data, headers).then(res=>{
+  //     console.log(res,'RESPUESTA');
+  //     this.resp = JSON.stringify(res.data)
+  //   }).catch(e=>{
+  //     console.log(e,'ERROR');
+  //     this.resp = JSON.stringify(e)
 
-    })
-/* 
-    this.http
-      .put(
-        this.gps_update_link, // backend api to post
-        {
-          lat: lat,
-          lng: lng,
-          timestamp: {
-            "nanoseconds": 870000000,
-            "seconds": 1624645817
-        }
-        },
-        {}
-      )
-      .then(data => {
-      
-        this.backgroundGeolocation.finish(); // FOR IOS ONLY
-      })
-      .catch(error => {
-      
-        this.backgroundGeolocation.finish(); // FOR IOS ONLY
-      }); */
+  //   })
 
-  }
+
+  // }
 
 
   
@@ -476,7 +447,7 @@ this.locations = JSON.parse(localStorage.getItem("location"))
 
                     console.log(token.val(), 'USERS');
 
-                    this.sendLocation(this.currentPos,token.val())
+                    this.sendLocation(this.currentPos,this.user.uid,token.val())
 
                   })
                 })
@@ -730,7 +701,8 @@ this.locations = JSON.parse(localStorage.getItem("location"))
       resp.forEach((childSnapshot: any) => {
         const item = childSnapshot.val();
         item.key = childSnapshot.key;
-        if ((item.titulo!='Settings') && (item.titulo!='Tracking')){
+        if ((item.titulo!='Settings')){
+        /* if ((item.titulo!='Settings') && (item.titulo!='Tracking')){ */
 
           menu.push(item);
         }
@@ -815,7 +787,14 @@ this.locations = JSON.parse(localStorage.getItem("location"))
   }
 
 
-  sendLocation(currentPos?, user?){
+  sendLocation(currentPos?,uid?, user?){
+
+    let data = {
+      "lat": currentPos.lat,
+      "lng": currentPos.lng,
+      "timestamp": currentPos.timestamp,
+      "user": uid
+    }
 
 
     let body = {
@@ -828,7 +807,7 @@ this.locations = JSON.parse(localStorage.getItem("location"))
       },
       "data":{
         "landing_page":"tracking",
-        "data":currentPos
+        "data":data
       },
         "to":user,
         "priority":"high",

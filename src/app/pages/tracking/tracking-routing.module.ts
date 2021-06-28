@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: TrackingPage
+  },
+  {
+    path: 'panics',
+    loadChildren: () => import('./panics/panics.module').then( m => m.PanicsPageModule)
   }
 ];
 

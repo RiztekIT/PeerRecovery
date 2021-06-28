@@ -1,0 +1,34 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar mode="md">
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="home" icon="chevron-back-outline" text="" mode="md"></ion-back-button>
+        </ion-buttons>
+        <!--   <ion-buttons slot="end">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons> -->
+        <ion-title>Users</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <div class="today_div">
+        <!--   <ion-fab-button *ngIf="llamando" (click)="resVideoCall()" d class="call-green">
+        
+        <ion-icon name="call-outline"></ion-icon>
+    </ion-fab-button> -->
+        <!--         <ion-item *ngFor="let item of users" lines="full" (click)="startCamera()" mode="md"> -->
+        <ion-item *ngFor="let item of Users" lines="full" (click)="closeModal(item)" mode="md">
+            <ion-avatar slot="start">
+                <img [src]="item?.photoUrl">
+            </ion-avatar>
+            <ion-label>
+                <h3 class="name">{{item?.displayName}}</h3>
+                <p class="detail">{{item?.email}}</p>
+            </ion-label>
+        </ion-item>
+
+
+    </div>
+
+</ion-content>

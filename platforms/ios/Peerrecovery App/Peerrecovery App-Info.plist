@@ -84,6 +84,16 @@
 				<string>prefs</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.peerrecovery.peer</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.peerrecovery.peer</string>
+			</array>
+		</dict>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>
@@ -93,12 +103,17 @@
 	<key>FirebaseAppDelegateProxyEnabled</key>
 	<false/>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>This app always requires location tracking</string>
+	<string>This app wants to get your location always, even this app runs in background.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>This app always requires location tracking</string>
 	<key>NSMotionUsageDescription</key>
 	<string>This app requires motion detection</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>We use your location for full functionality of certain app features.</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>googlechromes</string>
+		<string>comgooglemaps</string>
+	</array>
 </dict>
 </plist>

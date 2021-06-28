@@ -184,6 +184,10 @@ const routes: Routes = [
     path: 'call',
     loadChildren: () => import('./pages/call/call.module').then( m => m.CallPageModule)
   },
+  {
+    path: 'panics',
+    loadChildren: () => import('./pages/tracking/panics/panics.module').then( m => m.PanicsPageModule)
+  }
 ];
 
 @NgModule({

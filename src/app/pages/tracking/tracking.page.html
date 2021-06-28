@@ -12,19 +12,26 @@
 
 
 <ion-content>
-    <agm-map [disableDefaultUI]="false" [latitude]="lat" [longitude]="lng" [zoom]="zoom" [zoomControl]="false">
-        <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-        <!--  <agm-overlay *ngFor="let item of markers" [latitude]="item.lat" [longitude]="item.lng"> -->
+    <div id="map_canvas">
 
-        <!--    <div *ngIf="item.isOpen == true" (click)="onMarkerSelect(item)" [class.selected]="item.select" class="open avatar avatar_round">
+    </div>
+    <!-- <agm-map [disableDefaultUI]="false" [latitude]="lat" [longitude]="lng" [zoom]="zoom" [zoomControl]="false"> -->
+    <!-- <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker> -->
+
+
+    <!--  <agm-overlay *ngFor="let item of markers" [latitude]="item.lat" [longitude]="item.lng"> -->
+
+    <!--    <div *ngIf="item.isOpen == true" (click)="onMarkerSelect(item)" [class.selected]="item.select" class="open avatar avatar_round">
                 <img [src]="item.img" alt="" />
             </div>
 
             <div *ngIf="item.isOpen == false" class="avatar avatar_round">
                 <img [src]="item.img" alt="" />
             </div> -->
-        <!-- </agm-overlay> -->
-    </agm-map>
+    <!-- </agm-overlay> -->
+
+
+    <!-- </agm-map> -->
 
     <div *ngIf="!this.parametros" class="bottom-content">
         <ion-item class="doctor-info" lines="full">
@@ -67,10 +74,18 @@
             </ion-item>
         </ion-list>-->
 
-        <ion-button (click)="presentAlert()" expand="full" shape="round ">Share my location</ion-button>
+        <!-- <ion-button (click)="this.getLocationUser()" expand="full" shape="round ">Update my location</ion-button> -->
+        <ion-button (click)="this.openModal()" expand="full" shape="round ">Panics</ion-button>
+        <!-- <ion-button (click)="this.openPanicUser()" expand="full" shape="round ">Panics</ion-button> -->
+
+
+        <!-- <ion-button (click)="presentAlert()" expand="full" shape="round ">Share my location</ion-button> -->
 
     </div>
+    <!--  <div *ngIf="this.parametros" class="bottom-content">
+        <ion-button (click)="getPanic()" expand="full" shape="round ">Update my location</ion-button>
 
+    </div> -->
 
 
 </ion-content>
