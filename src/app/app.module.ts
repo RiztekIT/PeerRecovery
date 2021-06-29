@@ -31,6 +31,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireList, AngularFireDatabase } from '@angular/fire/database';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
+import { HttpClientModule } from '@angular/common/http';
 
 /* import { BackgroundMode } from '@ionic-native/background-mode/ngx'; */
 
@@ -68,7 +69,8 @@ let firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     /* AngularFireModule, */
     AngularFireDatabaseModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    HttpClientModule,
   ],
   providers: [
     StatusBar,

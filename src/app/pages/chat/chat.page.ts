@@ -7,6 +7,7 @@ import { ChatService } from 'src/app/services/chat.service';
 import { snapshotToArray } from '../chat-users-list/chat-users-list.page';
 import firebase from 'firebase';
 import { HTTP } from '@ionic-native/http/ngx';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-chat',
@@ -30,6 +31,7 @@ export class ChatPage implements OnInit {
               public firebaseAuthService: AuthService,
               public chatService: ChatService,
               public http: HTTP,
+              public http2: HttpClient
               ) {
    /*    this.route.queryParams.subscribe(params => {
         if (params && params.special) {
@@ -58,11 +60,13 @@ export class ChatPage implements OnInit {
     /*  */
     messages: any[] = [];
     parametros;
+    user;
 
   ngOnInit() {
  /*    this.getChat();
     this.getUserWith()
     this.chatService.readChats(); */
+    this.user = JSON.parse(sessionStorage.getItem('user'));
     if (!this.parametros){
 
       this.chatUser = this.chatService.user2
@@ -163,6 +167,7 @@ export class ChatPage implements OnInit {
     }
 
     console.log(data,'data');
+    console.log(user,'U');
 
     let body = {
       "notification":{
@@ -173,7 +178,7 @@ export class ChatPage implements OnInit {
         "icon":"fcm_push_icon"
       },
       "data":{
-        "landing_page":"chat2",
+        "landing_page":"chat",
         "data":data
       },
         "to":user,
@@ -186,10 +191,15 @@ export class ChatPage implements OnInit {
       'Content-Type': 'application/json'
     }
 
-    this.http.post('https://fcm.googleapis.com/fcm/send',body,headers).then(res=>{
+ /*    this.http.post('https://fcm.googleapis.com/fcm/send',body,headers).then(res=>{
       console.log(res,'res');
     }).catch(e=>{
       console.log(e,'e');
+    }) */
+
+
+    this.http2.post('https://fcm.googleapis.com/fcm/send',body,{headers}).subscribe(res=>{
+      console.log(res);
     })
 
   }
@@ -254,6 +264,8 @@ export class ChatPage implements OnInit {
       console.log(this.messages);
 
     })
+
+    this.chatService.cleanUnread(this.user.uid,this.chatService.keymessage)
   }
 
 

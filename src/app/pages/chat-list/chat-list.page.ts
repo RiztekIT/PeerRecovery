@@ -80,216 +80,216 @@ export class ChatListPage implements OnInit {
     this.getUsersChat()
   }
   
-getChats2(){
-  this.chatService.getChats().on('value',resp=>{
-  this.chatService.chatsUsers = [];
-  let chats = snapshotToArray(resp);
-  console.log(chats);
-  chats.forEach(chat=>{
-    if (chat.type=='single'){
-      this.chatService.getChatsMembers(chat.key).on('value', res=>{
-        let users = res.val()
-        console.log(users);
+// getChats2(){
+//   this.chatService.getChats().on('value',resp=>{
+//   this.chatService.chatsUsers = [];
+//   let chats = snapshotToArray(resp);
+//   console.log(chats);
+//   chats.forEach(chat=>{
+//     if (chat.type=='single'){
+//       this.chatService.getChatsMembers(chat.key).on('value', res=>{
+//         let users = res.val()
+//         console.log(users);
         
-          console.log(Object.keys(users));
-          let user = Object.keys(users).filter(user => user != this.firebaseAuthService.usersign.uid)
-          let key = user[0]
-          console.log(key);
+//           console.log(Object.keys(users));
+//           let user = Object.keys(users).filter(user => user != this.firebaseAuthService.usersign.uid)
+//           let key = user[0]
+//           console.log(key);
 
 
 
-          this.chatService.getUser(key).on('value', (resp)=>{
-            console.log(resp);
-            let u = resp.val()
+//           this.chatService.getUser(key).on('value', (resp)=>{
+//             console.log(resp);
+//             let u = resp.val()
    
-           console.log(u);
-           this.chatService.unreadChats(chat.key).on('value', resp=>{
+//            console.log(u);
+//            this.chatService.unreadChats(chat.key).on('value', resp=>{
        
-             let messages = snapshotToArray(resp);
-             console.log(messages);
-             let count = 0;
-             messages.forEach(message=>{
-               if ((message.sender!=this.firebaseAuthService.usersign.uid) && (message.read=='false')){
-                 count = count + 1;
-               }
-             })
+//              let messages = snapshotToArray(resp);
+//              console.log(messages);
+//              let count = 0;
+//              messages.forEach(message=>{
+//                if ((message.sender!=this.firebaseAuthService.usersign.uid) && (message.read=='false')){
+//                  count = count + 1;
+//                }
+//              })
        
              
-             console.log(count);
+//              console.log(count);
              
-             u.unread = count;
-           });
-           this.chatService.chatsUsers.push(u)
-          })                
-      })
-    }else if (chat.type=='group'){
-      let groupinfo={
-        displayName: 'chatGroup',
-        photoUrl: 'https://lh3.googleusercontent.com/-oHdxefwfte4/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuckFwmGRYKK_yKebGqxAIor7JTeCLg/s96-c/photo.jpg',
-        uid:chat.key
-      }
+//              u.unread = count;
+//            });
+//            this.chatService.chatsUsers.push(u)
+//           })                
+//       })
+//     }else if (chat.type=='group'){
+//       let groupinfo={
+//         displayName: 'chatGroup',
+//         photoUrl: 'https://lh3.googleusercontent.com/-oHdxefwfte4/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuckFwmGRYKK_yKebGqxAIor7JTeCLg/s96-c/photo.jpg',
+//         uid:chat.key
+//       }
 
-      this.chatService.chatsUsers.push(groupinfo)
+//       this.chatService.chatsUsers.push(groupinfo)
 
-    }
-  })
-})
+//     }
+//   })
+// })
 
 
 
-/* 
-  this.chatService.getChats().on('value', (resp:any)=>{
+// /* 
+//   this.chatService.getChats().on('value', (resp:any)=>{
     
-    let chats = snapshotToArray(resp);
-    console.log(chats);
+//     let chats = snapshotToArray(resp);
+//     console.log(chats);
 
-    chats.forEach(chat=>{
-      this.chatService.getChatsMembers(chat.key).on('value', (res:any)=>{
+//     chats.forEach(chat=>{
+//       this.chatService.getChatsMembers(chat.key).on('value', (res:any)=>{
         
-        let usersChat = res.val()
-        console.log(Object.keys(usersChat));
+//         let usersChat = res.val()
+//         console.log(Object.keys(usersChat));
 
-        if (Object.keys(usersChat).length==2){
+//         if (Object.keys(usersChat).length==2){
 
-          Object.keys(usersChat).forEach(key=>{
-            console.log(key);
-            if (key!='key' && key!=this.firebaseAuthService.usersign.uid){
-              this.keysUsers.push(key)
-              console.log(this.chatService.getUser(key).toJSON());
+//           Object.keys(usersChat).forEach(key=>{
+//             console.log(key);
+//             if (key!='key' && key!=this.firebaseAuthService.usersign.uid){
+//               this.keysUsers.push(key)
+//               console.log(this.chatService.getUser(key).toJSON());
           
-              this.chatService.getUser(key).on('value', (resp)=>{
-                console.log(resp);
-                let u = resp.val()
+//               this.chatService.getUser(key).on('value', (resp)=>{
+//                 console.log(resp);
+//                 let u = resp.val()
        
-               console.log(u);
-               this.chatService.unreadChats(chat.key).on('value', resp=>{
+//                console.log(u);
+//                this.chatService.unreadChats(chat.key).on('value', resp=>{
            
-                 let messages = snapshotToArray(resp);
-                 console.log(messages);
-                 let count = 0;
-                 messages.forEach(message=>{
-                   if ((message.sender!=this.firebaseAuthService.usersign.uid) && (message.read=='false')){
-                     count = count + 1;
-                   }
-                 })
+//                  let messages = snapshotToArray(resp);
+//                  console.log(messages);
+//                  let count = 0;
+//                  messages.forEach(message=>{
+//                    if ((message.sender!=this.firebaseAuthService.usersign.uid) && (message.read=='false')){
+//                      count = count + 1;
+//                    }
+//                  })
            
                  
-                 console.log(count);
+//                  console.log(count);
                  
-                 u.unread = count;
-               });
-               this.chatService.chatsUsers.push(u)
-              })
+//                  u.unread = count;
+//                });
+//                this.chatService.chatsUsers.push(u)
+//               })
      
-            }
-          })
+//             }
+//           })
 
-        }else if (Object.keys(usersChat).length>2){
+//         }else if (Object.keys(usersChat).length>2){
 
-          let groupinfo={
-            displayName: 'chatGroup',
-            photoUrl: 'https://lh3.googleusercontent.com/-oHdxefwfte4/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuckFwmGRYKK_yKebGqxAIor7JTeCLg/s96-c/photo.jpg',
-            uid:chat.key
-          }
+//           let groupinfo={
+//             displayName: 'chatGroup',
+//             photoUrl: 'https://lh3.googleusercontent.com/-oHdxefwfte4/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuckFwmGRYKK_yKebGqxAIor7JTeCLg/s96-c/photo.jpg',
+//             uid:chat.key
+//           }
 
-          this.chatService.chatsUsers.push(groupinfo)
+//           this.chatService.chatsUsers.push(groupinfo)
 
-        }
+//         }
         
    
-      })
-    })
+//       })
+//     })
 
-  }) */
-}
+//   }) */
+// }
 
-getChats(){
-/*   this.chatsDBRef.onSnapshot(  snap =>{
-    this.chats = [];
-    snap.forEach( snapHijo =>{
-        this.chats.push({
-            id: snapHijo.id,
-            ...snapHijo.data()
-        })
-    });
-    console.log(this.chats);
-  }); */
+// getChats(){
+// /*   this.chatsDBRef.onSnapshot(  snap =>{
+//     this.chats = [];
+//     snap.forEach( snapHijo =>{
+//         this.chats.push({
+//             id: snapHijo.id,
+//             ...snapHijo.data()
+//         })
+//     });
+//     console.log(this.chats);
+//   }); */
   
 
-  this.chatService.getUserChats().orderByChild(this.firebaseAuthService.usersign.uid).equalTo('true').on('value', (resp:any) =>{
-  let chats = snapshotToArray(resp);
-  this.chats = [];
-  this.keysUsers = []
-  this.chatService.chatsUsers = []
+//   this.chatService.getUserChats().orderByChild(this.firebaseAuthService.usersign.uid).equalTo('true').on('value', (resp:any) =>{
+//   let chats = snapshotToArray(resp);
+//   this.chats = [];
+//   this.keysUsers = []
+//   this.chatService.chatsUsers = []
   
-   console.log(this.chats);
+//    console.log(this.chats);
 
-   chats.forEach(chat=>{
-     console.log(Object.keys(chat))
-     Object.keys(chat).forEach(key=>{
-       if (key!='key' && key!=this.firebaseAuthService.usersign.uid){
-         this.keysUsers.push(key)
-         console.log(this.chatService.getUser(key).toJSON());
+//    chats.forEach(chat=>{
+//      console.log(Object.keys(chat))
+//      Object.keys(chat).forEach(key=>{
+//        if (key!='key' && key!=this.firebaseAuthService.usersign.uid){
+//          this.keysUsers.push(key)
+//          console.log(this.chatService.getUser(key).toJSON());
      
-         this.chatService.getUser(key).on('value', (resp)=>{
-           console.log(resp);
-           let u = resp.val()
+//          this.chatService.getUser(key).on('value', (resp)=>{
+//            console.log(resp);
+//            let u = resp.val()
            
-          /* let users = snapshotToArray(resp); */
-          /* console.log(users); */
-          console.log(chat);
-          this.chatService.unreadChats(chat.key).on('value', resp=>{
+//           /* let users = snapshotToArray(resp); */
+//           /* console.log(users); */
+//           console.log(chat);
+//           this.chatService.unreadChats(chat.key).on('value', resp=>{
       
-            let messages = snapshotToArray(resp);
-            console.log(messages);
-            let count = 0;
-            messages.forEach(message=>{
-              if ((message.sender!=this.firebaseAuthService.usersign.uid) && (message.read=='false')){
-                count = count + 1;
-              }
-            })
+//             let messages = snapshotToArray(resp);
+//             console.log(messages);
+//             let count = 0;
+//             messages.forEach(message=>{
+//               if ((message.sender!=this.firebaseAuthService.usersign.uid) && (message.read=='false')){
+//                 count = count + 1;
+//               }
+//             })
       
             
-            console.log(count);
+//             console.log(count);
             
-            u.unread = count;
-          });
-          this.chatService.chatsUsers.push(u)
-         })
+//             u.unread = count;
+//           });
+//           this.chatService.chatsUsers.push(u)
+//          })
 
-       }
+//        }
 
      
        
 
 
-     })
+//      })
 
 
-   })
+//    })
 
-/*    console.log(this.keysUsers);
+// /*    console.log(this.keysUsers);
 
-   this.keysUsers.forEach(keyUser=>{
+//    this.keysUsers.forEach(keyUser=>{
 
-    console.log(this.chatService.getUser(keyUser).toJSON());
+//     console.log(this.chatService.getUser(keyUser).toJSON());
      
-     this.chatService.getUser(keyUser).on('value', (resp)=>{
-       console.log(resp);
-       let u = resp.val()
+//      this.chatService.getUser(keyUser).on('value', (resp)=>{
+//        console.log(resp);
+//        let u = resp.val()
 
-       this.chatService.chatsUsers.push(u)
-     })
-   }) */
+//        this.chatService.chatsUsers.push(u)
+//      })
+//    }) */
 
-   console.log(this.chatService.chatsUsers);
+//    console.log(this.chatService.chatsUsers);
 
 
   
-  })
+//   })
 
 
-}
+// }
 
 
 
@@ -375,6 +375,7 @@ getChats(){
       this.chatService.keymessage = event.chatuid;
       this.chatService.user2 = event
       //this.getMessages()
+      event.unread = 0;
       this.nav.navigateForward("/chat2");
       
 
@@ -427,6 +428,17 @@ getChats(){
               let item = resp.val();
               item.unread = 0;
               item.chatuid = keychat
+              this.chatService.unreadChats(this.user.uid,keychat).on('value', unread=>{
+                let count = 0;
+                console.log(unread.val(),'UNREAD');
+                unread.forEach(u=>{
+                  count = count + 1
+                })
+                console.log(count,'UNREAD2');
+
+                item.unread = count;
+              })
+             
               this.Users.push(item)
              })
 

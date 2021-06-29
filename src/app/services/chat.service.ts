@@ -309,11 +309,13 @@ user2
 
   }
 
-  unreadChats(chatid){
+  unreadChats(uid,chatid){
 
     let count = 0;
 
-    return firebase.database().ref(this.firebaseAuthService.usersign.uid+'/messages/'+chatid)
+    return firebase.database().ref('Chats/Unread/'+uid+'/'+chatid)
+
+    /* return firebase.database().ref(this.firebaseAuthService.usersign.uid+'/messages/'+chatid) */
     
     
    /*  .on('value', resp=>{
@@ -331,6 +333,12 @@ user2
       console.log(count);
     }); */
  
+
+  }
+
+  cleanUnread(uid,chatid){
+
+    firebase.database().ref('Chats/Unread/'+uid+'/'+chatid).remove()
 
   }
 

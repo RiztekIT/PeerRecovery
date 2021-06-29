@@ -18,6 +18,7 @@ import { ForegroundService } from '@ionic-native/foreground-service/ngx';
 import { BackgroundMode } from '@ionic-native/background-mode/ngx';
 //import { FCM } from '@ionic-native/fcm/ngx';
 import { FCM } from 'cordova-plugin-fcm-with-dependecy-updated/ionic';
+import { HttpClient } from "@angular/common/http";
 
 
 
@@ -101,6 +102,7 @@ user;
     private backgroundGeolocation: BackgroundGeolocation,
     public foregroundService: ForegroundService,
     public backgroundMode : BackgroundMode,
+    public http2: HttpClient
     
     ) {
 
@@ -158,7 +160,7 @@ locations;
       distanceFilter: 1,
       debug: true, //  enable this hear sounds for background-geolocation life-cycle.
       stopOnTerminate: false, // enable this to clear background location settings when the app terminates
-      notificationTitle: "PeerRecovery Tracking 2",
+      notificationTitle: "PeerRecovery Tracking",
 notificationText: "Tracking",
 interval: 10000,
 
@@ -349,7 +351,9 @@ this.locations = JSON.parse(localStorage.getItem("location"))
        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${long}&key=${TU_LLAVE}`,{},{}
       ).then(data=>{
         let l = JSON.parse(data.data)
-        this.locatio = l.results[0].formatted_address
+        let loc = l.results[0].address_components[3].long_name + ', ' + l.results[0].address_components[4].long_name + ', ' + l.results[0].address_components[5].long_name
+        this.locatio = loc
+        /* this.locatio = l.results[0].formatted_address */
         this.backgroundGeolocation.finish(); 
       })
    }
@@ -412,6 +416,49 @@ this.locations = JSON.parse(localStorage.getItem("location"))
 
   newAppointmentPage(){
     this.router.navigate(['appointment']);
+  }
+
+
+  async panicAlert(land?,param?){
+
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Confirm!',
+      message: '<strong>Someone in trouble, click on confirm to continue!</strong>!!!',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+            
+          }
+        }, {
+          text: 'Confirm!',
+          handler: () => {
+            this.router.navigate([land], param);
+       
+            
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+
+  }
+  async chatAlert(land?,param?){
+
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Confirm!',
+      message: '<strong>New Message, click on confirm to continue!</strong>!!!',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+
   }
 
 
@@ -573,7 +620,7 @@ this.locations = JSON.parse(localStorage.getItem("location"))
       //this.startBackgroundGeolocation()
       
       //this.put(1,1);
-      //this.backgroundGeolocation.start();
+      this.backgroundGeolocation.start();
     });
   }
   getUserLocation() {
@@ -768,6 +815,7 @@ this.locations = JSON.parse(localStorage.getItem("location"))
   }
 
   getNoti(){
+    
     FCM.onNotification().subscribe(data => {
       console.log(data.data);
        let navigationExtras: NavigationExtras = {
@@ -781,7 +829,14 @@ this.locations = JSON.parse(localStorage.getItem("location"))
         this.router.navigate([data.landing_page], navigationExtras);
       } else {
         console.log('Received in foreground');
-        this.router.navigate([data.landing_page], navigationExtras);
+        if (data.landing_page=='tracking'){
+
+          this.panicAlert(data.landing_page,navigationExtras)
+        }else{
+          this.chatAlert(data.landing_page,navigationExtras)
+          
+        }
+        
       }
     });
   }
@@ -819,10 +874,14 @@ this.locations = JSON.parse(localStorage.getItem("location"))
       'Content-Type': 'application/json'
     }
 
-    this.http.post('https://fcm.googleapis.com/fcm/send',body,headers).then(res=>{
+   /*  this.http.post('https://fcm.googleapis.com/fcm/send',body,headers).then(res=>{
       console.log(res,'res');
     }).catch(e=>{
       console.log(e,'e');
+    }) */
+
+    this.http2.post('https://fcm.googleapis.com/fcm/send',body,{headers}).subscribe(res=>{
+      console.log(res);
     })
   
   }
