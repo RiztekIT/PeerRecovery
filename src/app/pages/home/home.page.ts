@@ -12,7 +12,8 @@ import {
   BackgroundGeolocation,
   BackgroundGeolocationConfig,
   BackgroundGeolocationResponse,
-  BackgroundGeolocationEvents
+  BackgroundGeolocationEvents,
+  BackgroundGeolocationAccuracy
 } from "@ionic-native/background-geolocation/ngx";
 import { ForegroundService } from '@ionic-native/foreground-service/ngx';
 import { BackgroundMode } from '@ionic-native/background-mode/ngx';
@@ -156,13 +157,13 @@ locations;
   startBackgroundGeolocation() {
     const config: BackgroundGeolocationConfig = {
       desiredAccuracy: 10,
-      stationaryRadius: 20,
-      distanceFilter: 1,
-      debug: true, //  enable this hear sounds for background-geolocation life-cycle.
-      stopOnTerminate: false, // enable this to clear background location settings when the app terminates
+      stationaryRadius: 30,
+      distanceFilter: 30,
+      debug: false, //  enable this hear sounds for background-geolocation life-cycle.
+      stopOnTerminate: true, // enable this to clear background location settings when the app terminates
       notificationTitle: "PeerRecovery Tracking",
 notificationText: "Tracking",
-interval: 10000,
+interval: 60000,
 
     };
 

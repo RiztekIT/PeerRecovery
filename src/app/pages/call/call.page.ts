@@ -114,7 +114,40 @@ downloadUrl: string;
 
     this.status = 'Calling'
 
-    this.getCall();
+    
+
+    this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.CAMERA).then(result=>{
+
+      if (result.hasPermission){
+
+        this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.RECORD_AUDIO).then(res=>{
+          if (res.hasPermission){
+            this.getCall();
+
+          }else{
+            this.androidPermissions.requestPermissions([this.androidPermissions.PERMISSION.CAMERA, this.androidPermissions.PERMISSION.GET_ACCOUNTS, this.androidPermissions.PERMISSION.RECORD_AUDIO]).then(r=>{
+              this.getCall();
+            });
+          }
+        })
+        
+      }else{
+        
+        this.androidPermissions.requestPermissions([this.androidPermissions.PERMISSION.CAMERA, this.androidPermissions.PERMISSION.GET_ACCOUNTS, this.androidPermissions.PERMISSION.RECORD_AUDIO]).then(r=>{
+          this.getCall();
+        });
+      }
+
+    }).catch(e=>{
+   
+      this.androidPermissions.requestPermissions([this.androidPermissions.PERMISSION.CAMERA, this.androidPermissions.PERMISSION.GET_ACCOUNTS, this.androidPermissions.PERMISSION.RECORD_AUDIO]).then(r=>{
+        this.getCall();
+      });
+   console.log(e,'ERROR3');
+ })
+
+
+
   }
 
   openCamera(){
@@ -604,6 +637,8 @@ showMe() {
   /* navigator.mediaDevices.getUserMedia({audio: true, video: true}).then(stream=>{ */
     console.log(stream,'STREAM');
     this.me.nativeElement.srcObject = stream;
+    this.me.nativeElement.muted = true;
+    
     console.log(stream,'STREAM2');
    
     this.pc.addStream(stream);
@@ -616,6 +651,8 @@ showMe() {
   })
 
  }).catch(e=>{
+   
+  this.androidPermissions.requestPermissions([this.androidPermissions.PERMISSION.CAMERA, this.androidPermissions.PERMISSION.GET_ACCOUNTS, this.androidPermissions.PERMISSION.MICROPHONE]);
    console.log(e,'ERROR3');
  })
 /* 
