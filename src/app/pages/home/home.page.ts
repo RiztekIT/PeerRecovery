@@ -20,6 +20,7 @@ import { BackgroundMode } from '@ionic-native/background-mode/ngx';
 //import { FCM } from '@ionic-native/fcm/ngx';
 import { FCM } from 'cordova-plugin-fcm-with-dependecy-updated/ionic';
 import { HttpClient } from "@angular/common/http";
+import { DomSanitizer } from "@angular/platform-browser";
 
 
 
@@ -103,7 +104,8 @@ user;
     private backgroundGeolocation: BackgroundGeolocation,
     public foregroundService: ForegroundService,
     public backgroundMode : BackgroundMode,
-    public http2: HttpClient
+    public http2: HttpClient,
+    private sanitizer:DomSanitizer
     
     ) {
 
@@ -160,7 +162,7 @@ locations;
       stationaryRadius: 30,
       distanceFilter: 30,
       debug: false, //  enable this hear sounds for background-geolocation life-cycle.
-      stopOnTerminate: true, // enable this to clear background location settings when the app terminates
+      stopOnTerminate: false, // enable this to clear background location settings when the app terminates
       notificationTitle: "PeerRecovery Tracking",
 notificationText: "Tracking",
 interval: 60000,
@@ -886,5 +888,23 @@ this.locations = JSON.parse(localStorage.getItem("location"))
     })
   
   }
+
+  openlink(item){
+
+    
+    /* 
+        const url = item.link;
+    
+        const link = document.createElement('a');
+        link.href = url;
+        link.target = '_system'    
+        link.click(); */
+    
+        window.open(item.link,'_system')
+    
+      }
+      sanitize(url:string){
+        return this.sanitizer.bypassSecurityTrustUrl(url);
+    }
 
 }

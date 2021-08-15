@@ -46,18 +46,47 @@
         </ion-list>
     </div> -->
 
-    <div class="data_div" (click)="openAppointmentPage(item)" *ngFor="let item of apps">
-        <!-- <p class="time">{{item.time | TimeFormat}}</p> -->
+    <!--   <div class="data_div" (click)="openAppointmentPage(item)" *ngFor="let item of apps">
+        
         <ion-icon name="briefcase-outline"> </ion-icon>
         <div class="card_div" [ngStyle]="getStyle(item)">
-            <!--<img [src]="item?.img">-->
+        
             <div class="info_div">
                 <h3 class="name">{{item.title}} <span>{{item.appointmentdate.seconds * 1000| date: 'dd/MM/yy h:mm a' }}</span></h3>
-                <!--<p class="age">Age : {{item?.age}}</p>-->
+        
                 <p class="add">{{item.description}}</p>
             </div>
         </div>
-    </div>
+    </div> -->
+
+    <ion-list>
+        <ion-item-sliding *ngFor="let item of apps" [ngStyle]="getStyle(item)">
+            <ion-item-options side="end">
+
+                <ion-item-option onclick="window.open(sanitize(item.link),'_system')">
+                    <ion-icon slot="icon-only" name="eye"></ion-icon>
+                </ion-item-option>
+
+            </ion-item-options>
+
+            <ion-item (click)="openAppointmentPage(item)">
+                <ion-icon name="briefcase-outline"> </ion-icon>
+                <ion-label>
+
+                    <h3 class="name">{{item.title}} <span>{{item.appointmentdate.seconds * 1000| date: 'dd/MM/yy h:mm a' }}</span></h3>
+
+                    <p class="add">{{item.description}}</p>
+
+                </ion-label>
+
+
+            </ion-item>
+
+
+
+        </ion-item-sliding>
+
+    </ion-list>
 
 
 

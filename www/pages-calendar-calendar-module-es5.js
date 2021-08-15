@@ -21,7 +21,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-header class=\"ion-no-border\">\n    <ion-toolbar mode=\"md\">\n        <ion-buttons slot=\"start\">\n            <ion-back-button defaultHref=\"home\" icon=\"chevron-back-outline\" text=\"\" mode=\"md\"></ion-back-button>\n        </ion-buttons>\n        <ion-buttons slot=\"end\">\n            <ion-menu-button></ion-menu-button>\n        </ion-buttons>\n        <ion-title>Appointments</ion-title>\n    </ion-toolbar>\n</ion-header>\n\n\n<ion-content class=\"ion-padding-bottom\">\n\n    <div class=\"head_div\">\n        <h3 class=\"main_lbl head_lbl\">Appointments <span class=\"ion-float-right\">Total: {{totalAppointments}}</span>\n            <ion-toggle [(ngModel)]=\"this.all\" slot=\"end\" color=\"primary\" (ngModelChange)=\"allChange()\"></ion-toggle>\n        </h3>\n\n    </div>\n\n    <ion-row *ngIf=\"this.dates\">\n        <ion-col class=\"first_Col\" style=\"background-color: white;\">\n            <h3 class=\"date_lbl\">Start</h3>\n            <ion-datetime displayFormat=\"MMM DD YYYY\" [(ngModel)]=\"this.startDate\" (ngModelChange)=\"changeDates()\"></ion-datetime>\n        </ion-col>\n        <ion-col style=\"background-color: white;\">\n            <h3 class=\"date_lbl\">End</h3>\n            <ion-datetime displayFormat=\"MMM DD YYYY\" [(ngModel)]=\"this.endDate\" (ngModelChange)=\"changeDates()\"></ion-datetime>\n        </ion-col>\n    </ion-row>\n\n\n    <!--    <div class=\"data_div\" style=\"text-align: end;\">\n\n\n        <ion-toggle [(ngModel)]=\"this.all\" slot=\"end\" color=\"primary\"></ion-toggle>\n\n\n    </div> -->\n\n\n    <div class=\"data_div\" (click)=\"openAppointmentPage(item)\" *ngFor=\"let item of apps\">\n        <!-- <p class=\"time\">{{item.time | TimeFormat}}</p> -->\n        <ion-icon name=\"briefcase-outline\"> </ion-icon>\n        <div class=\"card_div\" [ngStyle]=\"getStyle(item)\">\n            <!--<img [src]=\"item?.img\">-->\n            <div class=\"info_div\">\n                <h3 class=\"name\">{{item.title}} <span>{{item.appointmentdate.seconds * 1000| date: 'dd/MM/yy h:mm a' }}</span></h3>\n                <!--<p class=\"age\">Age : {{item?.age}}</p>-->\n                <p class=\"add\">{{item.description}}</p>\n            </div>\n        </div>\n    </div>\n\n\n\n    <!--  <ion-fab vertical=\"bottom\" horizontal=\"end\" slot=\"fixed\" (click)=\"newAppointmentPage()\">\n        <ion-fab-button>\n            <ion-icon name=\"calendar-outline\"></ion-icon>\n        </ion-fab-button>\n    </ion-fab> -->\n\n    <ion-fab vertical=\"bottom\" horizontal=\"end\" slot=\"fixed\">\n        <ion-fab-button>\n            <ion-icon name=\"settings\"></ion-icon>\n        </ion-fab-button>\n        <ion-fab-list side=\"top\">\n            <ion-fab-button (click)=\"newAppointmentPage()\">\n                <ion-icon name=\"add-outline\"></ion-icon>\n            </ion-fab-button>\n            <ion-fab-button (click)=\"searchDates()\">\n                <ion-icon name=\"calendar-outline\"></ion-icon>\n            </ion-fab-button>\n        </ion-fab-list>\n    </ion-fab>\n\n\n</ion-content>\n<!--<ion-footer class=\"ion-no-border\">\n    <ion-button class=\"main_btn\" expand=\"full\">\n        cancel appointment\n    </ion-button>\n</ion-footer>-->";
+    __webpack_exports__["default"] = "<ion-header class=\"ion-no-border\">\n    <ion-toolbar mode=\"md\">\n        <ion-buttons slot=\"start\">\n            <ion-back-button defaultHref=\"home\" icon=\"chevron-back-outline\" text=\"\" mode=\"md\"></ion-back-button>\n        </ion-buttons>\n        <ion-buttons slot=\"end\">\n            <ion-menu-button></ion-menu-button>\n        </ion-buttons>\n        <ion-title>Appointments</ion-title>\n    </ion-toolbar>\n</ion-header>\n\n\n<ion-content class=\"ion-padding-bottom\">\n\n    <div class=\"head_div\">\n        <h3 class=\"main_lbl head_lbl\">Appointments <span class=\"ion-float-right\">Total: {{totalAppointments}}</span>\n            <ion-toggle [(ngModel)]=\"this.all\" slot=\"end\" color=\"primary\" (ngModelChange)=\"allChange()\"></ion-toggle>\n        </h3>\n\n    </div>\n\n    <ion-row *ngIf=\"this.dates\">\n        <ion-col class=\"first_Col\" style=\"background-color: white;\">\n            <h3 class=\"date_lbl\">Start</h3>\n            <ion-datetime displayFormat=\"MMM DD YYYY\" [(ngModel)]=\"this.startDate\" (ngModelChange)=\"changeDates()\"></ion-datetime>\n        </ion-col>\n        <ion-col style=\"background-color: white;\">\n            <h3 class=\"date_lbl\">End</h3>\n            <ion-datetime displayFormat=\"MMM DD YYYY\" [(ngModel)]=\"this.endDate\" (ngModelChange)=\"changeDates()\"></ion-datetime>\n        </ion-col>\n    </ion-row>\n\n\n    <!--    <div class=\"data_div\" style=\"text-align: end;\">\n\n\n        <ion-toggle [(ngModel)]=\"this.all\" slot=\"end\" color=\"primary\"></ion-toggle>\n\n\n    </div> -->\n\n\n    <!--    <div class=\"data_div\" (click)=\"openAppointmentPage(item)\" *ngFor=\"let item of apps\">\n        \n        <ion-icon name=\"briefcase-outline\"> </ion-icon>\n        <div class=\"card_div\" [ngStyle]=\"getStyle(item)\">\n        \n            <div class=\"info_div\">\n                <h3 class=\"name\">{{item.title}} <span>{{item.appointmentdate.seconds * 1000| date: 'dd/MM/yy h:mm a' }}</span></h3>\n        \n                <p class=\"add\">{{item.description}}</p>\n                <p><a href=\"{{item.link}}\" target=\"_system\">{{item.link}}</a></p>\n            </div>\n        </div>\n    </div> -->\n\n    <ion-list>\n        <ion-item-sliding *ngFor=\"let item of apps\" [ngStyle]=\"getStyle(item)\">\n            <ion-item-options side=\"end\">\n\n                <ion-item-option (click)=\"openlink(item)\">\n\n\n                    <ion-icon slot=\"icon-only\" name=\"eye\">\n\n                    </ion-icon>\n\n                </ion-item-option>\n\n            </ion-item-options>\n\n            <ion-item (click)=\"openAppointmentPage(item)\">\n                <ion-icon name=\"briefcase-outline\"> </ion-icon>\n                <ion-label>\n\n                    <h3 class=\"name\">{{item.title}} <span>{{item.appointmentdate.seconds * 1000| date: 'dd/MM/yy h:mm a' }}</span></h3>\n\n                    <p class=\"add\">{{item.description}}</p>\n\n                </ion-label>\n\n\n            </ion-item>\n\n\n\n        </ion-item-sliding>\n\n    </ion-list>\n\n\n\n    <!--  <ion-fab vertical=\"bottom\" horizontal=\"end\" slot=\"fixed\" (click)=\"newAppointmentPage()\">\n        <ion-fab-button>\n            <ion-icon name=\"calendar-outline\"></ion-icon>\n        </ion-fab-button>\n    </ion-fab> -->\n\n\n    <ion-fab vertical=\"bottom\" horizontal=\"end\" slot=\"fixed\">\n        <ion-fab-button>\n            <ion-icon name=\"settings\"></ion-icon>\n        </ion-fab-button>\n        <ion-fab-list side=\"top\">\n            <ion-fab-button (click)=\"newAppointmentPage()\">\n                <ion-icon name=\"add-outline\"></ion-icon>\n            </ion-fab-button>\n            <ion-fab-button (click)=\"searchDates()\">\n                <ion-icon name=\"calendar-outline\"></ion-icon>\n            </ion-fab-button>\n        </ion-fab-list>\n    </ion-fab>\n\n\n</ion-content>\n<!--<ion-footer class=\"ion-no-border\">\n    <ion-button class=\"main_btn\" expand=\"full\">\n        cancel appointment\n    </ion-button>\n</ion-footer>-->";
     /***/
   },
 
@@ -239,9 +239,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var src_app_services_appointment_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
     /*! src/app/services/appointment.service */
     "./src/app/services/appointment.service.ts");
+    /* harmony import */
+
+
+    var _ionic_native_zoom_ngx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    /*! @ionic-native/zoom/ngx */
+    "./node_modules/@ionic-native/zoom/ngx/index.js");
+    /* harmony import */
+
+
+    var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    /*! @angular/platform-browser */
+    "./node_modules/@angular/platform-browser/fesm2015/platform-browser.js");
 
     var CalendarPage = /*#__PURE__*/function () {
-      function CalendarPage(alertController, nav, router, modalCtr, firebaseAuthService, appointmentService) {
+      function CalendarPage(alertController, nav, router, modalCtr, firebaseAuthService, appointmentService, zoomService, sanitizer) {
         _classCallCheck(this, CalendarPage);
 
         /*     this.appointmentsDBRef = this.firebaseAuthService.firebaseDB.collection('Appointments');
@@ -252,6 +264,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.modalCtr = modalCtr;
         this.firebaseAuthService = firebaseAuthService;
         this.appointmentService = appointmentService;
+        this.zoomService = zoomService;
+        this.sanitizer = sanitizer;
         this.Appointments = [];
         this.totalAppointments = 0;
         this.apps = [];
@@ -437,6 +451,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           } //this.getAppointments();
 
         }
+      }, {
+        key: "openlink",
+        value: function openlink(item) {
+          /*
+              const url = item.link;
+          
+              const link = document.createElement('a');
+              link.href = url;
+              link.target = '_system'
+              link.click(); */
+          var url = this.sanitizer.bypassSecurityTrustUrl(item.link);
+          var url2 = this.sanitizer.sanitize(_angular_core__WEBPACK_IMPORTED_MODULE_1__["SecurityContext"].URL, url); //this.pdfSrc = this.sanitizer.sanitize(SecurityContext.RESOURCE_URL, this.sanitizer.bypassSecurityTrustResourceUrl(url));
+
+          window.open(url2, '_system');
+        }
       }]);
 
       return CalendarPage;
@@ -455,6 +484,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         type: src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"]
       }, {
         type: src_app_services_appointment_service__WEBPACK_IMPORTED_MODULE_5__["AppointmentService"]
+      }, {
+        type: _ionic_native_zoom_ngx__WEBPACK_IMPORTED_MODULE_6__["Zoom"]
+      }, {
+        type: _angular_platform_browser__WEBPACK_IMPORTED_MODULE_7__["DomSanitizer"]
       }];
     };
 
@@ -466,7 +499,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./calendar.page.scss */
       "./src/app/pages/calendar/calendar.page.scss"))["default"]]
-    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"], _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavController"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ModalController"], src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"], src_app_services_appointment_service__WEBPACK_IMPORTED_MODULE_5__["AppointmentService"]])], CalendarPage);
+    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"], _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavController"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ModalController"], src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"], src_app_services_appointment_service__WEBPACK_IMPORTED_MODULE_5__["AppointmentService"], _ionic_native_zoom_ngx__WEBPACK_IMPORTED_MODULE_6__["Zoom"], _angular_platform_browser__WEBPACK_IMPORTED_MODULE_7__["DomSanitizer"]])], CalendarPage);
     /***/
   }
 }]);

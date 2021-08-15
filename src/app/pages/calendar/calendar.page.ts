@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, SecurityContext } from "@angular/core";
 import { Router } from "@angular/router";
 import { AlertController, ModalController, NavController } from "@ionic/angular";
 import { NavigationExtras } from '@angular/router';
@@ -6,6 +6,8 @@ import { AppointmentPageModule } from "../appointment/appointment.module";
 import { AuthService } from "src/app/services/auth.service";
 import { AppointmentService } from "src/app/services/appointment.service";
 import firebase from 'firebase';
+import { Zoom } from "@ionic-native/zoom/ngx";
+import { DomSanitizer } from "@angular/platform-browser";
 
 @Component({
   selector: "app-calendar",
@@ -22,7 +24,10 @@ export class CalendarPage implements OnInit {
               private router: Router,
               private modalCtr: ModalController,
               private firebaseAuthService: AuthService,
-              public appointmentService: AppointmentService) {
+              public appointmentService: AppointmentService,
+              private zoomService: Zoom,
+              private sanitizer:DomSanitizer
+              ) {
 
 
 /*     this.appointmentsDBRef = this.firebaseAuthService.firebaseDB.collection('Appointments');
@@ -268,6 +273,37 @@ export class CalendarPage implements OnInit {
     //this.getAppointments();
 
   }
+
+
+  openlink(item){
+
+    
+/* 
+    const url = item.link;
+
+    const link = document.createElement('a');
+    link.href = url;
+    link.target = '_system'    
+    link.click(); */
+
+    let url  = this.sanitizer.bypassSecurityTrustUrl(item.link);
+
+    let url2 = this.sanitizer.sanitize(SecurityContext.URL,url)
+
+    //this.pdfSrc = this.sanitizer.sanitize(SecurityContext.RESOURCE_URL, this.sanitizer.bypassSecurityTrustResourceUrl(url));
+
+
+    window.open(url2,'_system')
+
+    
+
+    
+
+  }
+
+ /*  sanitize(url:string){
+    return this.sanitizer.bypassSecurityTrustUrl(url);
+} */
 
 
 
