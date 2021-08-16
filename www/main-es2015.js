@@ -724,6 +724,10 @@ const routes = [
     {
         path: 'profiledatasheet',
         loadChildren: () => __webpack_require__.e(/*! import() | pages-profiledatasheet-profiledatasheet-module */ "pages-profiledatasheet-profiledatasheet-module").then(__webpack_require__.bind(null, /*! ./pages/profiledatasheet/profiledatasheet.module */ "./src/app/pages/profiledatasheet/profiledatasheet.module.ts")).then(m => m.ProfiledatasheetPageModule)
+    },
+    {
+        path: 'resource-dir',
+        loadChildren: () => __webpack_require__.e(/*! import() | pages-resource-dir-resource-dir-module */ "pages-resource-dir-resource-dir-module").then(__webpack_require__.bind(null, /*! ./pages/resource-dir/resource-dir.module */ "./src/app/pages/resource-dir/resource-dir.module.ts")).then(m => m.ResourceDirPageModule)
     }
 ];
 let AppRoutingModule = class AppRoutingModule {

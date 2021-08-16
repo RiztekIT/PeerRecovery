@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfileService } from '../../services/profile.service';
+import firebase from 'firebase';
 
 @Component({
   selector: 'app-profiledatasheet',
@@ -84,6 +85,11 @@ export class ProfiledatasheetPage implements OnInit {
   profileDS;
 
   ver= false;
+  user;
+
+  done = false;
+  appkey;
+  
 
 
 
@@ -95,6 +101,8 @@ export class ProfiledatasheetPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.user = JSON.parse(sessionStorage.getItem('user'));
+    this.getProfileDS()
   }
 
 
@@ -115,41 +123,53 @@ export class ProfiledatasheetPage implements OnInit {
 
   addprofileDS(){
 
-    this.profileDS = {
+    
 
-      name : this.name,
-      age : this.age,
-      sobrietyDate : this.sobrietyDate,
-      phaseDWI : this.phaseDWI,
-      Occupation : this.Occupation,
-      Employeer : this.Employeer,
-      job : this.job,
-      probationKnow : this.probationKnow,
-      supportiveJob : this.supportiveJob,
-      status : this.status,
-      nameSpouse : this.nameSpouse,
-      children  : this.children ,
-      liveswithyou : this.liveswithyou,
-      treatmeant : this.treatmeant,
-      phaseTreatmeant : this.phaseTreatmeant,
-      soberGroup : this.soberGroup,
-      sponsorAA : this.sponsorAA,
-      steps : this.steps,
-      otherpartDWI : this.otherpartDWI,
-      otherIncentive : this.otherIncentive,
-      othersourceStress : this.othersourceStress,
-      funThings : this.funThings,
-      mostSupportPerson : this.mostSupportPerson,
-      driverLicenceSuspend : this.driverLicenceSuspend,
-      occupationalDL : this.occupationalDL,
-      DWICourtProgram: this.DWICourtProgram,
-      favoriteIncentive: this.favoriteIncentive,
-      sourceStress: this.sourceStress,
-      detectionDevice: this.detectionDevice
+      this.profileDS = {
 
-    }
+        name : this.name,
+        age : this.age,
+        sobrietyDate : this.sobrietyDate,
+        phaseDWI : this.phaseDWI,
+        Occupation : this.Occupation,
+        Employeer : this.Employeer,
+        job : this.job,
+        probationKnow : this.probationKnow,
+        supportiveJob : this.supportiveJob,
+        status : this.status,
+        nameSpouse : this.nameSpouse,
+        children  : this.children ,
+        liveswithyou : this.liveswithyou,
+        treatmeant : this.treatmeant,
+        phaseTreatmeant : this.phaseTreatmeant,
+        soberGroup : this.soberGroup,
+        sponsorAA : this.sponsorAA,
+        steps : this.steps,
+        otherpartDWI : this.otherpartDWI,
+        otherIncentive : this.otherIncentive,
+        othersourceStress : this.othersourceStress,
+        funThings : this.funThings,
+        mostSupportPerson : this.mostSupportPerson,
+        driverLicenceSuspend : this.driverLicenceSuspend,
+        occupationalDL : this.occupationalDL,
+        DWICourtProgram: this.DWICourtProgram,
+        favoriteIncentive: this.favoriteIncentive,
+        sourceStress: this.sourceStress,
+        detectionDevice: this.detectionDevice,
+        timestamp: firebase.firestore.Timestamp.fromDate(new Date()),
+        user: this.user.uid,
+        done: true
+  
+      }
+  
+      //this.ver = true;
+  
+      this.profileSVC.addProfileDS(this.profileDS)
 
-    this.ver = true;
+
+    
+
+   
 
 
 
@@ -157,6 +177,114 @@ export class ProfiledatasheetPage implements OnInit {
 
 
 
+  }
+  editprofileDS(){
+
+
+
+      this.profileDS = {
+
+        name : this.name,
+        age : this.age,
+        sobrietyDate : this.sobrietyDate,
+        phaseDWI : this.phaseDWI,
+        Occupation : this.Occupation,
+        Employeer : this.Employeer,
+        job : this.job,
+        probationKnow : this.probationKnow,
+        supportiveJob : this.supportiveJob,
+        status : this.status,
+        nameSpouse : this.nameSpouse,
+        children  : this.children ,
+        liveswithyou : this.liveswithyou,
+        treatmeant : this.treatmeant,
+        phaseTreatmeant : this.phaseTreatmeant,
+        soberGroup : this.soberGroup,
+        sponsorAA : this.sponsorAA,
+        steps : this.steps,
+        otherpartDWI : this.otherpartDWI,
+        otherIncentive : this.otherIncentive,
+        othersourceStress : this.othersourceStress,
+        funThings : this.funThings,
+        mostSupportPerson : this.mostSupportPerson,
+        driverLicenceSuspend : this.driverLicenceSuspend,
+        occupationalDL : this.occupationalDL,
+        DWICourtProgram: this.DWICourtProgram,
+        favoriteIncentive: this.favoriteIncentive,
+        sourceStress: this.sourceStress,
+        detectionDevice: this.detectionDevice,
+        timestamp: firebase.firestore.Timestamp.fromDate(new Date()),
+        user: this.user.uid,
+        done: true,
+        appkey:this.appkey
+  
+      }
+  
+      //this.ver = true;
+  
+      this.profileSVC.editProfileDS(this.profileDS)
+
+    
+
+   
+
+
+
+   
+
+
+
+  }
+
+
+  getProfileDS(){
+    this.profileSVC.getProfileDS(this.user.uid).once('value').then(resp=>{
+      
+
+        resp.forEach(r=>{
+          
+          this.profileDS = r.val()
+          this.profileDS.appkey = r.key
+          this.ver = true;
+  
+          this.name = this.profileDS.name,
+          this.age = this.profileDS.age,
+          this.sobrietyDate = this.profileDS.sobrietyDate,
+          this.phaseDWI = this.profileDS.phaseDWI,
+          this.Occupation = this.profileDS.Occupation,
+          this.Employeer = this.profileDS.Employeer,
+          this.job = this.profileDS.job,
+          this.probationKnow = this.profileDS.probationKnow,
+          this.supportiveJob = this.profileDS.supportiveJob,
+          this.status = this.profileDS.status,
+          this.nameSpouse = this.profileDS.nameSpouse,
+          this.children  = this.profileDS.children ,
+          this.liveswithyou = this.profileDS.liveswithyou,
+          this.treatmeant = this.profileDS.treatmeant,
+          this.phaseTreatmeant = this.profileDS.phaseTreatmeant,
+          this.soberGroup = this.profileDS.soberGroup,
+          this.sponsorAA = this.profileDS.sponsorAA,
+          this.steps = this.profileDS.steps,
+          this.otherpartDWI = this.profileDS.otherpartDWI,
+          this.otherIncentive = this.profileDS.otherIncentive,
+          this.othersourceStress = this.profileDS.othersourceStress,
+          this.funThings = this.profileDS.funThings,
+          this.mostSupportPerson = this.profileDS.mostSupportPerson,
+          this.driverLicenceSuspend = this.profileDS.driverLicenceSuspend,
+          this.occupationalDL = this.profileDS.occupationalDL,
+          this.DWICourtProgram= this.profileDS.DWICourtProgram,
+          this.favoriteIncentive= this.profileDS.favoriteIncentive,
+          this.sourceStress= this.profileDS.sourceStress,
+          this.detectionDevice= this.profileDS.detectionDevice,
+          this.done = this.profileDS.done
+          this.appkey = this.profileDS.appkey
+          
+        })
+        
+
+
+      
+    })
   }
 
 }

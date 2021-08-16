@@ -1218,6 +1218,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           return m.ProfiledatasheetPageModule;
         });
       }
+    }, {
+      path: 'resource-dir',
+      loadChildren: function loadChildren() {
+        return __webpack_require__.e(
+        /*! import() | pages-resource-dir-resource-dir-module */
+        "pages-resource-dir-resource-dir-module").then(__webpack_require__.bind(null,
+        /*! ./pages/resource-dir/resource-dir.module */
+        "./src/app/pages/resource-dir/resource-dir.module.ts")).then(function (m) {
+          return m.ResourceDirPageModule;
+        });
+      }
     }];
 
     var AppRoutingModule = function AppRoutingModule() {
