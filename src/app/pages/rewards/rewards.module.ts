@@ -7,13 +7,17 @@ import { IonicModule } from '@ionic/angular';
 import { RewardsPageRoutingModule } from './rewards-routing.module';
 
 import { RewardsPage } from './rewards.page';
+import { NgCircleProgressModule } from 'ng-circle-progress';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    RewardsPageRoutingModule
+    RewardsPageRoutingModule,
+    NgCircleProgressModule.forRoot({
+  
+    }),
   ],
   declarations: [RewardsPage]
 })

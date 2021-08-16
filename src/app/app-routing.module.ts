@@ -187,6 +187,26 @@ const routes: Routes = [
   {
     path: 'panics',
     loadChildren: () => import('./pages/tracking/panics/panics.module').then( m => m.PanicsPageModule)
+  },
+  {
+    path: 'notes',
+    loadChildren: () => import('./pages/notes/notes.module').then( m => m.NotesPageModule)
+  },
+  {
+    path: 'addeditnotes',
+    loadChildren: () => import('./pages/notes/addeditnotes/addeditnotes.module').then( m => m.AddeditnotesPageModule)
+  },
+  {
+    path: 'emotions',
+    loadChildren: () => import('./pages/emotions/emotions.module').then( m => m.EmotionsPageModule)
+  },
+  {
+    path: 'profiledatasheet',
+    loadChildren: () => import('./pages/profiledatasheet/profiledatasheet.module').then( m => m.ProfiledatasheetPageModule)
+  },
+  {
+    path: 'resource-dir',
+    loadChildren: () => import('./pages/resource-dir/resource-dir.module').then( m => m.ResourceDirPageModule)
   }
 ];
 

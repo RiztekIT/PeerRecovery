@@ -32,6 +32,8 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireList, AngularFireDatabase } from '@angular/fire/database';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import { HttpClientModule } from '@angular/common/http';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+
 
 /* import { BackgroundMode } from '@ionic-native/background-mode/ngx'; */
 
@@ -90,6 +92,7 @@ let firebaseConfig = {
     FCM,
     AngularFireDatabase, 
     AndroidPermissions,   
+    InAppBrowser,
     
     
     

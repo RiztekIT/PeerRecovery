@@ -56,34 +56,37 @@
     </div> -->
 
     <ion-list>
-        <ion-item-sliding *ngFor="let item of apps" [ngStyle]="getStyle(item)">
-            <ion-item-options side="end">
-
-                <ion-item-option (click)="openlink(item)">
+        <ion-item-sliding *ngFor="let item of apps">
+            <div [ngStyle]="getStyle(item)">
 
 
-                    <ion-icon slot="icon-only" name="eye">
+                <ion-item-options side="end">
 
-                    </ion-icon>
-
-                </ion-item-option>
-
-            </ion-item-options>
-
-            <ion-item (click)="openAppointmentPage(item)">
-                <ion-icon name="briefcase-outline"> </ion-icon>
-                <ion-label>
-
-                    <h3 class="name">{{item.title}} <span>{{item.appointmentdate.seconds * 1000| date: 'dd/MM/yy h:mm a' }}</span></h3>
-
-                    <p class="add">{{item.description}}</p>
-
-                </ion-label>
+                    <ion-item-option (click)="openlink(item)">
 
 
-            </ion-item>
+                        <ion-icon slot="icon-only" name="eye">
+
+                        </ion-icon>
+
+                    </ion-item-option>
+
+                </ion-item-options>
+
+                <ion-item (click)="openAppointmentPage(item)" class="transparentbg">
+                    <ion-icon name="briefcase-outline"> </ion-icon>
+                    <ion-label>
+
+                        <h3 class="name">{{item.title}} <span>{{item.appointmentdate.seconds * 1000| date: 'dd/MM/yy h:mm a' }}</span></h3>
+
+                        <p class="add">{{item.description}}</p>
+
+                    </ion-label>
 
 
+                </ion-item>
+
+            </div>
 
         </ion-item-sliding>
 

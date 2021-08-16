@@ -17,6 +17,23 @@
         <h5 class="submain_lbl ion-padding-start">Meet your goals and get rewards!</h5>
     </div>
 
+    <hr>
+
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6" style="text-align: center;">
+
+            <!-- <ion-label>{{this.advancetotal}}</ion-label> -->
+
+            <circle-progress [percent]="this.advancetotal" [radius]="50" [outerStrokeWidth]="10" [innerStrokeWidth]="8" [outerStrokeColor]="'#398bf7'" [innerStrokeColor]="'#96c3fd'" [animation]="true" [animationDuration]="300"></circle-progress>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+
+
+    <hr>
+
+
     <ion-list>
 
         <ion-item *ngFor="let reward of this.rewards" (click)="openReward(reward)">

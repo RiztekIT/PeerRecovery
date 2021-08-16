@@ -681,6 +681,14 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "file": "plugins/cordova-plugin-googlemaps/www/js_CordovaGoogleMaps-for-android_ios.js",
       "pluginId": "cordova-plugin-googlemaps",
       "runs": true
+    },
+    {
+      "id": "cordova-plugin-inappbrowser.inappbrowser",
+      "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+      "pluginId": "cordova-plugin-inappbrowser",
+      "clobbers": [
+        "cordova.InAppBrowser.open"
+      ]
     }
   ];
   module.exports.metadata = {
@@ -709,6 +717,7 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-opentok-android-permissions": "1.0.0",
     "cordova-plugin-android-permissions": "1.1.2",
     "com.googlemaps.ios": "3.9.0",
-    "cordova-plugin-googlemaps": "2.8.0-20200709-2008"
+    "cordova-plugin-googlemaps": "2.8.0-20200709-2008",
+    "cordova-plugin-inappbrowser": "5.0.0"
   };
 });

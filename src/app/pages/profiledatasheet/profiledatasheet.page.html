@@ -1,0 +1,363 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar mode="md">
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="home" icon="chevron-back-outline" text="" mode="md"></ion-back-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Participant Data Sheet </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+
+
+
+
+    <ion-item>
+        <ion-label color="primary" position="floating">Name</ion-label>
+        <ion-input [(ngModel)]="this.name"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label color="primary" position="floating">Age</ion-label>
+        <ion-input [(ngModel)]="this.age"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label color="primary" position="floating">Sobriety Date</ion-label>
+        <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="this.sobrietyDate"></ion-datetime>
+    </ion-item>
+    <ion-item>
+        <ion-label color="primary" position="floating">Current phase of DWI Court</ion-label>
+        <ion-input [(ngModel)]="this.phaseDWI"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label color="primary" position="floating">Occupation</ion-label>
+        <ion-input [(ngModel)]="this.Occupation"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label color="primary" position="floating">Employeer</ion-label>
+        <ion-input [(ngModel)]="this.Employeer"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label color="primary" position="floating">Describe your Job</ion-label>
+        <ion-input [(ngModel)]="this.job"></ion-input>
+    </ion-item>
+
+    <ion-item-group>
+        <ion-item-divider>
+            <ion-label color="primary" class="ion-text-wrap">Does your employeer know about this probation?</ion-label>
+        </ion-item-divider>
+
+        <ion-radio-group [(ngModel)]="this.probationKnow">
+            <ion-item>
+                <ion-label color="primary">Yes</ion-label>
+                <ion-radio slot="start" value=true></ion-radio>
+            </ion-item>
+
+            <ion-item>
+                <ion-label color="primary">No</ion-label>
+                <ion-radio slot="start" value=false></ion-radio>
+            </ion-item>
+
+        </ion-radio-group>
+    </ion-item-group>
+
+    <ion-item-group *ngIf="this.probationKnow==true">
+        <ion-item-divider>
+            <ion-label color="primary" class="ion-text-wrap">If so, are they supportive?</ion-label>
+        </ion-item-divider>
+
+
+        <!--     <ion-label position="floating">If so, are they supportive?</ion-label> -->
+        <ion-radio-group [(ngModel)]="this.supportiveJob">
+            <ion-item>
+                <ion-label color="primary">Yes</ion-label>
+                <ion-radio slot="start" value=true></ion-radio>
+            </ion-item>
+
+            <ion-item>
+                <ion-label color="primary">No</ion-label>
+                <ion-radio slot="start" value=false></ion-radio>
+            </ion-item>
+
+        </ion-radio-group>
+    </ion-item-group>
+
+
+    <ion-item-group>
+        <ion-item-divider>
+            <ion-label color="primary">Status</ion-label>
+        </ion-item-divider>
+
+        <!-- <ion-label position="floating">Status</ion-label> -->
+        <ion-radio-group [(ngModel)]="this.status">
+            <ion-item>
+                <ion-label color="primary">Single</ion-label>
+                <ion-radio slot="start" value="Single"></ion-radio>
+            </ion-item>
+
+            <ion-item>
+                <ion-label color="primary">Married</ion-label>
+                <ion-radio slot="start" value="Married"></ion-radio>
+            </ion-item>
+            <ion-item>
+                <ion-label color="primary">Divorced</ion-label>
+                <ion-radio slot="start" value="Divorced"></ion-radio>
+            </ion-item>
+            <ion-item>
+                <ion-label color="primary">Widowed</ion-label>
+                <ion-radio slot="start" value="Widowed"></ion-radio>
+            </ion-item>
+            <ion-item>
+                <ion-label color="primary">Other commited relationship</ion-label>
+                <ion-radio slot="start" value="Other"></ion-radio>
+            </ion-item>
+
+        </ion-radio-group>
+
+    </ion-item-group>
+
+    <ion-item>
+        <ion-label color="primary" position="floating" class="ion-text-wrap">First name of spouse / significant other, if any </ion-label>
+        <ion-input [(ngModel)]="this.nameSpouse"></ion-input>
+    </ion-item>
+
+    <ion-button expand="full" (click)="addChildren()">
+        <ion-icon slot="end" name="add"></ion-icon>
+        Add Children
+    </ion-button>
+
+    <ion-item-group *ngFor="let child of children">
+        <ion-item>
+            <ion-label color="primary" position="floating">First name of Children </ion-label>
+            <ion-input [(ngModel)]="child.name"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label color="primary" position="floating">Age of Children </ion-label>
+            <ion-input [(ngModel)]="child.age"></ion-input>
+        </ion-item>
+
+    </ion-item-group>
+
+    <ion-item>
+        <ion-label color="primary" position="floating">Who lives with you & your relation to you? </ion-label>
+        <ion-input [(ngModel)]="this.liveswithyou"></ion-input>
+    </ion-item>
+
+
+    <ion-item-group>
+        <ion-item-divider>
+            <ion-label color="primary">Are you presently in treatment?</ion-label>
+        </ion-item-divider>
+        <!-- <ion-label position="floating"></ion-label> -->
+        <ion-radio-group [(ngModel)]="this.treatmeant">
+            <ion-item>
+                <ion-label color="primary">Yes</ion-label>
+                <ion-radio slot="start" value=true></ion-radio>
+            </ion-item>
+
+            <ion-item>
+                <ion-label color="primary">No</ion-label>
+                <ion-radio slot="start" value=false></ion-radio>
+            </ion-item>
+
+        </ion-radio-group>
+    </ion-item-group>
+
+    <ion-item *ngIf="this.treatmeant">
+        <ion-label color="primary" position="floating">What phase / type?</ion-label>
+        <ion-input [(ngModel)]="this.phaseTreatmeant"></ion-input>
+
+    </ion-item>
+    <ion-item>
+        <ion-label color="primary" position="floating">What sober support group do you attend </ion-label>
+        <ion-input [(ngModel)]="this.soberGroup"></ion-input>
+
+    </ion-item>
+
+    <ion-item-group>
+        <ion-item-divider>
+            <ion-label color="primary">If AA, do you have a sponsor?</ion-label>
+        </ion-item-divider>
+        <!-- <ion-label position="floating"></ion-label> -->
+        <ion-radio-group [(ngModel)]="this.sponsorAA">
+            <ion-item>
+                <ion-label color="primary">Yes</ion-label>
+                <ion-radio slot="start" value=true></ion-radio>
+            </ion-item>
+
+            <ion-item>
+                <ion-label color="primary">No</ion-label>
+                <ion-radio slot="start" value=false></ion-radio>
+            </ion-item>
+
+        </ion-radio-group>
+    </ion-item-group>
+
+
+    <ion-item-group>
+        <ion-item-divider>
+            <ion-label color="primary">Working steps?</ion-label>
+        </ion-item-divider>
+        <!-- <ion-label position="floating">Working steps?</ion-label> -->
+        <ion-radio-group [(ngModel)]="this.steps">
+            <ion-item>
+                <ion-label color="primary">Yes</ion-label>
+                <ion-radio slot="start" value=true></ion-radio>
+            </ion-item>
+
+            <ion-item>
+                <ion-label color="primary">No</ion-label>
+                <ion-radio slot="start" value=false></ion-radio>
+            </ion-item>
+
+        </ion-radio-group>
+    </ion-item-group>
+
+    <ion-item-group>
+        <ion-item-divider>
+            <ion-label color="primary" class="ion-text-wrap">What part of the <b>DWI Court program</b> is the most helpful for your sobriety?</ion-label>
+            <ion-label color="primary" class="ion-text-wrap">(Circle all that apply)</ion-label>
+        </ion-item-divider>
+        <!-- <ion-label position="floating">What part of the <b>DWI Court program</b> is the most helpful for your sobriety?</ion-label> -->
+        <ion-item *ngFor="let dwi of DWICourtProgram">
+            <ion-label color="primary">{{dwi.name}}</ion-label>
+            <ion-checkbox slot="end" [(ngModel)]="dwi.isChecked"></ion-checkbox>
+        </ion-item>
+        <ion-label color="primary" *ngIf="DWICourtProgram[12].isChecked" position="floating">Other </ion-label>
+        <ion-input *ngIf="DWICourtProgram[12].isChecked" [(ngModel)]="otherpartDWI"></ion-input>
+
+
+
+    </ion-item-group>
+
+    <ion-item-group>
+        <ion-item-divider>
+            <ion-label color="primary" class="ion-text-wrap">What are your favorite incentives?</ion-label>
+            <ion-label color="primary" class="ion-text-wrap">(Circle all that apply)</ion-label>
+        </ion-item-divider>
+        <!-- <ion-label position="floating">What are your favorite incentives?</ion-label> -->
+        <!-- <ion-note>(Circle all that apply)</ion-note> -->
+        <ion-item *ngFor="let incentive of favoriteIncentive">
+            <ion-label color="primary">{{incentive.name}}</ion-label>
+            <ion-checkbox slot="end" [(ngModel)]="incentive.isChecked"></ion-checkbox>
+        </ion-item>
+        <ion-label color="primary" *ngIf="favoriteIncentive[9].isChecked" position="floating">Other </ion-label>
+        <ion-input *ngIf="favoriteIncentive[9].isChecked" [(ngModel)]="otherIncentive"></ion-input>
+
+
+
+    </ion-item-group>
+
+    <ion-item>
+        <ion-label color="primary" class="ion-text-wrap" position="floating">What are some fun things you do that help you stay sober?</ion-label>
+        <ion-textarea [(ngModel)]="this.funThings"></ion-textarea>
+    </ion-item>
+
+    <ion-item-group>
+        <ion-item-divider>
+            <ion-label color="primary" class="ion-text-wrap">The main source(s) of stress in my life right now is / are:</ion-label>
+            <ion-label color="primary" class="ion-text-wrap">(Circle all that apply)</ion-label>
+        </ion-item-divider>
+        <!-- <ion-label position="floating">The main source(s) of stress in my life right now is / are:</ion-label>
+            <ion-note>(Circle all that apply)</ion-note> -->
+        <ion-item *ngFor="let source of sourceStress">
+            <ion-label color="primary">{{source.name}}</ion-label>
+            <ion-checkbox slot="end" [(ngModel)]="source.isChecked"></ion-checkbox>
+        </ion-item>
+        <ion-label color="primary" *ngIf="sourceStress[6].isChecked" position="floating">Other </ion-label>
+        <ion-input *ngIf="sourceStress[6].isChecked" [(ngModel)]="othersourceStress"></ion-input>
+
+
+
+    </ion-item-group>
+
+    <ion-item>
+        <ion-label color="primary" class="ion-text-wrap" position="floating">Who is the most supportive person(s) of your recovery?</ion-label>
+        <ion-textarea [(ngModel)]="this.mostSupportPerson"></ion-textarea>
+    </ion-item>
+
+
+    <ion-item-group>
+        <ion-item-divider>
+            <ion-label color="primary" class="ion-text-wrap">Circle what alcohol / drug detenction device(s) you currently have, if any:</ion-label>
+
+        </ion-item-divider>
+        <!-- <ion-label position="floating">Circle what alcohol / drug detenction device(s) you currently have, if any:</ion-label> -->
+        <!-- <ion-note>(Circle all that apply)</ion-note> -->
+        <ion-item *ngFor="let device of detectionDevice">
+            <ion-label color="primary">{{device.name}}</ion-label>
+            <ion-checkbox slot="end" [(ngModel)]="device.isChecked"></ion-checkbox>
+        </ion-item>
+
+
+
+
+    </ion-item-group>
+
+
+    <ion-item-group>
+        <ion-item-divider>
+            <ion-label color="primary" class="ion-text-wrap">Is your driver´s licence currently suspended</ion-label>
+
+        </ion-item-divider>
+        <!-- <ion-label position="floating">Is your driver´s licence currently suspended</ion-label> -->
+        <ion-radio-group [(ngModel)]="this.driverLicenceSuspend">
+            <ion-item>
+                <ion-label color="primary">Yes</ion-label>
+                <ion-radio slot="start" value=true></ion-radio>
+            </ion-item>
+
+            <ion-item>
+                <ion-label color="primary">No</ion-label>
+                <ion-radio slot="start" value=false></ion-radio>
+            </ion-item>
+
+        </ion-radio-group>
+    </ion-item-group>
+
+    <ion-item-group>
+        <ion-item-divider>
+            <ion-label color="primary">If yes, do you have a Occupational DL?</ion-label>
+
+        </ion-item-divider>
+        <!-- <ion-label position="floating">If yes, do you have a Occupational DL?</ion-label> -->
+        <ion-radio-group [(ngModel)]="this.occupationalDL">
+            <ion-item>
+                <ion-label color="primary">Yes</ion-label>
+                <ion-radio slot="start" value=true></ion-radio>
+            </ion-item>
+
+            <ion-item>
+                <ion-label color="primary">No</ion-label>
+                <ion-radio slot="start" value=false></ion-radio>
+            </ion-item>
+
+        </ion-radio-group>
+    </ion-item-group>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <ion-button expand="full" (click)="addprofileDS()">Save</ion-button>
+
+    <ion-text *ngIf="this.ver">
+        {{this.profileDS |json}}
+    </ion-text>
+
+
+
+
+
+</ion-content>

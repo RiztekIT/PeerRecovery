@@ -132,7 +132,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-app>\n    <ion-split-pane contentId=\"main-content\">\n        <ion-menu contentId=\"main-content\" type=\"reveal\">\n            <ion-header class=\"ion-no-border\">\n                <img [src]=\"this.authSVC.usersign.photoURL\">\n                <!-- <img src=\"../assets/imgs/user_profile_dp.svg\"> -->\n                <div class=\"content margin-left-17\">\n                    <h2>{{this.authSVC.usersign.displayName}}</h2>\n                    <h3>{{this.authSVC.usersign.email}}</h3>\n                    <!-- <p>+44 903 397 6854</p> -->\n                </div>\n            </ion-header>\n            <ion-content>\n                <ion-list class=\"margin-top-21\" id=\"inbox-list\">\n                    <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let m of this.authSVC.menu; let i = index\">\n                        <!-- <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let p of appPages; let i = index\"> -->\n                        <ion-item (click)=\"selectedIndex = i\" routerDirection=\"forward\" [routerLink]=\"[m.url]\" lines=\"none\" detail=\"false\">\n                            <div class=\"activeBox\" [class.selected]=\"selectedIndex == i\">\n                                <h2>\n                                    {{ m.titulo }}\n                                </h2>\n                            </div>\n                        </ion-item>\n\n                    </ion-menu-toggle>\n                    <ion-item>\n                        <div (click)=\"logout()\" class=\"activeBox\">\n                            <h2>\n                                Logout\n                            </h2>\n                        </div>\n\n                    </ion-item>\n                </ion-list>\n            </ion-content>\n        </ion-menu>\n        <ion-router-outlet id=\"main-content\" animated=\"false\">\n            <!--     <ion-button (click)=\"goToProfile()\" class=\"edit-profile-btn\">\n                <ion-icon src=\"../assets/imgs/appicons/edit-icon.svg\"></ion-icon>\n            </ion-button> -->\n        </ion-router-outlet>\n    </ion-split-pane>\n</ion-app>";
+    __webpack_exports__["default"] = "<ion-app>\n    <ion-split-pane contentId=\"main-content\">\n        <ion-menu contentId=\"main-content\" type=\"reveal\">\n            <ion-header class=\"ion-no-border\">\n                <img [src]=\"this.authSVC.usersign.photoURL\">\n                <!-- <img src=\"../assets/imgs/user_profile_dp.svg\"> -->\n                <div class=\"content margin-left-17\">\n                    <h2>{{this.authSVC.usersign.displayName}}</h2>\n                    <h3>{{this.authSVC.usersign.email}}</h3>\n                    <!-- <p>+44 903 397 6854</p> -->\n                </div>\n            </ion-header>\n            <ion-content>\n                <ion-list class=\"margin-top-21\" id=\"inbox-list\">\n                    <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let m of this.authSVC.menu; let i = index\">\n                        <!-- <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let p of appPages; let i = index\"> -->\n                        <ion-item (click)=\"selectedIndex = i\" routerDirection=\"forward\" [routerLink]=\"[m.url]\" lines=\"none\" detail=\"false\">\n                            <!--     <i class=\"material-icons\">{{m.icono}}</i> -->\n                            <div class=\"activeBox\" [class.selected]=\"selectedIndex == i\">\n                                <h2>\n                                    {{ m.titulo }}\n                                </h2>\n                            </div>\n                        </ion-item>\n\n                    </ion-menu-toggle>\n                    <!--    <ion-item>\n                        <div (click)=\"logout()\" class=\"activeBox\">\n                            <h2>\n                                Notes\n                            </h2>\n                        </div>\n\n                    </ion-item> -->\n                    <ion-item>\n                        <div (click)=\"logout()\" class=\"activeBox\">\n                            <h2>\n                                Logout\n                            </h2>\n                        </div>\n\n                    </ion-item>\n                </ion-list>\n            </ion-content>\n        </ion-menu>\n        <ion-router-outlet id=\"main-content\" animated=\"false\">\n            <!--     <ion-button (click)=\"goToProfile()\" class=\"edit-profile-btn\">\n                <ion-icon src=\"../assets/imgs/appicons/edit-icon.svg\"></ion-icon>\n            </ion-button> -->\n        </ion-router-outlet>\n    </ion-split-pane>\n</ion-app>";
     /***/
   },
 
@@ -1174,6 +1174,50 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           return m.PanicsPageModule;
         });
       }
+    }, {
+      path: 'notes',
+      loadChildren: function loadChildren() {
+        return __webpack_require__.e(
+        /*! import() | pages-notes-notes-module */
+        "pages-notes-notes-module").then(__webpack_require__.bind(null,
+        /*! ./pages/notes/notes.module */
+        "./src/app/pages/notes/notes.module.ts")).then(function (m) {
+          return m.NotesPageModule;
+        });
+      }
+    }, {
+      path: 'addeditnotes',
+      loadChildren: function loadChildren() {
+        return __webpack_require__.e(
+        /*! import() | pages-notes-addeditnotes-addeditnotes-module */
+        "pages-notes-addeditnotes-addeditnotes-module").then(__webpack_require__.bind(null,
+        /*! ./pages/notes/addeditnotes/addeditnotes.module */
+        "./src/app/pages/notes/addeditnotes/addeditnotes.module.ts")).then(function (m) {
+          return m.AddeditnotesPageModule;
+        });
+      }
+    }, {
+      path: 'emotions',
+      loadChildren: function loadChildren() {
+        return __webpack_require__.e(
+        /*! import() | pages-emotions-emotions-module */
+        "common").then(__webpack_require__.bind(null,
+        /*! ./pages/emotions/emotions.module */
+        "./src/app/pages/emotions/emotions.module.ts")).then(function (m) {
+          return m.EmotionsPageModule;
+        });
+      }
+    }, {
+      path: 'profiledatasheet',
+      loadChildren: function loadChildren() {
+        return __webpack_require__.e(
+        /*! import() | pages-profiledatasheet-profiledatasheet-module */
+        "pages-profiledatasheet-profiledatasheet-module").then(__webpack_require__.bind(null,
+        /*! ./pages/profiledatasheet/profiledatasheet.module */
+        "./src/app/pages/profiledatasheet/profiledatasheet.module.ts")).then(function (m) {
+          return m.ProfiledatasheetPageModule;
+        });
+      }
     }];
 
     var AppRoutingModule = function AppRoutingModule() {
@@ -1347,7 +1391,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.user = JSON.parse(sessionStorage.getItem('user'));
           console.log(this.user);
           this.authSVC.getMenu(this.user).orderByChild('order').on('value', function (resp) {
-            console.log(resp); //const menu = snapshotToArray(resp);
+            console.log(resp);
+            var notemenu = {
+              titulo: "Notes",
+              url: "/notes",
+              icono: "mdi mdi-note",
+              order: 10,
+              key: 'Notes'
+            }; //const menu = snapshotToArray(resp);
 
             menu = [];
             resp.forEach(function (childSnapshot) {
@@ -1358,8 +1409,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 menu.push(item);
               }
             });
+            menu.push(notemenu);
             console.log(menu, 'menu');
             _this2.authSVC.menu = menu;
+            /* this.authSVC.menu.push(notemenu) */
           });
         }
       }, {
@@ -1685,7 +1738,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var _angular_common_http__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(
     /*! @angular/common/http */
-    "./node_modules/@angular/common/fesm2015/http.js"); //import { VideoCapturePlus, VideoCapturePlusOptions, MediaFile } from '@ionic-native/video-capture-plus/ngx';
+    "./node_modules/@angular/common/fesm2015/http.js");
+    /* harmony import */
+
+
+    var _ionic_native_in_app_browser_ngx__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(
+    /*! @ionic-native/in-app-browser/ngx */
+    "./node_modules/@ionic-native/in-app-browser/ngx/index.js"); //import { VideoCapturePlus, VideoCapturePlusOptions, MediaFile } from '@ionic-native/video-capture-plus/ngx';
 
     /* import { BackgroundMode } from '@ionic-native/background-mode/ngx'; */
 
@@ -1723,7 +1782,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       /* VideoCapturePlus, */
       _ionic_native_google_plus_ngx__WEBPACK_IMPORTED_MODULE_18__["GooglePlus"], _ionic_native_zoom_ngx__WEBPACK_IMPORTED_MODULE_19__["Zoom"], _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_20__["HTTP"], _ionic_native_background_geolocation_ngx__WEBPACK_IMPORTED_MODULE_21__["BackgroundGeolocation"],
       /* BackgroundMode, */
-      _ionic_native_foreground_service_ngx__WEBPACK_IMPORTED_MODULE_22__["ForegroundService"], _ionic_native_background_mode_ngx__WEBPACK_IMPORTED_MODULE_23__["BackgroundMode"], _ionic_native_fcm_ngx__WEBPACK_IMPORTED_MODULE_25__["FCM"], _angular_fire_database__WEBPACK_IMPORTED_MODULE_27__["AngularFireDatabase"], _ionic_native_android_permissions_ngx__WEBPACK_IMPORTED_MODULE_29__["AndroidPermissions"], {
+      _ionic_native_foreground_service_ngx__WEBPACK_IMPORTED_MODULE_22__["ForegroundService"], _ionic_native_background_mode_ngx__WEBPACK_IMPORTED_MODULE_23__["BackgroundMode"], _ionic_native_fcm_ngx__WEBPACK_IMPORTED_MODULE_25__["FCM"], _angular_fire_database__WEBPACK_IMPORTED_MODULE_27__["AngularFireDatabase"], _ionic_native_android_permissions_ngx__WEBPACK_IMPORTED_MODULE_29__["AndroidPermissions"], _ionic_native_in_app_browser_ngx__WEBPACK_IMPORTED_MODULE_31__["InAppBrowser"], {
         provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"],
         useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"]
       }],
@@ -2468,15 +2527,63 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
     /*! @ionic/angular */
     "./node_modules/@ionic/angular/fesm2015/ionic-angular.js");
+    /* harmony import */
 
-    var UtilService = function UtilService(navCtrl, menuCtrl, modalCtrl, popoverCtrl) {
-      _classCallCheck(this, UtilService);
 
-      this.navCtrl = navCtrl;
-      this.menuCtrl = menuCtrl;
-      this.modalCtrl = modalCtrl;
-      this.popoverCtrl = popoverCtrl;
-    };
+    var firebase__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! firebase */
+    "./node_modules/firebase/dist/index.esm.js");
+
+    var UtilService = /*#__PURE__*/function () {
+      function UtilService(navCtrl, menuCtrl, modalCtrl, popoverCtrl) {
+        _classCallCheck(this, UtilService);
+
+        this.navCtrl = navCtrl;
+        this.menuCtrl = menuCtrl;
+        this.modalCtrl = modalCtrl;
+        this.popoverCtrl = popoverCtrl;
+      }
+
+      _createClass(UtilService, [{
+        key: "getNotes",
+        value: function getNotes(user) {
+          return firebase__WEBPACK_IMPORTED_MODULE_3__["default"].database().ref('Notes/Users/' + user);
+        }
+      }, {
+        key: "addNote",
+        value: function addNote(note) {
+          console.log(note);
+          var key = firebase__WEBPACK_IMPORTED_MODULE_3__["default"].database().ref('Notes/Notes').push(note).key;
+          firebase__WEBPACK_IMPORTED_MODULE_3__["default"].database().ref('Notes/Users/' + note.user + '/' + key).set(note);
+        }
+      }, {
+        key: "editNote",
+        value: function editNote(note) {
+          //console.log(app);
+          firebase__WEBPACK_IMPORTED_MODULE_3__["default"].database().ref('Notes/Notes/' + note.appkey + '/').set(note);
+          firebase__WEBPACK_IMPORTED_MODULE_3__["default"].database().ref('Notes/Users/' + note.user + '/' + note.appkey).set(note);
+        }
+      }, {
+        key: "deleteNote",
+        value: function deleteNote(note) {
+          firebase__WEBPACK_IMPORTED_MODULE_3__["default"].database().ref('Notes/Notes/' + note.appkey + '/').remove();
+          firebase__WEBPACK_IMPORTED_MODULE_3__["default"].database().ref('Notes/Users/' + note.user + '/' + note.appkey).remove();
+        }
+      }, {
+        key: "setEmotion",
+        value: function setEmotion(emotion) {
+          //let key = firebase.database().ref('Emotion/Emotion').push(emotion).key
+          firebase__WEBPACK_IMPORTED_MODULE_3__["default"].database().ref('Emotion/Users/' + emotion.user).set(emotion);
+        }
+      }, {
+        key: "getEmotion",
+        value: function getEmotion(user) {
+          return firebase__WEBPACK_IMPORTED_MODULE_3__["default"].database().ref('Emotion/Users/' + user);
+        }
+      }]);
+
+      return UtilService;
+    }();
 
     UtilService.ctorParameters = function () {
       return [{

@@ -17,8 +17,11 @@ export class RewardsPage implements OnInit {
    rewards: any[] = [];
    all = true;
 
+   advancetotal;
+
   ngOnInit() {
     this.user = JSON.parse(sessionStorage.getItem('user'));
+    this.advancetotal = 0;
     this.getRewards(this.user)
   }
   
@@ -32,11 +35,15 @@ export class RewardsPage implements OnInit {
     
     this.rewardsSVC.getRewards(user.uid).on('value', resp=>{
       this.rewards = []
+      this.advancetotal = 0;
+      let c = 0;
 
       resp.forEach((child: any) =>{
         let item = child.val()
         item.rewardkey = child.key;
         item.advance = this.getPorcent(item);
+        this.advancetotal = +this.advancetotal + +item.advance
+        c = c + 1;
         if (this.all){
           this.rewards.push(item)
           
@@ -48,7 +55,7 @@ export class RewardsPage implements OnInit {
           }
         }
       })
-
+      this.advancetotal = (this.advancetotal / c) * 100
 
       console.log(this.rewards);
 

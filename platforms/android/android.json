@@ -21,7 +21,7 @@
         "parents": {
           "/manifest/application": [
             {
-              "xml": "<application android:usesCleartextTraffic=\"true\" />",
+              "xml": "<application android:networkSecurityConfig=\"@xml/network_security_config\" />",
               "count": 2,
               "mode": "merge",
               "id": "config.xml",
@@ -35,7 +35,7 @@
               }
             },
             {
-              "xml": "<application android:networkSecurityConfig=\"@xml/network_security_config\" />",
+              "xml": "<application android:usesCleartextTraffic=\"true\" />",
               "count": 1,
               "mode": "merge",
               "id": "config.xml",
@@ -196,6 +196,10 @@
             },
             {
               "xml": "<feature name=\"PluginStreetViewPanorama\"><param name=\"android-package\" value=\"plugin.google.maps.PluginStreetViewPanorama\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"InAppBrowser\"><param name=\"android-package\" value=\"org.apache.cordova.inappbrowser.InAppBrowser\" /></feature>",
               "count": 1
             }
           ]
@@ -686,6 +690,9 @@
       "PACKAGE_NAME": "com.peerrecovery.peer"
     },
     "cordova-plugin-googlemaps": {
+      "PACKAGE_NAME": "com.peerrecovery.peer"
+    },
+    "cordova-plugin-inappbrowser": {
       "PACKAGE_NAME": "com.peerrecovery.peer"
     }
   },
@@ -1347,6 +1354,14 @@
       "file": "plugins/cordova-plugin-googlemaps/www/js_CordovaGoogleMaps-for-android_ios.js",
       "pluginId": "cordova-plugin-googlemaps",
       "runs": true
+    },
+    {
+      "id": "cordova-plugin-inappbrowser.inappbrowser",
+      "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+      "pluginId": "cordova-plugin-inappbrowser",
+      "clobbers": [
+        "cordova.InAppBrowser.open"
+      ]
     }
   ],
   "plugin_metadata": {
@@ -1374,6 +1389,7 @@
     "cordova-opentok-android-permissions": "1.0.0",
     "cordova-plugin-android-permissions": "1.1.2",
     "cordova-androidx-build": "1.0.4",
-    "cordova-plugin-googlemaps": "2.8.0-20200709-2008"
+    "cordova-plugin-googlemaps": "2.8.0-20200709-2008",
+    "cordova-plugin-inappbrowser": "5.0.0"
   }
 }

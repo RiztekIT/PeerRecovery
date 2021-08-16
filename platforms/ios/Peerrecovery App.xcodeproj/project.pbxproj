@@ -164,6 +164,10 @@
 		848413501E394A079842CEB7 /* pgm_Localizable_pl.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B1F5775E9154074AD6E2490 /* pgm_Localizable_pl.json */; };
 		DF11CE92103F4837815AA204 /* pgm_Localizable_da.json in Resources */ = {isa = PBXBuildFile; fileRef = FC7265A17C1F4F8E8D308583 /* pgm_Localizable_da.json */; };
 		9261353D571248F0894F5BB4 /* pgm_Localizable_vi.json in Resources */ = {isa = PBXBuildFile; fileRef = A4825870AA474D5DA9638E43 /* pgm_Localizable_vi.json */; };
+		9DD9B66A2A454518B7B0BEEC /* CDVInAppBrowserOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B1936CDE2946A2BB8B3688 /* CDVInAppBrowserOptions.m */; };
+		DADA91AB050647F98BDC9910 /* CDVInAppBrowserNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA72D0898B2E4EFFB55F0AD3 /* CDVInAppBrowserNavigationController.m */; };
+		45B9DFCF62CB439DA5EEB51C /* CDVWKInAppBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 03D0CB0856E246839A394FAC /* CDVWKInAppBrowser.m */; };
+		3BF5832F7B7A4EC2B24BCBC8 /* CDVWKInAppBrowserUIDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 10F37A79FB3741A28AE9A38D /* CDVWKInAppBrowserUIDelegate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -491,6 +495,14 @@
 		2B1F5775E9154074AD6E2490 /* pgm_Localizable_pl.json */ = {isa = PBXFileReference; name = "pgm_Localizable_pl.json"; path = "pgm_Localizable_pl.json"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		FC7265A17C1F4F8E8D308583 /* pgm_Localizable_da.json */ = {isa = PBXFileReference; name = "pgm_Localizable_da.json"; path = "pgm_Localizable_da.json"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		A4825870AA474D5DA9638E43 /* pgm_Localizable_vi.json */ = {isa = PBXFileReference; name = "pgm_Localizable_vi.json"; path = "pgm_Localizable_vi.json"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		40B1936CDE2946A2BB8B3688 /* CDVInAppBrowserOptions.m */ = {isa = PBXFileReference; name = "CDVInAppBrowserOptions.m"; path = "cordova-plugin-inappbrowser/CDVInAppBrowserOptions.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		DA72D0898B2E4EFFB55F0AD3 /* CDVInAppBrowserNavigationController.m */ = {isa = PBXFileReference; name = "CDVInAppBrowserNavigationController.m"; path = "cordova-plugin-inappbrowser/CDVInAppBrowserNavigationController.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		03D0CB0856E246839A394FAC /* CDVWKInAppBrowser.m */ = {isa = PBXFileReference; name = "CDVWKInAppBrowser.m"; path = "cordova-plugin-inappbrowser/CDVWKInAppBrowser.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		10F37A79FB3741A28AE9A38D /* CDVWKInAppBrowserUIDelegate.m */ = {isa = PBXFileReference; name = "CDVWKInAppBrowserUIDelegate.m"; path = "cordova-plugin-inappbrowser/CDVWKInAppBrowserUIDelegate.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		0652A38D114B4E718B306A62 /* CDVInAppBrowserOptions.h */ = {isa = PBXFileReference; name = "CDVInAppBrowserOptions.h"; path = "cordova-plugin-inappbrowser/CDVInAppBrowserOptions.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		60412D84CBFF4DC09C5173C7 /* CDVInAppBrowserNavigationController.h */ = {isa = PBXFileReference; name = "CDVInAppBrowserNavigationController.h"; path = "cordova-plugin-inappbrowser/CDVInAppBrowserNavigationController.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		144D41D5F5DB4E82B0218796 /* CDVWKInAppBrowser.h */ = {isa = PBXFileReference; name = "CDVWKInAppBrowser.h"; path = "cordova-plugin-inappbrowser/CDVWKInAppBrowser.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		378BC4E71E104EC49E0DFCD6 /* CDVWKInAppBrowserUIDelegate.h */ = {isa = PBXFileReference; name = "CDVWKInAppBrowserUIDelegate.h"; path = "cordova-plugin-inappbrowser/CDVWKInAppBrowserUIDelegate.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -888,6 +900,14 @@
 				B5DD2C79C1EA4EAAAD673BD2 /* PluginViewController.h */,
 				6CC0C3093FC34FFB8F1529F5 /* IPluginView.h */,
 				3A05D86A21FC4F2597F808DA /* IPluginProtocol.h */,
+				40B1936CDE2946A2BB8B3688 /* CDVInAppBrowserOptions.m */,
+				DA72D0898B2E4EFFB55F0AD3 /* CDVInAppBrowserNavigationController.m */,
+				03D0CB0856E246839A394FAC /* CDVWKInAppBrowser.m */,
+				10F37A79FB3741A28AE9A38D /* CDVWKInAppBrowserUIDelegate.m */,
+				0652A38D114B4E718B306A62 /* CDVInAppBrowserOptions.h */,
+				60412D84CBFF4DC09C5173C7 /* CDVInAppBrowserNavigationController.h */,
+				144D41D5F5DB4E82B0218796 /* CDVWKInAppBrowser.h */,
+				378BC4E71E104EC49E0DFCD6 /* CDVWKInAppBrowserUIDelegate.h */,
 			);
 			name = Plugins;
 			path = "Peerrecovery App/Plugins";
@@ -1207,6 +1227,10 @@
 				BF800509DEA74FA1BEBEE62A /* PluginStreetViewPanorama.m in Sources */,
 				DF2D206644B14C4CA32223E1 /* PluginStreetViewPanoramaController.m in Sources */,
 				DCADE26638004128B9D1A48C /* PluginViewController.m in Sources */,
+				9DD9B66A2A454518B7B0BEEC /* CDVInAppBrowserOptions.m in Sources */,
+				DADA91AB050647F98BDC9910 /* CDVInAppBrowserNavigationController.m in Sources */,
+				45B9DFCF62CB439DA5EEB51C /* CDVWKInAppBrowser.m in Sources */,
+				3BF5832F7B7A4EC2B24BCBC8 /* CDVWKInAppBrowserUIDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

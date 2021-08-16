@@ -15,6 +15,7 @@
                     <ion-menu-toggle auto-hide="false" *ngFor="let m of this.authSVC.menu; let i = index">
                         <!-- <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index"> -->
                         <ion-item (click)="selectedIndex = i" routerDirection="forward" [routerLink]="[m.url]" lines="none" detail="false">
+                            <!--     <i class="material-icons">{{m.icono}}</i> -->
                             <div class="activeBox" [class.selected]="selectedIndex == i">
                                 <h2>
                                     {{ m.titulo }}
@@ -23,6 +24,14 @@
                         </ion-item>
 
                     </ion-menu-toggle>
+                    <!--    <ion-item>
+                        <div (click)="logout()" class="activeBox">
+                            <h2>
+                                Notes
+                            </h2>
+                        </div>
+
+                    </ion-item> -->
                     <ion-item>
                         <div (click)="logout()" class="activeBox">
                             <h2>

@@ -8,6 +8,9 @@ import { CalendarPagePageRoutingModule } from './calendar-routing.module';
 
 import { CalendarPage } from './calendar.page';
 import { PipesModule } from 'src/app/pipes/pipes.module';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+//import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+
 
 @NgModule({
   imports: [
@@ -17,6 +20,7 @@ import { PipesModule } from 'src/app/pipes/pipes.module';
     IonicModule,
     CalendarPagePageRoutingModule
   ],
-  declarations: [CalendarPage]
+  declarations: [CalendarPage],
+ 
 })
 export class CalendarPageModule {}

@@ -115,12 +115,23 @@ export class AppComponent implements OnInit {
 
   getMenu(){
     let menu
+
+ 
+      
+    
    
     
     this.user = JSON.parse(sessionStorage.getItem('user'));
     console.log(this.user);
     this.authSVC.getMenu(this.user).orderByChild('order').on('value', (resp:any)=>{
       console.log(resp);
+      let notemenu= {
+        titulo: "Notes",
+        url: "/notes",
+        icono: "mdi mdi-note",
+        order: 10,
+        key: 'Notes'
+      }
       //const menu = snapshotToArray(resp);
       menu = []
       
@@ -132,8 +143,13 @@ export class AppComponent implements OnInit {
           menu.push(item);
         }
     });
-      console.log(menu,'menu');
+    menu.push(notemenu)  
+    console.log(menu,'menu');
+
+      
       this.authSVC.menu = menu;
+     
+      /* this.authSVC.menu.push(notemenu) */
 
     })
   }

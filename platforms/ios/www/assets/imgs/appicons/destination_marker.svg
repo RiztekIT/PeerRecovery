@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="18.758" height="25.01" viewBox="0 0 18.758 25.01">
+  <g id="Group_6427" data-name="Group 6427" transform="translate(-218.525 -713.389)">
+    <g id="Group_6104" data-name="Group 6104" transform="translate(218.525 713.389)">
+      <path id="Icon_awesome-map-marker" data-name="Icon awesome-map-marker" d="M8.415,24.506C1.317,14.216,0,13.16,0,9.379a9.379,9.379,0,1,1,18.758,0c0,3.782-1.317,4.838-8.415,15.127a1.173,1.173,0,0,1-1.928,0Z" transform="translate(0)" fill="#1f8ced"/>
+      <g id="noun_Man_347813" transform="translate(6.385 5.161)">
+        <g id="Group_6103" data-name="Group 6103" transform="translate(0 0)">
+          <ellipse id="Ellipse_37" data-name="Ellipse 37" cx="1.182" cy="1.182" rx="1.182" ry="1.182" transform="translate(1.534 0)" fill="#fff"/>
+          <path id="Path_1572" data-name="Path 1572" d="M36.123,34.3c-.042-.263-.411-2.582-.5-2.971-.215-.966-1.071-.966-1.531-.966h-1.36c-.46,0-1.317,0-1.531.966-.087.389-.456,2.708-.5,2.971a.514.514,0,0,0,1.015.161c.1-.61.338-2.109.446-2.7v7.184a.514.514,0,1,0,1.027,0v-3.6h.442v3.6a.514.514,0,1,0,1.027,0V31.758c.107.593.349,2.092.446,2.7a.514.514,0,0,0,1.015-.161Z" transform="translate(-30.698 -27.82)" fill="#fff"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

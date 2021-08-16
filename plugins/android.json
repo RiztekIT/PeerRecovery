@@ -141,6 +141,9 @@
     },
     "cordova-plugin-googlemaps": {
       "PACKAGE_NAME": "com.peerrecovery.peer"
+    },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "com.peerrecovery.peer"
     }
   },
   "dependent_plugins": {

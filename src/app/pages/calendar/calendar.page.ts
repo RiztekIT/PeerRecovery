@@ -8,6 +8,11 @@ import { AppointmentService } from "src/app/services/appointment.service";
 import firebase from 'firebase';
 import { Zoom } from "@ionic-native/zoom/ngx";
 import { DomSanitizer } from "@angular/platform-browser";
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import {InAppBrowserOptions } from '@ionic-native/in-app-browser/ngx';
+
+
+
 
 @Component({
   selector: "app-calendar",
@@ -15,6 +20,24 @@ import { DomSanitizer } from "@angular/platform-browser";
   styleUrls: ["./calendar.page.scss"],
 })
 export class CalendarPage implements OnInit {
+
+  options : InAppBrowserOptions = {
+    location : 'yes',//Or 'no' 
+    hidden : 'no', //Or  'yes'
+    clearcache : 'yes',
+    clearsessioncache : 'yes',
+    zoom : 'yes',//Android only ,shows browser zoom controls 
+    hardwareback : 'yes',
+    mediaPlaybackRequiresUserAction : 'no',
+    shouldPauseOnSuspend : 'no', //Android only 
+    closebuttoncaption : 'Close', //iOS only
+    disallowoverscroll : 'no', //iOS only 
+    toolbar : 'yes', //iOS only 
+    enableViewportScale : 'no', //iOS only 
+    allowInlineMediaPlayback : 'no',//iOS only 
+    presentationstyle : 'pagesheet',//iOS only 
+    fullscreen : 'yes',//Windows only    
+  };
   
   appointmentsDBRef:any;
   Appointments: any[] = [];
@@ -26,7 +49,10 @@ export class CalendarPage implements OnInit {
               private firebaseAuthService: AuthService,
               public appointmentService: AppointmentService,
               private zoomService: Zoom,
-              private sanitizer:DomSanitizer
+              private sanitizer:DomSanitizer,
+              //private iab: InAppBrowser
+              private iab: InAppBrowser
+              
               ) {
 
 
@@ -293,7 +319,18 @@ export class CalendarPage implements OnInit {
     //this.pdfSrc = this.sanitizer.sanitize(SecurityContext.RESOURCE_URL, this.sanitizer.bypassSecurityTrustResourceUrl(url));
 
 
-    window.open(url2,'_system')
+    //window.open(url2,'_system')
+   
+    
+    this.iab.create(item.link,'_system',this.options).show();
+    //this.iab.open(item.link,'_system')
+
+   
+    
+
+    
+    
+
 
     
 

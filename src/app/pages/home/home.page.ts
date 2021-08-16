@@ -21,6 +21,11 @@ import { BackgroundMode } from '@ionic-native/background-mode/ngx';
 import { FCM } from 'cordova-plugin-fcm-with-dependecy-updated/ionic';
 import { HttpClient } from "@angular/common/http";
 import { DomSanitizer } from "@angular/platform-browser";
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import {InAppBrowserOptions } from '@ionic-native/in-app-browser/ngx';
+
+//import { ModalPage } from '../modal/modal.page';
+import { EmotionsPage } from '../emotions/emotions.page';
 
 
 
@@ -42,6 +47,24 @@ interface point {
 
 export class HomePage implements OnInit {
 
+  options : InAppBrowserOptions = {
+    location : 'yes',//Or 'no' 
+    hidden : 'no', //Or  'yes'
+    clearcache : 'yes',
+    clearsessioncache : 'yes',
+    zoom : 'yes',//Android only ,shows browser zoom controls 
+    hardwareback : 'yes',
+    mediaPlaybackRequiresUserAction : 'no',
+    shouldPauseOnSuspend : 'no', //Android only 
+    closebuttoncaption : 'Close', //iOS only
+    disallowoverscroll : 'no', //iOS only 
+    toolbar : 'yes', //iOS only 
+    enableViewportScale : 'no', //iOS only 
+    allowInlineMediaPlayback : 'no',//iOS only 
+    presentationstyle : 'pagesheet',//iOS only 
+    fullscreen : 'yes',//Windows only    
+  };
+
 
 
 user;
@@ -49,6 +72,7 @@ user;
   Appointments: any[] = [];
   totalAppointments = 4;
   resp = ''
+  nowLocation;
 
   specialist = [
     {
@@ -105,7 +129,9 @@ user;
     public foregroundService: ForegroundService,
     public backgroundMode : BackgroundMode,
     public http2: HttpClient,
-    private sanitizer:DomSanitizer
+    private sanitizer:DomSanitizer,
+    private iab: InAppBrowser,
+    public modalController: ModalController
     
     ) {
 
@@ -134,6 +160,8 @@ locations;
 
   apps: any[] = [];
 
+  emotion;
+
   ngOnInit(
   ) {
     this.locatio = 'Chihuahua, Chihuahua'
@@ -142,7 +170,16 @@ locations;
     this.getLocation2(); */
     this.arr = []
     this.locations = []
+    this.emotion =  {
+      title:'Happy',
+      img:'happy.svg'
+    }
+    this.nowLocation = {
+      lat:'0',
+      lng:'0'
+    }
     this.initializeApp()
+    
   }
 
   ngOnDestroy(): void {
@@ -158,14 +195,14 @@ locations;
 
   startBackgroundGeolocation() {
     const config: BackgroundGeolocationConfig = {
-      desiredAccuracy: 10,
-      stationaryRadius: 30,
-      distanceFilter: 30,
+      desiredAccuracy: 1,
+      stationaryRadius: 10,
+      distanceFilter: 10,
       debug: false, //  enable this hear sounds for background-geolocation life-cycle.
-      stopOnTerminate: false, // enable this to clear background location settings when the app terminates
+      stopOnTerminate: true, // enable this to clear background location settings when the app terminates
       notificationTitle: "PeerRecovery Tracking",
-notificationText: "Tracking",
-interval: 60000,
+notificationText: "Tracking " + this.nowLocation.lat + ' - ' + this.nowLocation.lng ,
+interval: 20000,
 
     };
 
@@ -186,6 +223,8 @@ interval: 60000,
             this.arr = locationstr;
           }
           localStorage.setItem("location", JSON.stringify(this.arr));
+          this.nowLocation.lat = location.latitude
+          this.nowLocation.lng = location.longitude
 
           this.authSVC.updateLocation(location.latitude,location.longitude, this.authSVC.usersign)
 
@@ -609,6 +648,7 @@ this.locations = JSON.parse(localStorage.getItem("location"))
       this.getGPS()
       this.getMenu()
       this.getAppointments(); 
+      this.getEmotion()
       //FCM.getToken()
      FCM.getToken().then(token => {
         console.log(token,'token');
@@ -747,6 +787,13 @@ this.locations = JSON.parse(localStorage.getItem("location"))
       console.log(resp);
       //const menu = snapshotToArray(resp);
       menu = []
+      let notemenu= {
+        titulo: "Notes",
+        url: "/notes",
+        icono: "mdi mdi-note",
+        order: 10,
+        key: 'Notes'
+      }
       
       resp.forEach((childSnapshot: any) => {
         const item = childSnapshot.val();
@@ -757,6 +804,7 @@ this.locations = JSON.parse(localStorage.getItem("location"))
           menu.push(item);
         }
     });
+    menu.push(notemenu)
       console.log(menu,'menu');
       this.authSVC.menu = menu;
 
@@ -900,11 +948,55 @@ this.locations = JSON.parse(localStorage.getItem("location"))
         link.target = '_system'    
         link.click(); */
     
-        window.open(item.link,'_system')
+        this.iab.create(item.link,'_system',this.options).show();
     
       }
-      sanitize(url:string){
-        return this.sanitizer.bypassSecurityTrustUrl(url);
-    }
+
+
+      openNote(item){
+
+        let navigationExtras: NavigationExtras = {
+          queryParams: {
+            special: JSON.stringify(item)
+          }
+        };
+        this.router.navigate(['addeditnotes'], navigationExtras);
+        
+      }
+      
+      openProfileDataSheet(){
+        this.router.navigate(['profiledatasheet']);
+
+      }
+      
+      async openEmotions(){
+        //this.router.navigate(['emotions']);
+        const modal = await this.modalController.create({
+          component: EmotionsPage,
+          cssClass: 'my-custom-class'
+        });
+        return await modal.present();
+       
+
+      }
+
+
+  /*     newAppointmentPage(){
+        this.router.navigate(['appointment']);
+      }
+     */
+
+      getEmotion(){
+        this.emotion = ''
+        this.util.getEmotion(this.user.uid).on('value', resp=>{
+
+          
+            this.emotion = resp.val()
+
+          
+
+
+        })
+      }
 
 }

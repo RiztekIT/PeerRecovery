@@ -1150,6 +1150,20 @@ module.exports = [
         "id": "cordova-plugin-googlemaps.PluginEnvironment",
         "pluginId": "cordova-plugin-googlemaps",
         "runs": true
+    },
+    {
+        "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+        "id": "cordova-plugin-inappbrowser.inappbrowser",
+        "pluginId": "cordova-plugin-inappbrowser",
+        "clobbers": [
+            "cordova.InAppBrowser.open"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-inappbrowser/src/browser/InAppBrowserProxy.js",
+        "id": "cordova-plugin-inappbrowser.InAppBrowserProxy",
+        "pluginId": "cordova-plugin-inappbrowser",
+        "runs": true
     }
 ];
 module.exports.metadata = 
@@ -1180,7 +1194,8 @@ module.exports.metadata =
     "cordova-plugin-background-mode": "0.7.3",
     "cordova-opentok-android-permissions": "1.0.0",
     "cordova-plugin-android-permissions": "1.1.2",
-    "cordova-plugin-googlemaps": "2.8.0-20200709-2008"
+    "cordova-plugin-googlemaps": "2.8.0-20200709-2008",
+    "cordova-plugin-inappbrowser": "5.0.0"
 }
 // BOTTOM OF METADATA
 });
