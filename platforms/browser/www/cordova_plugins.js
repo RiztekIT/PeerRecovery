@@ -1164,6 +1164,43 @@ module.exports = [
         "id": "cordova-plugin-inappbrowser.InAppBrowserProxy",
         "pluginId": "cordova-plugin-inappbrowser",
         "runs": true
+    },
+    {
+        "file": "plugins/cordova-plugin-document-viewer/www/sitewaertsdocumentviewer.js",
+        "id": "cordova-plugin-document-viewer.SitewaertsDocumentViewer",
+        "pluginId": "cordova-plugin-document-viewer",
+        "clobbers": [
+            "cordova.plugins.SitewaertsDocumentViewer",
+            "SitewaertsDocumentViewer"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-file-opener2/www/plugins.FileOpener2.js",
+        "id": "cordova-plugin-file-opener2.FileOpener2",
+        "pluginId": "cordova-plugin-file-opener2",
+        "clobbers": [
+            "cordova.plugins.fileOpener2"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-file-opener2/www/browser/isChrome.js",
+        "id": "cordova-plugin-file-opener2.isChrome",
+        "pluginId": "cordova-plugin-file-opener2",
+        "runs": true
+    },
+    {
+        "file": "plugins/cordova-plugin-file-opener2/src/browser/FileSaver.min.js",
+        "id": "cordova-plugin-file-opener2.FileSaver",
+        "pluginId": "cordova-plugin-file-opener2",
+        "clobbers": [
+            "FileSaver"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-file-opener2/src/browser/FileOpener2.js",
+        "id": "cordova-plugin-file-opener2.FileOpener2Proxy",
+        "pluginId": "cordova-plugin-file-opener2",
+        "runs": true
     }
 ];
 module.exports.metadata = 
@@ -1195,7 +1232,9 @@ module.exports.metadata =
     "cordova-opentok-android-permissions": "1.0.0",
     "cordova-plugin-android-permissions": "1.1.2",
     "cordova-plugin-googlemaps": "2.8.0-20200709-2008",
-    "cordova-plugin-inappbrowser": "5.0.0"
+    "cordova-plugin-inappbrowser": "5.0.0",
+    "cordova-plugin-document-viewer": "1.0.0",
+    "cordova-plugin-file-opener2": "3.0.5"
 }
 // BOTTOM OF METADATA
 });

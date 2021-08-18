@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header class=\"ion-no-border\">\n    <ion-toolbar mode=\"md\">\n        <ion-buttons slot=\"start\">\n            <ion-back-button defaultHref=\"home\" icon=\"chevron-back-outline\" text=\"\" mode=\"md\"></ion-back-button>\n        </ion-buttons>\n        <ion-buttons slot=\"end\">\n            <ion-menu-button></ion-menu-button>\n        </ion-buttons>\n        <ion-title>Appointment</ion-title>\n    </ion-toolbar>\n</ion-header>\n\n\n<ion-content>\n    <div class=\"date_div\" style=\"margin: 10px 15px 15px 15px;background: #ffffff; border-radius: 5px;\">\n\n\n\n        <ion-row>\n            <ion-col style=\"padding-top: 0px;\">\n                <ion-item>\n                    <ion-label position=\"stacked\" class=\"stacked-lbl\">Title</ion-label>\n                    <ion-input [(ngModel)]=\"title\"></ion-input>\n                </ion-item>\n            </ion-col>\n        </ion-row>\n\n        <ion-row>\n            <ion-col style=\"padding-top: 0px;\">\n                <ion-item>\n                    <ion-label position=\"stacked\" class=\"stacked-lbl\">Description</ion-label>\n                    <ion-textarea [(ngModel)]=\"description\"></ion-textarea>\n                </ion-item>\n            </ion-col>\n        </ion-row>\n\n\n        <ion-row>\n            <ion-col class=\"first_Col\" style=\"background-color: white;\">\n                <h3 class=\"date_lbl\">Date</h3>\n                <ion-datetime displayFormat=\"MMM DD YYYY\" placeholder=\"Nov 01 2019\" [(ngModel)]=\"date\"></ion-datetime>\n            </ion-col>\n            <ion-col style=\"background-color: white;\">\n                <h3 class=\"date_lbl\">Time</h3>\n                <ion-datetime displayFormat=\"hh:mm a\" placeholder=\"10:00 am\" [(ngModel)]=\"date\"></ion-datetime>\n            </ion-col>\n            <!--<ion-col>\n                <h3 class=\"date_lbl\">End Date</h3>\n                <ion-datetime id=\"dynamicDisabled\" displayFormat=\"DD MMM YYYY\" placeholder=\"30 Nov 2019\"></ion-datetime>\n                <ion-datetime id=\"dynamicDisabled\" displayFormat=\"hh:mm a\" placeholder=\"10:00am\" class=\"time_l\"></ion-datetime>\n            </ion-col>-->\n        </ion-row>\n\n\n        <ion-row>\n            <ion-col>\n            </ion-col>\n            <ion-col>\n                <ion-button *ngIf=\"!this.edit\" expand=\"block\" class=\"plan-btn margin-top-30\" (click)=\"addappintment()\">\n                    Save\n                </ion-button>\n                <ion-button *ngIf=\"this.edit\" expand=\"block\" class=\"plan-btn margin-top-30\" (click)=\"editappintment()\">\n                    Edit\n                </ion-button>\n            </ion-col>\n            <ion-col>\n            </ion-col>\n        </ion-row>\n\n    </div>\n</ion-content>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header class=\"ion-no-border\">\n    <ion-toolbar mode=\"md\">\n        <ion-buttons slot=\"start\">\n            <ion-back-button defaultHref=\"home\" icon=\"chevron-back-outline\" text=\"\" mode=\"md\"></ion-back-button>\n        </ion-buttons>\n        <ion-buttons slot=\"end\">\n            <ion-menu-button></ion-menu-button>\n        </ion-buttons>\n        <ion-title>Appointment</ion-title>\n    </ion-toolbar>\n</ion-header>\n\n\n<ion-content>\n    <div class=\"date_div\" style=\"margin: 10px 15px 15px 15px;background: #ffffff; border-radius: 5px;\">\n\n\n\n        <ion-row>\n            <ion-col style=\"padding-top: 0px;\">\n                <ion-item>\n                    <ion-label position=\"stacked\" class=\"stacked-lbl\">Title</ion-label>\n                    <ion-input [(ngModel)]=\"title\"></ion-input>\n                </ion-item>\n            </ion-col>\n        </ion-row>\n\n        <ion-row>\n            <ion-col style=\"padding-top: 0px;\">\n                <ion-item>\n                    <ion-label position=\"stacked\" class=\"stacked-lbl\">Description</ion-label>\n                    <ion-textarea [(ngModel)]=\"description\"></ion-textarea>\n                </ion-item>\n            </ion-col>\n        </ion-row>\n\n\n        <ion-row>\n            <ion-col class=\"first_Col\" style=\"background-color: white;\">\n                <h3 class=\"date_lbl\">Date</h3>\n                <ion-datetime displayFormat=\"MMM DD YYYY\" placeholder=\"Nov 01 2019\" [(ngModel)]=\"date\"></ion-datetime>\n            </ion-col>\n            <ion-col style=\"background-color: white;\">\n                <h3 class=\"date_lbl\">Time</h3>\n                <ion-datetime displayFormat=\"hh:mm a\" placeholder=\"10:00 am\" [(ngModel)]=\"date\"></ion-datetime>\n            </ion-col>\n            <!--<ion-col>\n                <h3 class=\"date_lbl\">End Date</h3>\n                <ion-datetime id=\"dynamicDisabled\" displayFormat=\"DD MMM YYYY\" placeholder=\"30 Nov 2019\"></ion-datetime>\n                <ion-datetime id=\"dynamicDisabled\" displayFormat=\"hh:mm a\" placeholder=\"10:00am\" class=\"time_l\"></ion-datetime>\n            </ion-col>-->\n        </ion-row>\n\n        <hr>\n\n        <ion-row *ngIf=\"this.edit && this.canedit\">\n            <ion-col style=\"padding-top: 0px;\">\n                <ion-label position=\"stacked\" class=\"stacked-lbl\">Done</ion-label>\n                <ion-checkbox [(ngModel)]=\"done\"> </ion-checkbox>\n            </ion-col>\n        </ion-row>\n\n        <hr>\n\n        <!--   <ion-row>\n            <ion-text>\n                {{this.data |json}}\n            </ion-text>\n        </ion-row> -->\n\n\n        <ion-row>\n            <ion-col>\n            </ion-col>\n            <ion-col>\n                <ion-button *ngIf=\"!this.edit\" expand=\"block\" class=\"plan-btn margin-top-30\" (click)=\"addappintment()\">\n                    Save\n                </ion-button>\n                <ion-button *ngIf=\"this.edit && this.canedit\" expand=\"block\" class=\"plan-btn margin-top-30\" (click)=\"editappintment()\">\n                    Edit\n                </ion-button>\n            </ion-col>\n            <ion-col>\n            </ion-col>\n        </ion-row>\n\n    </div>\n</ion-content>");
 
 /***/ }),
 
@@ -137,6 +137,7 @@ let AppointmentPage = class AppointmentPage {
         this.title = "";
         this.description = "";
         this.edit = false;
+        this.canedit = false;
         this.route.queryParams.subscribe(params => {
             if (params && params.special) {
                 this.data = JSON.parse(params.special);
@@ -176,6 +177,8 @@ let AppointmentPage = class AppointmentPage {
            console.log(fecha.toISOString().split('T')[1]);   */
         this.title = app.title;
         this.description = app.description;
+        this.canedit = app.useredit;
+        this.done = app.done;
         this.date = fecha.toString();
         console.log(this.date);
     }
@@ -186,7 +189,8 @@ let AppointmentPage = class AppointmentPage {
             description: this.description,
             date: this.date,
             time: this.time,
-            updated: firebase__WEBPACK_IMPORTED_MODULE_5__["default"].firestore.Timestamp.fromDate(new Date())
+            updated: firebase__WEBPACK_IMPORTED_MODULE_5__["default"].firestore.Timestamp.fromDate(new Date()),
+            useredit: true
         };
         if (this.appointmentID) { //Update
             let appointmentObj = Object.assign({}, Obj);
@@ -215,7 +219,8 @@ let AppointmentPage = class AppointmentPage {
             description: this.description,
             title: this.title,
             user: this.user.uid,
-            done: false
+            done: false,
+            useredit: true
         };
         console.log(appintment);
         this.appointmentService.addApp(appintment);
@@ -237,7 +242,8 @@ let AppointmentPage = class AppointmentPage {
             title: this.title,
             user: this.user.uid,
             done: false,
-            appkey: this.data.appkey
+            appkey: this.data.appkey,
+            useredit: true
         };
         console.log(appintment);
         this.appointmentService.editapp(appintment);

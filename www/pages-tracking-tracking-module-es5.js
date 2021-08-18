@@ -4374,17 +4374,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               }
             }); */
           this.trackingSVC.getPanic(uid).on('value', function (resp) {
-            resp.forEach(function (r) {
-              var item = r.val();
-              item.key = r.key;
+            if (resp.val()) {
+              resp.forEach(function (r) {
+                var item = r.val();
+                item.key = r.key;
 
-              if (item.active) {
-                _this8.panics.push(item);
-              }
-            });
-            console.log(_this8.panics);
+                if (item.active) {
+                  _this8.panics.push(item);
+                }
+              });
+              console.log(_this8.panics);
 
-            _this8.openPanicUser(_this8.panics);
+              _this8.openPanicUser(_this8.panics);
+            } else {
+              _this8.showToast('No Panics');
+            }
             /*   panics.forEach(pan=>{
                 let p : ILatLng = {
                   lat: pan.lat,

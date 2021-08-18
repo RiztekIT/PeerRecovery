@@ -21,6 +21,8 @@ export class AppointmentPage implements OnInit {
   time: string;
   user;
   edit = false;
+  canedit = false;
+  done
   
 
 
@@ -32,7 +34,8 @@ export class AppointmentPage implements OnInit {
     this.route.queryParams.subscribe(params => {
       if (params && params.special) {
         this.data = JSON.parse(params.special);
-        this.edit = true;        
+        this.edit = true; 
+               
         this.getAppointment(this.data)
       }else{
         this.date = new Date().toString()
@@ -81,10 +84,13 @@ export class AppointmentPage implements OnInit {
 
     this.title = app.title;
     this.description = app.description;
+    this.canedit = app.useredit
+    this.done = app.done;
 
 
     
     this.date = fecha.toString()
+
     
     console.log(this.date);
   
@@ -98,7 +104,8 @@ export class AppointmentPage implements OnInit {
       description: this.description,
       date: this.date,
       time: this.time,
-      updated: firebase.firestore.Timestamp.fromDate(new Date())
+      updated: firebase.firestore.Timestamp.fromDate(new Date()),
+      useredit: true
     }
 
     if(this.appointmentID){//Update
@@ -138,7 +145,8 @@ export class AppointmentPage implements OnInit {
       description: this.description,
       title: this.title,
       user: this.user.uid,
-      done: false
+      done: false,
+      useredit: true
     }
 
     console.log(appintment);
@@ -167,7 +175,8 @@ export class AppointmentPage implements OnInit {
       title: this.title,
       user: this.user.uid,
       done: false,
-      appkey: this.data.appkey
+      appkey: this.data.appkey,
+      useredit: true
     }
 
     console.log(appintment);

@@ -985,6 +985,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_android_permissions_ngx__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! @ionic-native/android-permissions/ngx */ "./node_modules/@ionic-native/android-permissions/ngx/index.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
 /* harmony import */ var _ionic_native_in_app_browser_ngx__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! @ionic-native/in-app-browser/ngx */ "./node_modules/@ionic-native/in-app-browser/ngx/index.js");
+/* harmony import */ var _ionic_native_document_viewer_ngx__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! @ionic-native/document-viewer/ngx */ "./node_modules/@ionic-native/document-viewer/ngx/index.js");
+/* harmony import */ var _ionic_native_file_opener_ngx__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! @ionic-native/file-opener/ngx */ "./node_modules/@ionic-native/file-opener/ngx/index.js");
+/* harmony import */ var _ionic_native_file_transfer_ngx__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! @ionic-native/file-transfer/ngx */ "./node_modules/@ionic-native/file-transfer/ngx/index.js");
+/* harmony import */ var _ionic_native_file_ngx__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! @ionic-native/file/ngx */ "./node_modules/@ionic-native/file/ngx/index.js");
 
 
 
@@ -1004,6 +1008,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 //import { VideoCapturePlus, VideoCapturePlusOptions, MediaFile } from '@ionic-native/video-capture-plus/ngx';
+
+
+
+
 
 
 
@@ -1075,6 +1083,11 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _angular_fire_database__WEBPACK_IMPORTED_MODULE_27__["AngularFireDatabase"],
             _ionic_native_android_permissions_ngx__WEBPACK_IMPORTED_MODULE_29__["AndroidPermissions"],
             _ionic_native_in_app_browser_ngx__WEBPACK_IMPORTED_MODULE_31__["InAppBrowser"],
+            _ionic_native_document_viewer_ngx__WEBPACK_IMPORTED_MODULE_32__["DocumentViewer"],
+            _ionic_native_file_opener_ngx__WEBPACK_IMPORTED_MODULE_33__["FileOpener"],
+            _ionic_native_file_transfer_ngx__WEBPACK_IMPORTED_MODULE_34__["FileTransfer"],
+            _ionic_native_file_transfer_ngx__WEBPACK_IMPORTED_MODULE_34__["FileTransferObject"],
+            _ionic_native_file_ngx__WEBPACK_IMPORTED_MODULE_35__["File"],
             { provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"], useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"] }
         ],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
@@ -1589,6 +1602,11 @@ let UtilService = class UtilService {
     }
     getEmotion(user) {
         return firebase__WEBPACK_IMPORTED_MODULE_3__["default"].database().ref('Emotion/Users/' + user);
+    }
+    getPDF() {
+        let storage = firebase__WEBPACK_IMPORTED_MODULE_3__["default"].storage();
+        let pathReference = storage.ref('Resources/resource-dir.pdf');
+        return pathReference;
     }
 };
 UtilService.ctorParameters = () => [

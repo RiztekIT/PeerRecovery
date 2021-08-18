@@ -689,6 +689,23 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "clobbers": [
         "cordova.InAppBrowser.open"
       ]
+    },
+    {
+      "id": "cordova-plugin-document-viewer.SitewaertsDocumentViewer",
+      "file": "plugins/cordova-plugin-document-viewer/www/sitewaertsdocumentviewer.js",
+      "pluginId": "cordova-plugin-document-viewer",
+      "clobbers": [
+        "cordova.plugins.SitewaertsDocumentViewer",
+        "SitewaertsDocumentViewer"
+      ]
+    },
+    {
+      "id": "cordova-plugin-file-opener2.FileOpener2",
+      "file": "plugins/cordova-plugin-file-opener2/www/plugins.FileOpener2.js",
+      "pluginId": "cordova-plugin-file-opener2",
+      "clobbers": [
+        "cordova.plugins.fileOpener2"
+      ]
     }
   ];
   module.exports.metadata = {
@@ -718,6 +735,8 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-android-permissions": "1.1.2",
     "com.googlemaps.ios": "3.9.0",
     "cordova-plugin-googlemaps": "2.8.0-20200709-2008",
-    "cordova-plugin-inappbrowser": "5.0.0"
+    "cordova-plugin-inappbrowser": "5.0.0",
+    "cordova-plugin-document-viewer": "1.0.0",
+    "cordova-plugin-file-opener2": "3.0.5"
   };
 });

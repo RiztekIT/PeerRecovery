@@ -30,6 +30,7 @@ import { EmotionsPage } from '../emotions/emotions.page';
 
 
 
+
 declare var google;
 declare var window;
 
@@ -131,7 +132,8 @@ user;
     public http2: HttpClient,
     private sanitizer:DomSanitizer,
     private iab: InAppBrowser,
-    public modalController: ModalController
+    public modalController: ModalController,
+    
     
     ) {
 
@@ -966,6 +968,11 @@ this.locations = JSON.parse(localStorage.getItem("location"))
       
       openProfileDataSheet(){
         this.router.navigate(['profiledatasheet']);
+        
+      }
+      
+      openResourcePDF(){
+        this.router.navigate(['resource-dir']);
 
       }
       

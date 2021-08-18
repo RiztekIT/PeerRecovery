@@ -1,12 +1,12 @@
 {
-    "ImageIO.framework": 3,
+    "ImageIO.framework": 4,
     "CoreLocation.framework": 6,
     "AVFoundation.framework": 2,
     "CoreImage.framework": 2,
     "OpenGLES.framework": 2,
     "GLKit.framework": 2,
     "CoreVideo.framework": 1,
-    "QuartzCore.framework": 2,
+    "QuartzCore.framework": 3,
     "AddressBook.framework": 1,
     "CoreText.framework": 2,
     "SafariServices.framework": 1,
@@ -21,5 +21,7 @@
     "CoreData.framework": 1,
     "CoreTelephony.framework": 1,
     "libc++.tbd": 1,
-    "UIKit.framework": 1
+    "UIKit.framework": 2,
+    "Foundation.framework": 1,
+    "MessageUI.framework": 1
 }

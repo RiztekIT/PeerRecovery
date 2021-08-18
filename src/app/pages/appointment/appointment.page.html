@@ -51,6 +51,23 @@
             </ion-col>-->
         </ion-row>
 
+        <hr>
+
+        <ion-row *ngIf="this.edit && this.canedit">
+            <ion-col style="padding-top: 0px;">
+                <ion-label position="stacked" class="stacked-lbl">Done</ion-label>
+                <ion-checkbox [(ngModel)]="done"> </ion-checkbox>
+            </ion-col>
+        </ion-row>
+
+        <hr>
+
+        <!--   <ion-row>
+            <ion-text>
+                {{this.data |json}}
+            </ion-text>
+        </ion-row> -->
+
 
         <ion-row>
             <ion-col>
@@ -59,7 +76,7 @@
                 <ion-button *ngIf="!this.edit" expand="block" class="plan-btn margin-top-30" (click)="addappintment()">
                     Save
                 </ion-button>
-                <ion-button *ngIf="this.edit" expand="block" class="plan-btn margin-top-30" (click)="editappintment()">
+                <ion-button *ngIf="this.edit && this.canedit" expand="block" class="plan-btn margin-top-30" (click)="editappintment()">
                     Edit
                 </ion-button>
             </ion-col>

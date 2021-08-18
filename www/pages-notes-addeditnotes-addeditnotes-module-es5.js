@@ -276,6 +276,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           this.title = note.title;
           this.note = note.note;
+          this.appkey = note.appkey;
           this.date = fecha.toString();
           console.log(this.date);
         }
@@ -300,7 +301,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             timestamp: firebase__WEBPACK_IMPORTED_MODULE_3__["default"].firestore.Timestamp.fromDate(new Date()),
             title: this.title,
             note: this.note,
-            user: this.user.uid
+            user: this.user.uid,
+            appkey: this.appkey
           };
           console.log(note);
           this.utilSVC.editNote(note);

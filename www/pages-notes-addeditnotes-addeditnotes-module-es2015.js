@@ -163,6 +163,7 @@ let AddeditnotesPage = class AddeditnotesPage {
            console.log(fecha.toISOString().split('T')[1]);   */
         this.title = note.title;
         this.note = note.note;
+        this.appkey = note.appkey;
         this.date = fecha.toString();
         console.log(this.date);
     }
@@ -184,6 +185,7 @@ let AddeditnotesPage = class AddeditnotesPage {
             title: this.title,
             note: this.note,
             user: this.user.uid,
+            appkey: this.appkey
         };
         console.log(note);
         this.utilSVC.editNote(note);

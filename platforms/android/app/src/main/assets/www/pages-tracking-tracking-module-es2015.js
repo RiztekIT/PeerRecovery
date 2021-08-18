@@ -2584,15 +2584,20 @@ let TrackingPage = class TrackingPage {
             }
           }); */
         this.trackingSVC.getPanic(uid).on('value', (resp) => {
-            resp.forEach(r => {
-                let item = r.val();
-                item.key = r.key;
-                if (item.active) {
-                    this.panics.push(item);
-                }
-            });
-            console.log(this.panics);
-            this.openPanicUser(this.panics);
+            if (resp.val()) {
+                resp.forEach(r => {
+                    let item = r.val();
+                    item.key = r.key;
+                    if (item.active) {
+                        this.panics.push(item);
+                    }
+                });
+                console.log(this.panics);
+                this.openPanicUser(this.panics);
+            }
+            else {
+                this.showToast('No Panics');
+            }
             /*   panics.forEach(pan=>{
                 let p : ILatLng = {
                   lat: pan.lat,

@@ -270,7 +270,7 @@ module.exports = webpackAsyncContext;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-app>\n    <ion-split-pane contentId=\"main-content\">\n        <ion-menu contentId=\"main-content\" type=\"reveal\">\n            <ion-header class=\"ion-no-border\">\n                <img [src]=\"this.authSVC.usersign.photoURL\">\n                <!-- <img src=\"../assets/imgs/user_profile_dp.svg\"> -->\n                <div class=\"content margin-left-17\">\n                    <h2>{{this.authSVC.usersign.displayName}}</h2>\n                    <h3>{{this.authSVC.usersign.email}}</h3>\n                    <!-- <p>+44 903 397 6854</p> -->\n                </div>\n            </ion-header>\n            <ion-content>\n                <ion-list class=\"margin-top-21\" id=\"inbox-list\">\n                    <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let m of this.authSVC.menu; let i = index\">\n                        <!-- <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let p of appPages; let i = index\"> -->\n                        <ion-item (click)=\"selectedIndex = i\" routerDirection=\"forward\" [routerLink]=\"[m.url]\" lines=\"none\" detail=\"false\">\n                            <div class=\"activeBox\" [class.selected]=\"selectedIndex == i\">\n                                <h2>\n                                    {{ m.titulo }}\n                                </h2>\n                            </div>\n                        </ion-item>\n\n                    </ion-menu-toggle>\n                    <ion-item>\n                        <div (click)=\"logout()\" class=\"activeBox\">\n                            <h2>\n                                Logout\n                            </h2>\n                        </div>\n\n                    </ion-item>\n                </ion-list>\n            </ion-content>\n        </ion-menu>\n        <ion-router-outlet id=\"main-content\" animated=\"false\">\n            <!--     <ion-button (click)=\"goToProfile()\" class=\"edit-profile-btn\">\n                <ion-icon src=\"../assets/imgs/appicons/edit-icon.svg\"></ion-icon>\n            </ion-button> -->\n        </ion-router-outlet>\n    </ion-split-pane>\n</ion-app>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-app>\n    <ion-split-pane contentId=\"main-content\">\n        <ion-menu contentId=\"main-content\" type=\"reveal\">\n            <ion-header class=\"ion-no-border\">\n                <img [src]=\"this.authSVC.usersign.photoURL\">\n                <!-- <img src=\"../assets/imgs/user_profile_dp.svg\"> -->\n                <div class=\"content margin-left-17\">\n                    <h2>{{this.authSVC.usersign.displayName}}</h2>\n                    <h3>{{this.authSVC.usersign.email}}</h3>\n                    <!-- <p>+44 903 397 6854</p> -->\n                </div>\n            </ion-header>\n            <ion-content>\n                <ion-list class=\"margin-top-21\" id=\"inbox-list\">\n                    <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let m of this.authSVC.menu; let i = index\">\n                        <!-- <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let p of appPages; let i = index\"> -->\n                        <ion-item (click)=\"selectedIndex = i\" routerDirection=\"forward\" [routerLink]=\"[m.url]\" lines=\"none\" detail=\"false\">\n                            <!--     <i class=\"material-icons\">{{m.icono}}</i> -->\n                            <div class=\"activeBox\" [class.selected]=\"selectedIndex == i\">\n                                <h2>\n                                    {{ m.titulo }}\n                                </h2>\n                            </div>\n                        </ion-item>\n\n                    </ion-menu-toggle>\n                    <!--    <ion-item>\n                        <div (click)=\"logout()\" class=\"activeBox\">\n                            <h2>\n                                Notes\n                            </h2>\n                        </div>\n\n                    </ion-item> -->\n                    <ion-item>\n                        <div (click)=\"logout()\" class=\"activeBox\">\n                            <h2>\n                                Logout\n                            </h2>\n                        </div>\n\n                    </ion-item>\n                </ion-list>\n            </ion-content>\n        </ion-menu>\n        <ion-router-outlet id=\"main-content\" animated=\"false\">\n            <!--     <ion-button (click)=\"goToProfile()\" class=\"edit-profile-btn\">\n                <ion-icon src=\"../assets/imgs/appicons/edit-icon.svg\"></ion-icon>\n            </ion-button> -->\n        </ion-router-outlet>\n    </ion-split-pane>\n</ion-app>");
 
 /***/ }),
 
@@ -708,6 +708,26 @@ const routes = [
     {
         path: 'panics',
         loadChildren: () => __webpack_require__.e(/*! import() | pages-tracking-panics-panics-module */ "common").then(__webpack_require__.bind(null, /*! ./pages/tracking/panics/panics.module */ "./src/app/pages/tracking/panics/panics.module.ts")).then(m => m.PanicsPageModule)
+    },
+    {
+        path: 'notes',
+        loadChildren: () => __webpack_require__.e(/*! import() | pages-notes-notes-module */ "pages-notes-notes-module").then(__webpack_require__.bind(null, /*! ./pages/notes/notes.module */ "./src/app/pages/notes/notes.module.ts")).then(m => m.NotesPageModule)
+    },
+    {
+        path: 'addeditnotes',
+        loadChildren: () => __webpack_require__.e(/*! import() | pages-notes-addeditnotes-addeditnotes-module */ "pages-notes-addeditnotes-addeditnotes-module").then(__webpack_require__.bind(null, /*! ./pages/notes/addeditnotes/addeditnotes.module */ "./src/app/pages/notes/addeditnotes/addeditnotes.module.ts")).then(m => m.AddeditnotesPageModule)
+    },
+    {
+        path: 'emotions',
+        loadChildren: () => __webpack_require__.e(/*! import() | pages-emotions-emotions-module */ "common").then(__webpack_require__.bind(null, /*! ./pages/emotions/emotions.module */ "./src/app/pages/emotions/emotions.module.ts")).then(m => m.EmotionsPageModule)
+    },
+    {
+        path: 'profiledatasheet',
+        loadChildren: () => __webpack_require__.e(/*! import() | pages-profiledatasheet-profiledatasheet-module */ "pages-profiledatasheet-profiledatasheet-module").then(__webpack_require__.bind(null, /*! ./pages/profiledatasheet/profiledatasheet.module */ "./src/app/pages/profiledatasheet/profiledatasheet.module.ts")).then(m => m.ProfiledatasheetPageModule)
+    },
+    {
+        path: 'resource-dir',
+        loadChildren: () => __webpack_require__.e(/*! import() | pages-resource-dir-resource-dir-module */ "pages-resource-dir-resource-dir-module").then(__webpack_require__.bind(null, /*! ./pages/resource-dir/resource-dir.module */ "./src/app/pages/resource-dir/resource-dir.module.ts")).then(m => m.ResourceDirPageModule)
     }
 ];
 let AppRoutingModule = class AppRoutingModule {
@@ -826,6 +846,13 @@ let AppComponent = class AppComponent {
         console.log(this.user);
         this.authSVC.getMenu(this.user).orderByChild('order').on('value', (resp) => {
             console.log(resp);
+            let notemenu = {
+                titulo: "Notes",
+                url: "/notes",
+                icono: "mdi mdi-note",
+                order: 10,
+                key: 'Notes'
+            };
             //const menu = snapshotToArray(resp);
             menu = [];
             resp.forEach((childSnapshot) => {
@@ -835,8 +862,10 @@ let AppComponent = class AppComponent {
                     menu.push(item);
                 }
             });
+            menu.push(notemenu);
             console.log(menu, 'menu');
             this.authSVC.menu = menu;
+            /* this.authSVC.menu.push(notemenu) */
         });
     }
     goToProfile() { }
@@ -955,6 +984,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_fire_storage__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! @angular/fire/storage */ "./node_modules/@angular/fire/fesm2015/angular-fire-storage.js");
 /* harmony import */ var _ionic_native_android_permissions_ngx__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! @ionic-native/android-permissions/ngx */ "./node_modules/@ionic-native/android-permissions/ngx/index.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
+/* harmony import */ var _ionic_native_in_app_browser_ngx__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! @ionic-native/in-app-browser/ngx */ "./node_modules/@ionic-native/in-app-browser/ngx/index.js");
+/* harmony import */ var _ionic_native_document_viewer_ngx__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! @ionic-native/document-viewer/ngx */ "./node_modules/@ionic-native/document-viewer/ngx/index.js");
 
 
 
@@ -974,6 +1005,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 //import { VideoCapturePlus, VideoCapturePlusOptions, MediaFile } from '@ionic-native/video-capture-plus/ngx';
+
+
 
 
 
@@ -1043,6 +1076,8 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _ionic_native_fcm_ngx__WEBPACK_IMPORTED_MODULE_25__["FCM"],
             _angular_fire_database__WEBPACK_IMPORTED_MODULE_27__["AngularFireDatabase"],
             _ionic_native_android_permissions_ngx__WEBPACK_IMPORTED_MODULE_29__["AndroidPermissions"],
+            _ionic_native_in_app_browser_ngx__WEBPACK_IMPORTED_MODULE_31__["InAppBrowser"],
+            _ionic_native_document_viewer_ngx__WEBPACK_IMPORTED_MODULE_32__["DocumentViewer"],
             { provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"], useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"] }
         ],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
@@ -1522,6 +1557,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/fesm2015/ionic-angular.js");
+/* harmony import */ var firebase__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! firebase */ "./node_modules/firebase/dist/index.esm.js");
+
 
 
 
@@ -1531,6 +1568,35 @@ let UtilService = class UtilService {
         this.menuCtrl = menuCtrl;
         this.modalCtrl = modalCtrl;
         this.popoverCtrl = popoverCtrl;
+    }
+    getNotes(user) {
+        return firebase__WEBPACK_IMPORTED_MODULE_3__["default"].database().ref('Notes/Users/' + user);
+    }
+    addNote(note) {
+        console.log(note);
+        let key = firebase__WEBPACK_IMPORTED_MODULE_3__["default"].database().ref('Notes/Notes').push(note).key;
+        firebase__WEBPACK_IMPORTED_MODULE_3__["default"].database().ref('Notes/Users/' + note.user + '/' + key).set(note);
+    }
+    editNote(note) {
+        //console.log(app);
+        firebase__WEBPACK_IMPORTED_MODULE_3__["default"].database().ref('Notes/Notes/' + note.appkey + '/').set(note);
+        firebase__WEBPACK_IMPORTED_MODULE_3__["default"].database().ref('Notes/Users/' + note.user + '/' + note.appkey).set(note);
+    }
+    deleteNote(note) {
+        firebase__WEBPACK_IMPORTED_MODULE_3__["default"].database().ref('Notes/Notes/' + note.appkey + '/').remove();
+        firebase__WEBPACK_IMPORTED_MODULE_3__["default"].database().ref('Notes/Users/' + note.user + '/' + note.appkey).remove();
+    }
+    setEmotion(emotion) {
+        //let key = firebase.database().ref('Emotion/Emotion').push(emotion).key
+        firebase__WEBPACK_IMPORTED_MODULE_3__["default"].database().ref('Emotion/Users/' + emotion.user).set(emotion);
+    }
+    getEmotion(user) {
+        return firebase__WEBPACK_IMPORTED_MODULE_3__["default"].database().ref('Emotion/Users/' + user);
+    }
+    getPDF() {
+        let storage = firebase__WEBPACK_IMPORTED_MODULE_3__["default"].storage();
+        let pathReference = storage.ref('Resources/resource-dir.pdf');
+        return pathReference;
     }
 };
 UtilService.ctorParameters = () => [

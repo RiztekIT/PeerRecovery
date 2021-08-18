@@ -59,6 +59,13 @@ export class UtilService {
 
   }
 
+  getPDF(){
+    let storage = firebase.storage();
+    let pathReference = storage.ref('Resources/resource-dir.pdf');
+
+    return pathReference;
+  }
+
   
 
 }

@@ -33,6 +33,11 @@ import { AngularFireList, AngularFireDatabase } from '@angular/fire/database';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import { HttpClientModule } from '@angular/common/http';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { DocumentViewer } from '@ionic-native/document-viewer/ngx';
+import { FileOpener } from '@ionic-native/file-opener/ngx';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
+import { File } from '@ionic-native/file/ngx';
+
 
 
 /* import { BackgroundMode } from '@ionic-native/background-mode/ngx'; */
@@ -93,6 +98,14 @@ let firebaseConfig = {
     AngularFireDatabase, 
     AndroidPermissions,   
     InAppBrowser,
+    DocumentViewer,
+    FileOpener,
+    FileTransfer,
+    FileTransferObject,
+    File,
+    
+    
+    
     
     
     

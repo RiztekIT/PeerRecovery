@@ -16,6 +16,7 @@ export class AddeditnotesPage implements OnInit {
   title: string = "";
   note: string = "";
   user;
+  appkey;
 
   constructor(
     private router: Router,
@@ -63,6 +64,7 @@ export class AddeditnotesPage implements OnInit {
 
     this.title = note.title;
     this.note = note.note;
+    this.appkey = note.appkey
 
 
     
@@ -93,7 +95,8 @@ export class AddeditnotesPage implements OnInit {
       timestamp: firebase.firestore.Timestamp.fromDate(new Date()),      
       title: this.title,
       note: this.note,
-      user: this.user.uid,  
+      user: this.user.uid, 
+      appkey:  this.appkey
     }
 
     console.log(note);

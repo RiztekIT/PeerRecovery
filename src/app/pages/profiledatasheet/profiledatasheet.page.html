@@ -282,7 +282,7 @@
 
     <ion-item-group>
         <ion-item-divider>
-            <ion-label color="primary" class="ion-text-wrap">Circle what alcohol / drug detenction device(s) you currently have, if any:</ion-label>
+            <ion-label color="primary" class="ion-text-wrap">Check what alcohol / drug detenction device(s) you currently have, if any:</ion-label>
 
         </ion-item-divider>
         <!-- <ion-label position="floating">Circle what alcohol / drug detenction device(s) you currently have, if any:</ion-label> -->
@@ -354,7 +354,7 @@
     <ion-button *ngIf="this.done" expand="full" (click)="editprofileDS()">Save</ion-button>
 
     <ion-text *ngIf="this.ver">
-        {{this.profileDS |json}}
+        {{this.respuesta |json}}
     </ion-text>
 
 

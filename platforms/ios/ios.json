@@ -10,7 +10,7 @@
           "NSLocationWhenInUseUsageDescription": [
             {
               "xml": "<string>We use your location for full functionality of certain app features.</string>",
-              "count": 2,
+              "count": 1,
               "mode": "merge",
               "id": "config.xml"
             }
@@ -18,13 +18,13 @@
           "NSCameraUsageDescription": [
             {
               "xml": "<string>You can take photos</string>",
-              "count": 36
+              "count": 38
             }
           ],
           "NSMicrophoneUsageDescription": [
             {
               "xml": "<string>You can use microphone</string>",
-              "count": 36
+              "count": 38
             }
           ],
           "CFBundleURLTypes": [
@@ -249,6 +249,14 @@
             {
               "xml": "<feature name=\"InAppBrowser\"><param name=\"ios-package\" value=\"CDVWKInAppBrowser\" /><param name=\"onload\" value=\"true\" /></feature>",
               "count": 1
+            },
+            {
+              "xml": "<feature name=\"SitewaertsDocumentViewer\"><param name=\"ios-package\" value=\"SitewaertsDocumentViewer\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"FileOpener2\"><param name=\"ios-package\" value=\"FileOpener2\" /></feature>",
+              "count": 1
             }
           ]
         }
@@ -375,6 +383,12 @@
       "PACKAGE_NAME": "com.peerrecovery.peer"
     },
     "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "com.peerrecovery.peer"
+    },
+    "cordova-plugin-document-viewer": {
+      "PACKAGE_NAME": "com.peerrecovery.peer"
+    },
+    "cordova-plugin-file-opener2": {
       "PACKAGE_NAME": "com.peerrecovery.peer"
     }
   },
@@ -1069,6 +1083,23 @@
       "clobbers": [
         "cordova.InAppBrowser.open"
       ]
+    },
+    {
+      "id": "cordova-plugin-document-viewer.SitewaertsDocumentViewer",
+      "file": "plugins/cordova-plugin-document-viewer/www/sitewaertsdocumentviewer.js",
+      "pluginId": "cordova-plugin-document-viewer",
+      "clobbers": [
+        "cordova.plugins.SitewaertsDocumentViewer",
+        "SitewaertsDocumentViewer"
+      ]
+    },
+    {
+      "id": "cordova-plugin-file-opener2.FileOpener2",
+      "file": "plugins/cordova-plugin-file-opener2/www/plugins.FileOpener2.js",
+      "pluginId": "cordova-plugin-file-opener2",
+      "clobbers": [
+        "cordova.plugins.fileOpener2"
+      ]
     }
   ],
   "plugin_metadata": {
@@ -1098,6 +1129,8 @@
     "cordova-plugin-android-permissions": "1.1.2",
     "com.googlemaps.ios": "3.9.0",
     "cordova-plugin-googlemaps": "2.8.0-20200709-2008",
-    "cordova-plugin-inappbrowser": "5.0.0"
+    "cordova-plugin-inappbrowser": "5.0.0",
+    "cordova-plugin-document-viewer": "1.0.0",
+    "cordova-plugin-file-opener2": "3.0.5"
   }
 }

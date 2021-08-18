@@ -49,6 +49,12 @@
         <service android:name="de.appplant.cordova.plugin.background.ForegroundService" />
         <meta-data android:name="com.google.android.geo.API_KEY" android:value="${GOOGLE_MAPS_ANDROID_API_KEY}" />
         <uses-library android:name="org.apache.http.legacy" android:required="false" />
+        <provider android:authorities="com.peerrecovery.peer.DocumentViewerPlugin.fileprovider" android:exported="false" android:grantUriPermissions="true" android:name="de.sitewaerts.cordova.documentviewer.FileProvider">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/documentviewer_file_paths" />
+        </provider>
+        <provider android:authorities="${applicationId}.fileOpener2.provider" android:exported="false" android:grantUriPermissions="true" android:name="io.github.pwlin.cordova.plugins.fileopener2.FileProvider">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/opener_paths" />
+        </provider>
     </application>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -80,4 +86,6 @@
     <uses-feature android:name="android.hardware.camera.autofocus" android:required="true" />
     <uses-feature android:glEsVersion="0x00020000" android:required="true" />
     <uses-feature android:name="android.hardware.location" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 </manifest>

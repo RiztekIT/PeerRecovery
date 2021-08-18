@@ -1004,6 +1004,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
 
   /***/
+  "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/emotions/emotions.page.html":
+  /*!*****************************************************************************************!*\
+    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/pages/emotions/emotions.page.html ***!
+    \*****************************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function node_modulesRawLoaderDistCjsJsSrcAppPagesEmotionsEmotionsPageHtml(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "<ion-header class=\"ion-no-border\">\n    <ion-toolbar mode=\"md\">\n        <!-- <ion-buttons slot=\"start\">\n            <ion-back-button defaultHref=\"home\" icon=\"chevron-back-outline\" text=\"\" mode=\"md\"></ion-back-button>\n        </ion-buttons> -->\n        <ion-buttons slot=\"end\">\n            <ion-button (click)=\"close()\">\n                <ion-icon name=\"close-outline\"></ion-icon>\n            </ion-button>\n        </ion-buttons>\n        <ion-title>Emotions</ion-title>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n    <ion-row>\n        <ion-col size=\"2\"></ion-col>\n        <ion-col size=\"8\" style=\"text-align: center;\">\n\n            <ion-label>How do yo feel?</ion-label>\n        </ion-col>\n        <ion-col size=\"2\"></ion-col>\n    </ion-row>\n    <hr>\n\n    <ion-row>\n\n        <ion-col size=\"3\" *ngFor=\"let e of emotions\" (click)=\"setEmotion(e)\">\n            <ion-avatar style=\"padding: 5px;\">\n                <img src=\"../../../assets/emotions/{{e.img}}\">\n            </ion-avatar>\n            <ion-label>{{e.title}}</ion-label>\n\n        </ion-col>\n\n\n\n\n    </ion-row>\n\n\n\n</ion-content>";
+    /***/
+  },
+
+  /***/
   "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/tracking/panics/panics.page.html":
   /*!**********************************************************************************************!*\
     !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/pages/tracking/panics/panics.page.html ***!
@@ -1020,6 +1040,367 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
     __webpack_exports__["default"] = "<ion-header class=\"ion-no-border\">\n    <ion-toolbar mode=\"md\">\n        <ion-buttons slot=\"start\">\n            <ion-back-button defaultHref=\"home\" icon=\"chevron-back-outline\" text=\"\" mode=\"md\"></ion-back-button>\n        </ion-buttons>\n        <!--   <ion-buttons slot=\"end\">\n            <ion-menu-button></ion-menu-button>\n        </ion-buttons> -->\n        <ion-title>Users</ion-title>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n    <div class=\"today_div\">\n        <!--   <ion-fab-button *ngIf=\"llamando\" (click)=\"resVideoCall()\" d class=\"call-green\">\n        \n        <ion-icon name=\"call-outline\"></ion-icon>\n    </ion-fab-button> -->\n        <!--         <ion-item *ngFor=\"let item of users\" lines=\"full\" (click)=\"startCamera()\" mode=\"md\"> -->\n        <ion-item *ngFor=\"let item of Users\" lines=\"full\" (click)=\"closeModal(item)\" mode=\"md\">\n            <ion-avatar slot=\"start\">\n                <img [src]=\"item?.photoUrl\">\n            </ion-avatar>\n            <ion-label>\n                <h3 class=\"name\">{{item?.displayName}}</h3>\n                <p class=\"detail\">{{item?.email}}</p>\n            </ion-label>\n        </ion-item>\n\n\n    </div>\n\n</ion-content>";
+    /***/
+  },
+
+  /***/
+  "./src/app/pages/emotions/emotions-routing.module.ts":
+  /*!***********************************************************!*\
+    !*** ./src/app/pages/emotions/emotions-routing.module.ts ***!
+    \***********************************************************/
+
+  /*! exports provided: EmotionsPageRoutingModule */
+
+  /***/
+  function srcAppPagesEmotionsEmotionsRoutingModuleTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "EmotionsPageRoutingModule", function () {
+      return EmotionsPageRoutingModule;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! @angular/router */
+    "./node_modules/@angular/router/fesm2015/router.js");
+    /* harmony import */
+
+
+    var _emotions_page__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! ./emotions.page */
+    "./src/app/pages/emotions/emotions.page.ts");
+
+    var routes = [{
+      path: '',
+      component: _emotions_page__WEBPACK_IMPORTED_MODULE_3__["EmotionsPage"]
+    }];
+
+    var EmotionsPageRoutingModule = function EmotionsPageRoutingModule() {
+      _classCallCheck(this, EmotionsPageRoutingModule);
+    };
+
+    EmotionsPageRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
+      imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forChild(routes)],
+      exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]]
+    })], EmotionsPageRoutingModule);
+    /***/
+  },
+
+  /***/
+  "./src/app/pages/emotions/emotions.module.ts":
+  /*!***************************************************!*\
+    !*** ./src/app/pages/emotions/emotions.module.ts ***!
+    \***************************************************/
+
+  /*! exports provided: EmotionsPageModule */
+
+  /***/
+  function srcAppPagesEmotionsEmotionsModuleTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "EmotionsPageModule", function () {
+      return EmotionsPageModule;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! @angular/common */
+    "./node_modules/@angular/common/fesm2015/common.js");
+    /* harmony import */
+
+
+    var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! @angular/forms */
+    "./node_modules/@angular/forms/fesm2015/forms.js");
+    /* harmony import */
+
+
+    var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! @ionic/angular */
+    "./node_modules/@ionic/angular/fesm2015/ionic-angular.js");
+    /* harmony import */
+
+
+    var _emotions_routing_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! ./emotions-routing.module */
+    "./src/app/pages/emotions/emotions-routing.module.ts");
+    /* harmony import */
+
+
+    var _emotions_page__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    /*! ./emotions.page */
+    "./src/app/pages/emotions/emotions.page.ts");
+
+    var EmotionsPageModule = function EmotionsPageModule() {
+      _classCallCheck(this, EmotionsPageModule);
+    };
+
+    EmotionsPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
+      imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], _emotions_routing_module__WEBPACK_IMPORTED_MODULE_5__["EmotionsPageRoutingModule"]],
+      declarations: [_emotions_page__WEBPACK_IMPORTED_MODULE_6__["EmotionsPage"]]
+    })], EmotionsPageModule);
+    /***/
+  },
+
+  /***/
+  "./src/app/pages/emotions/emotions.page.scss":
+  /*!***************************************************!*\
+    !*** ./src/app/pages/emotions/emotions.page.scss ***!
+    \***************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function srcAppPagesEmotionsEmotionsPageScss(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL2Vtb3Rpb25zL2Vtb3Rpb25zLnBhZ2Uuc2NzcyJ9 */";
+    /***/
+  },
+
+  /***/
+  "./src/app/pages/emotions/emotions.page.ts":
+  /*!*************************************************!*\
+    !*** ./src/app/pages/emotions/emotions.page.ts ***!
+    \*************************************************/
+
+  /*! exports provided: EmotionsPage */
+
+  /***/
+  function srcAppPagesEmotionsEmotionsPageTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "EmotionsPage", function () {
+      return EmotionsPage;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! @ionic/angular */
+    "./node_modules/@ionic/angular/fesm2015/ionic-angular.js");
+    /* harmony import */
+
+
+    var src_app_services_util_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! src/app/services/util.service */
+    "./src/app/services/util.service.ts");
+    /* harmony import */
+
+
+    var firebase__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! firebase */
+    "./node_modules/firebase/dist/index.esm.js");
+
+    var EmotionsPage = /*#__PURE__*/function () {
+      function EmotionsPage(modalController, utilSVC) {
+        _classCallCheck(this, EmotionsPage);
+
+        this.modalController = modalController;
+        this.utilSVC = utilSVC;
+        this.emotions = [{
+          title: 'Afraid',
+          img: 'afraid.svg'
+        }, {
+          title: 'Angry',
+          img: 'angry.svg'
+        }, {
+          title: 'Arrogant',
+          img: 'arrogant.svg'
+        }, {
+          title: 'Bored',
+          img: 'bored.svg'
+        }, {
+          title: 'Cool',
+          img: 'cool.svg'
+        }, {
+          title: 'Crying',
+          img: 'crying.svg'
+        }, {
+          title: 'Dead',
+          img: 'dead.svg'
+        }, {
+          title: 'Evil',
+          img: 'evil.svg'
+        }, {
+          title: 'Excited',
+          img: 'excited.svg'
+        }, {
+          title: 'Gentleman',
+          img: 'gentleman.svg'
+        }, {
+          title: 'Grinning',
+          img: 'grinning.svg'
+        }, {
+          title: 'Happy',
+          img: 'happy.svg'
+        }, {
+          title: 'Hot',
+          img: 'hot.svg'
+        }, {
+          title: 'Hurt',
+          img: 'hurt.svg'
+        }, {
+          title: 'In-Love',
+          img: 'in-love.svg'
+        }, {
+          title: 'Kiss',
+          img: 'kiss.svg'
+        }, {
+          title: 'Lonely',
+          img: 'lonely.svg'
+        }, {
+          title: 'Nerd',
+          img: 'nerd.svg'
+        }, {
+          title: 'Pain',
+          img: 'pain.svg'
+        }, {
+          title: 'Proud',
+          img: 'proud.svg'
+        }, {
+          title: 'Sad',
+          img: 'sad.svg'
+        }, {
+          title: 'Satisfied',
+          img: 'satisfied.svg'
+        }, {
+          title: 'Shock',
+          img: 'shock.svg'
+        }, {
+          title: 'Shut',
+          img: 'shut.svg'
+        }, {
+          title: 'Shy',
+          img: 'shy.svg'
+        }, {
+          title: 'Sick',
+          img: 'sick.svg'
+        }, {
+          title: 'Sleep',
+          img: 'sleep.svg'
+        }, {
+          title: 'Smile',
+          img: 'smile.svg'
+        }, {
+          title: 'Straight',
+          img: 'straight.svg'
+        }, {
+          title: 'Surprised',
+          img: 'surprised.svg'
+        }, {
+          title: 'Tongue',
+          img: 'tongue.svg'
+        }, {
+          title: 'Wink',
+          img: 'wink.svg'
+        }, {
+          title: 'Worried',
+          img: 'worried.svg'
+        }];
+      }
+
+      _createClass(EmotionsPage, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {
+          this.user = JSON.parse(sessionStorage.getItem('user'));
+        }
+      }, {
+        key: "close",
+        value: function close() {
+          this.modalController.dismiss({
+            'dismissed': true
+          });
+        }
+      }, {
+        key: "setEmotion",
+        value: function setEmotion(e) {
+          var emotion = {
+            timestamp: firebase__WEBPACK_IMPORTED_MODULE_4__["default"].firestore.Timestamp.fromDate(new Date()),
+            emotion: e.title,
+            img: e.img,
+            user: this.user.uid
+          };
+          console.log(emotion);
+          this.utilSVC.setEmotion(emotion);
+          this.close();
+        }
+      }]);
+
+      return EmotionsPage;
+    }();
+
+    EmotionsPage.ctorParameters = function () {
+      return [{
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"]
+      }, {
+        type: src_app_services_util_service__WEBPACK_IMPORTED_MODULE_3__["UtilService"]
+      }];
+    };
+
+    EmotionsPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: 'app-emotions',
+      template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! raw-loader!./emotions.page.html */
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/emotions/emotions.page.html"))["default"],
+      styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! ./emotions.page.scss */
+      "./src/app/pages/emotions/emotions.page.scss"))["default"]]
+    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"], src_app_services_util_service__WEBPACK_IMPORTED_MODULE_3__["UtilService"]])], EmotionsPage);
     /***/
   },
 

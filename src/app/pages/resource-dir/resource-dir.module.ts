@@ -8,6 +8,8 @@ import { ResourceDirPageRoutingModule } from './resource-dir-routing.module';
 
 import { ResourceDirPage } from './resource-dir.page';
 
+
+
 @NgModule({
   imports: [
     CommonModule,

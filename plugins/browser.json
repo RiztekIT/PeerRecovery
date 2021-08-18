@@ -76,12 +76,21 @@
     },
     "cordova-plugin-inappbrowser": {
       "PACKAGE_NAME": "com.peerrecovery.peer"
+    },
+    "cordova-plugin-document-viewer": {
+      "PACKAGE_NAME": "com.peerrecovery.peer"
+    },
+    "cordova-plugin-file-opener2": {
+      "PACKAGE_NAME": "com.peerrecovery.peer"
+    },
+    "cordova-plugin-file-transfer": {
+      "PACKAGE_NAME": "com.peerrecovery.peer"
+    },
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "com.peerrecovery.peer"
     }
   },
   "dependent_plugins": {
-    "cordova-plugin-file": {
-      "PACKAGE_NAME": "com.peerrecovery.peer"
-    },
     "cordova-plugin-add-swift-support": {
       "PACKAGE_NAME": "com.peerrecovery.peer"
     }

@@ -89,6 +89,8 @@ export class ProfiledatasheetPage implements OnInit {
 
   done = false;
   appkey;
+
+  respuesta = []
   
 
 
@@ -112,6 +114,11 @@ export class ProfiledatasheetPage implements OnInit {
 
 
   addChildren(){
+    if (!this.children){
+      this.children = []
+
+
+    }
     let children = {
       name: '',
       age: ''
@@ -280,6 +287,12 @@ export class ProfiledatasheetPage implements OnInit {
           this.appkey = this.profileDS.appkey
           
         })
+
+        if (!this.children){
+          this.children = []
+    
+    
+        }
         
 
 

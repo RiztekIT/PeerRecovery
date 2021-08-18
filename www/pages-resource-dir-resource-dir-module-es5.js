@@ -21,7 +21,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-title>resource-dir</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n</ion-content>\n";
+    __webpack_exports__["default"] = "<ion-header class=\"ion-no-border\">\n    <ion-toolbar mode=\"md\">\n        <ion-buttons slot=\"start\">\n            <ion-back-button defaultHref=\"home\" icon=\"chevron-back-outline\" text=\"\" mode=\"md\"></ion-back-button>\n        </ion-buttons>\n        <ion-buttons slot=\"end\">\n            <ion-menu-button></ion-menu-button>\n        </ion-buttons>\n        <ion-title>Resources Dir</ion-title>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n    <!-- <ion-button expand=\"full\" (click)=\"openPDF2()\">Abrir Archivo</ion-button> -->\n    <ion-button expand=\"full\" (click)=\"openPDF()\">Resources File</ion-button>\n    <!-- <ion-text>\n        {{this.pdf}}\n    </ion-text> -->\n\n\n\n</ion-content>";
     /***/
   },
 
@@ -209,19 +209,112 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
     /*! @angular/core */
     "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _ionic_native_document_viewer_ngx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! @ionic-native/document-viewer/ngx */
+    "./node_modules/@ionic-native/document-viewer/ngx/index.js");
+    /* harmony import */
+
+
+    var _services_util_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! ../../services/util.service */
+    "./src/app/services/util.service.ts");
+    /* harmony import */
+
+
+    var _ionic_native_file_opener_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! @ionic-native/file-opener/ngx */
+    "./node_modules/@ionic-native/file-opener/ngx/index.js");
+    /* harmony import */
+
+
+    var _ionic_native_file_transfer_ngx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! @ionic-native/file-transfer/ngx */
+    "./node_modules/@ionic-native/file-transfer/ngx/index.js");
+    /* harmony import */
+
+
+    var _ionic_native_file_ngx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    /*! @ionic-native/file/ngx */
+    "./node_modules/@ionic-native/file/ngx/index.js");
+    /* import { File } from '@ionic-native/file/ngx'; */
+
 
     var ResourceDirPage = /*#__PURE__*/function () {
-      function ResourceDirPage() {
+      function ResourceDirPage(document, utilSVC, fileOpener, ft, file) {
         _classCallCheck(this, ResourceDirPage);
+
+        this.document = document;
+        this.utilSVC = utilSVC;
+        this.fileOpener = fileOpener;
+        this.ft = ft;
+        this.file = file;
+        this.options = {
+          title: 'My PDF'
+        };
       }
 
       _createClass(ResourceDirPage, [{
         key: "ngOnInit",
-        value: function ngOnInit() {}
+        value: function ngOnInit() {
+          /* this.openPDF()   */
+        }
+      }, {
+        key: "openPDF",
+        value: function openPDF() {
+          var _this = this;
+
+          this.utilSVC.getPDF().getDownloadURL().then(function (resp) {
+            console.log(resp);
+            _this.pdf = resp; //    this.document.viewDocument(resp, 'application/pdf', this.options)
+
+            var transfer = _this.ft.create();
+
+            var path = _this.file.dataDirectory;
+            transfer.download(resp, "".concat(path, "myfile.pdf")).then(function (resp) {
+              var url = resp.toURL();
+
+              _this.fileOpener.open(url, 'application/pdf').then(function () {
+                return console.log('File is opened');
+              });
+            });
+          });
+        }
+      }, {
+        key: "openPDF2",
+        value: function openPDF2() {
+          var _this2 = this;
+
+          this.utilSVC.getPDF().getDownloadURL().then(function (resp) {
+            var fakeName = Date.now();
+
+            _this2.file.copyFile(resp, 'resource-dir.pdf', _this2.file.dataDirectory, "".concat(fakeName, ".pdf")).then(function (result) {
+              _this2.fileOpener.showOpenWithDialog(result.nativeURL, 'application/pdf').then(function () {
+                return console.log('File is opened');
+              });
+            });
+          });
+        }
       }]);
 
       return ResourceDirPage;
     }();
+
+    ResourceDirPage.ctorParameters = function () {
+      return [{
+        type: _ionic_native_document_viewer_ngx__WEBPACK_IMPORTED_MODULE_2__["DocumentViewer"]
+      }, {
+        type: _services_util_service__WEBPACK_IMPORTED_MODULE_3__["UtilService"]
+      }, {
+        type: _ionic_native_file_opener_ngx__WEBPACK_IMPORTED_MODULE_4__["FileOpener"]
+      }, {
+        type: _ionic_native_file_transfer_ngx__WEBPACK_IMPORTED_MODULE_5__["FileTransfer"]
+      }, {
+        type: _ionic_native_file_ngx__WEBPACK_IMPORTED_MODULE_6__["File"]
+      }];
+    };
 
     ResourceDirPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
       selector: 'app-resource-dir',
@@ -231,7 +324,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./resource-dir.page.scss */
       "./src/app/pages/resource-dir/resource-dir.page.scss"))["default"]]
-    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])], ResourceDirPage);
+    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_native_document_viewer_ngx__WEBPACK_IMPORTED_MODULE_2__["DocumentViewer"], _services_util_service__WEBPACK_IMPORTED_MODULE_3__["UtilService"], _ionic_native_file_opener_ngx__WEBPACK_IMPORTED_MODULE_4__["FileOpener"], _ionic_native_file_transfer_ngx__WEBPACK_IMPORTED_MODULE_5__["FileTransfer"], _ionic_native_file_ngx__WEBPACK_IMPORTED_MODULE_6__["File"]])], ResourceDirPage);
     /***/
   }
 }]);

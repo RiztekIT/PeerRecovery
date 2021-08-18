@@ -30,5 +30,7 @@ export class ProfileService {
     firebase.database().ref('Profile/DataSheet/DataSheet/'+ds.appkey+'/').set(ds)
     firebase.database().ref('Profile/DataSheet/Users/'+ds.user+'/'+ds.appkey).set(ds)
 
+    
+
   }
 }

@@ -416,25 +416,31 @@ export class TrackingPage implements OnInit {
 
    
 
-     
+     if (resp.val()){
 
-      resp.forEach(r=>{
+       resp.forEach(r=>{
+  
+         let item = r.val()       
+         item.key = r.key
+  
+         if (item.active){
+  
+           this.panics.push(item)
+  
+          
+         }
+  
+  
+       })
+  
+       console.log(this.panics);
+       this.openPanicUser(this.panics)
+     }else{
 
-        let item = r.val()       
-        item.key = r.key
+      this.showToast('No Panics');
 
-        if (item.active){
+     }
 
-          this.panics.push(item)
-
-         
-        }
-
-
-      })
-
-      console.log(this.panics);
-      this.openPanicUser(this.panics)
 
      
 

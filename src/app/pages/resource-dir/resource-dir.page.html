@@ -1,9 +1,23 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>resource-dir</ion-title>
-  </ion-toolbar>
+<ion-header class="ion-no-border">
+    <ion-toolbar mode="md">
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="home" icon="chevron-back-outline" text="" mode="md"></ion-back-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Resources Dir</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+    <!-- <ion-button expand="full" (click)="openPDF2()">Abrir Archivo</ion-button> -->
+    <ion-button expand="full" (click)="openPDF()">Resources File</ion-button>
+    <!-- <ion-text>
+        {{this.pdf}}
+    </ion-text> -->
+
+
 
 </ion-content>
